@@ -1,0 +1,289 @@
+\documentclass[final,a4paper,openany,12pt]{mwbk}
+%\documentclass[final,a4paper,openright,12pt]{mwbk} % każdy rozdział zaczyna się na stronie nieparzystej
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{makeidx}  % allows index generation
+\usepackage{graphicx} % standard LaTeX graphics tool
+                      % for including eps-figure files
+\prefixing %polskie znaki: /a /c /e /z /x /o /s /l /A /C itd.
+
+\renewcommand*\listalgorithmname{Spis algorytmów\protect} % łatka na niedoróbkę w spisie algorytmów - nie usuwać!
+
+% zestaw przydatny, kiedy trzeba regulować szerokość kolumn w tablicy:
+%%\usepackage{longtable}
+%\usepackage{array}
+%\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newtheorem{twr}{Twierdzenie}[section]
+
+% ustawienia do wydruku dwustronnego z uwzględnieniem dodatkowego miejsca na zszycie
+\setlength{\oddsidemargin}{0.46cm}   %margines nieparzysty
+\setlength{\evensidemargin}{-0.54cm} %margines parzysty
+\setlength{\textwidth}{16cm}         %szerokość tekstu na stronie
+\linespread{1.1}    % lekkie zwiększenie odstępu między liniami, żeby tekst nie był taki ścisły, ponieważ
+                    % Odstęp pojedynczej interlinii nie jest komfortowy, kiedy trzeba czytać strony A4
+% koniec ustawień
+
+%\makeindex            % used for the subject index
+                      % please use the style sprmidx.sty with
+                      % your makeindex program
+\begin{document}
+
+\begin{titlepage}
+\vspace{-0.5cm}
+
+{\centering
+{\footnotesize
+\begin{tabular}{c}
+UNIWERSYTET KARDYNAŁA STEFANA WYSZYŃSKIEGO\\
+W WARSZAWIE\\
+\end{tabular}
+}
+\vspace{2.5cm}
+
+{\footnotesize
+\begin{tabular}{c}
+WYDZIAŁ MATEMATYCZNO-PRZYRODNICZY\\
+SZKOŁA NAUK ŚCISŁYCH\\
+\end{tabular}
+}
+\vspace{3.5cm}
+
+\renewcommand{\arraystretch}{1.5} % zwiększamy odległość między wierszami
+
+{\normalsize
+\begin{tabular}{c}
+Katarzyna Mitrus\\
+99269\\
+Informatyka\\
+\end{tabular}
+}
+
+\vspace{1.5cm}
+
+{\large
+\begin{tabular}{c}
+
+Porównanie wybranych algorytmów uczenia maszynowego\\
+na podstawie rozpoznawania cyfr z obrazu\\
+
+\end{tabular}
+}
+
+}
+
+\renewcommand{\arraystretch}{1} % przywracamy domyślną odległość miedzy wierszami
+
+\vspace{5cm}
+
+\hspace{6cm}
+\begin{tabular}{l}
+Praca  licencjacka\\
+Promotor:\\
+dr  inż.  Robert  Albert  Kłopotek\\
+
+\end{tabular}
+
+\vspace{3cm}
+
+{\centering
+
+{\small
+\begin{tabular}{c}
+{Warszawa, 2018}\\
+\end{tabular}
+}
+
+}
+\end{titlepage}
+
+\newpage
+
+\emph{Tekst na prawach manuskryptu. Ostatnia aktualizacja: 29 września 2016 r.}
+\vspace{2mm}
+
+\emph{Uwaga: nie jest to oficjalny dokument Wydziału Matematyczno Przyrodniczego. Szkoła Nauk Ścisłych UKSW. Nie definiuje on wymagań co do formy i~treści prac dyplomowych składanych na tym Wydziale.}
+\vspace{2mm}
+
+\emph{Format tekstu:} 
+\begin{enumerate}
+\item \emph{Szerokość marginesów dokumentu została dostosowana do druku dwustronnego. }
+\item \emph{Tytuły kolejnych rozdziały umieszczane są zarówno na stronach parzystych jak i nieparzystych. Aby zmienić to ustawienie, np. na umieszczanie tytułów rozdziałów wyłącznie na stronach nieparzystych, należy w pierwszej linijce słowo kluczowe ``openany" zamienić na ``openright".}
+\end{enumerate}
+\vspace{20mm}
+
+\emph{Wyrażam zgodę na nieodpłatne wykorzystanie niniejszego szablonu latex’owego przez studentów UKSW w celu napisania pracy dyplomowej na UKSW. }
+\vspace{2mm}
+
+\hspace{10cm}\emph{Krzysztof Trojanowski}
+
+
+\thispagestyle{empty}
+\mbox{}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms
+
+\sloppy
+
+\chapter*{Wykaz stosowanych oznaczeń}
+
+\begin{tabular}{ll}
+$R$	&	Zbiór liczb rzeczywistych.\\
+$R^n$	&	Zbiór punktów o~$n$ współrzędnych rzeczywistych.\\
+$n$	&	Liczba wymiarów przestrzeni(liczba argumentów funkcji celu).\\
+\end{tabular}
+
+\chapter*{Wstęp}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Postawiona w pracy hipoteza badawcza brzmi ..
+
+Praca składa się z .. rozdziałów. Rozdział pierwszy zawiera.., W rozdziale drugim zaprezentowano.., Rozdział trzeci omawia...
+
+.. Udało się wykazać prawdziwość postawionej hipotezy badawczej.
+
+\chapter{Zdefiniowanie problemu badawczego}
+
+Tutaj jest miejsce na sprecyzowanie dziedziny, do której należy wykonana praca. Tu musi też znaleźć się przegląd literatury związanej z tą dziedziną. Tu również należy wstawić jak najwięcej referencji do bibliografii~\cite{Lindsay,Urban}.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\chapter{Przyjęte postępowanie}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Tu, w tym rozdziale jest miejsce na pseudokod wybranych algorytmów. W zdaniach musza znaleźć się odwołania do każdego pseudokodu, wzoru, tabeli czy rysunku, jakie zostały zamieszczone. Przykłady:
+\vspace{2mm}
+
+Algorytm~\ref{podstawowyDE} reprezentuje ogólny schemat \textbf{DE}.
+\floatname{algorithm}{Algorytm} % To polecenie jest konieczne, żeby nagłówek brzmiał po polsku
+\begin{algorithm}[h!]
+\caption{Algorytm Ewolucji Różnicowej} \label{podstawowyDE}
+\begin{algorithmic}
+\State $P_{\textbf{x}} \leftarrow $ populacja początkowa
+\State ewaluacja $(P)$
+\Repeat
+\State $P_{\textbf{v}} \leftarrow $ mutacja($P_{\textbf{x}}$)\Comment{mutacja różnicowa}
+\State $P_{\textbf{u}} \leftarrow $ rekombinacja($P_{\textbf{x}},P_{\textbf{v}}$)\Comment{'mieszanie' osobników populacji z~mutantami}
+\State evaluate($P_{\textbf{u}}$)
+\State $P_{\textbf{x}} \leftarrow $ selekcja($P_{\textbf{x}}, P_{\textbf{u}}$)
+\Until {spełniony warunek wyjścia}\newline
+\end{algorithmic}
+\end{algorithm}
+
+Miara $acc$ jest obliczana za pomocą wzoru~(\ref{norm_fitness}):
+\begin{equation}
+acc(\textbf{x}_j)  = \frac{F(\textbf{x}_j)-f_{\mathrm{min},j}}{f_{\mathrm{max},j}-f_{\mathrm{min},j}}, \label{norm_fitness}
+\end{equation}
+gdzie $f_{\mathrm{max},j}$ and $f_{\mathrm{min},j}$ reprezentują odpowiednio najlepszą i~najgorszą znaną wartość dla $j$-tego kształtu krajobrazu dopasowania opisanego funkcją $F$.
+\vspace{2mm}
+
+Można też wstawiać wzory matematyczne nieco mniej proste, np.:
+\begin{eqnarray}
+d & = & \mathrm{S\alpha S}(0,\sigma), \; \mbox{ and }\label{aqq1}\\
+\sigma & = & r_{\mathrm{S\alpha S}}  \cdot \frac{D_{\mathrm{w}}}{2}.\label{aqq2}
+\end{eqnarray}
+
+albo całkiem złożone:
+\begin{eqnarray}
+F_i(t+1) = \left\lbrace \begin{array}{ll}
+F_\mathrm{min} + rand[0,1)\cdot F_\mathrm{max}& \textrm{jeżeli $rand[0,1) < 0.1$}\\
+F_{i}(t) & \textrm{w przeciwnym przypadku.} \end{array} \right.\\
+C_i(t+1) = \left\lbrace \begin{array}{ll}
+rand[0,1)& \textrm{jeżeli $rand[0,1) < 0.1$}\\
+C_{i}(t) & \textrm{w przeciwnym przypadku.} \end{array} \right.
+\end{eqnarray}
+
+Uwaga: w~przypadku wzorów przyjęta jest konwencja, według której symbol reprezentujący wartość skalarną pisany jest kursywą, np. $x$, $y$, $f_{\mathrm{min},j}$, natomiast symbol reprezentujący wektor liczb (np. współrzędne punktu) pisany jest czcionką pogrubioną, np. $\textbf{x}_j$. Istnieje też druga konwencja, według której indeksy pisane kursywą reprezentują nr kolejny elementu, natomiast bez kursywy pisane są indeksy, które są częścią symbolu. Np. $f_{\mathrm{max},j}$ i~$f_{\mathrm{min},j}$ reprezentują wartości maksymalną i~minimalną $f$ w~$j$-tej generacji pewnego procesu.
+
+\chapter{Metodologia badań}
+
+\section{Definicje cech podlegających pomiarom}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Sposób statystycznej obróbki zebranych pomiarów}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Zakres badań}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+A wszystko to przepasane jakby wstęgą, miedzą zieloną w Tabeli~\ref{TabComp}.
+
+\begin{table}
+\centering
+\caption{Wybrane funkcje testowe}\label{TabComp}
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{p{3cm}p{9cm}p{2cm}}\hline\hline
+nazwa & wzór	& dziedzina\\ \hline\hline
+Pik ($F_1$)	&	$f(\textbf{x})=\frac{1}{1 + \sum_{j = 1}^{n}x_j^2}$	&	[-100,100]\\
+Stożek ($F_2$)	&	$f(\textbf{x})=1 - \sqrt{\sum_{j = 1}^{n}x_j^2}$	&	[-100,100]\\
+Sfera ($F_3$)	&	$f(\textbf{x})=\sum_{i=1}^n{x_i^2}$	&	[-100,100]\\
+Rastrigin ($F_4$)	&	$f(\textbf{x})=\sum_{i=1}^n{(x_i^2-10\cos(2\pi x_i)+10)}$	&	[-5,5]\\
+Griewank ($F_5$)	&	$f(\textbf{x})=\frac{1}{4000}\sum_{i=1}^n{\!(x_i)^2}-
+ \prod_{i=1}^{n}\!\cos(\frac{x_i}{\sqrt{i}})+1$	&	[-100,100]\\
+Ackley ($F_6$)	&	$f(\textbf{x})=-20\exp(-0.2\sqrt{\frac{1}{n}\sum\limits_{i=1}^{n}{x_i^2}})-\newline
+ \exp(\frac{1}{n}\sum\limits_{i=1}^{n}{\cos(2\pi x_i)})+20+e$	&	[-32,32]\\
+\hline \hline
+\end{tabular}
+}
+\end{table}
+
+
+\section{Konfiguracje parametrów algorytmów i~zadań testowych}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\chapter{Wyniki}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{table}[ht!]
+\centering
+\caption{Wyniki eksperymentów}
+{\renewcommand{\arraystretch}{1.2}
+{\footnotesize
+\begin{tabular}{|r||r|r||r|r|r|r||r|r|}\hline
+Zadanie & $\alpha$ & $\textbf{s}_{\mathrm{Lev\acute{y}}}$ num. & $Avg^\mathrm{najl}$ & $Avg^\mathrm{średni}$ & $Avg^\mathrm{najg}$ & $STD$ & $oe$ & bł.~std. \\\hline\hline
+MPB sc.2, 10 &---& 0 & 0                   & \textbf{2.929} & 14.241 & 4.387 & \textbf{4.111} & 2.213 \\
+\hline
+MPB sc.2, 50 &0.5& 1 & 8.39$\cdot 10^{-6}$ & \textbf{2.730} & 11.129 & 2.941 & \textbf{3.749} & 1.013 \\
+\hline
+\hline
+DCBG i $F_4$, $\mathbf{T}_1$ & ---  & 0 & 2.999 & \textbf{368.31} & 829.59 & 187.81 & \textbf{570.72} & 48.496  \\
+\hline
+DCBG i $F_4$, $\mathbf{T}_2$ & ---  & 0 & 5.725 & \textbf{414.39} & 824.64 & 191.88 & \textbf{610.56} & 57.612 \\
+\hline
+DCBG i $F_4$, $\mathbf{T}_3$ & ---  & 0 & 0.746 & \textbf{402.62} & 805.08 & 187.34 & \textbf{661.39} & 54.57 \\
+\hline
+\end{tabular}
+}
+}
+\label{TableTheSameConf}
+\end{table}
+
+\chapter*{Podsumowanie}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\bibliographystyle{plain}
+\bibliography{mgr}
+
+\chapter*{Dodatek A -- Opis Klas}
+
+W przypadku implementacji obiektowej lub modularnej należy podać opis klas lub modułów jakie współtworzą program.
+
+\end{document} 
