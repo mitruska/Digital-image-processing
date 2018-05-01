@@ -3,7 +3,7 @@
 ## **1. Operacje ujednolicania obrazów** 
 - [ ] Kasia 
 - [x] Michał
-1. ujednolicenie obrazów szarych geometryczne (liczba wierszy i kolumn piksli) - [ ]  
+1. ujednolicenie obrazów szarych geometryczne (liczba wierszy i kolumn piksli)  [ ]  
 2. ujednolicenie obrazów szarych rozdzielczosciowe (w rastrze) ´
 3. ujednolicenie obrazów RGB geometryczne (liczba wierszy i kolumn piksli)
 4. ujednolicenie obrazów RGB rozdzielczosciowe (w rastrze) ´
