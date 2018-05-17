@@ -55,22 +55,22 @@ class ArithmeticGray:
             for y in range(height):
                     for x in range(width):  
 
+                            # Obliczanie sumy
                             L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
 
                             Q_max = L
                             D_max = 0
                             X = 0
 
+                            # Sprawdzenie czy przekracza zakres
                             if Q_max > 255:
                                 D_max = Q_max - 255
                                 X = (D_max/255)
 
+                            # Obliczenie sumy z uwzglednieniem zakresu
                             L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (image2_matrix[x][y] - (image2_matrix[x][y] * X))
 
-                            # # Normalizacja
-                            # if L > 255:
-                            #         L = 255
-                            
+                            # Przypisanie nowej wartosci
                             result_matrix[x][y] = L
 
             if show == True:

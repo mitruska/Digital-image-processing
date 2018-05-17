@@ -64,36 +64,31 @@ class ArithmeticColor:
 
             for y in range(height):
                     for x in range(width):  
-                            print("R1 R2", image1_matrix[x][y][0], image2_matrix[x][y][0])
 
-                            # R = np.sum(image1_matrix[x][y][0], image2_matrix[x][y][0])
-                            # R = image1_matrix[x][y][0].astype(np.uint16) + image2_matrix[x][y][0]
+                            # Obliczanie sum
                             R = int(image1_matrix[x][y][0]) + int(image2_matrix[x][y][0])
                             G = int(image1_matrix[x][y][1]) + int(image2_matrix[x][y][1])
                             B = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
 
-                            print("RGB_Przed", R, G, B)
-
+                            # Szukanie maksymalnej wartosci
                             Q_max = max([R, G, B])
-                            print("Q_max", Q_max)
                             D_max = 0
                             X = 0
 
+                            # Sprawdzenie czy maximum przekracza zakres
                             if Q_max > 255:
                                 D_max = Q_max - 255
-                                print("D_max", D_max)
                                 X = (D_max/255)
-                                print("X1", X)    
                             
+                            # Obliczenie sum z uwzglednieniem zakresu
                             R = (image1_matrix[x][y][0] - (image1_matrix[x][y][0] * X)) + (image2_matrix[x][y][0] - (image2_matrix[x][y][0] * X))
                             G = (image1_matrix[x][y][1] - (image1_matrix[x][y][1] * X)) + (image2_matrix[x][y][1] - (image2_matrix[x][y][1] * X))
                             B = (image1_matrix[x][y][2] - (image1_matrix[x][y][2] * X)) + (image2_matrix[x][y][2] - (image2_matrix[x][y][2] * X))
 
+                            # Przypisanie nowych wartosci
                             result_matrix[x][y][0] = R
                             result_matrix[x][y][1] = G
                             result_matrix[x][y][2] = B
-
-                            print("RGB_Po", R, result_matrix[x][y][0] , G, B)
 
 
             if show == True:
