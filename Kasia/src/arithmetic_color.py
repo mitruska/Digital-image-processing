@@ -23,26 +23,30 @@ class ArithmeticColor:
                 for y in range(height):
                         for x in range(width):  
 
-                                R = image_matrix[x][y][0] # RED czerwony
-                                G = image_matrix[x][y][1] # GREEN zielony
-                                B = image_matrix[x][y][2] # BLUE niebieski
+                                 # Obliczanie sum
+                            R = int(image1_matrix[x][y][0]) + int(const)
+                            G = int(image1_matrix[x][y][1]) + int(const)
+                            B = int(image1_matrix[x][y][2]) + int(const)
 
-                                # Dodawanie stalej
-                                R = R + const
-                                G = G + const
-                                B = B + const
+                            # Szukanie maksymalnej wartosci
+                            Q_max = max([R, G, B])
+                            D_max = 0
+                            X = 0
 
-                                # Normalizacja
-                                if R > 255:
-                                        R = 255
-                                if G > 255:
-                                        G = 255
-                                if B > 255:
-                                        B = 255
-                                
-                                result_matrix[x][y][0] = R
-                                result_matrix[x][y][1] = G
-                                result_matrix[x][y][2] = B
+                            # Sprawdzenie czy maximum przekracza zakres
+                            if Q_max > 255:
+                                D_max = Q_max - 255
+                                X = (D_max/255) # Obliczenie proporcji
+                            
+                            # Obliczenie sum z uwzglednieniem zakresu
+                            R = (image1_matrix[x][y][0] - (image1_matrix[x][y][0] * X)) + (const - (const * X))
+                            G = (image1_matrix[x][y][1] - (image1_matrix[x][y][1] * X)) + (const - (const * X))
+                            B = (image1_matrix[x][y][2] - (image1_matrix[x][y][2] * X)) + (const - (const * X))
+
+                            # Przypisanie nowych wartosci
+                            result_matrix[x][y][0] = R
+                            result_matrix[x][y][1] = G
+                            result_matrix[x][y][2] = B
 
                 if show == True:
                         #przed sumowaniem
@@ -78,7 +82,7 @@ class ArithmeticColor:
                             # Sprawdzenie czy maximum przekracza zakres
                             if Q_max > 255:
                                 D_max = Q_max - 255
-                                X = (D_max/255)
+                                X = (D_max/255) # Obliczenie proporcji
                             
                             # Obliczenie sum z uwzglednieniem zakresu
                             R = (image1_matrix[x][y][0] - (image1_matrix[x][y][0] * X)) + (image2_matrix[x][y][0] - (image2_matrix[x][y][0] * X))

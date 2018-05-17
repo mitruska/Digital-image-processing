@@ -21,19 +21,25 @@ class ArithmeticGray:
                 result_matrix = np.empty((height, width), dtype=np.uint8)
 
                 for y in range(height):
-                        for x in range(width):  
+                    for x in range(width):  
 
-                                # Pobranie wartosci
-                                L = image_matrix[x][y]
-                                # Dodawanie stalej
-                                L = L + const
+                            # Obliczanie sumy
+                            L = int(image1_matrix[x][y]) + int(const)
 
-                                maximum = 255
-                                if L > 255:
-                                        maximum = L
-                                        L = 255
+                            Q_max = L
+                            D_max = 0
+                            X = 0
 
-                                result_matrix[x][y] = L
+                            # Sprawdzenie czy przekracza zakres
+                            if Q_max > 255:
+                                D_max = Q_max - 255
+                                X = (D_max/255)
+
+                            # Obliczenie sumy z uwzglednieniem zakresu
+                            L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (const - (const * X))
+
+                            # Przypisanie nowej wartosci
+                            result_matrix[x][y] = L
 
                 if show == True:
                         #przed sumowaniem
