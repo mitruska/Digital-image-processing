@@ -88,9 +88,75 @@ class ArithmeticGray:
             if save == True:
                     Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Sum_Result.tiff", "TIFF")  
 
+        def multiple_const(self, const = 0, show = False, save = False):
+            
+            image1_matrix = self.im1
+            image2_matrix = self.im2
+            height = image1_matrix.shape[0]   # wysokosc
+            width = image1_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+
+            for y in range(height):
+                for x in range(width):  
+
+                    L = int(image1_matrix[x][y]) 
+                    if L == 255:
+                        L = const
+                    elif L == 0:
+                        L = 0
+                    else:
+                        L = (int(image1_matrix[x][y]) * const)/255 
+
+                    # Przypisanie nowej wartosci
+                    result_matrix[x][y] = L
+
+            if show == True:
+                #przed sumowaniem
+                Image.fromarray(image1_matrix, "L").show()  
+                #po sumowaniu   
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
+
+
+        def multiple_img(self, show = False, save = False):
+                
+                image1_matrix = self.im1
+                image2_matrix = self.im2
+                height = image1_matrix.shape[0]   # wysokosc
+                width = image1_matrix.shape[1]    # szereoksc
+
+                result_matrix = np.empty((height, width), dtype=np.uint8)
+
+                for y in range(height):
+                    for x in range(width):  
+
+                        L = int(image1_matrix[x][y]) 
+                        if L == 255:
+                            L = image2_matrix[x][y]
+                        elif L == 0:
+                            L = 0
+                        else:
+                            L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
+
+                        # Przypisanie nowej wartosci
+                        result_matrix[x][y] = L
+
+                if show == True:
+                    #przed sumowaniem
+                    Image.fromarray(image1_matrix, "L" ).show()  
+                    Image.fromarray(image2_matrix, "L").show()  
+                    #po sumowaniu   
+                    Image.fromarray(result_matrix, "L").show() 
+                if save == True:
+                    Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+
 
 
 #TESTY
 zad2 = ArithmeticGray(image1Path = "../../Resources/Gray/Mostek.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
 # zad2.sum_const(const = 60, show = True, save = True)
-zad2.sum_img(show = True, save = True)
+# zad2.sum_img(show = True, save = True)
+zad2.multiple_const(const = 60, show = True, save = True)
+zad2.multiple_img(show = True, save = True)
