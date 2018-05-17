@@ -88,7 +88,7 @@ class ArithmeticGray:
             if save == True:
                     Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Sum_Result.tiff", "TIFF")  
 
-        def multiple_const(self, const = 0, show = False, save = False):
+        def multiply_const(self, const = 0, show = False, save = False):
             
             image1_matrix = self.im1
             image2_matrix = self.im2
@@ -120,7 +120,7 @@ class ArithmeticGray:
                 Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
 
 
-        def multiple_img(self, show = False, save = False):
+        def multiply_img(self, show = False, save = False):
                 
                 image1_matrix = self.im1
                 image2_matrix = self.im2
@@ -158,5 +158,5 @@ class ArithmeticGray:
 zad2 = ArithmeticGray(image1Path = "../../Resources/Gray/Mostek.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
 # zad2.sum_const(const = 60, show = True, save = True)
 # zad2.sum_img(show = True, save = True)
-zad2.multiple_const(const = 60, show = True, save = True)
-zad2.multiple_img(show = True, save = True)
+zad2.multiply_const(const = 60, show = True, save = True)
+zad2.multiply_img(show = True, save = True)
