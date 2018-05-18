@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import math
 
 
 class ArithmeticColor:
@@ -205,10 +206,49 @@ class ArithmeticColor:
             if save == True:
                     Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
 
+        def mix_alfa(self, alfa = 1.0, show = False, save = False):
+            
+            image1_matrix = self.im1
+            image2_matrix = self.im2
+            height = image1_matrix.shape[0]   # wysokosc
+            width = image1_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+
+            for y in range(height):
+                for x in range(width):  
+
+                    # R = int(image1_matrix[x][y][0])
+                    # G = int(image1_matrix[x][y][1])
+                    # B = int(image1_matrix[x][y][2])
+
+                    R = float(image1_matrix[x][y][0]) * alfa + (1-alfa) * float(image2_matrix[x][y][0])
+                    G = float(image1_matrix[x][y][1]) * alfa + (1-alfa) * float(image2_matrix[x][y][1])
+                    B = float(image1_matrix[x][y][2]) * alfa + (1-alfa) * float(image2_matrix[x][y][2])
+
+                    # Przypisanie nowych wartosci
+                    result_matrix[x][y][0] = math.ceil(R)
+                    result_matrix[x][y][1] = math.ceil(G)
+                    result_matrix[x][y][2] = math.ceil(B)
+            
+            
+            if show == True:
+                    #przed
+                    Image.fromarray(image1_matrix, "RGB").show()  
+                    Image.fromarray(image2_matrix, "RGB").show()  
+                    #po    
+                    Image.fromarray(result_matrix, "RGB").show() 
+            if save == True:
+                    Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
+
+
+
 #TESTY
 zad3 = ArithmeticColor(image1Path = "../../Resources/Color/Warzywa.tiff", image2Path = "../../Resources/Color/Szympans.tiff" )
 # zad3.sum_const(const = 60, show = True, save = True)
 # zad3.sum_img(show = True, save = True)
-zad3.multiply_img(show = True, save = True)
-zad3.multiply_const(const = 60, show = True, save = True)
+# zad3.multiply_img(show = True, save = True)
+# zad3.multiply_const(const = 60, show = True, save = True)
+zad3.mix_alfa(alfa = 0.3, show = True, save = True)
+print(math.ceil(3.4))
 

@@ -1,6 +1,6 @@
 from PIL import Image
 import numpy as np
-
+import math
 
 class ArithmeticGray:
         def __init__(self, image1Path = None, image2Path = None):
@@ -38,8 +38,9 @@ class ArithmeticGray:
                             # Obliczenie sumy z uwzglednieniem zakresu
                             L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (const - (const * X))
 
-                            # Przypisanie nowej wartosci
-                            result_matrix[x][y] = L
+                            # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                            # i przypisanie wartosci
+                            result_matrix[x][y] = math.ceil(L)
 
                 if show == True:
                         #przed sumowaniem
@@ -76,8 +77,10 @@ class ArithmeticGray:
                             # Obliczenie sumy z uwzglednieniem zakresu
                             L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (image2_matrix[x][y] - (image2_matrix[x][y] * X))
 
-                            # Przypisanie nowej wartosci
-                            result_matrix[x][y] = L
+                            # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                            # i przypisanie wartosci
+                            result_matrix[x][y] = math.ceil(L)
+
 
             if show == True:
                     #przed sumowaniem
@@ -108,8 +111,9 @@ class ArithmeticGray:
                     else:
                         L = (int(image1_matrix[x][y]) * const)/255 
 
-                    # Przypisanie nowej wartosci
-                    result_matrix[x][y] = L
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
 
             if show == True:
                 #przed sumowaniem
@@ -122,41 +126,69 @@ class ArithmeticGray:
 
         def multiply_img(self, show = False, save = False):
                 
-                image1_matrix = self.im1
-                image2_matrix = self.im2
-                height = image1_matrix.shape[0]   # wysokosc
-                width = image1_matrix.shape[1]    # szereoksc
+            image1_matrix = self.im1
+            image2_matrix = self.im2
+            height = image1_matrix.shape[0]   # wysokosc
+            width = image1_matrix.shape[1]    # szereoksc
 
-                result_matrix = np.empty((height, width), dtype=np.uint8)
+            result_matrix = np.empty((height, width), dtype=np.uint8)
 
-                for y in range(height):
-                    for x in range(width):  
+            for y in range(height):
+                for x in range(width):  
 
-                        L = int(image1_matrix[x][y]) 
-                        if L == 255:
-                            L = image2_matrix[x][y]
-                        elif L == 0:
-                            L = 0
-                        else:
-                            L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
+                    L = int(image1_matrix[x][y]) 
+                    if L == 255:
+                        L = image2_matrix[x][y]
+                    elif L == 0:
+                        L = 0
+                    else:
+                        L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
 
-                        # Przypisanie nowej wartosci
-                        result_matrix[x][y] = L
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
 
-                if show == True:
-                    #przed sumowaniem
-                    Image.fromarray(image1_matrix, "L" ).show()  
-                    Image.fromarray(image2_matrix, "L").show()  
-                    #po sumowaniu   
-                    Image.fromarray(result_matrix, "L").show() 
-                if save == True:
-                    Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+            if show == True:
+                #przed sumowaniem
+                Image.fromarray(image1_matrix, "L" ).show()  
+                Image.fromarray(image2_matrix, "L").show()  
+                #po sumowaniu   
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
 
+        def mix_alfa(self, alfa = 0.5, show = False, save = False):
+            
+            image1_matrix = self.im1
+            image2_matrix = self.im2
+            height = image1_matrix.shape[0]   # wysokosc
+            width = image1_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+
+            for y in range(height):
+                for x in range(width):  
+
+                    L = float(image1_matrix[x][y]) * alfa + (1-alfa) * float(image2_matrix[x][y])
+
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
+
+            if show == True:
+                #przed sumowaniem
+                Image.fromarray(image1_matrix, "L" ).show()  
+                Image.fromarray(image2_matrix, "L").show()  
+                #po sumowaniu   
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
 
 
 #TESTY
 zad2 = ArithmeticGray(image1Path = "../../Resources/Gray/Mostek.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
 # zad2.sum_const(const = 60, show = True, save = True)
 # zad2.sum_img(show = True, save = True)
-zad2.multiply_const(const = 60, show = True, save = True)
-zad2.multiply_img(show = True, save = True)
+# zad2.multiply_const(const = 60, show = True, save = True)
+# zad2.multiply_img(show = True, save = True)
+zad2.mix_alfa(alfa = 0.3, show = True, save = True)
