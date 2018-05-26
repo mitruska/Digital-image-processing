@@ -81,7 +81,6 @@ class ArithmeticGray:
                             # i przypisanie wartosci
                             result_matrix[x][y] = math.ceil(L)
 
-
             if show == True:
                     #przed sumowaniem
                     Image.fromarray(image1_matrix, "L").show()  
@@ -94,7 +93,6 @@ class ArithmeticGray:
         def multiply_const(self, const = 0, show = False, save = False):
             
             image1_matrix = self.im1
-            image2_matrix = self.im2
             height = image1_matrix.shape[0]   # wysokosc
             width = image1_matrix.shape[1]    # szereoksc
 
@@ -184,11 +182,205 @@ class ArithmeticGray:
             if save == True:
                 Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
 
+        def pow_img(self, alfa = 1, show = False, save = False):
+            
+            image_matrix = self.im1
+            height = image_matrix.shape[0]   # wysokosc
+            width = image_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+
+            for y in range(height):
+                for x in range(width):  
+                    
+                    L = int(image_matrix[x][y])
+                    if L == 0:
+                        L = 0
+                    else:
+                        # print("Before pow", L)
+                        L = math.pow(int(image_matrix[x][y]), alfa)
+                        # print("After pow", L)
+
+                        # L = int(image1_matrix[x][y]) 
+                        # if L == 255:
+                        #     L = image2_matrix[x][y]
+                        # elif L == 0:
+                        #     L = 0
+                        # else:
+                        #     L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
+
+                        Q_max = L
+                        D_max = 0
+                        X = 0
+
+                        # Sprawdzenie czy przekracza zakres
+                        if Q_max > 255:
+                            D_max = Q_max - 255
+                            X = (D_max/255)
+
+                        # Normalizacja
+                        L = (L - L * X)
+
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
+
+
+            if show == True:
+                #przed sumowaniem
+                Image.fromarray(image_matrix, "L" ).show()  
+                #po sumowaniu   
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+
+        #TO DO
+        def div_const(self, const = 0, show = False, save = False):
+            
+            image_matrix = self.im1
+            height = image_matrix.shape[0]   # wysokosc
+            width = image_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+            for y in range(height):
+                for x in range(width):  
+
+                    L = int(image_matrix[x][y]) 
+
+                    if const == 0:
+                        const = 1
+                    else:
+                        L = (float(image_matrix[x][y]) * float(1/const) * 255 
+
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
+
+            # for y in range(height):
+            #     for x in range(width):  
+                    
+            #         #TO ASK
+
+            #         # L = int(image1_matrix[x][y]) + int(const)
+            #         L = float(image_matrix[x][y]) / float(const)
+                    
+            #         # L = (int(image1_matrix[x][y]) * 255
+
+            #         # Zaokroglenie do najblizszej wartosci calkowitej z gory
+            #         # i przypisanie wartosci
+            #         result_matrix[x][y] = math.ceil(L)
+
+            if show == True:
+                #przed 
+                Image.fromarray(image_matrix, "L").show()  
+                #po    
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
+
+
+        #TO DO
+        def div_img(self, show = False, save = False):
+            
+            image1_matrix = self.im1
+            image2_matrix = self.im2
+            height = image1_matrix.shape[0]   # wysokosc
+            width = image1_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+
+            for y in range(height):
+                    for x in range(width):  
+
+                            # Obliczanie sumy
+                            L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+                            Q_max = L
+
+                            Q_L = (L * 255) / Q_max
+
+            if show == True:
+                #przed 
+                Image.fromarray(image_matrix, "L" ).show()  
+                #po    
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+
+
+        def sqrt_img(self, alfa = 1, show = False, save = False):
+            
+            image_matrix = self.im1
+            height = image_matrix.shape[0]   # wysokosc
+            width = image_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+
+            for y in range(height):
+                for x in range(width):  
+                    
+                    L = int(image_matrix[x][y])
+                    if L == 0:
+                        L = 0
+                    else:
+                        # print("Before pow", L)
+                        L = math.sqrt(int(image_matrix[x][y]), alfa)
+                        
+                        Q_max = L
+                        D_max = 0
+                        X = 0
+
+                        # Sprawdzenie czy przekracza zakres
+                        if Q_max > 255:
+                            D_max = Q_max - 255
+                            X = (D_max/255)
+
+                        # Normalizacja
+                        L = (L - L * X)
+
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
+
+
+        def log_img(self, alfa = 1, show = False, save = False):
+            
+            image_matrix = self.im1
+            height = image_matrix.shape[0]   # wysokosc
+            width = image_matrix.shape[1]    # szereoksc
+
+            result_matrix = np.empty((height, width), dtype=np.uint8)
+
+            for y in range(height):
+                for x in range(width):  
+
+                    L = int(image_matrix[x][y]) 
+
+                    if L == 0:
+                        L = 0
+                    else:
+                        L = math.log(1 + L)
+
+                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                    # i przypisanie wartosci
+                    result_matrix[x][y] = math.ceil(L)
+
+            if show == True:
+                #przed 
+                Image.fromarray(image_matrix, "L").show()  
+                #po    
+                Image.fromarray(result_matrix, "L").show() 
+            if save == True:
+                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
+
+
+
 
 #TESTY
-zad2 = ArithmeticGray(image1Path = "../../Resources/Gray/Mostek.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
+zad2 = ArithmeticGray(image1Path = "../../Resources/Gray/Statek.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
 # zad2.sum_const(const = 60, show = True, save = True)
 # zad2.sum_img(show = True, save = True)
 # zad2.multiply_const(const = 60, show = True, save = True)
 # zad2.multiply_img(show = True, save = True)
-zad2.mix_alfa(alfa = 0.3, show = True, save = True)
+# zad2.mix_alfa(alfa = 0.3, show = True, save = True)
+# zad2.pow_img(alfa = 2, show = True, save = True)
+# zad2.div_const(const = 60, show = True, save = True)
