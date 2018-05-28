@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ad6549f4-7944-434e-945e-6d06d2d2710d" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="51" column="35" lean-forward="false" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unification.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unification.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="179" column="27" lean-forward="false" selection-start-line="179" selection-start-column="27" selection-end-line="179" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#166#443#0" expanded="false" />
+                <element signature="e#510#2420#0" expanded="false" />
+                <element signature="e#2488#4421#0" expanded="false" />
+                <element signature="e#4485#6548#0" expanded="false" />
+                <element signature="e#9040#9231#0" expanded="false" />
+                <element signature="e#9270#9394#0" expanded="false" />
+                <element signature="e#9432#9573#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="histogram_gray.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="121" column="58" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#181#310#0" expanded="false" />
+                <element signature="e#387#899#0" expanded="false" />
+                <element signature="e#982#1664#0" expanded="false" />
+                <element signature="e#1739#2843#0" expanded="false" />
+                <element signature="e#2934#4039#0" expanded="false" />
+                <element signature="e#4961#5026#0" expanded="false" />
+                <element signature="e#5067#5154#0" expanded="false" />
+                <element signature="e#5193#5317#0" expanded="false" />
+                <element signature="e#5355#5496#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="histogram_color.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/histogram_color.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="99" column="58" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="99" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#192#321#0" expanded="false" />
+                <element signature="e#398#1139#0" expanded="false" />
+                <element signature="e#1222#2037#0" expanded="false" />
+                <element signature="e#2112#3437#0" expanded="false" />
+                <element signature="e#3560#4267#0" expanded="false" />
+                <element signature="e#4386#5162#0" expanded="false" />
+                <element signature="e#5253#7747#0" expanded="false" />
+                <element signature="e#9831#10560#0" expanded="false" />
+                <element signature="e#10601#10688#0" expanded="false" />
+                <element signature="e#10727#10851#0" expanded="false" />
+                <element signature="e#10889#11030#0" expanded="false" />
+                <element signature="e#11334#11969#0" expanded="false" />
+                <element signature="e#12008#12804#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filter.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/filter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="597">
+              <caret line="944" column="50" lean-forward="true" selection-start-line="918" selection-start-column="0" selection-end-line="944" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#1891#2982#0" expanded="false" />
+                <element signature="e#3056#4667#0" expanded="false" />
+                <element signature="e#4741#6118#0" expanded="false" />
+                <element signature="e#6196#8324#0" expanded="false" />
+                <element signature="e#8401#9369#0" expanded="false" />
+                <element signature="e#9447#11662#0" expanded="false" />
+                <element signature="e#11739#12792#0" expanded="false" />
+                <element signature="e#12868#15088#0" expanded="false" />
+                <element signature="e#15163#16220#0" expanded="false" />
+                <element signature="e#16296#18986#0" expanded="false" />
+                <element signature="e#19063#23039#0" expanded="false" />
+                <element signature="e#23115#24362#0" expanded="false" />
+                <element signature="e#24439#26809#0" expanded="false" />
+                <element signature="e#26882#28683#0" expanded="false" />
+                <element signature="e#28757#30991#0" expanded="false" />
+                <element signature="e#31066#31997#0" expanded="false" />
+                <element signature="e#32073#33456#0" expanded="false" />
+                <element signature="e#33527#34368#0" expanded="false" />
+                <element signature="e#34442#35564#0" expanded="false" />
+                <element signature="e#37672#38307#0" expanded="false" />
+                <element signature="e#38346#39142#0" expanded="false" />
+                <element signature="e#39183#39270#0" expanded="false" />
+                <element signature="e#39309#39433#0" expanded="false" />
+                <element signature="e#39471#39612#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>show=True</find>
+      <find>R</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/GeometricUnification.py" />
+        <option value="$PROJECT_DIR$/Unification.py" />
+        <option value="$PROJECT_DIR$/unification_try.py" />
+        <option value="$PROJECT_DIR$/zad_1.py" />
+        <option value="$PROJECT_DIR$/unification.py" />
+        <option value="$PROJECT_DIR$/histogram_gray.py" />
+        <option value="$PROJECT_DIR$/histogram_color.py" />
+        <option value="$PROJECT_DIR$/filter.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="960" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="WdPO" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WdPO" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="filter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="WdPO" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/filter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="WdPO" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="zad_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="WdPO" />
+      <option name="SCRIPT_NAME" value="C:\Users\Michal\Desktop\DYSK\Studia\Inf UKSW\ROK III\Przetwarzanie obrazów\Projekt\WdPO\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.zad_1" />
+      <item index="1" class="java.lang.String" itemvalue="Python.main" />
+      <item index="2" class="java.lang.String" itemvalue="Python.filter" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.filter" />
+        <item index="2" class="java.lang.String" itemvalue="Python.zad_1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad6549f4-7944-434e-945e-6d06d2d2710d" name="Default" comment="" />
+      <created>1526126025549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1526126025549</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09322917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19067797" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20253165" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="33" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>(i == 2) &amp; (j == 103)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(i == 2) &amp; (j == 102)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>j == 102</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>j == 102 &amp; i == 2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 213</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == 211</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == height2 &amp; j == width2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i == height2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3859">
+          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="91" column="14" lean-forward="false" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9996">
+          <caret line="588" column="0" lean-forward="true" selection-start-line="588" selection-start-column="0" selection-end-line="588" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3859">
+          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="91" column="14" lean-forward="false" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="175" column="34" lean-forward="false" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="644" column="60" lean-forward="false" selection-start-line="641" selection-start-column="0" selection-end-line="644" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="175" column="34" lean-forward="false" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="644" column="60" lean-forward="true" selection-start-line="641" selection-start-column="0" selection-end-line="644" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3859">
+          <caret line="227" column="0" lean-forward="true" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="315" column="0" lean-forward="false" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="91" column="14" lean-forward="false" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="819" column="0" lean-forward="false" selection-start-line="819" selection-start-column="0" selection-end-line="819" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="91" column="14" lean-forward="false" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="139" column="38" lean-forward="true" selection-start-line="139" selection-start-column="38" selection-end-line="139" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="466" column="38" lean-forward="true" selection-start-line="466" selection-start-column="38" selection-end-line="466" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="146" column="14" lean-forward="false" selection-start-line="146" selection-start-column="14" selection-end-line="146" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="91" column="14" lean-forward="false" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="762" column="24" lean-forward="false" selection-start-line="762" selection-start-column="24" selection-end-line="762" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="91" column="14" lean-forward="true" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="146" column="14" lean-forward="false" selection-start-line="146" selection-start-column="14" selection-end-line="146" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="762" column="24" lean-forward="true" selection-start-line="762" selection-start-column="24" selection-end-line="762" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="115" column="13" lean-forward="true" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1853">
+          <caret line="113" column="71" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="113" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="66" column="50" lean-forward="false" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2397">
+          <caret line="144" column="45" lean-forward="true" selection-start-line="144" selection-start-column="45" selection-end-line="144" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="16" lean-forward="false" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="47" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="27" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="64" lean-forward="false" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="319" column="0" lean-forward="false" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="179" column="27" lean-forward="false" selection-start-line="179" selection-start-column="27" selection-end-line="179" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#166#443#0" expanded="false" />
+            <element signature="e#510#2420#0" expanded="false" />
+            <element signature="e#2488#4421#0" expanded="false" />
+            <element signature="e#4485#6548#0" expanded="false" />
+            <element signature="e#9040#9231#0" expanded="false" />
+            <element signature="e#9270#9394#0" expanded="false" />
+            <element signature="e#9432#9573#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_gray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="121" column="58" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#181#310#0" expanded="false" />
+            <element signature="e#387#899#0" expanded="false" />
+            <element signature="e#982#1664#0" expanded="false" />
+            <element signature="e#1739#2843#0" expanded="false" />
+            <element signature="e#2934#4039#0" expanded="false" />
+            <element signature="e#4961#5026#0" expanded="false" />
+            <element signature="e#5067#5154#0" expanded="false" />
+            <element signature="e#5193#5317#0" expanded="false" />
+            <element signature="e#5355#5496#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/histogram_color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="99" column="58" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="99" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#192#321#0" expanded="false" />
+            <element signature="e#398#1139#0" expanded="false" />
+            <element signature="e#1222#2037#0" expanded="false" />
+            <element signature="e#2112#3437#0" expanded="false" />
+            <element signature="e#3560#4267#0" expanded="false" />
+            <element signature="e#4386#5162#0" expanded="false" />
+            <element signature="e#5253#7747#0" expanded="false" />
+            <element signature="e#9831#10560#0" expanded="false" />
+            <element signature="e#10601#10688#0" expanded="false" />
+            <element signature="e#10727#10851#0" expanded="false" />
+            <element signature="e#10889#11030#0" expanded="false" />
+            <element signature="e#11334#11969#0" expanded="false" />
+            <element signature="e#12008#12804#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="51" column="35" lean-forward="false" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="944" column="50" lean-forward="true" selection-start-line="918" selection-start-column="0" selection-end-line="944" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#1891#2982#0" expanded="false" />
+            <element signature="e#3056#4667#0" expanded="false" />
+            <element signature="e#4741#6118#0" expanded="false" />
+            <element signature="e#6196#8324#0" expanded="false" />
+            <element signature="e#8401#9369#0" expanded="false" />
+            <element signature="e#9447#11662#0" expanded="false" />
+            <element signature="e#11739#12792#0" expanded="false" />
+            <element signature="e#12868#15088#0" expanded="false" />
+            <element signature="e#15163#16220#0" expanded="false" />
+            <element signature="e#16296#18986#0" expanded="false" />
+            <element signature="e#19063#23039#0" expanded="false" />
+            <element signature="e#23115#24362#0" expanded="false" />
+            <element signature="e#24439#26809#0" expanded="false" />
+            <element signature="e#26882#28683#0" expanded="false" />
+            <element signature="e#28757#30991#0" expanded="false" />
+            <element signature="e#31066#31997#0" expanded="false" />
+            <element signature="e#32073#33456#0" expanded="false" />
+            <element signature="e#33527#34368#0" expanded="false" />
+            <element signature="e#34442#35564#0" expanded="false" />
+            <element signature="e#37672#38307#0" expanded="false" />
+            <element signature="e#38346#39142#0" expanded="false" />
+            <element signature="e#39183#39270#0" expanded="false" />
+            <element signature="e#39309#39433#0" expanded="false" />
+            <element signature="e#39471#39612#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
