@@ -1,0 +1,22 @@
+\contentsline {chapter}{Spis rysunk\'ow}{3}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 1\relax .\kern .5em Wst\IeC {\k e}p}{6}
+\contentsline {section}{\numberline {1.1}Specyfikacja wykorzystanego fortmatu obrazu}{6}
+\contentsline {section}{\numberline {1.2}Intstrukcja obs\IeC {\l }ugi programu}{6}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 2\relax .\kern .5em Operacje ujednolicania obraz\IeC {\'o}w}{7}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 3\relax .\kern .5em Operacje sumowania arytmetycznego obraz\IeC {\'o}w szarych}{18}
+\contentsline {section}{\numberline {3.1}Sumowanie (okre\IeC {\'s}lonej) sta\IeC {\l }ej z obrazem oraz dw\IeC {\'o}ch obraz\IeC {\'o}w}{18}
+\contentsline {section}{\numberline {3.2}Mno\IeC {\.z}enie obrazu przez zadan\IeC {\k a} liczb\IeC {\k e} oraz przez inny obraz}{18}
+\contentsline {section}{\numberline {3.3}Mieszanie obraz\IeC {\'o}w z okre\IeC {\'s}lonym wsp\IeC {\'o}\IeC {\l }czynnikiem}{18}
+\contentsline {section}{\numberline {3.4}Pot\IeC {\k e}gowanie obrazu (z zadan\IeC {\k a} pot\IeC {\k e}g\IeC {\k a})}{18}
+\contentsline {section}{\numberline {3.5}Dzielenie obrazu przez (zadan\IeC {\k a}) liczb\IeC {\k e} oraz przez inny obraz}{18}
+\contentsline {section}{\numberline {3.6}Pierwiastkowanie obrazu}{18}
+\contentsline {section}{\numberline {3.7}Logarytmowanie obrazu}{18}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 4\relax .\kern .5em Operacje sumowania arytmetycznego obraz\IeC {\'o}w barwowych}{19}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 5\relax .\kern .5em Operacje geometryczne na obrazie}{20}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 6\relax .\kern .5em Operacje na histogramie obrazu szarego}{21}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 7\relax .\kern .5em Operacje na histogramie obrazu barwowego}{36}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 8\relax .\kern .5em Operacje morfologiczne na obrazach binarnych}{53}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 9\relax .\kern .5em Operacje morfologiczne na obrazach szarych}{54}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 10\relax .\kern .5em Filtrowanie liniowe i nieliniowe}{55}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 11\relax .\kern .5em Podsumowanie}{100}
+\contentsline {chapter}{Bibliografia}{101}
