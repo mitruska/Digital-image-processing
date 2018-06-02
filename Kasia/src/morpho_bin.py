@@ -18,14 +18,12 @@ class MorphoBin:
                 height = image_matrix.shape[0]   # wysokosc
 
                 result_matrix = np.zeros((height, width), dtype=np.uint8)
-                print(image_matrix)
-                print(result_matrix)
 
                 for y in range(height):
                         for x in range(width):  
+                                #przyjeto, ze wartosci wykraczajace poza zakres sa biale (maja wartosc 255)
                                 neighbour_pix = [255, 255, 255, 255]
-                                bn = image_matrix[y][x][0]
-                                # result_matrix[y][x] = bn
+
                                 if x - 1 > 0:
                                         neighbour_pix[0]=(image_matrix[y][x-1][0])
                                 if y - 1 > 0:
@@ -36,9 +34,9 @@ class MorphoBin:
                                         neighbour_pix[3]=(image_matrix[y+1][x][0])
 
                                 if 255 in neighbour_pix:
-                                        result_matrix[y][x] = 255
+                                        result_matrix[y][x] = 255 #bialy
                                 else:
-                                        result_matrix[y][x] = 0          
+                                        result_matrix[y][x] = 0 #czarny    
 
                 if show == True:
                         #przed 
@@ -56,14 +54,11 @@ class MorphoBin:
                 height = image_matrix.shape[0]   # wysokosc
 
                 result_matrix = np.zeros((height, width), dtype=np.uint8)
-                print(image_matrix)
-                print(result_matrix)
 
                 for y in range(height):
                         for x in range(width):  
                                 neighbour_pix = [255, 255, 255, 255]
-                                bn = image_matrix[y][x][0]
-                                # result_matrix[y][x] = bn
+
                                 if x - 1 > 0:
                                         neighbour_pix[0]=(image_matrix[y][x-1][0])
                                 if y - 1 > 0:
@@ -96,7 +91,7 @@ class MorphoBin:
                 e_result_matrix = np.zeros((height, width), dtype=np.uint8)
                 d_result_matrix = np.zeros((height, width), dtype=np.uint8)
                 
-                #erozion
+                #erozja
                 for y in range(height):
                         for x in range(width):  
                                 neighbour_pix = [255, 255, 255, 255]
@@ -116,7 +111,7 @@ class MorphoBin:
                                         e_result_matrix[y][x] = 0 
 
                 Image.fromarray(e_result_matrix).show()
-                #dilation
+                #dylacja
                 for y in range(height):
                         for x in range(width):  
                                 neighbour_pix = [255, 255, 255, 255]
@@ -153,7 +148,7 @@ class MorphoBin:
                 e_result_matrix = np.zeros((height, width), dtype=np.uint8)
                 d_result_matrix = np.zeros((height, width), dtype=np.uint8)
                 
-                #erozion
+                #dylacja
                 for y in range(height):
                         for x in range(width):  
                                 neighbour_pix = [255, 255, 255, 255]
@@ -167,13 +162,14 @@ class MorphoBin:
                                 if y + 1 < height:
                                         neighbour_pix[3]=(image_matrix[y+1][x][0])
 
-                                if 255 in neighbour_pix:
-                                        d_result_matrix[y][x] = 255
+                                if 0 in neighbour_pix:
+                                        d_result_matrix[y][x] = 0
                                 else:
-                                        d_result_matrix[y][x] = 0 
+                                        d_result_matrix[y][x] = 255
 
                 Image.fromarray(e_result_matrix).show()
-                #dilation
+                
+                #erozja
                 for y in range(height):
                         for x in range(width):  
                                 neighbour_pix = [255, 255, 255, 255]

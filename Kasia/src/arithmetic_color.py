@@ -21,6 +21,9 @@ class ArithmeticColor:
 
                 result_matrix = np.empty((height, width, 3), dtype=np.uint8)
 
+                minimum_value = 0
+                maximum_value = 0
+
                 for y in range(height):
                         for x in range(width):  
 
@@ -43,6 +46,14 @@ class ArithmeticColor:
                             R = (image_matrix[x][y][0] - (image_matrix[x][y][0] * X)) + (const - (const * X))
                             G = (image_matrix[x][y][1] - (image_matrix[x][y][1] * X)) + (const - (const * X))
                             B = (image_matrix[x][y][2] - (image_matrix[x][y][2] * X)) + (const - (const * X))
+
+                            if minimum_value > min([R, G, B]):
+                                minimum_value = min([R, G, B])
+                            if maximum_value < max([R, G, B]):
+                                maximum_value = max([R, G, B])
+
+                            
+                            
 
                             # Zaokroglenie do najblizszej wartosci calkowitej z gory
                             # i przypisanie wartosci
