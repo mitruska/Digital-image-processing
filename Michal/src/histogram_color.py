@@ -120,157 +120,217 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "monoThresh")
 
-    #punkt 5, progowanie wielo-progowe
-    def poliThresholding(self, bins = 4, show = False, plot = False):
+    # punkt 7
+    def globalSingleThreshold(self, show = False, plot = False):
+        width = self.im.shape[1]    # szereokść
+        height = self.im.shape[0]   # wysokość
+
+        # alokacja pamięci na obraz wynikowy
+        resultImage = np.empty((height, width, 3), dtype=np.uint8)
+        #tmp = np.empty((height, width, 3))
+        #tmp2 = np.empty((height, width, 3))
+        #
+        #
+        #for i in range(height):
+        #    for j in range(width):
+        #        r, g, b = self.im[i, j]
+        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
+        #
+        #H = 0
+        #n = 0
+        #for i in range(height):
+        #    for j in range(width):
+        #        H += tmp[i, j][2]
+        #        n += 1
+        #H = H / n
+        #
+        #for i in range(height):
+        #    for j in range(width):
+        #        tmp2[i, j] = tmp[i, j]
+        #        tmp2[i, j][2] = 0 if tmp[i, j][2] < H else 1
+        #
+        #for i in range(height):
+        #    for j in range(width):
+        #        h, s, I = tmp2[i, j]
+        #        resultImage[i, j] = self.HSItoRGB((h, s, I))
+
+        # próg globalny
+        globalR = 0
+        globalG = 0
+        globalB = 0
+        nR = 0
+        nG = 0
+        nB = 0
+        for i in range(height):
+            for j in range(width):
+                globalR += self.im[i, j][0]
+                nR += 1
+                globalG += self.im[i, j][1]
+                nG += 1
+                globalB += self.im[i, j][2]
+                nB += 1
+        globalR = int(round(globalR / nR))
+        globalG = int(round(globalG / nG))
+        globalB = int(round(globalB / nB))
+
+        # kwantzyacja
+        for i in range(height):
+            for j in range(width):
+                resultImage[i, j] = (0 if (self.im[i, j][0] < globalR) else 255, 0 if (self.im[i, j][1] < globalG) else 255, 0 if (self.im[i, j][2] < globalB) else 255)
+
+        if show:
+            self.show(Image.fromarray(resultImage, "RGB"))
+        self.calculate(plot, resultImage)
+        self.save(resultImage, self.imName, "globalSingleThreshold")
+
+    #punkt 5, progowanie globalne wielo-progowe
+    def globalMultiThreshold(self, bins = 4, show = False, plot = False):
         width = self.im.shape[1]    # szereokść
         height = self.im.shape[0]   # wysokość
 
         # alokacja pamięci na obraz wynikowy
         resultImage = np.empty((height, width, 3), dtype=np.uint8)
 
-        scale = 255 / (bins)
-        scale = math.floor(scale * 10) / 10
-
-        # kwantyzacja każdego kanału
+        #max i min
+        maxValue = [0] * 3
+        minValue = [255] * 3
+        #while (maxValue[0] != 255) & (maxValue[1] != 255) & (maxValue[2] != 255):
+        # wartości max i min w obrazie
         for i in range(height):
             for j in range(width):
-                r = int(self.im[i, j][0] / scale) * scale
-                g = int(self.im[i, j][1] / scale) * scale
-                b = int(self.im[i, j][2] / scale) * scale
-                resultImage[i, j] = (r, g, b)
+                currValue = self.im[i, j]
+                for k in range(3):
+                    maxValue[k] = max(maxValue[k], currValue[k])
+                    minValue[k] = min(minValue[k], currValue[k])
+
+        scale = [0] * 3
+        for k in range(3):
+            scale[k] = maxValue[k] / (bins - 1)
+
+        for i in range(height):
+            for j in range(width):
+                pix = self.im[i, j]
+                for k in range(3):
+                    pix[k] = int(round(pix[k] / scale[k])) * scale[k]
+                resultImage[i, j] = pix
 
         if show:
             self.show(Image.fromarray(resultImage, "RGB"))
         self.calculate(plot, resultImage)
-        self.save(resultImage, self.imName, "multiThresh")
+        self.save(resultImage, self.imName, "globalMultiThreshold")
 
     # punkt 6
-    def localThreshold(self, dim = 3, show = False, plot = False):
+    def localSingleThreshold(self, dim = 3, show = False, plot = False):
         width = self.im.shape[1]    # szereokść
         height = self.im.shape[0]   # wysokość
         low, up = -(int(dim / 2)), (int(dim / 2) + 1)  # wsp. sąsiadów
 
         # alokacja pamięci na obraz wynikowy
         resultImage = np.empty((height, width, 3), dtype=np.uint8)
-        tmp = np.empty((height, width, 3))
-        tmp2 = np.empty((height, width, 3))
-
-
-        for i in range(height):
-            for j in range(width):
-                r, g, b = self.im[i, j]
-                tmp[i, j] = self.RGBtoHSI((r, g, b))
-
-        for i in range(height):
-           for j in range(width):
-               H = 0
-               n = 0
-               currPix = tmp[i, j]
-               for iOff in range(low, up):
-                   for jOff in range(low, up):
-                       iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
-                       jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
-                       H += tmp[iSafe, jSafe][2]
-                       n += 1
-               H = H / n
-               tmp2[i, j] = currPix
-               tmp2[i, j][2] = 0 if currPix[2] < H else 1
-
-        for i in range(height):
-            for j in range(width):
-                h, s, I = tmp2[i, j]
-                resultImage[i, j] = self.HSItoRGB((h, s, I))
-
-
-
-        ## progowanie lokalne
+        #tmp = np.empty((height, width, 3))
+        #tmp2 = np.empty((height, width, 3))
+        #
+        #
         #for i in range(height):
         #    for j in range(width):
-        #        n = 0
-        #        r = 0
-        #        g = 0
-        #        b = 0
-        #        currPix = self.im[i, j]
-        #        for iOff in range(low, up):
-        #            for jOff in range(low, up):
-        #                iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
-        #                r += int(self.im[iSafe, jSafe][0])
-        #                g += int(self.im[iSafe, jSafe][1])
-        #                b += int(self.im[iSafe, jSafe][2])
-        #                n += 1
-        #        r = int(round(r / n))
-        #        g = int(round(g / n))
-        #        b = int(round(b / n))
-        #        resultImage[i, j] = (0 if (currPix[0] < r) else 255, 0 if (currPix[1] < g) else 255, 0 if (currPix[2] < b) else 255)
+        #        r, g, b = self.im[i, j]
+        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
+        #
+        #for i in range(height):
+        #   for j in range(width):
+        #       H = 0
+        #       n = 0
+        #       currPix = tmp[i, j]
+        #       for iOff in range(low, up):
+        #           for jOff in range(low, up):
+        #               iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
+        #               jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
+        #               H += tmp[iSafe, jSafe][2]
+        #               n += 1
+        #       H = H / n
+        #       tmp2[i, j] = currPix
+        #       tmp2[i, j][2] = 0 if currPix[2] < H else 1
+        #
+        #for i in range(height):
+        #    for j in range(width):
+        #        h, s, I = tmp2[i, j]
+        #        resultImage[i, j] = self.HSItoRGB((h, s, I))
+
+
+
+        # progowanie lokalne
+        for i in range(height):
+            for j in range(width):
+                n = 0
+                r = 0
+                g = 0
+                b = 0
+                currPix = self.im[i, j]
+                for iOff in range(low, up):
+                    for jOff in range(low, up):
+                        iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
+                        jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
+                        r += int(self.im[iSafe, jSafe][0])
+                        g += int(self.im[iSafe, jSafe][1])
+                        b += int(self.im[iSafe, jSafe][2])
+                        n += 1
+                r = int(round(r / n))
+                g = int(round(g / n))
+                b = int(round(b / n))
+                resultImage[i, j] = (0 if (currPix[0] < r) else 255, 0 if (currPix[1] < g) else 255, 0 if (currPix[2] < b) else 255)
 
         if show:
             self.show(Image.fromarray(resultImage, "RGB"))
         self.calculate(plot, resultImage)
-        self.save(resultImage, self.imName, "locThreshold")
+        self.save(resultImage, self.imName, "localSingleThreshold")
 
-    # punkt 7
-    def globalThreshold(self, show = False, plot = False):
-        width = self.im.shape[1]    # szereokść
-        height = self.im.shape[0]   # wysokość
+    def localMultiThreshold(self, dim=3, bins=4, show=False, plot=False):
+        width = self.im.shape[1]  # szereokść
+        height = self.im.shape[0]  # wysokość
+        low, up = -(int(dim / 2)), (int(dim / 2) + 1)  # wsp. sąsiadów
 
         # alokacja pamięci na obraz wynikowy
         resultImage = np.empty((height, width, 3), dtype=np.uint8)
-        tmp = np.empty((height, width, 3))
-        tmp2 = np.empty((height, width, 3))
 
-
+        # progowanie lokalne
         for i in range(height):
             for j in range(width):
-                r, g, b = self.im[i, j]
-                tmp[i, j] = self.RGBtoHSI((r, g, b))
-
-        H = 0
-        n = 0
-        for i in range(height):
-            for j in range(width):
-                H += tmp[i, j][2]
-                n += 1
-        H = H / n
-
-        for i in range(height):
-            for j in range(width):
-                tmp2[i, j] = tmp[i, j]
-                tmp2[i, j][2] = 0 if tmp[i, j][2] < H else 1
-
-        for i in range(height):
-            for j in range(width):
-                h, s, I = tmp2[i, j]
-                resultImage[i, j] = self.HSItoRGB((h, s, I))
-
-        ## próg globalny
-        #globalR = 0
-        #globalG = 0
-        #globalB = 0
-        #nR = 0
-        #nG = 0
-        #nB = 0
-        #for i in range(height):
-        #    for j in range(width):
-        #        globalR += self.im[i, j][0]
-        #        nR += 1
-        #        globalG += self.im[i, j][1]
-        #        nG += 1
-        #        globalB += self.im[i, j][2]
-        #        nB += 1
-        #globalR = int(round(globalR / nR))
-        #globalG = int(round(globalG / nG))
-        #globalB = int(round(globalB / nB))
-
-        ## kwantzyacja
-        #for i in range(height):
-        #    for j in range(width):
-        #        resultImage[i, j] = (0 if (self.im[i, j][0] < globalR) else 255, 0 if (self.im[i, j][1] < globalG) else 255, 0 if (self.im[i, j][2] < globalB) else 255)
+                #print(i, j)
+                n = 0
+                r = 0
+                g = 0
+                b = 0
+                currPix = self.im[i, j]
+                maxValue = [0] * 3
+                minValue = [255] * 3
+                #while (maxValue[0] != 255) & (maxValue[1] != 255) & (maxValue[2] != 255):
+                for iOff in range(low, up):
+                    for jOff in range(low, up):
+                        iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
+                        jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
+                        currValue = self.im[iSafe, jSafe]
+                        for k in range(3):
+                            maxValue[k] = max(maxValue[k], currValue[k])
+                            minValue[k] = min(minValue[k], currValue[k])
+                scale = [0] * 3
+                for k in range(3):
+                    scale[k] = maxValue[k] / (bins - 1)
+                    if scale[k] == 0:
+                        scale[k] = 1
+                #print("scale=", scale[0], scale[1], scale[2])
+                for k in range(3):
+                    #print("max=", maxValue[k], "min=", minValue[k])
+                    #print("k=", k, "pix=", currPix[k], "scale=", scale[k])
+                    v = int(round(currPix[k] / scale[k])) * scale[k]
+                    #print("k=", k, "v=", v)
+                    currPix[k] = v
+                resultImage[i, j] = currPix
 
         if show:
             self.show(Image.fromarray(resultImage, "RGB"))
         self.calculate(plot, resultImage)
-        self.save(resultImage, self.imName, "globThreshold")
+        self.save(resultImage, self.imName, "localMultiThreshold")
+
 
 
 
