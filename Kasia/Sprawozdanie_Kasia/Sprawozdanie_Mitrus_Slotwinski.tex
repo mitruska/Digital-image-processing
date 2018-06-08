@@ -6,11 +6,40 @@
 \usepackage{url}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{enumerate}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+language=Python,
+breaklines=true,
+tabsize=2,
+breaklines  = true,
+breakatwhitespace   = false,
+prebreak= \space,
+postbreak   = \space  
+}   
+
+
+
+\titleformat{\section}[runin]
+{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}[runin]
+{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+
+
 
 \usepackage{makeidx}  % allows index generation
 \usepackage{graphicx} % standard LaTeX graphics tool
                       % for including eps-figure files
-\prefixing %polskie znaki: /a /c /e /z /x /o /s /l /A /C itd.
+\graphicspath{{img/}{img/Zegarek}}
+\usepackage{float}
+
+
+%\prefixing %polskie znaki: /a /c /e /z /x /o /s /l /A /C itd. %ZAKOMENTOWANE BO SIE NIE DA UZYWAC "/"
 
 \renewcommand*\listalgorithmname{Spis algorytmów\protect} % łatka na niedoróbkę w spisie algorytmów - nie usuwać!
 
@@ -128,7 +157,101 @@ Laboratoria oh oh...~\cite{BookMok} %przynajmniej jedna cytacja dla kompilatora 
 4. ujednolicenie obrazów RGB rozdzielczościowe (w rastrze)
 
 \chapter{Operacje sumowania arytmetycznego obrazów szarych}
+
+Arytmetyczne operacje między pikslami $p$ i $q$ dwóch obrazów są używane w wielu działach przetwarzania obrazów. Przeprowadzane się je wykonując działania na pojedynczych pikslach i są uwarunkowane wymaganiami zależnymi od typu operacji. 
+Po operacjach arytmetycznych zwykle niezbędna jest normalizacja. W przedstawionych zadaniach do normalizacji wykorzystano wzór:
+	
+	\begin{center}
+		$ f_{norm} = Z_{rep}[(f - f_{min}) / (f_{max} - f_{min})] $
+	\end{center}
+
 \section {Sumowanie (określonej) stałej z obrazem oraz dwóch obrazów}
+%\subsection*{Opis algorytmu}
+\hfill
+\\\\
+\indent
+Algorytm sumowania obrazu szarego z określoną stałą polega na dodaniu do każdej wartości pojedynczego piksla stałej liczby.
+Po operacji sumowania następuje normalizacja obrazu.
+
+	\begin{enumerate}	
+		\item Policz sumy wartości kazdego piksla ze stałą ($const$).
+		\item Jeżeli jedna z tych sum jest większa niż 255 to:
+		\item Wybierz największą sumę  $Q_{max}$ i policz $D_{max}$ ze wzoru: $D_{max}[i,j] = (Q_{max}[i,j] - 255)$ 
+		\item Oblicz $X = D_{max} / 255$
+		\item Policz sumy ze wzoru
+		\begin{center}$Q[i,j] = P[i,j] - (P[i,j]* X) + const - (const * X) $ \\
+
+		\end{center}
+	\end{enumerate}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Sum_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Sum_Result_Norm}
+	\end{center}
+	\caption{Od lewej obraz wejściowy, obraz po sumowaniu ze stałą = 50, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Sum_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Sum_Result_Norm}
+	\end{center}
+	\caption{Od lewej obraz wejściowy, obraz po sumowaniu ze stałą = 100, obraz po normalizacji }
+\end{figure}
+
+
+\begin{lstlisting}[caption=Sumowanie obrazu ze stałą]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+result_matrix = np.zeros((width, height), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+Q_max = 0
+D_max = 0
+X = 0
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+        # Obliczanie sumy
+        L = int(image_matrix[x][y]) + int(const)
+
+        # Poszukiwanie maksimum
+        if Q_max < L:
+            Q_max = L
+
+# Sprawdzenie czy przekracza zakres
+if Q_max > 255:
+    D_max = Q_max - 255
+    X = (D_max/255)
+
+# Obliczenie sumy z uwzglednieniem zakresu
+for y in range(height):
+    for x in range(width): 
+        L = (image_matrix[x][y] - (image_matrix[x][y] * X)) + (const - (const * X))
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+\end{lstlisting}
+
+
+
+
+
 \section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
 \section {Mieszanie obrazów z określonym współczynnikiem}
 \section {Potęgowanie obrazu (z zadaną potęgą)}
