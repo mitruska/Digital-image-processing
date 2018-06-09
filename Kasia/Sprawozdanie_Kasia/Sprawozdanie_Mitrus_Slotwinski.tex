@@ -165,7 +165,7 @@ Po operacjach arytmetycznych zwykle niezbędna jest normalizacja. W przedstawion
 		$ f_{norm} = Z_{rep}[(f - f_{min}) / (f_{max} - f_{min})] $
 	\end{center}
 
-\section {Sumowanie (określonej) stałej z obrazem oraz dwóch obrazów}
+\section {Sumowanie (określonej) stałej z obrazem}
 %\subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -190,7 +190,7 @@ Po operacji sumowania następuje normalizacja obrazu.
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Sum_Result}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Sum_Result_Norm}
 	\end{center}
-	\caption{Od lewej obraz wejściowy, obraz po sumowaniu ze stałą = 50, obraz po normalizacji }
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po sumowaniu ze stałą = 50, obraz po normalizacji }
 \end{figure}
 
 \begin{figure}[H]
@@ -199,11 +199,163 @@ Po operacji sumowania następuje normalizacja obrazu.
 		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Sum_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Sum_Result_Norm}
 	\end{center}
-	\caption{Od lewej obraz wejściowy, obraz po sumowaniu ze stałą = 100, obraz po normalizacji }
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po sumowaniu ze stałą = 100, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Sumowanie obrazu szarego ze stałą]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+result_matrix = np.zeros((width, height), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+Q_max = 0
+D_max = 0
+X = 0
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+        # Obliczanie sumy
+        L = int(image_matrix[x][y]) + int(const)
+
+        # Poszukiwanie maksimum
+        if Q_max < L:
+            Q_max = L
+
+# Sprawdzenie czy przekracza zakres
+if Q_max > 255:
+    D_max = Q_max - 255
+    X = (D_max/255)
+
+# Obliczenie sumy z uwzglednieniem zakresu
+for y in range(height):
+    for x in range(width): 
+        L = (image_matrix[x][y] - (image_matrix[x][y] * X)) + (const - (const * X))
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+\end{lstlisting}
+
+
+
+\section {Sumowanie dwóch obrazów}
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img1_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img2_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Sum_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Sum_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to szare obrazy wejściowe, następnie obraz powstały w wyniku sumowania obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img1_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img2_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Sum_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Sum_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to szare obrazy wejściowe, następnie obraz powstały w wyniku sumowania obrazów, poniżej obraz wynikowy po normalizacji }
 \end{figure}
 
 
-\begin{lstlisting}[caption=Sumowanie obrazu ze stałą]
+\begin{lstlisting}[caption=Sumowanie obrazów szarych]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+Q_max = 0
+D_max = 0
+X = 0
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sumy
+        L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+
+        # Poszukiwanie maksimum
+        if Q_max < L:
+            Q_max = L
+
+# Sprawdzenie czy przekracza zakres
+if Q_max > 255:
+    D_max = Q_max - 255
+    X = (D_max/255)
+
+# Obliczenie sumy z uwzglednieniem zakresu
+for y in range(height):
+    for x in range(width): 
+        L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (image2_matrix[x][y] - (image2_matrix[x][y] * X))
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+        
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+\end{lstlisting}
+
+\section {Mnożenie obrazu przez zadaną liczbę}
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po sumowaniu ze stałą = 50, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po sumowaniu ze stałą = 100, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Sumowanie obrazu szarego ze stałą]
 
 image_matrix = self.im1
 width = image_matrix.shape[1]    # szereoksc
@@ -252,7 +404,10 @@ for y in range(height):
 
 
 
-\section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
+
+\section {Mnożenie obrazu przez zadaną przez inny obraz}
+
+%\section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
 \section {Mieszanie obrazów z określonym współczynnikiem}
 \section {Potęgowanie obrazu (z zadaną potęgą)}
 \section {Dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz}
@@ -260,8 +415,205 @@ for y in range(height):
 \section {Logarytmowanie obrazu}
 
 \chapter{Operacje sumowania arytmetycznego obrazów barwowych}
-1. sumowanie (określonej) stałej z obrazem oraz dwóch obrazów
-2. mnożenie obrazu przez zadaną liczbę oraz przez inny obraz
+
+Arytmetyczne operacje na obrazach barwowych przeprowadza się wykonując działania na pojedynczych pikslach i są uwarunkowane wymaganiami zależnymi od typu operacji. 
+W przedstawionych zadaniach poruszamy się w przestrzeni barw RGB, a do normalizacji wykorzystano wzór:
+
+	\begin{center}
+		$ f_{norm} = Z_{rep}[(f - f_{min}) / (f_{max} - f_{min})] $
+	\end{center}
+
+
+\section{Sumowanie (określonej) stałej z obrazem}
+\hfill
+\\\\
+\indent
+Algorytm sumowania obrazu barwowego z określoną stałą polega na dodaniu do każdej składowej barwowej pojedynczego piksla stałej liczby.
+Po operacji sumowania następuje normalizacja obrazu.
+
+	\begin{enumerate}	
+		\item Policz sumy wartości kazdego piksla ze stałą ($const$).
+		\item Jeżeli jedna z tych sum jest większa niż 255 to:
+		\item Wybierz największą sumę  $Q_{max}$ i policz $D_{max}$ ze wzoru: $D_{max}[i,j] = (Q_{max}[i,j] - 255)$ 
+		\item Oblicz $X = D_{max} / 255$
+		\item Policz sumy ze wzoru
+		\begin{center}$Q_{R}[i,j] = P_{R}[i,j] - (P_{1R} * X)+ const - (const * X) -1$ \\
+			$Q_{G}[i,j] = P_{G}[i,j] - (P_{G} * X)+ const - (const * X) -1$ \\
+			$Q_{B}[i,j] = P_{B}[i,j] - (P_{B} * X)+ const - (const * X) -1$
+		\end{center}
+	\end{enumerate}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Const_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Const_Sum_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Const_Sum_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po sumowaniu ze stałą = 50, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Sum_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Sum_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Sum_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po sumowaniu ze stałą = 100, obraz po normalizacji }
+\end{figure}
+
+\begin{lstlisting}[caption=Sumowanie obrazu barwowego ze stałą]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.empty((width, height, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+Q_max = 0
+D_max = 0
+X = 0
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R = int(image_matrix[x][y][0]) + int(const)
+        G = int(image_matrix[x][y][1]) + int(const)
+        B = int(image_matrix[x][y][2]) + int(const)
+
+        # Poszukiwanie maksimum               
+        if Q_max < max([R, G, B]):
+            Q_max = max([R, G, B])
+
+# Sprawdzenie czy maksimum przekracza zakres
+if Q_max > 255:
+    D_max = Q_max - 255
+    X = (D_max/255) # Obliczenie proporcji
+
+# Obliczenie sum z uwzglednieniem zakresu
+for y in range(height):
+    for x in range(width): 
+        R = (image_matrix[x][y][0] - (image_matrix[x][y][0] * X)) + (const - (const * X))
+        G = (image_matrix[x][y][1] - (image_matrix[x][y][1] * X)) + (const - (const * X))
+        B = (image_matrix[x][y][2] - (image_matrix[x][y][2] * X)) + (const - (const * X))
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(R)
+        result_matrix[x][y][1] = math.ceil(G)
+        result_matrix[x][y][2] = math.ceil(B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([R, G, B]):
+            f_min = min([R, G, B])
+        if f_max < max([R, G, B]):
+            f_max = max([R, G, B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+\end{lstlisting}
+
+\section {Sumowanie dwóch obrazów}
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Sum_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Sum_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Sum_Img_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Sum_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to barwowe obrazy wejściowe, następnie obraz powstały w wyniku sumowania obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Sum_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Sum_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Sum_Img_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Sum_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to barwowe obrazy wejściowe, następnie obraz powstały w wyniku sumowania obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+
+\begin{lstlisting}[caption=Sumowanie obrazów barwowych]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+Q_max = 0
+D_max = 0
+X = 0
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R = int(image1_matrix[x][y][0]) + int(image2_matrix[x][y][0])
+        G = int(image1_matrix[x][y][1]) + int(image2_matrix[x][y][1])
+        B = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
+        
+        # Poszukiwanie maksimum               
+        if Q_max < max([R, G, B]):
+            Q_max = max([R, G, B])
+
+# Sprawdzenie czy maximum przekracza zakres
+if Q_max > 255:
+    D_max = Q_max - 255
+    X = (D_max/255) # Obliczenie proporcji
+
+# Obliczenie sum z uwzglednieniem zakresu
+for y in range(height):
+    for x in range(width): 
+        R = (image1_matrix[x][y][0] - (image1_matrix[x][y][0] * X)) + (image2_matrix[x][y][0] - (image2_matrix[x][y][0] * X))
+        G = (image1_matrix[x][y][1] - (image1_matrix[x][y][1] * X)) + (image2_matrix[x][y][1] - (image2_matrix[x][y][1] * X))
+        B = (image1_matrix[x][y][2] - (image1_matrix[x][y][2] * X)) + (image2_matrix[x][y][2] - (image2_matrix[x][y][2] * X))
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(R)
+        result_matrix[x][y][1] = math.ceil(G)
+        result_matrix[x][y][2] = math.ceil(B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([R, G, B]):
+            f_min = min([R, G, B])
+        if f_max < max([R, G, B]):
+            f_max = max([R, G, B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+\end{lstlisting}
+
+
+\subsection{Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
+
+
+
+
 3. mieszanie obrazów z określonym współczynnikiem
 4. potęgowanie obrazu (z zadaną potęgą)
 5. dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz

@@ -62,12 +62,12 @@ class ArithmeticGray:
                 norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
 
         if show == True:
-                #przed sumowaniem
-                Image.fromarray(image_matrix, "L").show()  
-                #po sumowaniu   
-                Image.fromarray(result_matrix, "L").show() 
-                #po normalizacji
-                Image.fromarray(norm_matrix, "L").show() 
+            #przed sumowaniem
+            Image.fromarray(image1_matrix, "L").show()  
+            #po sumowaniu   
+            Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
 
         if save == True:
             #TIFF
@@ -86,38 +86,71 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+        # Inicjalizacja zmiennych
+        Q_max = 0
+        D_max = 0
+        X = 0
+        f_min = 255
+        f_max = 0
 
         for y in range(height):
             for x in range(width):  
 
-                    # Obliczanie sumy
-                    L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+                # Obliczanie sumy
+                L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
 
+                # Poszukiwanie maksimum
+                if Q_max < L:
                     Q_max = L
-                    D_max = 0
-                    X = 0
 
-                    # Sprawdzenie czy przekracza zakres
-                    if Q_max > 255:
-                        D_max = Q_max - 255
-                        X = (D_max/255)
+        # Sprawdzenie czy przekracza zakres
+        if Q_max > 255:
+            D_max = Q_max - 255
+            X = (D_max/255)
 
-                    # Obliczenie sumy z uwzglednieniem zakresu
-                    L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (image2_matrix[x][y] - (image2_matrix[x][y] * X))
+        # Obliczenie sumy z uwzglednieniem zakresu
+        for y in range(height):
+            for x in range(width): 
+                L = (image1_matrix[x][y] - (image1_matrix[x][y] * X)) + (image2_matrix[x][y] - (image2_matrix[x][y] * X))
 
-                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
-                    # i przypisanie wartosci
-                    result_matrix[x][y] = math.ceil(L)
+                # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                # i przypisanie wartosci
+                result_matrix[x][y] = math.ceil(L)
+                
+                # Poszukiwanie minimum i maksimum
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
 
         if show == True:
-                #przed sumowaniem
-                Image.fromarray(image1_matrix, "L").show()  
-                Image.fromarray(image2_matrix, "L").show()  
-                #po sumowaniu   
-                Image.fromarray(result_matrix, "L").show() 
+            #przed sumowaniem
+            Image.fromarray(image1_matrix, "L").show()
+            Image.fromarray(image2_matrix, "L").show()  
+            #po sumowaniu   
+            Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
+
         if save == True:
-                Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Sum_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img1_Sum_Original.tiff", "TIFF")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img2_Sum_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Sum_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Sum_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img1_Sum_Original.png", "PNG")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img2_Sum_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Sum_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Sum_Result_Norm.png", "PNG") 
 
     def multiply_const(self, const = 0, show = False, save = False):
         
@@ -127,6 +160,11 @@ class ArithmeticGray:
 
         result_matrix = np.empty((height, width), dtype=np.uint8)
 
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+
+        # Mnozenie 
         for y in range(height):
             for x in range(width):  
 
@@ -142,14 +180,35 @@ class ArithmeticGray:
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
 
+                # Poszukiwanie minimum i maksimum
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+
         if show == True:
             #przed sumowaniem
             Image.fromarray(image1_matrix, "L").show()  
             #po sumowaniu   
             Image.fromarray(result_matrix, "L").show() 
-        if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
 
+        if save == True:
+            #TIFF
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Const_Multipl_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Const_Multipl_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Const_Multipl_Result_Norm.png", "PNG") 
 
     def multiply_img(self, show = False, save = False):
             
@@ -403,11 +462,21 @@ class ArithmeticGray:
 
 
 #TESTY
-# arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
-# arm1.sum_const(const = 50, show = True, save = True)
 
-arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.tiff", image2Path = "../../Resources/Gray/Mostek.tiff")
-arm2.sum_const(const = 100, show = True, save = True)
+arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Gentelman.tiff")
+# # arm1.sum_const(const = 50, show = True, save = True)
+# # arm1.sum_img(show = True, save = True)
+arm1.multiply_const(const = 50, show = True, save = True)
+
+
+
+
+# arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
+# # arm2.sum_const(const = 100, show = True, save = True)
+# # arm2.sum_img(show = True, save = True)
+# zad2.multiply_const(const = 60, show = True, save = True)
+
+
 
 # zad2.sum_img(show = True, save = True)
 # zad2.multiply_const(const = 60, show = True, save = True)

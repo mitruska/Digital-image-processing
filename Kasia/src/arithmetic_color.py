@@ -4,13 +4,14 @@ import math
 
 
 class ArithmeticColor:
-    def __init__(self, image1Path = None, image2Path = None):
+
+    def __init__(self, im1Name_ = "1", im2Name_ = "2", image1Path = None, image2Path = None):
             if image1Path is not None:
-                    # self.im1Name = self.getName(image1Path)
-                    self.im1 = np.array(Image.open(image1Path))
+                self.im1Name = im1Name_
+                self.im1 = np.array(Image.open(image1Path))
             if image2Path is not None:
-                    # self.im2Name = self.getName(image2Path)
-                    self.im2 = np.array(Image.open(image2Path))
+                self.im2Name = im2Name_
+                self.im2 = np.array(Image.open(image2Path))
 
     # Sumowanie okreslonej stalej z obrazem
     def sum_const(self, const = 0, show = False, save = False):
@@ -81,13 +82,13 @@ class ArithmeticColor:
             Image.fromarray(norm_matrix, "RGB").show()  
         if save == True:
             #TIFF
-            Image.fromarray(image_matrix, "RGB").save("../../Resources/Refults/TIFF/Color_Const_Sum_Original.tiff", "TIFF")  
-            Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
-            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result_Norm.tiff", "TIFF")  
+            Image.fromarray(image_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Const_Sum_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Const_Sum_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Const_Sum_Result_Norm.tiff", "TIFF")  
             #PNG
-            Image.fromarray(image_matrix, "RGB").save("../../Resources/Refults/TIFF/Color_Const_Sum_Original.tiff", "PNG")  
-            Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "PNG")  
-            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result_Norm.tiff", "PNG")  
+            Image.fromarray(image_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Const_Sum_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Const_Sum_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Const_Sum_Result_Norm.png", "PNG")  
 
 
     def sum_img(self, show = False, save = False):
@@ -99,43 +100,76 @@ class ArithmeticColor:
 
         result_matrix = np.empty((height, width, 3), dtype=np.uint8)
 
+        # Inicjalizacja zmiennych
+        Q_max = 0
+        D_max = 0
+        X = 0
+        f_min = 255
+        f_max = 0
+
         for y in range(height):
-                for x in range(width):  
+            for x in range(width):  
 
-                    # Obliczanie sum
-                    R = int(image1_matrix[x][y][0]) + int(image2_matrix[x][y][0])
-                    G = int(image1_matrix[x][y][1]) + int(image2_matrix[x][y][1])
-                    B = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
-
-                    # Szukanie maksymalnej wartosci
+                # Obliczanie sum
+                R = int(image1_matrix[x][y][0]) + int(image2_matrix[x][y][0])
+                G = int(image1_matrix[x][y][1]) + int(image2_matrix[x][y][1])
+                B = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
+                
+                # Poszukiwanie maksimum               
+                if Q_max < max([R, G, B]):
                     Q_max = max([R, G, B])
-                    D_max = 0
-                    X = 0
 
-                    # Sprawdzenie czy maximum przekracza zakres
-                    if Q_max > 255:
-                        D_max = Q_max - 255
-                        X = (D_max/255) # Obliczenie proporcji
-                    
-                    # Obliczenie sum z uwzglednieniem zakresu
-                    R = (image1_matrix[x][y][0] - (image1_matrix[x][y][0] * X)) + (image2_matrix[x][y][0] - (image2_matrix[x][y][0] * X))
-                    G = (image1_matrix[x][y][1] - (image1_matrix[x][y][1] * X)) + (image2_matrix[x][y][1] - (image2_matrix[x][y][1] * X))
-                    B = (image1_matrix[x][y][2] - (image1_matrix[x][y][2] * X)) + (image2_matrix[x][y][2] - (image2_matrix[x][y][2] * X))
+        # Sprawdzenie czy maximum przekracza zakres
+        if Q_max > 255:
+            D_max = Q_max - 255
+            X = (D_max/255) # Obliczenie proporcji
+        
+        # Obliczenie sum z uwzglednieniem zakresu
+        for y in range(height):
+            for x in range(width): 
+                R = (image1_matrix[x][y][0] - (image1_matrix[x][y][0] * X)) + (image2_matrix[x][y][0] - (image2_matrix[x][y][0] * X))
+                G = (image1_matrix[x][y][1] - (image1_matrix[x][y][1] * X)) + (image2_matrix[x][y][1] - (image2_matrix[x][y][1] * X))
+                B = (image1_matrix[x][y][2] - (image1_matrix[x][y][2] * X)) + (image2_matrix[x][y][2] - (image2_matrix[x][y][2] * X))
 
-                    # Zaokroglenie do najblizszej wartosci calkowitej z gory
-                    # i przypisanie wartosci
-                    result_matrix[x][y][0] = math.ceil(R)
-                    result_matrix[x][y][1] = math.ceil(G)
-                    result_matrix[x][y][2] = math.ceil(B)
+                # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                # i przypisanie wartosci
+                result_matrix[x][y][0] = math.ceil(R)
+                result_matrix[x][y][1] = math.ceil(G)
+                result_matrix[x][y][2] = math.ceil(B)
+
+                # Poszukiwanie minimum i maksimum                
+                if f_min > min([R, G, B]):
+                    f_min = min([R, G, B])
+                if f_max < max([R, G, B]):
+                    f_max = max([R, G, B])
+        
+        # Normalizacja
+        norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
 
         if show == True:
-                #przed sumowaniem
-                Image.fromarray(image1_matrix, "RGB").show()  
-                Image.fromarray(image2_matrix, "RGB").show()  
-                #po sumowaniu   
-                Image.fromarray(result_matrix, "RGB").show() 
+            #przed sumowaniem
+            Image.fromarray(image1_matrix, "RGB").show()
+            Image.fromarray(image2_matrix, "RGB").show()   
+            #po sumowaniu   
+            Image.fromarray(result_matrix, "RGB").show()
+            #po normalizacji
+            Image.fromarray(norm_matrix, "RGB").show()  
         if save == True:
-                Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sum_Img1_Original.tiff", "TIFF")  
+            Image.fromarray(image2_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sum_Img2_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sum_Img_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sum_Img_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sum_Img1_Original.png", "PNG")  
+            Image.fromarray(image2_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sum_Img2_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sum_Img_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sum_Img_Result_Norm.png", "PNG")  
 
     def multiply_const(self, const = 0, show = False, save = False):
         
@@ -464,8 +498,17 @@ class ArithmeticColor:
 
 
 #TESTY
-zad3 = ArithmeticColor(image1Path = "../../Resources/Color/Warzywa.tiff", image2Path = "../../Resources/Color/Szympans.tiff" )
-zad3.sum_const(const = 60, show = True, save = True)
+
+# carm1 = ArithmeticColor(im1Name_="1", image1Path = "../../Resources/Color/Statek.tiff", image2Path = "../../Resources/Color/Dom.tiff" )
+# # carm1.sum_const(const = 50, show = True, save = True)
+# carm1.sum_img(show = True, save = True)
+
+
+carm2 = ArithmeticColor(im1Name_="2", image1Path = "../../Resources/Color/Cukierki.tiff", image2Path = "../../Resources/Color/Kobieta.tiff" )
+# carm2.sum_const(const = 100, show = True, save = True)
+carm2.sum_img(show = True, save = True)
+
+
 # zad3.sum_img(show = True, save = True)
 # zad3.multiply_img(show = True, save = True)
 # zad3.multiply_const(const = 60, show = True, save = True)
