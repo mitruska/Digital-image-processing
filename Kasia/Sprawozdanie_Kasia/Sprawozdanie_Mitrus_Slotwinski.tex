@@ -341,7 +341,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result_Norm}
 	\end{center}
-	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę = 50, obraz po normalizacji }
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę=50, obraz po normalizacji }
 \end{figure}
 
 \begin{figure}[H]
@@ -350,7 +350,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Result_Norm}
 	\end{center}
-	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę = 100, obraz po normalizacji }
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę=100, obraz po normalizacji }
 \end{figure}
 
 \subsection*{Kod źródłowy}
@@ -475,7 +475,135 @@ for y in range(height):
 
 %\section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
 \section {Mieszanie obrazów z określonym współczynnikiem}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img1_Mix_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img2_Mix_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Mix_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Mix_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku mieszania obrazów ze współczynnikiem alfa = 0.5, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img1_Mix_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img2_Mix_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Mix_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Mix_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku mieszania obrazów ze współczynnikiem alfa = 0.8, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+
+\begin{lstlisting}[caption=Mieszanie obrazów szarych z określonym współczynnikiem]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.empty((height, width), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        L = float(image1_matrix[x][y]) * alfa + (1-alfa) * float(image2_matrix[x][y])
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+        
+\end{lstlisting}
+
+
+
 \section {Potęgowanie obrazu (z zadaną potęgą)}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Pow_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Pow_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Powl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po podniesieniu do potęgi alfa = 2, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Pow_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Pow_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Pow_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po podniesieniu do potęgi alfa = 2, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Potęgowanie obrazu szarego (z zadaną potęgą)]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+        
+        L = int(image_matrix[x][y])
+        if L == 255:
+            L = 255
+        elif L == 0:
+            L = 0
+        else:
+            # print("Before pow", L)
+            L = math.pow(int(image_matrix[x][y]), alfa)/255
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > math.ceil(L):
+            f_min = math.ceil(L)
+        if f_max < math.ceil(L):
+            f_max = math.ceil(L)
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+        
+
+\end{lstlisting}
+
 \section {Dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz}
 \section {Pierwiastkowanie obrazu}
 \section {Logarytmowanie obrazu}
@@ -797,7 +925,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.zeros((height, width), dtype=np.uint8)
+result_matrix = np.empty((height, width, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -806,36 +934,188 @@ f_max = 0
 for y in range(height):
     for x in range(width):  
 
-        L = int(image1_matrix[x][y]) 
-        if L == 255:
-            L = image2_matrix[x][y]
-        elif L == 0:
-            L = 0
+        R = int(image1_matrix[x][y][0])
+        G = int(image1_matrix[x][y][1])
+        B = int(image1_matrix[x][y][2])
+
+        if R == 255:
+            R = image2_matrix[x][y][0]
+        elif R == 0:
+            R = 0
         else:
-            L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
+            R = (int(image1_matrix[x][y][0]) * int(image2_matrix[x][y][0]))/255 
+        
+        if G == 255:
+            G = image2_matrix[x][y][1]
+        elif G == 0:
+            G = 0
+        else:
+            G = (int(image1_matrix[x][y][1]) * int(image2_matrix[x][y][1]))/255 
+        
+        if B == 255:
+            B = image2_matrix[x][y][2]
+        elif B == 0:
+            B = 0
+        else:
+            B = (int(image1_matrix[x][y][2]) * int(image2_matrix[x][y][2]))/255 
 
         # Zaokroglenie do najblizszej wartosci calkowitej z gory
         # i przypisanie wartosci
-        result_matrix[x][y] = math.ceil(L)
-                        
-        # Poszukiwanie minimum i maksimum
-        if f_min > L:
-            f_min = L
-        if f_max < L:
-            f_max = L
+        result_matrix[x][y][0] = math.ceil(R)
+        result_matrix[x][y][1] = math.ceil(G)
+        result_matrix[x][y][2] = math.ceil(B)
 
-# Normalizacja
-norm_matrix = np.zeros((width, height), dtype=np.uint8)
-for y in range(height):
-    for x in range(width):
-        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
-    
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([R, G, B]):
+            f_min = min([R, G, B])
+        if f_max < max([R, G, B]):
+            f_max = max([R, G, B])
+
+
 
 \end{lstlisting}
 
 
-3. mieszanie obrazów z określonym współczynnikiem
-4. potęgowanie obrazu (z zadaną potęgą)
+\section{ Mieszanie obrazów z określonym współczynnikiem}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku mieszania obrazów ze współczynnikiem alfa = 0.5, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku mieszania obrazów ze współczynnikiem alfa = 0.8, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{lstlisting}[caption=Mieszanie obrazów barwowych z określonym współczynnikiem]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        R = float(image1_matrix[x][y][0]) * alfa + (1-alfa) * float(image2_matrix[x][y][0])
+        G = float(image1_matrix[x][y][1]) * alfa + (1-alfa) * float(image2_matrix[x][y][1])
+        B = float(image1_matrix[x][y][2]) * alfa + (1-alfa) * float(image2_matrix[x][y][2])
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(R)
+        result_matrix[x][y][1] = math.ceil(G)
+        result_matrix[x][y][2] = math.ceil(B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([R, G, B]):
+            f_min = min([R, G, B])
+        if f_max < max([R, G, B]):
+            f_max = max([R, G, B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+    
+
+\end{lstlisting}
+
+\section{ Potęgowanie obrazu}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Mix_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku mieszania obrazów ze współczynnikiem alfa = 0.5, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Mix_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku mieszania obrazów ze współczynnikiem alfa = 0.8, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{lstlisting}[caption=Mieszanie obrazów barwowych z określonym współczynnikiem]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        R = float(image1_matrix[x][y][0]) * alfa + (1-alfa) * float(image2_matrix[x][y][0])
+        G = float(image1_matrix[x][y][1]) * alfa + (1-alfa) * float(image2_matrix[x][y][1])
+        B = float(image1_matrix[x][y][2]) * alfa + (1-alfa) * float(image2_matrix[x][y][2])
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(R)
+        result_matrix[x][y][1] = math.ceil(G)
+        result_matrix[x][y][2] = math.ceil(B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([R, G, B]):
+            f_min = min([R, G, B])
+        if f_max < max([R, G, B]):
+            f_max = max([R, G, B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+    
+
+\end{lstlisting}
+
 5. dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz
 6. pierwiastkowanie obrazu
 7. logarytmowanie obrazu

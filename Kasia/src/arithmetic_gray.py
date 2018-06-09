@@ -193,9 +193,9 @@ class ArithmeticGray:
                 norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
 
         if show == True:
-            #przed sumowaniem
+            #przed 
             Image.fromarray(image1_matrix, "L").show()  
-            #po sumowaniu   
+            #po    
             Image.fromarray(result_matrix, "L").show() 
             #po normalizacji
             Image.fromarray(norm_matrix, "L").show() 
@@ -251,10 +251,10 @@ class ArithmeticGray:
                 norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
                
         if show == True:
-            #przed sumowaniem
+            #przed 
             Image.fromarray(image1_matrix, "L").show()
             Image.fromarray(image2_matrix, "L").show()  
-            #po sumowaniu   
+            #po    
             Image.fromarray(result_matrix, "L").show() 
             #po normalizacji
             Image.fromarray(norm_matrix, "L").show() 
@@ -280,6 +280,10 @@ class ArithmeticGray:
 
         result_matrix = np.empty((height, width), dtype=np.uint8)
 
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+
         for y in range(height):
             for x in range(width):  
 
@@ -289,14 +293,39 @@ class ArithmeticGray:
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
 
+                # Poszukiwanie minimum i maksimum
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+               
+
         if show == True:
             #przed sumowaniem
-            Image.fromarray(image1_matrix, "L" ).show()  
+            Image.fromarray(image1_matrix, "L").show()
             Image.fromarray(image2_matrix, "L").show()  
             #po sumowaniu   
             Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
+
         if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img1_Mix_Original.tiff", "TIFF")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img2_Mix_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Mix_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Mix_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img1_Mix_Original.png", "PNG")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img2_Mix_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Mix_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Mix_Result_Norm.png", "PNG") 
 
     def pow_img(self, alfa = 1, show = False, save = False):
         
@@ -304,51 +333,58 @@ class ArithmeticGray:
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
 
         for y in range(height):
             for x in range(width):  
                 
                 L = int(image_matrix[x][y])
-                if L == 0:
+                if L == 255:
+                    L = 255
+                elif L == 0:
                     L = 0
                 else:
                     # print("Before pow", L)
-                    L = math.pow(int(image_matrix[x][y]), alfa)
-                    # print("After pow", L)
-
-                    # L = int(image1_matrix[x][y]) 
-                    # if L == 255:
-                    #     L = image2_matrix[x][y]
-                    # elif L == 0:
-                    #     L = 0
-                    # else:
-                    #     L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
-
-                    Q_max = L
-                    D_max = 0
-                    X = 0
-
-                    # Sprawdzenie czy przekracza zakres
-                    if Q_max > 255:
-                        D_max = Q_max - 255
-                        X = (D_max/255)
-
-                    # Normalizacja
-                    L = (L - L * X)
+                    L = math.pow(int(image_matrix[x][y]), alfa)/255
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
 
+                # Poszukiwanie minimum i maksimum
+                if f_min > math.ceil(L):
+                    f_min = math.ceil(L)
+                if f_max < math.ceil(L):
+                    f_max = math.ceil(L)
+        
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+               
 
         if show == True:
-            #przed sumowaniem
-            Image.fromarray(image_matrix, "L" ).show()  
-            #po sumowaniu   
+            #przed 
+            Image.fromarray(image_matrix, "L").show()  
+            #po    
             Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
+
         if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Pow_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Pow_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Pow_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Pow_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Pow_Result_Norm.png", "PNG") 
 
     #TO DO
     def div_const(self, const = 0, show = False, save = False):
@@ -491,11 +527,14 @@ class ArithmeticGray:
 
 #TESTY
 
-# arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Gentelman.tiff")
+arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Gentelman.tiff")
 # # # # arm1.sum_const(const = 50, show = True, save = True)
 # # # # arm1.sum_img(show = True, save = True)
 # # arm1.multiply_const(const = 50, show = True, save = True)
 # arm1.multiply_img(show = True, save = True)
+# arm1.mix_alfa(alfa = 0.5, show = True, save = True)
+arm1.pow_img(alfa = 2, show = True, save = True)
+
 
 
 
@@ -505,7 +544,10 @@ arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.t
 # # # arm2.sum_const(const = 100, show = True, save = True)
 # # # arm2.sum_img(show = True, save = True)
 # arm2.multiply_const(const = 100, show = True, save = True)
-arm2.multiply_img(show = True, save = True)
+# arm2.multiply_img(show = True, save = True)
+# arm2.mix_alfa(alfa = 0.8, show = True, save = True)
+arm2.pow_img(alfa = 2, show = True, save = True)
+
 
 
 
