@@ -217,7 +217,11 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
 
         for y in range(height):
             for x in range(width):  
@@ -233,15 +237,39 @@ class ArithmeticGray:
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
+                                
+                # Poszukiwanie minimum i maksimum
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
 
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+               
         if show == True:
             #przed sumowaniem
-            Image.fromarray(image1_matrix, "L" ).show()  
+            Image.fromarray(image1_matrix, "L").show()
             Image.fromarray(image2_matrix, "L").show()  
             #po sumowaniu   
             Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
+
         if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img1_Multipl_Original.tiff", "TIFF")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img2_Multipl_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Multipl_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img1_Multipl_Original.png", "PNG")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img2_Multipl_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Multipl_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Multipl_Result_Norm.png", "PNG") 
 
     def mix_alfa(self, alfa = 0.5, show = False, save = False):
         
@@ -463,18 +491,22 @@ class ArithmeticGray:
 
 #TESTY
 
-arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Gentelman.tiff")
-# # arm1.sum_const(const = 50, show = True, save = True)
-# # arm1.sum_img(show = True, save = True)
-arm1.multiply_const(const = 50, show = True, save = True)
+# arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Gentelman.tiff")
+# # # # arm1.sum_const(const = 50, show = True, save = True)
+# # # # arm1.sum_img(show = True, save = True)
+# # arm1.multiply_const(const = 50, show = True, save = True)
+# arm1.multiply_img(show = True, save = True)
 
 
 
 
-# arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
-# # arm2.sum_const(const = 100, show = True, save = True)
-# # arm2.sum_img(show = True, save = True)
-# zad2.multiply_const(const = 60, show = True, save = True)
+
+arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
+# # # arm2.sum_const(const = 100, show = True, save = True)
+# # # arm2.sum_img(show = True, save = True)
+# arm2.multiply_const(const = 100, show = True, save = True)
+arm2.multiply_img(show = True, save = True)
+
 
 
 

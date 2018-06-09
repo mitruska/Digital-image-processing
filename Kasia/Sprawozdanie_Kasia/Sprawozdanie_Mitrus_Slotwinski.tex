@@ -341,7 +341,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result_Norm}
 	\end{center}
-	\caption{(Od lewej) Szary obraz wejściowy, obraz po sumowaniu ze stałą = 50, obraz po normalizacji }
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę = 50, obraz po normalizacji }
 \end{figure}
 
 \begin{figure}[H]
@@ -350,44 +350,34 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Gray_Const_Multipl_Result_Norm}
 	\end{center}
-	\caption{(Od lewej) Szary obraz wejściowy, obraz po sumowaniu ze stałą = 100, obraz po normalizacji }
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę = 100, obraz po normalizacji }
 \end{figure}
 
 \subsection*{Kod źródłowy}
 
-\begin{lstlisting}[caption=Sumowanie obrazu szarego ze stałą]
+\begin{lstlisting}[caption=Mnożenie obrazu szarego przez zadaną liczbę]
 
-image_matrix = self.im1
-width = image_matrix.shape[1]    # szereoksc
-height = image_matrix.shape[0]   # wysokosc
+image1_matrix = self.im1
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.zeros((width, height), dtype=np.uint8)
+result_matrix = np.empty((height, width), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
-Q_max = 0
-D_max = 0
-X = 0
 f_min = 255
 f_max = 0
 
+# Mnozenie 
 for y in range(height):
     for x in range(width):  
-        # Obliczanie sumy
-        L = int(image_matrix[x][y]) + int(const)
 
-        # Poszukiwanie maksimum
-        if Q_max < L:
-            Q_max = L
-
-# Sprawdzenie czy przekracza zakres
-if Q_max > 255:
-    D_max = Q_max - 255
-    X = (D_max/255)
-
-# Obliczenie sumy z uwzglednieniem zakresu
-for y in range(height):
-    for x in range(width): 
-        L = (image_matrix[x][y] - (image_matrix[x][y] * X)) + (const - (const * X))
+        L = int(image1_matrix[x][y]) 
+        if L == 255:
+            L = const
+        elif L == 0:
+            L = 0
+        else:
+            L = (int(image1_matrix[x][y]) * const)/255 
 
         # Zaokroglenie do najblizszej wartosci calkowitej z gory
         # i przypisanie wartosci
@@ -398,6 +388,13 @@ for y in range(height):
             f_min = L
         if f_max < L:
             f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+
 \end{lstlisting}
 
 
@@ -405,7 +402,76 @@ for y in range(height):
 
 
 
-\section {Mnożenie obrazu przez zadaną przez inny obraz}
+\section {Mnożenie obrazu przez inny obraz}
+\hfill
+\\\\
+\indent
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img1_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img2_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Multipl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to szare obrazy wejściowe, następnie obraz powstały w wyniku przemnożenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img1_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img2_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Multipl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to szare obrazy wejściowe, następnie obraz powstały w wyniku przemnożenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Mnożenie obrazu szarego przez inny obraz ]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        L = int(image1_matrix[x][y]) 
+        if L == 255:
+            L = image2_matrix[x][y]
+        elif L == 0:
+            L = 0
+        else:
+            L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+                        
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+    
+
+\end{lstlisting}
 
 %\section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
 \section {Mieszanie obrazów z określonym współczynnikiem}
@@ -608,10 +674,164 @@ for y in range(height):
         norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
 \end{lstlisting}
 
+\section {Mnożenie obrazu przez zadaną liczbę}
+\hfill
+\\\\
+\indent
 
-\subsection{Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Const_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Const_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Const_Multipl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę 50, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Multipl_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Multipl_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę 100, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Mnożenie obrazu barwowego przez zadaną liczbę]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        R = int(image_matrix[x][y][0])
+        G = int(image_matrix[x][y][1])
+        B = int(image_matrix[x][y][2])
+
+        if R == 255:
+            R = const
+        elif R == 0:
+            R = 0
+        else:
+            R = (int(image_matrix[x][y][0]) * int(const))/255 
+        
+        if G == 255:
+            G = const
+        elif G == 0:
+            G = 0
+        else:
+            G = (int(image_matrix[x][y][1]) * int(const))/255 
+        
+        if B == 255:
+            B = const
+        elif B == 0:
+            B = 0
+        else:
+            B = (int(image_matrix[x][y][2]) * int(const))/255 
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(R)
+        result_matrix[x][y][1] = math.ceil(G)
+        result_matrix[x][y][2] = math.ceil(B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([R, G, B]):
+            f_min = min([R, G, B])
+        if f_max < max([R, G, B]):
+            f_max = max([R, G, B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
 
 
+\end{lstlisting}
+
+\section {Mnożenie obrazu przez inny obraz}
+\hfill
+\\\\
+\indent
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Multipl_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Multipl_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Multipl_Img_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Multipl_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to barwowe obrazy wejściowe, następnie obraz powstały w wyniku przemnożenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Multipl_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Multipl_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Multipl_Img_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Multipl_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Pierwsze dwa to barwowe obrazy wejściowe, następnie obraz powstały w wyniku przemnożenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Mnożenie obrazu barwowego przez inny obraz ]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        L = int(image1_matrix[x][y]) 
+        if L == 255:
+            L = image2_matrix[x][y]
+        elif L == 0:
+            L = 0
+        else:
+            L = (int(image1_matrix[x][y]) * int(image2_matrix[x][y]))/255 
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+                        
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+    
+
+\end{lstlisting}
 
 
 3. mieszanie obrazów z określonym współczynnikiem

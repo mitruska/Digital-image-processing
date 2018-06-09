@@ -179,6 +179,10 @@ class ArithmeticColor:
 
         result_matrix = np.empty((height, width, 3), dtype=np.uint8)
 
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+
         for y in range(height):
             for x in range(width):  
 
@@ -213,15 +217,38 @@ class ArithmeticColor:
                 result_matrix[x][y][1] = math.ceil(G)
                 result_matrix[x][y][2] = math.ceil(B)
 
-        if show == True:
-                #przed sumowaniem
-                Image.fromarray(image_matrix, "RGB").show()  
-                #po sumowaniu   
-                Image.fromarray(result_matrix, "RGB").show() 
-        if save == True:
-                Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
+                # Poszukiwanie minimum i maksimum                
+                if f_min > min([R, G, B]):
+                    f_min = min([R, G, B])
+                if f_max < max([R, G, B]):
+                    f_max = max([R, G, B])
 
-    
+        # Normalizacja
+        norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+
+        if show == True:
+            #przed sumowaniem
+            Image.fromarray(image_matrix, "RGB").show()  
+            #po sumowaniu   
+            Image.fromarray(result_matrix, "RGB").show()
+            #po normalizacji
+            Image.fromarray(norm_matrix, "RGB").show()  
+        if save == True:
+            #TIFF
+            Image.fromarray(image_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Const_Multipl_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Const_Multipl_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Const_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Const_Multipl_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Const_Multipl_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Const_Multipl_Result_Norm.png", "PNG")  
+
     def multiply_img(self, show = False, save = False):
 
         image1_matrix = self.im1
@@ -230,6 +257,10 @@ class ArithmeticColor:
         width = image1_matrix.shape[1]    # szereoksc
 
         result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
 
         for y in range(height):
             for x in range(width):  
@@ -265,14 +296,40 @@ class ArithmeticColor:
                 result_matrix[x][y][1] = math.ceil(G)
                 result_matrix[x][y][2] = math.ceil(B)
 
+                # Poszukiwanie minimum i maksimum                
+                if f_min > min([R, G, B]):
+                    f_min = min([R, G, B])
+                if f_max < max([R, G, B]):
+                    f_max = max([R, G, B])
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+
         if show == True:
-                #przed sumowaniem
-                Image.fromarray(image1_matrix, "RGB").show()  
-                Image.fromarray(image2_matrix, "RGB").show()  
-                #po sumowaniu   
-                Image.fromarray(result_matrix, "RGB").show() 
+            #przed sumowaniem
+            Image.fromarray(image1_matrix, "RGB").show()
+            Image.fromarray(image2_matrix, "RGB").show()   
+            #po sumowaniu   
+            Image.fromarray(result_matrix, "RGB").show()
+            #po normalizacji
+            Image.fromarray(norm_matrix, "RGB").show()  
         if save == True:
-                Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Multipl_Img1_Original.tiff", "TIFF")  
+            Image.fromarray(image2_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Multipl_Img2_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Multipl_Img_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Multipl_Img_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Multipl_Img1_Original.png", "PNG")  
+            Image.fromarray(image2_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Multipl_Img2_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Multipl_Img_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Multipl_Img_Result_Norm.png", "PNG")  
 
     def mix_alfa(self, alfa = 1.0, show = False, save = False):
         
@@ -499,17 +556,20 @@ class ArithmeticColor:
 
 #TESTY
 
-# carm1 = ArithmeticColor(im1Name_="1", image1Path = "../../Resources/Color/Statek.tiff", image2Path = "../../Resources/Color/Dom.tiff" )
-# # carm1.sum_const(const = 50, show = True, save = True)
-# carm1.sum_img(show = True, save = True)
+carm1 = ArithmeticColor(im1Name_="1", image1Path = "../../Resources/Color/Statek.tiff", image2Path = "../../Resources/Color/Dom.tiff" )
+# # # carm1.sum_const(const = 50, show = True, save = True)
+# # # carm1.sum_img(show = True, save = True)
+# # carm1.multiply_const(const = 50, show = True, save = True)
+# carm1.multiply_img(show = True, save = True)
 
 
 carm2 = ArithmeticColor(im1Name_="2", image1Path = "../../Resources/Color/Cukierki.tiff", image2Path = "../../Resources/Color/Kobieta.tiff" )
-# carm2.sum_const(const = 100, show = True, save = True)
-carm2.sum_img(show = True, save = True)
+# # carm2.sum_const(const = 100, show = True, save = True)
+# # carm2.sum_img(show = True, save = True)
+# carm2.multiply_const(const = 100, show = True, save = True)
+carm2.multiply_img(show = True, save = True)
 
 
-# zad3.sum_img(show = True, save = True)
 # zad3.multiply_img(show = True, save = True)
 # zad3.multiply_const(const = 60, show = True, save = True)
 # zad3.mix_alfa(alfa = 0.3, show = True, save = True)
