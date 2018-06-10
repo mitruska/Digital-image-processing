@@ -594,8 +594,8 @@ class ArithmeticColor:
                 B_S = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
 
                 Q_R = (R_S * 255)/Q_max
-                Q_G = (R_S * 255)/Q_max
-                Q_B = (R_S * 255)/Q_max
+                Q_G = (G_S * 255)/Q_max
+                Q_B = (B_S * 255)/Q_max
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
