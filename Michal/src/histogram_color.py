@@ -3,6 +3,7 @@ from os import remove
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+import colorsys
 
 # ZADANIE 6
 class HistogramColor:
@@ -127,14 +128,14 @@ class HistogramColor:
 
         # alokacja pamięci na obraz wynikowy
         resultImage = np.empty((height, width, 3), dtype=np.uint8)
-        #tmp = np.empty((height, width, 3))
-        #tmp2 = np.empty((height, width, 3))
-        #
-        #
+        tmp = np.empty((height, width, 3))
+        tmp2 = np.empty((height, width, 3))
+
+
         #for i in range(height):
         #    for j in range(width):
         #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
+        #        tmp[i, j] = self.RGBtoHSL((r, g, b))
         #
         #H = 0
         #n = 0
@@ -152,7 +153,7 @@ class HistogramColor:
         #for i in range(height):
         #    for j in range(width):
         #        h, s, I = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, I))
+        #        resultImage[i, j] = self.HSLtoRGB((h, s, I))
 
         # próg globalny
         globalR = 0
@@ -227,14 +228,14 @@ class HistogramColor:
 
         # alokacja pamięci na obraz wynikowy
         resultImage = np.empty((height, width, 3), dtype=np.uint8)
-        #tmp = np.empty((height, width, 3))
-        #tmp2 = np.empty((height, width, 3))
-        #
-        #
+        tmp = np.empty((height, width, 3))
+        tmp2 = np.empty((height, width, 3))
+
+
         #for i in range(height):
         #    for j in range(width):
         #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
+        #        tmp[i, j] = self.RGBtoHSL((r, g, b))
         #
         #for i in range(height):
         #   for j in range(width):
@@ -254,7 +255,7 @@ class HistogramColor:
         #for i in range(height):
         #    for j in range(width):
         #        h, s, I = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, I))
+        #        resultImage[i, j] = self.HSLtoRGB((h, s, I))
 
 
 
@@ -331,8 +332,28 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "localMultiThreshold")
 
+    def test(self, show=True):
+        width = self.im.shape[1]  # szereokść
+        height = self.im.shape[0]  # wysokość
 
+        # alokacja pamięci na obraz wynikowy
+        resultImage = np.empty((height, width, 3), dtype=np.uint8)
+        tmp = np.empty((height, width, 3))
+        tmp2 = np.empty((height, width, 3))
 
+        for i in range(height):
+            for j in range(width):
+                r, g, b = self.im[i, j]
+                tmp[i, j] = self.RGBtoHSI((r, g, b))
+
+        for i in range(height):
+            for j in range(width):
+                h, s, I = tmp[i, j]
+                resultImage[i, j] = self.HSItoRGB((h, s, I))
+
+        if show:
+            self.show(Image.fromarray(resultImage, "RGB"))
+        self.save(resultImage, self.imName, "test")
 
 
 
@@ -431,3 +452,27 @@ class HistogramColor:
             G = x
             B = y
         return (int(round(R*255)), int(round(G*255)), int(round(B*255)))
+
+    def RGBtoHSL(self, RGB):
+        R, G, B = int(RGB[0]) / 255, int(RGB[1]) / 255, int(RGB[2]) / 255
+        H, L, S = colorsys.rgb_to_hls(R, G, B)
+        return (H, S, L)
+
+    def HSLtoRGB(self, HSL):
+        H, S, L = HSL[0], HSL[1], HSL[2]
+        R, G, B = colorsys.hls_to_rgb(H, L, S)
+        return (round(R * 255), round(G * 255), round(B * 255))
+
+    def RGBtoIII(self, RGB):
+        R, G, B = int(RGB[0]), int(RGB[1]), int(RGB[2])
+        I = R * 0.34 + G * 0.33 + B * 0.33
+        II = R * 0.07 + G * 0.39 - B * 0.54
+        III = -R * 0.35 + G * 0.51 - B * 0.14
+        return (I, II, III)
+
+    def IIItoRGB(self, iii):
+        I, II, III = iii[0], iii[1], iii[2]
+
+
+
+
