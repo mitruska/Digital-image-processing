@@ -389,7 +389,7 @@ class ArithmeticGray:
             #TIFF
             Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Pow_Original.tiff", "TIFF")  
             Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Pow_Result.tiff", "TIFF")  
-            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Result_Norm.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Pow_Result_Norm.tiff", "TIFF")  
             #PNG
             Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Pow_Original.png", "PNG")  
             Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Pow_Result.png", "PNG")  
@@ -402,43 +402,63 @@ class ArithmeticGray:
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((height, width), dtype=np.uint8)
+        
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+        Q_max = 0
+
+
         for y in range(height):
             for x in range(width):  
 
-                L = int(image_matrix[x][y]) 
+                L = int(image_matrix[x][y]) + int(const)
 
-                if const == 0:
-                    const = 1
-                else:
-                    L = (float(image_matrix[x][y]) * float(1/const) * 255 )
+                # Poszukiwanie maksimum
+                if Q_max < L:
+                    Q_max = L
+
+        for y in range(height):
+            for x in range(width):  
+
+                L = int(image_matrix[x][y]) + int(const)
+                Q_L = (L * 255) / Q_max
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
-                result_matrix[x][y] = math.ceil(L)
+                result_matrix[x][y] = math.ceil(Q_L)
 
-        # for y in range(height):
-        #     for x in range(width):  
-                
-        #         #TO ASK
+                # Poszukiwanie minimum i maksimum
+                if f_min > Q_L:
+                    f_min = Q_L
+                if f_max < Q_L:
+                    f_max = Q_L
 
-        #         # L = int(image1_matrix[x][y]) + int(const)
-        #         L = float(image_matrix[x][y]) / float(const)
-                
-        #         # L = (int(image1_matrix[x][y]) * 255
-
-        #         # Zaokroglenie do najblizszej wartosci calkowitej z gory
-        #         # i przypisanie wartosci
-        #         result_matrix[x][y] = math.ceil(L)
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+               
 
         if show == True:
             #przed 
             Image.fromarray(image_matrix, "L").show()  
             #po    
             Image.fromarray(result_matrix, "L").show() 
-        if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
 
+        if save == True:
+            #TIFF
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Div_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Div_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Div_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Div_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Div_Result_Norm.png", "PNG") 
 
     #TO DO
     def div_img(self, show = False, save = False):
@@ -450,22 +470,63 @@ class ArithmeticGray:
 
         result_matrix = np.empty((height, width), dtype=np.uint8)
 
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+        Q_max = 0
+
         for y in range(height):
-                for x in range(width):  
+            for x in range(width):  
+                # Obliczanie sumy
+                L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+                
+                # Poszukiwanie maksimum
+                if Q_max < L:
+                    Q_max = L
 
-                        # Obliczanie sumy
-                        L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
-                        Q_max = L
+        for y in range(height):
+            for x in range(width):  
 
-                        Q_L = (L * 255) / Q_max
+                # Obliczanie sumy
+                L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+                Q_L = (L * 255) / Q_max
 
+                # Zaokroglenie do najblizszej wartosci calkowitej z gory
+                # i przypisanie wartosci
+                result_matrix[x][y] = math.ceil(Q_L)
+
+                # Poszukiwanie minimum i maksimum
+                if f_min > Q_L:
+                    f_min = Q_L
+                if f_max < Q_L:
+                    f_max = Q_L
+        
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+               
         if show == True:
-            #przed 
-            Image.fromarray(image_matrix, "L" ).show()  
-            #po    
+            #przed sumowaniem
+            Image.fromarray(image1_matrix, "L").show()
+            Image.fromarray(image2_matrix, "L").show()  
+            #po sumowaniu   
             Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
+
         if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
+            #TIFF
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img1_Div_Original.tiff", "TIFF")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img2_Div_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Div_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Img_Div_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img1_Div_Original.png", "PNG")  
+            Image.fromarray(image2_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img2_Div_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Div_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Div_Result_Norm.png", "PNG") 
 
 
     def sqrt_img(self, step = 1, show = False, save = False):
@@ -547,6 +608,20 @@ class ArithmeticGray:
 
         result_matrix = np.empty((height, width), dtype=np.uint8)
 
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+        f_img_max = 0
+
+        for y in range(height):
+            for x in range(width):  
+
+                L = int(image_matrix[x][y]) 
+
+                # Poszukiwanie maksimum
+                if f_img_max < L:
+                    f_img_max = L
+
         for y in range(height):
             for x in range(width):  
 
@@ -555,20 +630,42 @@ class ArithmeticGray:
                 if L == 0:
                     L = 0
                 else:
-                    L = math.log(1 + L)
+                    L = (math.log(1 + L) / math.log(1 + f_img_max)) * 255
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
+
+                # Poszukiwanie minimum i maksimum
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+             
 
         if show == True:
             #przed 
             Image.fromarray(image_matrix, "L").show()  
             #po    
             Image.fromarray(result_matrix, "L").show() 
-        if save == True:
-            Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Const_Multpl_Result.tiff", "TIFF")  
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
 
+        if save == True:
+            #TIFF
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Log_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Log_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Log_Result_Norm.png", "PNG") 
 
 #TESTY
 
@@ -578,22 +675,28 @@ arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Pa
 # # arm1.multiply_const(const = 50, show = True, save = True)
 # arm1.multiply_img(show = True, save = True)
 # arm1.mix_alfa(alfa = 0.5, show = True, save = True)
-arm1.pow_img(alfa = 2, show = True, save = True)
-arm1.sqrt_img(step = 2, show = True, save = True)
-
-
+# arm1.pow_img(alfa = 2, show = True, save = True)
+# arm1.sqrt_img(step = 2, show = True, save = True)
+# arm1.log_img(True, True)
+arm1.div_const(2, True, True)
+arm1.div_img(True, True)
 
 
 
 
 arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
-# # # arm2.sum_const(const = 100, show = True, save = True)
-# # # arm2.sum_img(show = True, save = True)
-# arm2.multiply_const(const = 100, show = True, save = True)
-# arm2.multiply_img(show = True, save = True)
-# arm2.mix_alfa(alfa = 0.8, show = True, save = True)
-arm2.pow_img(alfa = 3, show = True, save = True)
-arm2.sqrt_img(step = 3, show = True, save = True)
+# # # # arm2.sum_const(const = 100, show = True, save = True)
+# # # # arm2.sum_img(show = True, save = True)
+# # arm2.multiply_const(const = 100, show = True, save = True)
+# # arm2.multiply_img(show = True, save = True)
+# # arm2.mix_alfa(alfa = 0.8, show = True, save = True)
+# arm2.pow_img(alfa = 3, show = True, save = True)
+# # arm2.sqrt_img(step = 3, show = True, save = True)
+# arm2.log_img(True, True)
+arm2.div_const(3, True, True)
+arm1.div_img(True, True)
+
+
 
 
 
