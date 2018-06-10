@@ -395,7 +395,6 @@ class ArithmeticColor:
     def pow_img(self, alfa = 1, show = False, save = False):
         
         image1_matrix = self.im1
-        image2_matrix = self.im2
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
@@ -404,6 +403,17 @@ class ArithmeticColor:
         # Inicjalizacja zmiennych
         f_min = 255
         f_max = 0
+        f_img_max = 0
+
+        for y in range(height):
+            for x in range(width):  
+
+                R = int(image1_matrix[x][y][0])
+                G = int(image1_matrix[x][y][1])
+                B = int(image1_matrix[x][y][2])
+
+                if f_img_max < max([R, G, B]):
+                    f_img_max = max([R, G, B])
 
         for y in range(height):
             for x in range(width):  
@@ -415,18 +425,17 @@ class ArithmeticColor:
                 if R == 0:
                     R = 0
                 else:
-                    R = math.pow(int(image1_matrix[x][y][0]), alfa)/255
+                    R = 255 * (math.pow(int(image1_matrix[x][y][0]) / f_img_max, alfa))
 
                 if G == 0:
                     G = 0
                 else:
-                    G = math.pow(int(image1_matrix[x][y][1]), alfa)/255
+                    G = 255 * (math.pow(int(image1_matrix[x][y][1]) / f_img_max, alfa))
                 
                 if B == 0:
                     B = 0
                 else:
-                    B = math.pow(int(image1_matrix[x][y][2]), alfa)/255
-
+                    B = 255 * (math.pow(int(image1_matrix[x][y][2]) / f_img_max, alfa))
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
@@ -447,6 +456,32 @@ class ArithmeticColor:
                 norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
                 norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
                 norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+        
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+        
+        if show == True:
+            #przed 
+            Image.fromarray(image1_matrix, "RGB").show()  
+            #po    
+            Image.fromarray(result_matrix, "RGB").show()
+            #po normalizacji
+            Image.fromarray(norm_matrix, "RGB").show()  
+        if save == True:
+            #TIFF
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Pow_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Pow_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Pow_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Pow_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Pow_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Pow_Result_Norm.png", "PNG")  
 
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
@@ -526,18 +561,34 @@ class ArithmeticColor:
         if save == True:
                 Image.fromarray(result_matrix, "RGB").save("../../Resources/Color/Color_Const_Sum_Result.tiff", "TIFF")  
 
-    def sqrt_img(self, alfa = 1, show = False, save = False):
+    def sqrt_img(self, step = 1, show = False, save = False):
         
         image1_matrix = self.im1
-        image2_matrix = self.im2
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
         result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+        
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+        f_img_max = 0
+
+        alfa = 1/step #zamiana stopnia pierwiastka na ulamek
 
         for y in range(height):
             for x in range(width):  
-                
+
+                R = int(image1_matrix[x][y][0])
+                G = int(image1_matrix[x][y][1])
+                B = int(image1_matrix[x][y][2])
+
+                if f_img_max < max([R, G, B]):
+                    f_img_max = max([R, G, B])
+
+        for y in range(height):
+            for x in range(width):  
+
                 R = int(image1_matrix[x][y][0])
                 G = int(image1_matrix[x][y][1])
                 B = int(image1_matrix[x][y][2])
@@ -545,24 +596,55 @@ class ArithmeticColor:
                 if R == 0:
                     R = 0
                 else:
-                    R = math.sqrt(int(image1_matrix[x][y][0]), alfa)
+                    R = 255 * (math.pow(int(image1_matrix[x][y][0]) / f_img_max, alfa))
 
                 if G == 0:
                     G = 0
                 else:
-                    G = math.sqrt(int(image1_matrix[x][y][1]), alfa)
+                    G = 255 * (math.pow(int(image1_matrix[x][y][1]) / f_img_max, alfa))
                 
                 if B == 0:
                     B = 0
                 else:
-                    B = math.sqrt(int(image1_matrix[x][y][2]), alfa)
-
+                    B = 255 * (math.pow(int(image1_matrix[x][y][2]) / f_img_max, alfa))
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
                 result_matrix[x][y][0] = math.ceil(R)
                 result_matrix[x][y][1] = math.ceil(G)
                 result_matrix[x][y][2] = math.ceil(B)
+
+                # Poszukiwanie minimum i maksimum                
+                if f_min > min([R, G, B]):
+                    f_min = min([R, G, B])
+                if f_max < max([R, G, B]):
+                    f_max = max([R, G, B])
+
+        # Normalizacja
+        norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+                norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+        
+        if show == True:
+            #przed 
+            Image.fromarray(image1_matrix, "RGB").show()  
+            #po    
+            Image.fromarray(result_matrix, "RGB").show()
+            #po normalizacji
+            Image.fromarray(norm_matrix, "RGB").show()  
+        if save == True:
+            #TIFF
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sqrt_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sqrt_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/TIFF/" + self.im1Name + "Color_Sqrt_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image1_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sqrt_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sqrt_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sqrt_Result_Norm.png", "PNG")  
+
 
     def log_img(self, alfa = 1, show = False, save = False):
         
@@ -612,6 +694,8 @@ carm1 = ArithmeticColor(im1Name_="1", image1Path = "../../Resources/Color/Statek
 # carm1.multiply_img(show = True, save = True)
 # carm1.mix_alfa(alfa = 0.5, show = True, save = True)
 carm1.pow_img(alfa = 2, show = True, save = True)
+carm1.sqrt_img(step = 2, show = True, save = True)
+
 
 
 carm2 = ArithmeticColor(im1Name_="2", image1Path = "../../Resources/Color/Cukierki.tiff", image2Path = "../../Resources/Color/Kobieta.tiff" )
@@ -620,7 +704,9 @@ carm2 = ArithmeticColor(im1Name_="2", image1Path = "../../Resources/Color/Cukier
 # carm2.multiply_const(const = 100, show = True, save = True)
 # carm2.multiply_img(show = True, save = True)
 # carm2.mix_alfa(alfa = 0.8, show = True, save = True)
-carm2.pow_img(alfa = 2, show = True, save = True)
+carm2.pow_img(alfa = 3, show = True, save = True)
+carm2.sqrt_img(step = 3, show = True, save = True)
+
 
 
 

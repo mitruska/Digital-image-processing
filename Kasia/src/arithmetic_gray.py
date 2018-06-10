@@ -338,6 +338,16 @@ class ArithmeticGray:
         # Inicjalizacja zmiennych
         f_min = 255
         f_max = 0
+        f_img_max = 0
+
+        for y in range(height):
+            for x in range(width):  
+                
+                L = int(image_matrix[x][y])
+
+                # Poszukiwanie maksimum
+                if f_img_max < L:
+                    f_img_max = L
 
         for y in range(height):
             for x in range(width):  
@@ -348,18 +358,17 @@ class ArithmeticGray:
                 elif L == 0:
                     L = 0
                 else:
-                    # print("Before pow", L)
-                    L = math.pow(int(image_matrix[x][y]), alfa)/255
+                    L = math.pow(int(image_matrix[x][y]) / f_img_max, alfa) * 255
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
 
                 # Poszukiwanie minimum i maksimum
-                if f_min > math.ceil(L):
-                    f_min = math.ceil(L)
-                if f_max < math.ceil(L):
-                    f_max = math.ceil(L)
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
         
         # Normalizacja
         norm_matrix = np.zeros((width, height), dtype=np.uint8)
@@ -459,39 +468,75 @@ class ArithmeticGray:
             Image.fromarray(result_matrix, "L").save("../../Resources/Gray/Gray_Img_Mult_Result.tiff", "TIFF")  
 
 
-    def sqrt_img(self, alfa = 1, show = False, save = False):
+    def sqrt_img(self, step = 1, show = False, save = False):
         
         image_matrix = self.im1
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+        # Inicjalizacja zmiennych
+        f_min = 255
+        f_max = 0
+        f_img_max = 0
+
+        alfa = 1/step #zamiana stop pierwiastka na ułamek
 
         for y in range(height):
             for x in range(width):  
                 
                 L = int(image_matrix[x][y])
-                if L == 0:
+
+                # Poszukiwanie maksimum
+                if f_img_max < L:
+                    f_img_max = L
+
+        for y in range(height):
+            for x in range(width):  
+                
+                L = int(image_matrix[x][y])
+                if L == 255:
+                    L = 255
+                elif L == 0:
                     L = 0
                 else:
-                    # print("Before pow", L)
-                    L = math.sqrt(int(image_matrix[x][y]), alfa)
-                    
-                    Q_max = L
-                    D_max = 0
-                    X = 0
-
-                    # Sprawdzenie czy przekracza zakres
-                    if Q_max > 255:
-                        D_max = Q_max - 255
-                        X = (D_max/255)
-
-                    # Normalizacja
-                    L = (L - L * X)
+                    L = math.pow(int(image_matrix[x][y]) / f_img_max, alfa) * 255
 
                 # Zaokroglenie do najblizszej wartosci calkowitej z gory
                 # i przypisanie wartosci
                 result_matrix[x][y] = math.ceil(L)
+
+                # Poszukiwanie minimum i maksimum
+                if f_min > L:
+                    f_min = L
+                if f_max < L:
+                    f_max = L
+        
+        # Normalizacja
+        norm_matrix = np.zeros((width, height), dtype=np.uint8)
+        for y in range(height):
+            for x in range(width):
+                norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+               
+        if show == True:
+            #przed 
+            Image.fromarray(image_matrix, "L").show()  
+            #po    
+            Image.fromarray(result_matrix, "L").show() 
+            #po normalizacji
+            Image.fromarray(norm_matrix, "L").show() 
+
+        if save == True:
+            #TIFF
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Sqrt_Original.tiff", "TIFF")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Sqrt_Result.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Sqrt_Multipl_Result_Norm.tiff", "TIFF")  
+            #PNG
+            Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Sqrt_Original.png", "PNG")  
+            Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Sqrt_Result.png", "PNG")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Sqrt_Result_Norm.png", "PNG") 
+
 
 
     def log_img(self, alfa = 1, show = False, save = False):
@@ -534,6 +579,7 @@ arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Pa
 # arm1.multiply_img(show = True, save = True)
 # arm1.mix_alfa(alfa = 0.5, show = True, save = True)
 arm1.pow_img(alfa = 2, show = True, save = True)
+arm1.sqrt_img(step = 2, show = True, save = True)
 
 
 
@@ -546,7 +592,9 @@ arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.t
 # arm2.multiply_const(const = 100, show = True, save = True)
 # arm2.multiply_img(show = True, save = True)
 # arm2.mix_alfa(alfa = 0.8, show = True, save = True)
-arm2.pow_img(alfa = 2, show = True, save = True)
+arm2.pow_img(alfa = 3, show = True, save = True)
+arm2.sqrt_img(step = 3, show = True, save = True)
+
 
 
 
