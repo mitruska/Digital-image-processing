@@ -1824,12 +1824,504 @@ for y in range(height):
 
 
 \chapter{Operacje geometryczne na obrazie}
-1. przemieszczenie obrazu o zadany wektor
-2. jednorodne i niejednorodne skalowanie obrazu
-3. obracanie obrazu o dowolny kąt
-4. symetrie względem osi układu i zadanej prostej
-5. wycinanie fragmentów obrazu
-6. kopiowanie fragmentów obrazów
+
+
+\section{ Przemieszczenie obrazu o zadany wektor}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Move_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Move_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz po przesunięciu o wektor [40, 70] }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Move_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Move_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz po przesunięciu o wektor [200, 100] }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Przemieszczenie obrazu o zadany wektor]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+delta_y = 0 - delta_y # Poruszamy sie w pierwszej cwartce ukladu wspolrzednyvh
+
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+
+for y in range(height):
+    for x in range(width):  
+        if 0 < y+delta_y < height and 0 < x+delta_x < width:
+            result_matrix[y+delta_y][x+delta_x] = image_matrix[y][x]
+
+\end{lstlisting}
+
+\section{ Jednorodne skalowanie obrazu}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleJ_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleJ_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleJ_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu jednorodnym ze współczynnikiem=1.5 , obraz po interpolacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleJ_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleJ_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleJ_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu jednorodnym ze współczynnikiem=2, obraz po interpolacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Jednorodne skalowanie obrazu]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+# result_matrix = np.empty((math.ceil(height/scale_y), math.ceil(width/scale_x), 3), dtype=np.uint8)
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+
+for y in range(height):
+    for x in range(width): 
+        if scale*y < height and scale*x < width:
+            # result_matrix[y][x] = image_matrix[scale*y][scale*x]
+            result_matrix[int(scale*y)][int(scale*x)] = image_matrix[y][x]
+
+resultImage2 = np.copy(result_matrix)
+tmp = np.ones((height, width, 3), dtype = np.uint8)
+
+# Interpolacja
+for i in range(height):
+    for j in range(width):
+        r, g, b = 0, 0, 0
+        n = 1
+        tmp[i, j] = resultImage2[i, j]
+        if (resultImage2[i, j][0] < 1) & (resultImage2[i, j][1] < 1) & (resultImage2[i, j][2] < 1):
+            for iOff in range(-1, 2):
+                for jOff in range(-1, 2):
+                    iSafe = i if ((i + iOff) > (height - 2)) | ((i + iOff) < 0) else (i + iOff)
+                    jSafe = j if ((j + jOff) > (width - 2)) | ((j + jOff) < 0) else (j + jOff)
+                    if (resultImage2[iSafe, jSafe][0] > 0) | (resultImage2[iSafe, jSafe][1] > 0) | (resultImage2[iSafe, jSafe][2] > 0):
+                        r += resultImage2[iSafe, jSafe][0]
+                        g += resultImage2[iSafe, jSafe][1]
+                        b += resultImage2[iSafe, jSafe][2]
+                        n += 1
+            tmp[i, j] = (r/n, g/n, b/n)
+            resultImage2[i, j] = tmp[i, j]
+
+\end{lstlisting}
+
+\section{ Niejednorodne skalowanie obrazu}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleNJ_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleNJ_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleNJ_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu niejednorodnym ze współczynnikiem=2 dla x oraz współczynnikiem=1 dla y , obraz po interpolacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleNJ_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleNJ_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleNJ_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu niejednorodnym ze współczynnikiem=1 dla x oraz współczynnikiem=2 dla y , obraz po interpolacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Niejednorodne skalowanie obrazu]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+# result_matrix = np.empty((math.ceil(height/scale_y), math.ceil(width/scale_x), 3), dtype=np.uint8)
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+
+for y in range(height):
+    for x in range(width): 
+        if scale_y*y < height and scale_x*x < width:
+            # result_matrix[y][x] = image_matrix[scale_y*y][scale_x*x]
+            result_matrix[int(scale_y*y)][int(scale_x*x)] = image_matrix[y][x]
+
+resultImage2 = np.copy(result_matrix)
+tmp = np.ones((height, width, 3), dtype = np.uint8)
+
+# Interpolacja
+for i in range(height):
+    for j in range(width):
+        r, g, b = 0, 0, 0
+        n = 1
+        tmp[i, j] = resultImage2[i, j]
+        if (resultImage2[i, j][0] < 1) & (resultImage2[i, j][1] < 1) & (resultImage2[i, j][2] < 1):
+            for iOff in range(-1, 2):
+                for jOff in range(-1, 2):
+                    iSafe = i if ((i + iOff) > (height - 2)) | ((i + iOff) < 0) else (i + iOff)
+                    jSafe = j if ((j + jOff) > (width - 2)) | ((j + jOff) < 0) else (j + jOff)
+                    if (resultImage2[iSafe, jSafe][0] > 0) | (resultImage2[iSafe, jSafe][1] > 0) | (resultImage2[iSafe, jSafe][2] > 0):
+                        r += resultImage2[iSafe, jSafe][0]
+                        g += resultImage2[iSafe, jSafe][1]
+                        b += resultImage2[iSafe, jSafe][2]
+                        n += 1
+            tmp[i, j] = (r/n, g/n, b/n)
+            resultImage2[i, j] = tmp[i, j]
+
+\end{lstlisting}
+
+
+\section{ Obracanie obrazu o dowolny kąt}
+
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Turn_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Turn_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Turn_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz po obróceniu o kąt 40 stopni, obraz po interpolacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Turn_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Turn_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Turn_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz po obróceniu o kąt 110 stopni, obraz po interpolacji }
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Obracanie obrazu o dowolny kąt]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+# Przeksztalcenie na radiany
+alfa_r = math.radians(alfa)
+
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+
+
+for y in range(height):
+    for x in range(width): 
+        new_x = (x - width/2) * math.cos(alfa_r) - (y - height/2) * math.sin(alfa_r) + (width/2)
+        new_y = (x - width/2) * math.sin(alfa_r) + (y - height/2) * math.cos(alfa_r) + (height/2)
+        if new_y < height and new_y >= 0 and new_x >= 0 and new_x < width:
+            result_matrix[int(new_y)][int(new_x)] = image_matrix[y][x]
+
+resultImage2 = np.copy(result_matrix)
+tmp = np.ones((height, width, 3), dtype = np.uint8)
+
+# Interpolacja
+for i in range(height):
+    for j in range(width):
+        r, g, b = 0, 0, 0
+        n = 1
+        tmp[i, j] = resultImage2[i, j]
+        if (resultImage2[i, j][0] < 1) & (resultImage2[i, j][1] < 1) & (resultImage2[i, j][2] < 1):
+            for iOff in range(-1, 2):
+                for jOff in range(-1, 2):
+                    iSafe = i if ((i + iOff) > (height - 2)) | ((i + iOff) < 0) else (i + iOff)
+                    jSafe = j if ((j + jOff) > (width - 2)) | ((j + jOff) < 0) else (j + jOff)
+                    if (resultImage2[iSafe, jSafe][0] > 0) | (resultImage2[iSafe, jSafe][1] > 0) | (resultImage2[iSafe, jSafe][2] > 0):
+                        r += resultImage2[iSafe, jSafe][0]
+                        g += resultImage2[iSafe, jSafe][1]
+                        b += resultImage2[iSafe, jSafe][2]
+                        n += 1
+            tmp[i, j] = (r/n, g/n, b/n)
+            resultImage2[i, j] = tmp[i, j]
+
+
+\end{lstlisting}
+\newpage
+
+\section{ Symetrie względem osi układu}
+
+\subsection*{ Symetria względem osi X}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ox_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_ox_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem osi X }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ox_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_ox_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem osi X }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Symetrie względem osi X]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+_height = height-1 #array height last index
+
+for y in range(height):
+    for x in range(width): 
+            result_matrix[y][x] = image_matrix[_height-y][x]
+
+\end{lstlisting}
+
+\subsection*{ Symetria względem osi Y}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_oy_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_oy_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem osi Y }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_oy_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_oy_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem osi Y }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Symetrie względem osi Y]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+_width = width - 1 #array width last index
+
+for y in range(height):
+    for x in range(width): 
+            result_matrix[y][x] = image_matrix[y][_width - x]
+
+\end{lstlisting}
+
+\section{ Symetrie względem zadanej prostej}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_px_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_px_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem pionowej prostej poprowadzonej przez środek obrazu }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_px_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_px_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem pionowej prostej poprowadzonej przez środek obrazu }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_py_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_py_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem poziomej prostej poprowadzonej przez środek obrazu }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_py_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_py_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy, obraz symetryczny względem poziomej prostej poprowadzonej przez środek obrazu }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Symetrie względem zadanej prostej]
+
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+#Symetria wzgledem poziomej prostej poprowadzonej przez srodek obrazu
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+_height = height - 1 #array height last index
+
+param_y = height/2
+
+for y in range(height):
+    for x in range(width): 
+        if y < param_y:
+            result_matrix[y][x] = image_matrix[y][x]
+        else:
+            result_matrix[y][x] = image_matrix[_height - y][x]
+
+#Symetria wzgledem pionowej prostej poprowadzonej przez srodek obrazu
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+_width = width - 1 #array width last index
+
+param_x = width/2
+
+for y in range(height):
+    for x in range(width): 
+        if x < param_x:
+            result_matrix[y][x] = image_matrix[y][x]
+        else:
+            result_matrix[y][x] = image_matrix[y][_width - x]
+
+\end{lstlisting}
+
+
+
+\section{ Wycinanie fragmentów obrazu}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Cut_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Cut_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz po wycięciu fragmentu o współrzędnych $x_{min}=100, x_{max}=250, y_{min}=25, y_{max}=450$ }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Cut_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Cut_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz po wycięciu fragmentu o współrzędnych $x_{min}=200, x_{max}=400, y_{min}=200, y_{max}=400$ }
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+
+\begin{lstlisting}[caption= Wycinanie fragmentów obrazu]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+
+for y in range(height):
+    for x in range(width): 
+        # Poruszamy sie w pierwszej cwiartce osi ukladu wspolrzednych
+        if x > x_min and x < x_max and y < height-y_min and y > height-y_max:
+            result_matrix[y][x] = 0
+        else:
+            result_matrix[y][x] = image_matrix[y][x]
+
+\end{lstlisting}
+
+\section{ Kopiowanie fragmentów obrazów}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Copy_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Geo_Copy_Result}
+		\includegraphics[height=4cm]{1/1Geo_Copy_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz (512x512) ze skopiowanym fragmentem o współrzędnych $x_{min}=100, x_{max}=250, y_{min}=25, y_{max}=450$, Skopiowany fragment (151x426) }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Copy_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Copy_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Geo_Copy_Result_Interp}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz (512x512) ze skopiowanym fragmentem o współrzędnych $x_{min}=200, x_{max}=400, y_{min}=200, y_{max}=400$, Skopiowany fragment (201x201) }
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Kopiowanie fragmentów obrazów]
+
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
+
+# Macierz o wymiarach wycinanego fragmentu
+cut_matrix = np.zeros((y_max-y_min + 1, x_max-x_min + 1, 3), dtype=np.uint8)
+
+cut_y = 0
+for y in range(height):
+    cut_x = 0
+    for x in range(width): 
+        # Poruszamy sie w pierwszej cwiartce osi ukladu wspolrzednych
+        if x >= x_min and x <= x_max and y <= height-y_min and y >= height-y_max:    
+            result_matrix[y][x] = image_matrix[y][x]
+            cut_matrix[cut_y][cut_x] = image_matrix[y][x]
+            cut_x+=1
+    if cut_x > 0:    
+        cut_y+=1
+
+\end{lstlisting}
+
+
 
 \chapter{Operacje na histogramie obrazu szarego}
 1. obliczanie histogramu
@@ -1848,12 +2340,514 @@ for y in range(height):
 7. progowanie globalne
 
 \chapter{Operacje morfologiczne na obrazach binarnych}
-1. okrawanie(erozja)
-2. nakładanie (dylatacja)
-3. otwarcie
-4. zamknięcie
+
+\section{ Okrawanie (erozja)}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_E_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_E_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po operacji okrawania (erozji) }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_E_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_E_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po operacji okrawania (erozji) }
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Operacja okrawania (erozji) na obrazie binarnym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+for y in range(height):
+    for x in range(width):  
+        # Przyjeto, ze wartosci wykraczajace poza zakres obrazu sa biale (maja wartosc 255)
+        neighbour_pix = [255, 255, 255, 255]
+
+        if x - 1 > 0:
+                neighbour_pix[0]=(image_matrix[y][x-1][0])
+        if y - 1 > 0:
+                neighbour_pix[1]=(image_matrix[y-1][x][0])
+        if x + 1 < width:
+                neighbour_pix[2]=(image_matrix[y][x+1][0])
+        if y + 1 < height:
+                neighbour_pix[3]=(image_matrix[y+1][x][0])
+
+        if 255 in neighbour_pix:
+                result_matrix[y][x] = 255 #bialy
+        else:
+                result_matrix[y][x] = 0 #czarny   
+
+\end{lstlisting}
+
+\section{ Nakładanie (dylatacja)}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_D_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_D_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po operacji nakładania (dylatacji) }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_D_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_D_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po operacji nakładania (dylatacji)}
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Operacja nakładania (dylatacji) na obrazie binarnym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+for y in range(height):
+        for x in range(width):  
+                neighbour_pix = [255, 255, 255, 255]
+
+                if x - 1 > 0:
+                        neighbour_pix[0]=(image_matrix[y][x-1][0])
+                if y - 1 > 0:
+                        neighbour_pix[1]=(image_matrix[y-1][x][0])
+                if x + 1 < width:
+                        neighbour_pix[2]=(image_matrix[y][x+1][0])
+                if y + 1 < height:
+                        neighbour_pix[3]=(image_matrix[y+1][x][0])
+
+                if 0 in neighbour_pix:
+                        result_matrix[y][x] = 0
+                else:
+                        result_matrix[y][x] = 255          
+
+\end{lstlisting}
+
+\section{ Otwarcie}
+.
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_Op_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_Op_E_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_Op_ED_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po dylacji, obraz po operacji otwarcia (erozja $\rightarrow$ dylatacja)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_Op_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_Op_E_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_Op_ED_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po dylacji, obraz po operacji otwarcia (erozja $\rightarrow$ dylatacja)}
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Operacja otwarcia na obrazie binarnym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+e_result_matrix = np.zeros((height, width), dtype=np.uint8)
+d_result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+#erozja
+for y in range(height):
+        for x in range(width):  
+                neighbour_pix = [255, 255, 255, 255]
+
+                if x - 1 > 0:
+                        neighbour_pix[0]=(image_matrix[y][x-1][0])
+                if y - 1 > 0:
+                        neighbour_pix[1]=(image_matrix[y-1][x][0])
+                if x + 1 < width:
+                        neighbour_pix[2]=(image_matrix[y][x+1][0])
+                if y + 1 < height:
+                        neighbour_pix[3]=(image_matrix[y+1][x][0])
+
+                if 255 in neighbour_pix:
+                        e_result_matrix[y][x] = 255
+                else:
+                        e_result_matrix[y][x] = 0 
+
+Image.fromarray(e_result_matrix).show()
+#dylatacja
+for y in range(height):
+        for x in range(width):  
+                neighbour_pix = [255, 255, 255, 255]
+
+                if x - 1 > 0:
+                        neighbour_pix[0]=(e_result_matrix[y][x-1])
+                if y - 1 > 0:
+                        neighbour_pix[1]=(e_result_matrix[y-1][x])
+                if x + 1 < width:
+                        neighbour_pix[2]=(e_result_matrix[y][x+1])
+                if y + 1 < height:
+                        neighbour_pix[3]=(e_result_matrix[y+1][x])
+
+                if 0 in neighbour_pix:
+                        d_result_matrix[y][x] = 0
+                else:
+                        d_result_matrix[y][x] = 255   
+
+\end{lstlisting}
+
+\section{ Zamknięcie}
+.
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_Cl_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_Cl_D_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Bin_Cl_DE_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po erozji, obraz po operacji zamknięcia (dylatacja $\rightarrow$ erozja)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_Cl_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_Cl_D_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Bin_Cl_DE_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (50x50), obraz po erozji, obraz po operacji zamknięcia (dylatacja $\rightarrow$ erozja)}
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+.
+
+\begin{lstlisting}[caption= Operacja zamknięcia na obrazie binarnym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+e_result_matrix = np.zeros((height, width), dtype=np.uint8)
+d_result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+#dylatacja
+for y in range(height):
+        for x in range(width):  
+                neighbour_pix = [255, 255, 255, 255]
+
+                if x - 1 > 0:
+                        neighbour_pix[0]=(image_matrix[y][x-1][0])
+                if y - 1 > 0:
+                        neighbour_pix[1]=(image_matrix[y-1][x][0])
+                if x + 1 < width:
+                        neighbour_pix[2]=(image_matrix[y][x+1][0])
+                if y + 1 < height:
+                        neighbour_pix[3]=(image_matrix[y+1][x][0])
+
+                if 0 in neighbour_pix:
+                        d_result_matrix[y][x] = 0
+                else:
+                        d_result_matrix[y][x] = 255
+
+Image.fromarray(e_result_matrix).show()
+
+#erozja
+for y in range(height):
+        for x in range(width):  
+                neighbour_pix = [255, 255, 255, 255]
+
+                if x - 1 > 0:
+                        neighbour_pix[0]=(d_result_matrix[y][x-1])
+                if y - 1 > 0:
+                        neighbour_pix[1]=(d_result_matrix[y-1][x])
+                if x + 1 < width:
+                        neighbour_pix[2]=(d_result_matrix[y][x+1])
+                if y + 1 < height:
+                        neighbour_pix[3]=(d_result_matrix[y+1][x])
+
+                if 255 in neighbour_pix:
+                        e_result_matrix[y][x] = 255
+                else:
+                        e_result_matrix[y][x] = 0         
+
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%SZARE
 
 \chapter {Operacje morfologiczne na obrazach szarych}
+
+\section{ Okrawanie (erozja)}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_E_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_E_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (256x256), obraz (256x256) po operacji okrawania (erozji) }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_E_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_E_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz (512x512) po operacji okrawania (erozji) }
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Operacja okrawania (erozji) na obrazie szarym]
+
+def erozion(self, show = False, save = False):
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+for y in range(height):
+    for x in range(width):  
+            neighbour_pix = [255, 255, 255, 255]
+
+            if x - 1 > 0:
+                    neighbour_pix[0]=(image_matrix[y][x-1])
+            if y - 1 > 0:
+                    neighbour_pix[1]=(image_matrix[y-1][x])
+            if x + 1 < width:
+                    neighbour_pix[2]=(image_matrix[y][x+1])
+            if y + 1 < height:
+                    neighbour_pix[3]=(image_matrix[y+1][x])
+
+            min_pix = min(neighbour_pix)
+            result_matrix[y][x] = min_pix
+
+\end{lstlisting}
+
+\section{ Nakładanie (dylatacja)}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_D_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_D_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (256x256), obraz (256x256) po operacji nakładania (dylatacji) }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_D_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_D_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz (512x512) po operacji nakładania (dylatacji)}
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Operacja nakładania (dylatacji) na obrazie szarym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+result_matrix = np.zeros((height, width), dtype=np.uint8)
+print(image_matrix)
+print(result_matrix)
+
+for y in range(height):
+    for x in range(width):  
+            neighbour_pix = [255, 255, 255, 255]
+
+            if x - 1 > 0:
+                    neighbour_pix[0]=(image_matrix[y][x-1])
+            if y - 1 > 0:
+                    neighbour_pix[1]=(image_matrix[y-1][x])
+            if x + 1 < width:
+                    neighbour_pix[2]=(image_matrix[y][x+1])
+            if y + 1 < height:
+                    neighbour_pix[3]=(image_matrix[y+1][x])
+
+            max_pix = max(neighbour_pix)
+            result_matrix[y][x] = max_pix      
+
+
+\end{lstlisting}
+
+\section{ Otwarcie}
+.
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Op_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Op_E_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Op_ED_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (256x256), obraz po dylacji, obraz po operacji otwarcia (erozja $\rightarrow$ dylatacja)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Op_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Op_E_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Op_ED_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz po dylacji, obraz po operacji otwarcia (erozja $\rightarrow$ dylatacja)}
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption= Operacja otwarcia na obrazie szarym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+e_result_matrix = np.zeros((height, width), dtype=np.uint8)
+d_result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+#erozja
+for y in range(height):
+    for x in range(width):  
+            neighbour_pix = [255, 255, 255, 255]
+
+            if x - 1 > 0:
+                    neighbour_pix[0]=(image_matrix[y][x-1])
+            if y - 1 > 0:
+                    neighbour_pix[1]=(image_matrix[y-1][x])
+            if x + 1 < width:
+                    neighbour_pix[2]=(image_matrix[y][x+1])
+            if y + 1 < height:
+                    neighbour_pix[3]=(image_matrix[y+1][x])
+
+            min_pix = min(neighbour_pix)
+            e_result_matrix[y][x] = min_pix
+
+Image.fromarray(e_result_matrix).show()
+#dylatacja
+for y in range(height):
+    for x in range(width):  
+            neighbour_pix = [255, 255, 255, 255]
+
+            if x - 1 > 0:
+                    neighbour_pix[0]=(e_result_matrix[y][x-1])
+            if y - 1 > 0:
+                    neighbour_pix[1]=(e_result_matrix[y-1][x])
+            if x + 1 < width:
+                    neighbour_pix[2]=(e_result_matrix[y][x+1])
+            if y + 1 < height:
+                    neighbour_pix[3]=(e_result_matrix[y+1][x])
+
+            max_pix = max(neighbour_pix)
+            d_result_matrix[y][x] = max_pix    
+
+\end{lstlisting}
+
+\section{ Zamknięcie}
+.
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Cl_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Cl_D_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Cl_DE_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (256x256), obraz po erozji, obraz po operacji zamknięcia (dylatacja $\rightarrow$ erozja)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Cl_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Cl_D_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Cl_DE_Result}
+	\end{center}
+	\caption{(Od lewej) Obraz wejściowy (512x512), obraz po erozji, obraz  po operacji zamknięcia (dylatacja $\rightarrow$ erozja)}
+\end{figure}
+
+
+\subsection*{Kod źródłowy}
+.
+
+\begin{lstlisting}[caption= Operacja zamknięcia na obrazie szarym]
+
+image_matrix = self.im1
+width = image_matrix.shape[1]    # szereoksc
+height = image_matrix.shape[0]   # wysokosc
+
+e_result_matrix = np.zeros((height, width), dtype=np.uint8)
+d_result_matrix = np.zeros((height, width), dtype=np.uint8)
+
+#dylatacja
+for y in range(height):
+    for x in range(width):  
+            neighbour_pix = [255, 255, 255, 255]
+
+            if x - 1 > 0:
+                    neighbour_pix[0]=(image_matrix[y][x-1])
+            if y - 1 > 0:
+                    neighbour_pix[1]=(image_matrix[y-1][x])
+            if x + 1 < width:
+                    neighbour_pix[2]=(image_matrix[y][x+1])
+            if y + 1 < height:
+                    neighbour_pix[3]=(image_matrix[y+1][x])
+
+            max_pix = max(neighbour_pix)
+            d_result_matrix[y][x] = max_pix   
+
+
+#erozja
+for y in range(height):
+    for x in range(width):  
+            neighbour_pix = [255, 255, 255, 255]
+
+            if x - 1 > 0:
+                    neighbour_pix[0]=(d_result_matrix[y][x-1])
+            if y - 1 > 0:
+                    neighbour_pix[1]=(d_result_matrix[y-1][x])
+            if x + 1 < width:
+                    neighbour_pix[2]=(d_result_matrix[y][x+1])
+            if y + 1 < height:
+                    neighbour_pix[3]=(d_result_matrix[y+1][x])
+
+            min_pix = min(neighbour_pix)
+            e_result_matrix[y][x] = min_pix     
+
+\end{lstlisting}
+
+
+
 1. okrawanie(erozja)
 2. nakładanie (dylatacja)
 3. otwarcie

@@ -3,13 +3,11 @@ import numpy as np
 import math
 
 class MorphoBin:
-        def __init__(self, image1Path = None, image2Path = None):
+        def __init__(self, im1Name = "1", image1Path = None):
                 if image1Path is not None:
                         image = Image.open(image1Path)
                         self.im1 = np.array(image)
-                if image2Path is not None:
-                        # self.im2Name = self.getName(image2Path)
-                        self.im2 = np.array(Image.open(image2Path))
+                        self.im1Name = im1Name
 
         def erozion(self, show = False, save = False):
 
@@ -42,10 +40,14 @@ class MorphoBin:
                         #przed 
                         Image.fromarray(image_matrix).show()  
                         #po    
-                        Image.fromarray(result_matrix).show() 
+                        Image.fromarray(result_matrix).show()                         
                 if save == True:
-                        Image.fromarray(result_matrix).save("../../Resources/Binary/Bin_Ero_Result.tiff", "TIFF")  
-
+                        #TIFF
+                        Image.fromarray(image_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_E_Original.tiff", "TIFF") 
+                        Image.fromarray(result_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_E_Result.tiff", "TIFF")  
+                        #PNG  
+                        Image.fromarray(image_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_E_Original.png", "PNG") 
+                        Image.fromarray(result_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_E_Result.png", "PNG")  
 
         def dilation(self, show = False, save = False):
     
@@ -77,9 +79,14 @@ class MorphoBin:
                         #przed 
                         Image.fromarray(image_matrix).show()  
                         #po    
-                        Image.fromarray(result_matrix).show() 
+                        Image.fromarray(result_matrix).show()                         
                 if save == True:
-                        Image.fromarray(result_matrix).save("../../Resources/Binary/Bin_Dil_Result.tiff", "TIFF")  
+                        #TIFF
+                        Image.fromarray(image_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_D_Original.tiff", "TIFF") 
+                        Image.fromarray(result_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_D_Result.tiff", "TIFF")  
+                        #PNG  
+                        Image.fromarray(image_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_D_Original.png", "PNG") 
+                        Image.fromarray(result_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_D_Result.png", "PNG")  
 
 
         def opening(self, show = False, save = False):
@@ -110,7 +117,6 @@ class MorphoBin:
                                 else:
                                         e_result_matrix[y][x] = 0 
 
-                Image.fromarray(e_result_matrix).show()
                 #dylacja
                 for y in range(height):
                         for x in range(width):  
@@ -134,9 +140,17 @@ class MorphoBin:
                         #przed 
                         Image.fromarray(image_matrix).show()  
                         #po    
+                        Image.fromarray(e_result_matrix).show()                         
                         Image.fromarray(d_result_matrix).show() 
                 if save == True:
-                        Image.fromarray(d_result_matrix).save("../../Resources/Binary/Bin_Op_Result.tiff", "TIFF")  
+                        #TIFF
+                        Image.fromarray(image_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_Op_Original.tiff", "TIFF") 
+                        Image.fromarray(e_result_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_Op_E_Result.tiff", "TIFF")  
+                        Image.fromarray(d_result_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_Op_ED_Result.tiff", "TIFF")
+                        #PNG  
+                        Image.fromarray(image_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_Op_Original.png", "PNG") 
+                        Image.fromarray(e_result_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_Op_E_Result.png", "PNG")  
+                        Image.fromarray(d_result_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_Op_ED_Result.png", "PNG")  
 
 
         def closing(self, show = False, save = False):
@@ -165,9 +179,7 @@ class MorphoBin:
                                 if 0 in neighbour_pix:
                                         d_result_matrix[y][x] = 0
                                 else:
-                                        d_result_matrix[y][x] = 255
-
-                Image.fromarray(e_result_matrix).show()
+                                        d_result_matrix[y][x] = 255 
                 
                 #erozja
                 for y in range(height):
@@ -192,11 +204,26 @@ class MorphoBin:
                         #przed 
                         Image.fromarray(image_matrix).show()  
                         #po    
+                        Image.fromarray(d_result_matrix).show()                         
                         Image.fromarray(e_result_matrix).show() 
                 if save == True:
-                        Image.fromarray(e_result_matrix).save("../../Resources/Binary/Bin_Op_Result.tiff", "TIFF")  
+                        #TIFF
+                        Image.fromarray(image_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_Cl_Original.tiff", "TIFF") 
+                        Image.fromarray(d_result_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_Cl_D_Result.tiff", "TIFF")  
+                        Image.fromarray(e_result_matrix).save("../../Resources/Results/TIFF/" + self.im1Name + "Bin_Cl_DE_Result.tiff", "TIFF")
+                        #PNG  
+                        Image.fromarray(image_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_Cl_Original.png", "PNG") 
+                        Image.fromarray(d_result_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_Cl_D_Result.png", "PNG")  
+                        Image.fromarray(e_result_matrix).save("../../Resources/Results/PNG/" + self.im1Name + "Bin_Cl_DE_Result.png", "PNG")  
 
-zad3 = MorphoBin(image1Path = "../../Resources/Binary/Kwadrat.tif")
-zad3.erozion(True, True)
-zad3.dilation(True, True)
-# zad3.opening(True, True)
+mor1 = MorphoBin(image1Path = "../../Resources/Binary/Circles.tiff")
+mor1.erozion(True, True)
+mor1.dilation(True, True)
+mor1.opening(True, True)
+mor1.closing(True, True)
+
+mor2 = MorphoBin("2", image1Path = "../../Resources/Binary/Kwadrat.tiff")
+mor2.erozion(True, True)
+mor2.dilation(True, True)
+mor2.opening(True, True)
+mor2.closing(True, True)
