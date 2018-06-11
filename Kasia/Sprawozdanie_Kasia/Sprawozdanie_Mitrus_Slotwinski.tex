@@ -141,7 +141,7 @@ prof. Wojciech Mokrzycki\\
 
 \chapter {Wstęp}
 
-Laboratoria oh oh...~\cite{BookMok} %przynajmniej jedna cytacja dla kompilatora LATEX
+Laboratoria...~\cite{BookMok} %przynajmniej jedna cytacja dla kompilatora LATEX
 
 
 \section {Specyfikacja wykorzystanego fortmatu obrazu}
@@ -166,9 +166,7 @@ Po operacjach arytmetycznych zwykle niezbędna jest normalizacja. W przedstawion
 	\end{center}
 
 \section {Sumowanie (określonej) stałej z obrazem}
-%\subsection*{Opis algorytmu}
-\hfill
-\\\\
+\hfill\\
 \indent
 Algorytm sumowania obrazu szarego z określoną stałą polega na dodaniu do każdej wartości pojedynczego piksla stałej liczby.
 Po operacji sumowania następuje normalizacja obrazu.
@@ -259,9 +257,25 @@ for y in range(height):
 
 
 \section {Sumowanie dwóch obrazów}
-\hfill
-\\\\
+\hfill\\
 \indent
+
+Algebraiczne sumowanie obrazów f i f' jest określone jedynie dla obrazów o tych samych wymiarach M x N i strukturze ich macierzy.
+Dodawanie obrazów jest użyteczne w uśrednianiu obrazów, wykonywanym w celu zredukowania na nich szumu.
+Algorytm sumowania obrazu z obrazem polega na dodaniu do wartości piksla z pierwszego obrazu, wartości odpowiadającego piksla z drugiego obrazu.
+Po operacji sumowania następuje normalizacja obrazu.
+
+	\begin{enumerate}	
+		\item Policz sumy wartości kazdego piksla obrazu pierwszego P1[i,j] z pikslem obrazu drugiego P2[i,j].
+		\item Jeżeli jedna z tych sum jest większa niż 255 to:
+		\item Wybierz największą sumę  $Q_{max}$ i policz $D_{max}$ ze wzoru: $D_{max}[i,j] = (Q_{max}[i,j] - 255)$ 
+		\item Oblicz $X = D_{max} / 255$
+		\item Policz sumy ze wzoru
+		\begin{center}$Q[i,j] = P1[i,j] - (P1[i,j]* X) + P2[i,j] - (P2[i,j] * X) $ \\
+
+		\end{center}
+	\end{enumerate}
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -339,14 +353,23 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Mnożenie obrazu przez zadaną liczbę}
-\hfill
-\\\\
+\hfill\\
 \indent
+
+Mnożenie obrazu f przez skalar wykonuje się mnożąc każdy element obrazu $f_{i,j}$ (wartość funkcji obrazowej piksla) przez ten skalar.
+
+\begin{enumerate}
+		\item Dla wszystkich pikseli w obrazie wykonaj:
+		\item Jeżli składowa piksela $P_{1}[i,j]$ ma wartość 255 to składowa wynikowa otrzymuje wartość odpowiadającą wartości stalej.
+		\item W przeciwnym przypadku, jeżeli składowa barwy piksla $P_{1}[i,j]$ ma wartość 0 to składowa wynikowa otrzymuje wartość 0.
+		\item W przeciwnym wypadku mnóż odpowiednie składowe, a wynik dziel przez 255 zaokrąglajac do najbliższej liczby całkowitej.
+	\end{enumerate}
+
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Original}
-		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result} 
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Const_Multipl_Result_Norm}
 	\end{center}
 	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę=50, obraz po normalizacji }
@@ -406,14 +429,20 @@ for y in range(height):
 \end{lstlisting}
 
 
-
-
-
-
 \section {Mnożenie obrazu przez inny obraz}
-\hfill
-\\\\
+\hfill\\
 \indent
+
+Mnożenie obrazu f przez inny obraz wykonuje się mnożąc każdy element obrazu $P1_{i,j}$ (wartość funkcji obrazowej piksla) przez odpowiadającego piksla drugiego obrazu $P2_{i,j}$
+
+	\begin{enumerate}
+		\item Weź dwa identycznych rozmiarów obrazy $P_{1}$ i $P_{2}$.
+		\item Dla wszystkich pikseli w obrazie wykonaj:
+		\item Jeżli składowa piksela $P_{1}[i,j]$ ma wartość 255 to składowa wynikowa otrzymuje wartość odpowiadającą wartości składowej $P_{2}[i,j]$.
+		\item W przeciwnym przypadku, jeżli składowa piksela $P_{1}[i,j]$ ma wartość 0 to składowa wynikowa otrzymuje wartość 0.
+		\item W przeciwnym wypadku mnóż odpowiednie składowe, a wynik dziel przez 255 zaokrąglając do najbliższej liczby całkowitej.
+	\end{enumerate}
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Img1_Multipl_Original}
@@ -480,6 +509,23 @@ for y in range(height):
 
 %\section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
 \section {Mieszanie obrazów z określonym współczynnikiem}
+\hfill\\
+\indent
+\vspace{5mm}
+
+Mieszanie dwóch obrazów polega na sumowaniu ich z wagami $\alpha$ i $(1 - \alpha)$, odpowiednio, wg wzoru:
+	
+	\begin{center}
+		$f_{m} = f\alpha + f^I(1 - \alpha)$,
+	\end{center}
+	gdzie $\alpha \in [0,1]$. Płynna zmiana parametru $\alpha$ w przedziale $[0,1]$ powoduje efekt przechodzenia obrazu $f^I$ w obraz $f$. 
+	
+	\begin{enumerate}	
+		\item Weź dwa identycznych rozmiarów obrazy $P_{1}$ i $P_{2}$.
+		\item Określ współczynnik mieszania $\alpha$ wyrażony jako liczba rzeczywista z zakresu $< 0,1 >$; 0 reprezentuje pewną przezroczystość, 1 - nieprzezroczystości. 
+		\item Dla wszystkich pikseli w obrazach wejściowych wykonuj $Q(i,j) = \alpha * P_{1}(i,j) + (1 - \alpha) * P_{2}(i,j)$
+	\end{enumerate}
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -541,10 +587,14 @@ for y in range(height):
 
 
 \section {Potęgowanie obrazu (z zadaną potęgą)}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+
+		\begin{center} Potęgowanie obrazu jest szczególnym przypadkiem operacji mnożenia obrazów. Aby uniknąć wykroczenia poza zakres, skorzystano ze znormalizowanego wzoru ~\cite{WykRat}:
+
+		$f_{m} = 255(\frac{f(x,y)}{f_{max}}) ^{\alpha}, \alpha > 0 $
+	\end{center}
+	
 
 \begin{figure}[H]
 	\begin{center}
@@ -620,10 +670,19 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Dzielenie obrazu przez (zadaną) liczbę }
-
-\hfill
-\\\\
+\hfill\\
 \indent
+Dzielenie obrazów stosuje się w celu korekcji cieniowania między poziomami szarości.
+
+\begin{enumerate}	
+		
+		\item Dla wszystkich pikseli w tych obrazach wykonaj:
+		\item Policz sumy piksli ze stałą.
+		\item Wybierz największę sumę $Q_{max}$ i policz równania:\\
+		$Q_[i,j] = ({S} * 255)/Q_{max}$,\\
+		Wynik zaokrąglij do najbliższej górnej liczby całkowitej.
+	\end{enumerate}
+	
 
 \begin{figure}[H]
 	\begin{center}
@@ -693,10 +752,16 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Dzielenie obrazu przez przez inny obraz}
-
-\hfill
-\\\\
-\indent
+\vspace{5mm}
+	\begin{enumerate}	
+		\item Weź dwa identycznych rozmiarów obrazy $P1$ i $P2$
+		\item Dla wszystkich pikseli w tych obrazach wykonaj:
+		\item Policz sumy piksli ze stałą.
+		\item Wybierz największę sumę $Q_{max}$ i policz równania:\\
+		$Q_[i,j] = ({S} * 255)/Q_{max}$,\\
+		Wynik zaokrąglij do najbliższej górnej liczby całkowitej.
+	\end{enumerate}
+	
 
 \begin{figure}[H]
 	\begin{center}
@@ -769,9 +834,13 @@ for y in range(height):
 
 
 \section {Pierwiastkowanie obrazu}
-\hfill
-\\\\
+\hfill\\
 \indent
+		\begin{center} Pierwiastkowanie obrazu jest szczególnym przypadkiem operacji potęgowania obrazów, gdzie wykładnikiem jest ułamek. Aby uniknąć wykroczenia poza zakres, skorzystano ze znormalizowanego wzoru ~\cite{WykRat}:
+
+		$f_{m} = 255(\frac{f(x,y)}{f_{max}}) ^{\alpha}, \alpha > 0 $
+	\end{center}
+	
 
 \begin{figure}[H]
 	\begin{center}
@@ -847,10 +916,18 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Logarytmowanie obrazu}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+Logarytmowanie obrazu powoduje rozjaśnienie i zróżnicowanie najciemniejszych obszarów obrazu.
+Wykorzystano wzór z normalizacją ~/cite{WykRat}:
+	
+	\begin{center}
+		$f_{m} = 255(frac{log(1 + f(x,y))}{log(1 + f_{max})})$
+	\end{center}
+
+	
+Przesunięcie funkcji obrazowej $f$ do góry o 1 przed jej logarytmowaniem wynika z nieokreśloności logarytmu w zerze. Logarytmowanie obrazu powoduje rozjaśnienie i zróżnicowanie najciemniejszych obszarów obrazu. .	
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -925,7 +1002,8 @@ for y in range(height):
 
 
 \chapter{Operacje sumowania arytmetycznego obrazów barwowych}
-
+\hfill\\
+\indent
 Arytmetyczne operacje na obrazach barwowych przeprowadza się wykonując działania na pojedynczych pikslach i są uwarunkowane wymaganiami zależnymi od typu operacji. 
 W przedstawionych zadaniach poruszamy się w przestrzeni barw RGB, a do normalizacji wykorzystano wzór:
 
@@ -935,11 +1013,10 @@ W przedstawionych zadaniach poruszamy się w przestrzeni barw RGB, a do normaliz
 
 
 \section{Sumowanie (określonej) stałej z obrazem}
-\hfill
-\\\\
+\hfill\\
 \indent
 Algorytm sumowania obrazu barwowego z określoną stałą polega na dodaniu do każdej składowej barwowej pojedynczego piksla stałej liczby.
-Po operacji sumowania następuje normalizacja obrazu.
+Po operacji sumowania obraz poddawany jest normalizacji.
 
 	\begin{enumerate}	
 		\item Policz sumy wartości kazdego piksla ze stałą ($const$).
@@ -947,7 +1024,7 @@ Po operacji sumowania następuje normalizacja obrazu.
 		\item Wybierz największą sumę  $Q_{max}$ i policz $D_{max}$ ze wzoru: $D_{max}[i,j] = (Q_{max}[i,j] - 255)$ 
 		\item Oblicz $X = D_{max} / 255$
 		\item Policz sumy ze wzoru
-		\begin{center}$Q_{R}[i,j] = P_{R}[i,j] - (P_{1R} * X)+ const - (const * X) -1$ \\
+		\begin{center}$Q_{R}[i,j] = P_{R}[i,j] - (P_{R} * X)+ const - (const * X) -1$ \\
 			$Q_{G}[i,j] = P_{G}[i,j] - (P_{G} * X)+ const - (const * X) -1$ \\
 			$Q_{B}[i,j] = P_{B}[i,j] - (P_{B} * X)+ const - (const * X) -1$
 		\end{center}
@@ -1033,9 +1110,23 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Sumowanie dwóch obrazów}
-\hfill
-\\\\
+\hfill\\
 \indent
+Algebraiczne sumowanie obrazów f i f' jest określone jedynie dla obrazów o tych samych wymiarach M x N i strukturze ich macierzy.
+Dodawanie obrazów jest użyteczne w uśrednianiu obrazów, wykonywanym w celu zredukowania na nich szumu.
+Algorytm sumowania obrazu z obrazem polega na dodaniu do wartości piksla z pierwszego obrazu, wartości odpowiadającego piksla z drugiego obrazu.
+Po operacji sumowania następuje normalizacja obrazu.
+
+\begin{enumerate}	
+		\item Weź dwa identycznych rozmiarów obrazy $P1$ i $P2$
+		\item Dla wszystkich pikseli w tych obrazach wykonaj:
+		\item Policz sumy odpowiadających składowych barwy.
+		\item Wybierz największą sumę $Q_{max} = max(R_{s}, G_{s}, B_{s})$ i policz równania:\\
+		$Q_{R}[i,j] = (R_{S} * 255)/Q_{max}$,\\
+		$Q_{G}[i,j] = (G_{S} * 255)/Q_{max}$,\\
+		$Q_{B}[i,j] = (B_{S} * 255)/Q_{max}$.\\
+		Wynik zaokrąglij do najbliższej górnej liczby całkowitej.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -1124,6 +1215,14 @@ for y in range(height):
 \hfill
 \\\\
 \indent
+Mnożenie obrazu f przez skalar wykonuje się mnożąc każdy element obrazu $f_{i,j}$ (wartość funkcji obrazowej piksla) przez ten skalar. Barwa wynikowa jest zawsze barwą ciemniejszą.
+
+\begin{enumerate}
+		\item Dla wszystkich pikseli w obrazie wykonaj:
+		\item Jeżli składowa barwy piksela $P_{1}[i,j]$ ma wartość 255 to składowa wynikowa otrzymuje wartość odpowiadającą wartości stalej.
+		\item W przeciwnym przypadku, jeżeli składowa barwy piksla $P_{1}[i,j]$ ma wartość 0 to składowa wynikowa otrzymuje wartość 0.
+		\item W przeciwnym wypadku mnóż odpowiednie składowe, a wynik dziel przez 255 zaokrąglajac do najbliższej liczby całkowitej.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -1213,7 +1312,14 @@ for y in range(height):
 \hfill
 \\\\
 \indent
+Mnożenie obrazu f przez inny obraz wykonuje się mnożąc każdy element obrazu $P1_{i,j}$ (wartość funkcji obrazowej piksla) przez odpowiadającego piksla drugiego obrazu $P2_{i,j}$
 
+	\begin{enumerate}
+		\item Dla wszystkich pikseli w obrazie wykonaj:
+		\item Jeżli składowa piksela $P_{1}[i,j]$ ma wartość 255 to składowa wynikowa otrzymuje wartość odpowiadającą wartości składowej $P_{2}[i,j]$.
+		\item W przeciwnym przypadku, jeżli składowa piksela $P_{1}[i,j]$ ma wartość 0 to składowa wynikowa otrzymuje wartość 0.
+		\item W przeciwnym wypadku mnóż odpowiednie składowe, a wynik dziel przez 255 zaokrąglając do najbliższej liczby całkowitej.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -1303,10 +1409,21 @@ for y in range(height):
 
 
 \section{ Mieszanie obrazów z określonym współczynnikiem}
-
 \hfill
 \\\\
 \indent
+Mieszanie dwóch obrazów polega na sumowaniu ich z wagami $\alpha$ i $(1 - \alpha)$, odpowiednio, wg wzoru:
+	
+	\begin{center}
+		$f_{m} = f\alpha + f^I(1 - \alpha)$,
+	\end{center}
+	gdzie $\alpha \in [0,1]$. Płynna zmiana parametru $\alpha$ w przedziale $[0,1]$ powoduje efekt przechodzenia obrazu $f^I$ w obraz $f$. W mieszaniu obrazów nie ma problemu normalizacji, a jedynie jednolitosci struktur i typów obrazowych. 
+	
+	\begin{enumerate}	
+		\item Weź dwa identycznych rozmiarów obrazy $P_{1}$ i $P_{2}$.
+		\item Okrelśl współczynnik mieszania $\alpha$ wyrażony jako liczba rzeczywista z zakresu $ < 0,1 > $; 0 reprezentuje pewną przezroczystość, 1 - nieprzezroczystości. 
+		\item Dla wszystkich pikseli w obrazach wejściowych wykonuj $Q(i,j) = \alpha * P_{1}(i,j) + (1 - \alpha) * P_{2}(i,j)$
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -1376,6 +1493,10 @@ for y in range(height):
 \hfill
 \\\\
 \indent
+
+\begin{center} Potęgowanie obrazu jest szczególnym przypadkiem operacji mnożenia obrazów. Aby uniknąć wykroczenia poza zakres, skorzystano ze znormalizowanego wzoru ~\cite{WykRat}:
+		$f_{m} = 255(\frac{f(x,y)}{f_{max}}) ^{\alpha}, \alpha > 0 $
+	\end{center}
 
 \begin{figure}[H]
 	\begin{center}
@@ -1472,6 +1593,19 @@ for y in range(height):
 \\\\
 \indent
 
+Dzielenie obrazów stosuje się w celu korekcji cieniowania między poziomami szarości.
+
+\begin{enumerate}	
+		
+		\item Dla wszystkich pikseli w tych obrazach wykonaj:
+		\item Policz sumy piksli ze stałą.
+		\item Wybierz największę sumę  $Q_{max} = max(R_{s}, G_{s}, B_{s})$ i policz równania:\\
+		$Q_{R}[i,j] = (R_{S} * 255)/Q_{max}$,\\
+		$Q_{G}[i,j] = (G_{S} * 255)/Q_{max}$,\\
+		$Q_{B}[i,j] = (B_{S} * 255)/Q_{max}$.,\\
+		Wynik zaokrąglij do najbliższej górnej liczby całkowitej.
+	\end{enumerate}
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Original}
@@ -1556,6 +1690,18 @@ for y in range(height):
 \hfill
 \\\\
 \indent
+
+\begin{enumerate}	
+		
+		\item Dla wszystkich pikseli w tych obrazach wykonaj:
+		\item Weź dwa identycznych rozmiarów obrazy $P1$ i $P2$
+		\item Policz sumy piksli ze stałą.
+		\item Wybierz największę sumę  $Q_{max} = max(R_{s}, G_{s}, B_{s})$ i policz równania:\\
+		$Q_{R}[i,j] = (R_{S} * 255)/Q_{max}$\\
+		$Q_{G}[i,j] = (G_{S} * 255)/Q_{max}$\\
+		$Q_{B}[i,j] = (B_{S} * 255)/Q_{max}$\\
+		Wynik zaokrąglij do najbliższej górnej liczby całkowitej.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -1645,6 +1791,12 @@ for y in range(height):
 \\\\
 \indent
 
+\begin{center} Pierwiastkowanie obrazu jest szczególnym przypadkiem operacji potęgowania obrazów, gdzie wykładnikiem jest ułamek. Aby uniknąć wykroczenia poza zakres, skorzystano ze znormalizowanego wzoru ~\cite{WykRat}:
+
+		$f_{m} = 255(\frac{f(x,y)}{f_{max}}) ^{\alpha}, \alpha > 0 $
+	\end{center}
+	
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.3\textwidth]{1/1Color_Sqrt_Original}
@@ -1730,6 +1882,15 @@ for y in range(height):
 \hfill
 \\\\
 \indent
+Logarytmowanie obrazu powoduje rozjaśnienie i zróżnicowanie najciemniejszych obszarów obrazu.
+Wykorzystano wzór z normalizacją ~/cite{WykRat}:
+	
+	\begin{center}
+		$f_{m} = 255(frac{log(1 + f(x,y))}{log(1 + f_{max})})$
+	\end{center}
+
+	
+Przesunięcie funkcji obrazowej $f$ do góry o 1 przed jej logarytmowaniem wynika z nieokreśloności logarytmu w zerze. Logarytmowanie obrazu powoduje rozjaśnienie i zróżnicowanie najciemniejszych obszarów obrazu.	
 
 \begin{figure}[H]
 	\begin{center}
