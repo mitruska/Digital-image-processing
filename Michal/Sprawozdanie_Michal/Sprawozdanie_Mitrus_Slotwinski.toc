@@ -1,22 +1,42 @@
-\contentsline {chapter}{Spis rysunk\'ow}{3}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 1\relax .\kern .5em Wst\IeC {\k e}p}{6}
-\contentsline {section}{\numberline {1.1}Specyfikacja wykorzystanego fortmatu obrazu}{6}
-\contentsline {section}{\numberline {1.2}Intstrukcja obs\IeC {\l }ugi programu}{6}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 2\relax .\kern .5em Operacje ujednolicania obraz\IeC {\'o}w}{7}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 3\relax .\kern .5em Operacje sumowania arytmetycznego obraz\IeC {\'o}w szarych}{18}
-\contentsline {section}{\numberline {3.1}Sumowanie (okre\IeC {\'s}lonej) sta\IeC {\l }ej z obrazem oraz dw\IeC {\'o}ch obraz\IeC {\'o}w}{18}
-\contentsline {section}{\numberline {3.2}Mno\IeC {\.z}enie obrazu przez zadan\IeC {\k a} liczb\IeC {\k e} oraz przez inny obraz}{18}
-\contentsline {section}{\numberline {3.3}Mieszanie obraz\IeC {\'o}w z okre\IeC {\'s}lonym wsp\IeC {\'o}\IeC {\l }czynnikiem}{18}
-\contentsline {section}{\numberline {3.4}Pot\IeC {\k e}gowanie obrazu (z zadan\IeC {\k a} pot\IeC {\k e}g\IeC {\k a})}{18}
-\contentsline {section}{\numberline {3.5}Dzielenie obrazu przez (zadan\IeC {\k a}) liczb\IeC {\k e} oraz przez inny obraz}{18}
-\contentsline {section}{\numberline {3.6}Pierwiastkowanie obrazu}{18}
-\contentsline {section}{\numberline {3.7}Logarytmowanie obrazu}{18}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 4\relax .\kern .5em Operacje sumowania arytmetycznego obraz\IeC {\'o}w barwowych}{19}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 5\relax .\kern .5em Operacje geometryczne na obrazie}{20}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 6\relax .\kern .5em Operacje na histogramie obrazu szarego}{21}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 7\relax .\kern .5em Operacje na histogramie obrazu barwowego}{36}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 8\relax .\kern .5em Operacje morfologiczne na obrazach binarnych}{53}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 9\relax .\kern .5em Operacje morfologiczne na obrazach szarych}{54}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 10\relax .\kern .5em Filtrowanie liniowe i nieliniowe}{55}
-\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 11\relax .\kern .5em Podsumowanie}{100}
-\contentsline {chapter}{Bibliografia}{101}
+\contentsline {chapter}{Spis rysunk\'ow}{4}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 1\relax .\kern .5em Wst\IeC {\k e}p}{7}
+\contentsline {section}{\numberline {1.1}Specyfikacja wykorzystanego fortmatu obrazu}{7}
+\contentsline {section}{\numberline {1.2}Intstrukcja obs\IeC {\l }ugi programu}{7}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 2\relax .\kern .5em Operacje ujednolicania obraz\IeC {\'o}w}{8}
+\contentsline {section}{\numberline {2.1}Ujednolicenie obraz\IeC {\'o}w szarych geometryczne}{9}
+\contentsline {section}{\numberline {2.2}Ujednolicenie obraz\IeC {\'o}w szarych rozdzielczo\IeC {\'s}ciowe}{12}
+\contentsline {section}{\numberline {2.3}Ujednolicenie obraz\IeC {\'o}w RGB geometryczne}{15}
+\contentsline {section}{\numberline {2.4}Ujednolicenie obraz\IeC {\'o}w RGB rozdzielczo\IeC {\'s}ciowe}{18}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 3\relax .\kern .5em Operacje sumowania arytmetycznego obraz\IeC {\'o}w szarych}{21}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 4\relax .\kern .5em Operacje sumowania arytmetycznego obraz\IeC {\'o}w barwowych}{22}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 5\relax .\kern .5em Operacje geometryczne na obrazie}{23}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 6\relax .\kern .5em Operacje na histogramie obrazu szarego}{24}
+\contentsline {section}{\numberline {6.1}Obliczanie histogramu}{25}
+\contentsline {section}{\numberline {6.2}Przemieszczanie histogramu}{27}
+\contentsline {section}{\numberline {6.3}Rozci\IeC {\k a}ganie histogramu}{30}
+\contentsline {section}{\numberline {6.4}Progowanie lokalne}{33}
+\contentsline {section}{\numberline {6.5}Progowanie globalne}{36}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 7\relax .\kern .5em Operacje na histogramie obrazu barwowego}{39}
+\contentsline {section}{\numberline {7.1}Obliczanie histogramu}{40}
+\contentsline {section}{\numberline {7.2}Przemieszczanie histogramu}{42}
+\contentsline {section}{\numberline {7.3}Rozci\IeC {\k a}ganie histogramu}{45}
+\contentsline {section}{\numberline {7.4}Progowanie 1-progowe lokalne}{48}
+\contentsline {section}{\numberline {7.5}Progowanie wielo-progowe lokalne}{51}
+\contentsline {section}{\numberline {7.6}Progowanie 1-progowe globalne}{55}
+\contentsline {section}{\numberline {7.7}Progowanie wielo-progowe globalne}{58}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 8\relax .\kern .5em Operacje morfologiczne na obrazach binarnych}{61}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 9\relax .\kern .5em Operacje morfologiczne na obrazach szarych}{62}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 10\relax .\kern .5em Filtrowanie liniowe i nieliniowe}{63}
+\contentsline {section}{\numberline {10.1}Filtr dolnoprzepustowy u\IeC {\'s}redniaj\IeC {\k a}cy}{64}
+\contentsline {section}{\numberline {10.2}Filtr dolnoprzepustowy Gaussowski}{68}
+\contentsline {section}{\numberline {10.3}Operator Roberts'a}{72}
+\contentsline {section}{\numberline {10.4}Operator Prewitt'a}{76}
+\contentsline {section}{\numberline {10.5}Operator Sobel'a}{80}
+\contentsline {section}{\numberline {10.6}Filtr kompasowy}{85}
+\contentsline {section}{\numberline {10.7}Gradient wektora kierunkowego}{93}
+\contentsline {section}{\numberline {10.8}Filtr medianowy}{99}
+\contentsline {section}{\numberline {10.9}Filtr maksymalny}{103}
+\contentsline {section}{\numberline {10.10}Filtr minimalny}{107}
+\contentsline {section}{\numberline {10.11}Filtr p\IeC {\l }askorze\IeC {\'z}bowy}{111}
+\contentsline {chapter}{Rozdzia\PlPrIeC {\l }\ 11\relax .\kern .5em Podsumowanie}{116}
+\contentsline {chapter}{Bibliografia}{117}

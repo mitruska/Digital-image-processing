@@ -11,6 +11,19 @@
 \captionsetup{compatibility=false}
 \usepackage{titlesec}
 \usepackage{amsmath}
+\usepackage{listings}
+\lstset{
+	language=Python,
+	breaklines=true,
+	tabsize=2,
+	breaklines  = true,
+	breakatwhitespace   = false,
+	prebreak= \space,
+	postbreak   = \space  
+}
+
+
+
 
 \titleformat{\section}[runin]
 {\normalfont\Large\bfseries}{\thesection}{1em}{}
@@ -139,7 +152,7 @@ Laboratoria oh oh...~\cite{BookMok} %przynajmniej jedna cytacja dla kompilatora 
 \chapter{Operacje ujednolicania obrazów}
 \newpage
 
-\section*{1. Ujednolicenie obrazów szarych geometryczne}
+\section{Ujednolicenie obrazów szarych geometryczne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -167,47 +180,60 @@ Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu ob
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def geometricGray(self, show = False): \newline
-\indent width1 = self.im1.shape[1] \newline
-\indent width2 = self.im2.shape[1] \newline
-\indent maxWidth = width1 $if$ width1 $>$ width2 $else$ width2 \newline
+%\subsection*{Kod źródłowy}
 
-height1 = self.im1.shape[0] \newline
-\indent height2 = self.im2.shape[0] \newline
-\indent maxHeight = height1 $if$ height1 $>$ height2 $else$ height2 \newline
+\begin{lstlisting}[caption=Geometryczne ujednolicanie obrazów szarych]
 
-resultImage1 = np.empty((maxHeight, maxWidth), dtype = np.uint8)\newline
-\indent resultImage2 = np.empty((maxHeight, maxWidth), dtype = np.uint8)\newline
+def geometricGray(self, show = False):
+	# najwieksza szerokosc sposrod dwuch obrazow
+	width1 = self.im1.shape[1]
+	width2 = self.im2.shape[1]
+	maxWidth = width1 if width1 > width2 else width2
 
-startWidthCoord = int(round((maxWidth - width1) $//$ 2))\newline
-\indent startHeightCoord = int(round((maxHeight - height1) $//$ 2))\newline
+	# najwieksza wysokosc sposrod dwuch obrazow
+	height1 = self.im1.shape[0]
+	height2 = self.im2.shape[0]
+	maxHeight = height1 if height1 > height2 else height2
 
-for i in range(0, maxHeight):\newline
-\indent for j in range(0, maxWidth):\newline
-\indent resultImage1[i, j] = 1\newline
+	# alokacja pamieci na obrazy wynikowe
+	resultImage1 = np.empty((maxHeight, maxWidth), dtype = np.uint8)
+	resultImage2 = np.empty((maxHeight, maxWidth), dtype = np.uint8)
 
-\indent for i in range(0, height1):\newline
-\indent for j in range(0, width1):\newline
-\indent resultImage1[i + startHeightCoord, j + startWidthCoord] = self.im1[i, j]\newline
+	# wspolrzedne poczatku rysowania obrazu 1 w srodku
+	startWidthCoord = int(round((maxWidth - width1) / 2))
+	startHeightCoord = int(round((maxHeight - height1) / 2))
 
-startWidthCoord = int(round((maxWidth - width2) $//$ 2))\newline
-\indent startHeightCoord = int(round((maxHeight - height2) $//$ 2))\newline
+	# wypelnienie obrazu czarny kolorem
+	for i in range(0, maxHeight):
+		for j in range(0, maxWidth):
+			resultImage1[i, j] = 1
 
-for i in range(0, maxHeight):\newline
-\indent for j in range(0, maxWidth):\newline
-\indent resultImage2[i, j] = 1\newline
+	# narysowanie wysrodkowanego obrazu
+	for i in range(0, height1):
+		for j in range(0, width1):
+			resultImage1[i + startHeightCoord, j + startWidthCoord] = self.im1[i, j]
 
-for i in range(0, height2):\newline
-\indent for j in range(0, width2):\newline
-\indent resultImage2[i + startHeightCoord, j + startWidthCoord] = self.im2[i, j]\newline
+	# wspolrzedne poczatku rysowania obrazu 1 w srodku
+	startWidthCoord = int(round((maxWidth - width2) / 2))
+	startHeightCoord = int(round((maxHeight - height2) / 2))
 
-if show:\newline
-\indent self.show(Image.fromarray(resultImage1, "L"), Image.fromarray(resultImage2, "L"))\newline
-\indent self.save(resultImage1, self.im1Name, "unificationGeo")\newline
-\indent self.save(resultImage2, self.im2Name, "unificationGeo")\newline
+	# wypelnienie obrazu czarnym kolorem
+	for i in range(0, maxHeight):
+		for j in range(0, maxWidth):
+			resultImage2[i, j] = 1
+
+	# narysowanie wysrodkowanego obrazu
+	for i in range(0, height2):
+		for j in range(0, width2):
+			resultImage2[i + startHeightCoord, j + startWidthCoord] = self.im2[i, j]
+
+	if show:
+		self.show(Image.fromarray(resultImage1, "L"), Image.fromarray(resultImage2, "L"))
+	self.save(resultImage1, self.im1Name, "unificationGeo")
+	self.save(resultImage2, self.im2Name, "unificationGeo")
+
+\end{lstlisting}
+
 
 \newpage
 
@@ -215,7 +241,7 @@ if show:\newline
 
 
 
-\section*{2. Ujednolicenie obrazów szarych rozdzielczościowe}
+\section{Ujednolicenie obrazów szarych rozdzielczościowe}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -244,58 +270,65 @@ Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def rasterGray(self, show = False):
+%\subsection*{Kod źródłowy}
 
-width1 = self.im1.shape[1] \newline
-\indent width2 = self.im2.shape[1] \newline
+\begin{lstlisting}[caption=Rastrowe ujednolicanie obrazów szarych]
 
-\indent height1 = self.im1.shape[0] \newline
-\indent height2 = self.im2.shape[0] \newline
+def rasterGray(self, show = False):
+	# pierwszy jest ZAWSZE wiekszy
+	width1 = self.im1.shape[1]
+	width2 = self.im2.shape[1]
+	
+	height1 = self.im1.shape[0]
+	height2 = self.im2.shape[0]
+	
+	scaleW = width1 / width2
+	scaleH = height1 / height2
+	
+	# alokacja pamieci na obrazy wynikowe
+	resultImage1 = np.zeros((height1, width1), dtype = np.uint8)
+	resultImage2 = np.zeros((height1, width1), dtype = np.uint8)
+	tmp = np.zeros((height1, width1), dtype = np.uint8)
+	
+	for i in range(height1):
+		for j in range(width1):
+			resultImage1[i, j] = self.im1[i, j]
+	
+	# wypelnianie
+	count = 0
+	for i in range(height2):
+		for j in range(width2):
+			if count == 0:
+				resultImage2[int(scaleH*i), int(round(scaleW*j)) + 1] = self.im2[i, j]
+				count += 1
+			if count == 1:
+				resultImage2[int(round(scaleH*i)) + 1, int(scaleW*j)] = self.im2[i, j]
+				count = 0
+	
+	# interpolacja
+	for i in range(height1):
+		for j in range(width1):
+			value = 0
+			n = 0
+			tmp[i, j] = resultImage2[i, j]
+			if resultImage2[i, j] < 1:
+				for iOff in range(-1, 2):
+					for jOff in range(-1, 2):
+						iSafe = i if ((i + iOff) > (height1 - 2)) | ((i + iOff) < 0) else (i + iOff)
+						jSafe = j if ((j + jOff) > (width1 - 2)) | ((j + jOff) < 0) else (j + jOff)
+						if resultImage2[iSafe, jSafe] > 0:
+							value += resultImage2[iSafe, jSafe]
+							n += 1
+				tmp[i, j] = value / n
+				resultImage2[i, j] = tmp[i, j]
+	
+	if show:
+		self.show(Image.fromarray(resultImage1, "L"), Image.fromarray(resultImage2, "L"))
+	self.save(resultImage1, self.im1Name, "unificationRas")
+	self.save(resultImage2, self.im2Name, "unificationRas")
 
-\indent scaleW = width1 $//$ width2 \newline
-\indent scaleH = height1 $//$ height2 \newline
+\end{lstlisting}
 
-resultImage1 = np.zeros((height1, width1), dtype = np.uint8) \newline
-\indent resultImage2 = np.zeros((height1, width1), dtype = np.uint8) \newline
-\indent tmp = np.zeros((height1, width1), dtype = np.uint8) \newline
-
-for i in range(height1): \newline
-\indent for j in range(width1): \newline
-\indent resultImage1[i, j] = self.im1[i, j] \newline
-
-count = 0 \newline
-\indent for i in range(height2): \newline
-\indent for j in range(width2): \newline
-\indent if count == 0: \newline
-\indent resultImage2[int(scaleH*i), int(round(scaleW*j)) + 1] = self.im2[i, j] \newline
-\indent count += 1 \newline
-\indent if count == 1: \newline
-\indent resultImage2[int(round(scaleH*i)) + 1, int(scaleW*j)] = self.im2[i, j] \newline
-\indent count = 0 \newline
-
-for i in range(height1): \newline
-\indent for j in range(width1): \newline
-\indent value = 0 \newline
-\indent n = 0 \newline
-\indent tmp[i, j] = resultImage2[i, j] \newline
-\indent if resultImage2[i, j] $<$ 1: \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height1 - 2)) $\mid$ ((i + iOff) < 0) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width1 - 2)) $\mid$ ((j + jOff) < 0) else (j + jOff) \newline
-\indent if resultImage2[iSafe, jSafe] $>$ 0: \newline
-\indent value += resultImage2[iSafe, jSafe] \newline
-\indent n += 1 \newline
-tmp[i, j] = value $//$ n \newline
-resultImage2[i, j] = tmp[i, j] \newline
-
-\noindent if show: \newline
-self.show(Image.fromarray(resultImage1, "L"), Image.fromarray(resultImage2, "L")) \newline
-self.save(resultImage1, self.im1Name, "unificationRas") \newline
-self.save(resultImage2, self.im2Name, "unificationRas") \newline
 \newpage
 
 
@@ -304,7 +337,7 @@ self.save(resultImage2, self.im2Name, "unificationRas") \newline
 
 
 
-\section*{3. Ujednolicenie obrazów RGB geometryczne}
+\section{Ujednolicenie obrazów RGB geometryczne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -333,54 +366,66 @@ Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu ob
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def geometricColor(self, show = False): \newline
-\indent width1 = self.im1.shape[1] \newline
-\indent width2 = self.im2.shape[1] \newline
-\indent maxWidth = width1 if width1 > width2 else width2 \newline
+%\subsection*{Kod źródłowy}
 
-height1 = self.im1.shape[0] \newline
-\indent height2 = self.im2.shape[0] \newline
-\indent maxHeight = height1 if height1 > height2 else height2 \newline
+\begin{lstlisting}[caption=Geometryczne ujednolicanie obrazów barwnych]
 
-resultImage1 = np.empty((maxHeight, maxWidth, 3), dtype = np.uint8) \newline
-\indent resultImage2 = np.empty((maxHeight, maxWidth, 3), dtype = np.uint8) \newline
+def geometricColor(self, show = False):
+	# najwieksza szerokosc sposrod dwuch obrazow
+	width1 = self.im1.shape[1]
+	width2 = self.im2.shape[1]
+	maxWidth = width1 if width1 > width2 else width2
+	
+	# najwieksza wysokosc sposrod dwuch obrazow
+	height1 = self.im1.shape[0]
+	height2 = self.im2.shape[0]
+	maxHeight = height1 if height1 > height2 else height2
+	
+	# alokacja pamieci na obrazy wynikowe
+	resultImage1 = np.empty((maxHeight, maxWidth, 3), dtype = np.uint8)
+	resultImage2 = np.empty((maxHeight, maxWidth, 3), dtype = np.uint8)
+	
+	# wspolrzedne poczatku rysowania obrazu 1 w srodku
+	startWidthCoord = int(round((maxWidth - width1) / 2))
+	startHeightCoord = int(round((maxHeight - height1) / 2))
+	
+	# wypelnienie obrazu czarnym kolorem
+	for i in range(0, maxHeight):
+		for j in range(0, maxWidth):
+			resultImage1[i, j] = (1, 1, 1)
+	
+	# narysowanie wysrodkowanego obrazu
+	for i in range(0, height1):
+		for j in range(0, width1):
+			resultImage1[i + startHeightCoord, j + startWidthCoord] = self.im1[i, j]
+	
+	# wspolrzedne poczatku rysowania obrazu 1 w srodku
+	startWidthCoord = int(round((maxWidth - width2) / 2))
+	startHeightCoord = int(round((maxHeight - height2) / 2))
+	
+	# wypelnienie obrazu czarnym kolorem
+	for i in range(0, maxHeight):
+		for j in range(0, maxWidth):
+			resultImage2[i, j] = (1, 1, 1)
 
-startWidthCoord = int(round((maxWidth - width1) $//$ 2)) \newline
-\indent startHeightCoord = int(round((maxHeight - height1) $//$ 2)) \newline
+	# narysowanie wysrodkowanego obrazu
+	for i in range(0, height2):
+		for j in range(0, width2):
+			resultImage2[i + startHeightCoord, j + startWidthCoord] = self.im2[i, j]
+	
+	if show:
+		self.show(Image.fromarray(resultImage1, "RGB"), Image.fromarray(resultImage2, "RGB"))
+	self.save(resultImage1, self.im1Name, "unificationGeo")
+	self.save(resultImage2, self.im2Name, "unificationGeo")
+\end{lstlisting}
 
-for i in range(0, maxHeight): \newline
-\indent for j in range(0, maxWidth): \newline
-\indent resultImage1[i, j] = (1, 1, 1) \newline
-
-for i in range(0, height1): \newline
-\indent for j in range(0, width1): \newline
-\indent resultImage1[i + startHeightCoord, j + startWidthCoord] = self.im1[i, j] \newline
-
-startWidthCoord = int(round((maxWidth - width2) $//$ 2)) \newline
-\indent startHeightCoord = int(round((maxHeight - height2) $//$ 2)) \newline
-
-for i in range(0, maxHeight): \newline
-\indent for j in range(0, maxWidth): \newline
-\indent resultImage2[i, j] = (1, 1, 1) \newline
-
-for i in range(0, height2): \newline
-\indent for j in range(0, width2): \newline
-\indent resultImage2[i + startHeightCoord, j + startWidthCoord] = self.im2[i, j] \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage1, "RGB"), Image.fromarray(resultImage2, "RGB")) \newline
-\indent self.save(resultImage1, self.im1Name, "unificationGeo") \newline
-\indent self.save(resultImage2, self.im2Name, "unificationGeo") \newline
 \newpage
 
 
 
 
 
-\section*{4. Ujednolicenie obrazów RGB rozdzielczościowe}
+\section{Ujednolicenie obrazów RGB rozdzielczościowe}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -409,59 +454,66 @@ Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def rasterColor(self, show = False): \newline
-\indent width1 = self.im1.shape[1] \newline
-\indent width2 = self.im2.shape[1] \newline
+%\subsection*{Kod źródłowy}
 
-height1 = self.im1.shape[0] \newline
-\indent height2 = self.im2.shape[0] \newline
+\begin{lstlisting}[caption=Rastrowe ujednolicanie obrazów barwnych]
 
-scaleW = width1 $//$ width2 \newline
-\indent scaleH = height1 $//$ height2 \newline
+def rasterColor(self, show = False):
+	# pierwszy jest ZAWSZE wiekszy
+	width1 = self.im1.shape[1]
+	width2 = self.im2.shape[1]
+	
+	height1 = self.im1.shape[0]
+	height2 = self.im2.shape[0]
+	
+	scaleW = width1 / width2
+	scaleH = height1 / height2
+	
+	# alokacja pamieci na obrazy wynikowe
+	resultImage1 = np.zeros((height1, width1, 3), dtype = np.uint8)
+	resultImage2 = np.zeros((height1, width1, 3), dtype = np.uint8)
+	tmp = np.zeros((height1, width1, 3), dtype = np.uint8)
+	
+	for i in range(height1):
+		for j in range(width1):
+			resultImage1[i, j] = self.im1[i, j]
+	
+	# wypelnianie
+	count = 0
+	for i in range(height2):
+		for j in range(width2):
+			if count == 0:
+				resultImage2[int(scaleH*i), int(round(scaleW*j)) + 1] = self.im2[i, j]
+				count += 1
+			if count == 1:
+				resultImage2[int(round(scaleH*i)) + 1, int(scaleW*j)] = self.im2[i, j]
+				count = 0
+	
+	# interpolacja
+	for i in range(height1):
+		for j in range(width1):
+			r, g, b = 0, 0, 0
+			n = 0
+			tmp[i, j] = resultImage2[i, j]
+			if (resultImage2[i, j][0] < 1) & (resultImage2[i, j][1] < 1) & (resultImage2[i, j][2] < 1):
+				for iOff in range(-1, 2):
+					for jOff in range(-1, 2):
+						iSafe = i if ((i + iOff) > (height1 - 2)) | ((i + iOff) < 0) else (i + iOff)
+						jSafe = j if ((j + jOff) > (width1 - 2)) | ((j + jOff) < 0) else (j + jOff)
+						if (resultImage2[iSafe, jSafe][0] > 0) | (resultImage2[iSafe, jSafe][1] > 0) | (resultImage2[iSafe, jSafe][2] > 0):
+							r += resultImage2[iSafe, jSafe][0]
+							g += resultImage2[iSafe, jSafe][1]
+							b += resultImage2[iSafe, jSafe][2]
+							n += 1
+			tmp[i, j] = (r/n, g/n, b/n)
+			resultImage2[i, j] = tmp[i, j]
+	
+	if show:
+		self.show(Image.fromarray(resultImage1, "RGB"), Image.fromarray(resultImage2, "RGB"))
+	self.save(resultImage1, self.im1Name, "unificationRas")
+	self.save(resultImage2, self.im2Name, "unificationRas")
 
-resultImage1 = np.zeros((height1, width1, 3), dtype = np.uint8) \newline
-\indent resultImage2 = np.zeros((height1, width1, 3), dtype = np.uint8) \newline
-\indent tmp = np.zeros((height1, width1, 3), dtype = np.uint8) \newline
-
-for i in range(height1): \newline
-\indent for j in range(width1): \newline
-\indent resultImage1[i, j] = self.im1[i, j] \newline
-
-count = 0 \newline
-\indent for i in range(height2): \newline
-\indent for j in range(width2): \newline
-\indent if count == 0: \newline
-\indent resultImage2[int(scaleH*i), int(round(scaleW*j)) + 1] = self.im2[i, j] \newline
-\indent count += 1 \newline
-\indent if count == 1: \newline
-\indent resultImage2[int(round(scaleH*i)) + 1, int(scaleW*j)] = self.im2[i, j] \newline
-\indent count = 0 \newline
-
-for i in range(height1): \newline
-\indent for j in range(width1): \newline
-\indent r, g, b = 0, 0, 0 \newline
-\indent n = 0 \newline
-\indent tmp[i, j] = resultImage2[i, j] \newline
-\indent if (resultImage2[i, j][0] $<$ 1) $\&$ (resultImage2[i, j][1] $<$ 1) $\&$ (resultImage2[i, j][2] $<$ 1): \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) > (height1 - 2)) $\mid$ ((i + iOff) < 0) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) > (width1 - 2)) $\mid$ ((j + jOff) < 0) else (j + jOff) \newline
-\indent if (resultImage2[iSafe, jSafe][0] $>$ 0) $\mid$ (resultImage2[iSafe, jSafe][1] $>$ 0) $\mid$ (resultImage2[iSafe, jSafe][2] $>$ 0): \newline
-\indent r += resultImage2[iSafe, jSafe][0] \newline
-\indent \indent g += resultImage2[iSafe, jSafe][1] \newline
-\indent \indent b += resultImage2[iSafe, jSafe][2] \newline
-\indent \indent n += 1 \newline
-\indent \indent tmp[i, j] = (r$//$n, g$//$n, b$//$n) \newline
-\indent \indent resultImage2[i, j] = tmp[i, j] \newline
-
-\indent \indent if show: \newline
-\indent \indent self.show(Image.fromarray(resultImage1, "RGB"), Image.fromarray(resultImage2, "RGB")) \newline
-\indent \indent self.save(resultImage1, self.im1Name, "unificationRas") \newline
-\indent \indent self.save(resultImage2, self.im2Name, "unificationRas") \newline
+\end{lstlisting}
 
 
 
@@ -473,13 +525,13 @@ for i in range(height1): \newline
 
 
 \chapter{Operacje sumowania arytmetycznego obrazów szarych}
-\section {Sumowanie (określonej) stałej z obrazem oraz dwóch obrazów}
-\section {Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz}
-\section {Mieszanie obrazów z określonym współczynnikiem}
-\section {Potęgowanie obrazu (z zadaną potęgą)}
-\section {Dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz}
-\section {Pierwiastkowanie obrazu}
-\section {Logarytmowanie obrazu}
+1. Sumowanie (określonej) stałej z obrazem oraz dwóch obrazów
+2. Mnożenie obrazu przez zadaną liczbę oraz przez inny obraz
+3. Mieszanie obrazów z określonym współczynnikiem
+4. Potęgowanie obrazu (z zadaną potęgą)
+5. Dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz
+6. Pierwiastkowanie obrazu
+7. Logarytmowanie obrazu
 
 \chapter{Operacje sumowania arytmetycznego obrazów barwowych}
 1. sumowanie (określonej) stałej z obrazem oraz dwóch obrazów
@@ -500,7 +552,7 @@ for i in range(height1): \newline
 
 \chapter{Operacje na histogramie obrazu szarego}
 \pagebreak
-\section*{1. obliczanie histogramu}
+\section{Obliczanie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -530,34 +582,39 @@ przyporządkowuje liczbę piskli do danego poziomu szarości.\newline
 \end{figure}
 \newpage
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def calculate(self, plot = False, image = None): \newline
-\indent if image is None: \newline
-\indent image = self.im \newline
+%\subsection*{Kod źródłowy}
 
-width = image.shape[1] \newline
-\indent height = image.shape[0] \newline
-\indent hist = [0] * 256 \newline
+\begin{lstlisting}[caption=Obliczanie histogramu]
+	
+def calculate(self, plot = False, image = None):
+	if image is None:
+		image = self.im
+	
+	width = image.shape[1]      # szereoksc
+	height = image.shape[0]     # wysokosc
+	hist = [0] * 256            # hostogram szarosci
+	
+	for i in range(height):
+		for j in range(width):
+			bin = image[i, j]   # odcien szarosci
+			hist[bin] += 1
+	
+	if plot:
+		# tablica [0, 1, ... , 254, 255]
+		bins = np.arange(256)
+		self.plotHistogram(bins, hist)
+	
+	return hist
+	
+\end{lstlisting}
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent bin = image[i, j] \newline
-\indent hist[bin] += 1 \newline
-
-if plot: \newline
-\indent bins = np.arange(256) \newline
-\indent self.plotHistogram(bins, hist) \newline
-
-return hist \newline
 \newpage
 
 
 
 
 
-\section*{2. przemieszczanie histogramu}
+\section{Przemieszczanie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -606,35 +663,39 @@ Nie można przekroczyć przyjętego zakresu poziomów szarości.
 
 
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def move(self, const = 0, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Przemieszczanie histogramu]
+def move(self, const = 0, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	# przemieszczanie
+	for i in range(height):
+		for j in range(width):
+			value = int(self.im[i, j]) + const
+			if value < 0:
+				value = 0
+			elif value > 255:
+				value = 255
+			resultImage[i, j] = value
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "moveHist")
+\end{lstlisting}
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent value = int(self.im[i, j]) + const \newline
-\indent if value $<$ 0: \newline
-\indent value = 0 \newline
-elif value $>$ 255: \newline
-value = 255 \newline
-resultImage[i, j] = value \newline
-
-\noindent if show: \newline
-self.show(Image.fromarray(resultImage, "L")) \newline
-self.calculate(plot, resultImage) \newline
-self.save(resultImage, self.imName, "moveHist") \newline
 \newpage
 
 
 
 
 
-\section*{3. rozciąganie histogramu}
+\section{Rozciąganie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -682,44 +743,49 @@ self.save(resultImage, self.imName, "moveHist") \newline
 	\caption{Obraz po rozciągnięciu, histogram szarości tego obrazu}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def stretch(self, show = False, plot = False):
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent resultImage[i, j] = self.im[i, j] \newline
+\begin{lstlisting}[caption=Rozciąganie histogramu]
+def stretch(self, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	for i in range(height):
+		for j in range(width):
+			resultImage[i, j] = self.im[i, j]
+	
+	# wartosc min i max w obrazie
+	maxValue = 0
+	minValue = 255
+	while maxValue != 255:
+		# wartosci max i min w obrazie
+		for i in range(height):
+			for j in range(width):
+				currValue = resultImage[i, j]
+				maxValue = max(maxValue, currValue)
+				minValue = min(minValue, currValue)
+	
+	# rozciaganie
+	for i in range(height):
+		for j in range(width):
+			pix = resultImage[i, j]
+			resultImage[i, j] = ((255 / (maxValue - minValue)) * (pix - minValue))
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "stretchHist")
+\end{lstlisting}
 
-maxValue = 0 \newline
-\indent minValue = 255 \newline
-\indent while maxValue != 255: \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent \indent \indent currValue = resultImage[i, j] \newline
-\indent \indent \indent maxValue = max(maxValue, currValue) \newline
-\indent \indent \indent minValue = min(minValue, currValue) \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent pix = resultImage[i, j] \newline
-\indent \indent \indent resultImage[i, j] = ((255 $//$ (maxValue - minValue)) * (pix - minValue)) \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent \indent \indent self.calculate(plot, resultImage) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "stretchHist") \newline
 \newpage
 
 
 
 
 
-\section*{4. progowanie lokalne}
+\section{Progowanie lokalne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -765,41 +831,45 @@ for i in range(height): \newline
 	\caption{Obraz po progowaniu z parametrem 20, histogram szarości tego obrazu}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def localThreshold(self, dim = 3, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-\indent l, r = -(int(round(dim $//$ 2))), int(round(dim $//$ 2) + 1)\newline
+%\subsection*{Kod źródłowy}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Progowanie lokalne]
+def localThreshold(self, dim = 3, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	l, r = -(int(round(dim / 2))), int(round(dim / 2) + 1)  # wsp. sasiadow
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	# progowanie lokalne
+	for i in range(height):
+		for j in range(width):
+		n = 0
+		threshold = 0
+		currPix = self.im[i, j]
+		for iOff in range(l, r):
+			for jOff in range(l, r):
+				iSafe = i if ((i + iOff) > (height + l)) else (i + iOff)
+				jSafe = j if ((j + jOff) > (width + l)) else (j + jOff)
+				threshold += self.im[iSafe, jSafe]
+				n += 1
+		threshold = int(round(threshold / n))
+		resultImage[i, j] = 0 if (currPix < threshold) else 255
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "locThreshold")
+\end{lstlisting}
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent n = 0 \newline
-\indent threshold = 0 \newline
-currPix = self.im[i, j] \newline
-for iOff in range(l, r): \newline
-for jOff in range(l, r): \newline
-iSafe = i $if$ ((i + iOff) $>$ (height + l)) $else$ (i + iOff) \newline
-jSafe = j $if$ ((j + jOff) $>$ (width + l)) $else$ (j + jOff) \newline
-threshold += self.im[iSafe, jSafe] \newline
-n += 1 \newline
-threshold = int(round(threshold / n)) \newline
-resultImage[i, j] = 0 if (currPix $<$ threshold) else 255 \newline
-
-\noindent if show: \newline
-self.show(Image.fromarray(resultImage, "L")) \newline
-self.calculate(plot, resultImage) \newline
-self.save(resultImage, self.imName, "locThreshold") \newline
 \newpage
 \clearpage
 
 
 
 
-\section*{5. progowanie globalne}
+\section{Progowanie globalne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -844,31 +914,34 @@ self.save(resultImage, self.imName, "locThreshold") \newline
 	\caption{Obraz po progowaniu z parametrem 20, histogram szarości tego obrazu}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def globalThreshold(self, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-
-threshold = 0 \newline
-\indent n = 0 \newline
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent threshold += self.im[i, j] \newline
-\indent \indent \indent n += 1 \newline
-\indent \indent \indent threshold = int(round(threshold / n)) \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent resultImage[i, j] = 0 if (self.im[i, j] < threshold) else 255 \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent \indent \indent self.calculate(plot, resultImage) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "globThreshold") \newline
+%\subsection*{Kod źródłowy}
+\begin{lstlisting}[caption=Progowanie globalne]
+def globalThreshold(self, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	# prog globalny
+	threshold = 0
+	n = 0
+	for i in range(height):
+		for j in range(width):
+		threshold += self.im[i, j]
+		n += 1
+		threshold = int(round(threshold / n))
+	
+	# binaryzacja
+	for i in range(height):
+		for j in range(width):
+			resultImage[i, j] = 0 if (self.im[i, j] < threshold) else 255
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "globThreshold")
+\end{lstlisting}
 \newpage
 
 
@@ -878,7 +951,7 @@ threshold = 0 \newline
 
 \chapter{Operacje na histogramie obrazu barwowego}
 \pagebreak
-\section*{1. obliczanie histogramu}
+\section{Obliczanie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -908,35 +981,38 @@ przyporządkowuje liczbę piskli do danego poziomu barwy.\newline
 \end{figure}
 \pagebreak
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def calculate(self, plot = False, image = None): \newline
-\indent if image is None: \newline
-\indent image = self.im \newline
+%\subsection*{Kod źródłowy}
 
-width = image.shape[1] \newline
-\indent height = image.shape[0] \newline
-\indent hist = [0] * 3 \newline
-\indent hist[0] = [0] * 256 \newline
-\indent hist[1] = [0] * 256 \newline
-\indent hist[2] = [0] * 256 \newline
+\begin{lstlisting}[caption=Obliczanie histogramu]
+def calculate(self, plot = False, image = None):
+	if image is None:
+	image = self.im
+	
+	width = image.shape[1]      # szerokosc
+	height = image.shape[0]     # wysokosc
+	hist = [0] * 3              # histogram RGB
+	hist[0] = [0] * 256         # histogram R
+	hist[1] = [0] * 256         # histogram G
+	hist[2] = [0] * 256         # histogram B
+	
+	for i in range(height):
+		for j in range(width):
+		bin = image[i, j]
+		for k in range(3):
+			hist[k][bin[k]] += 1
+	
+	if plot:
+		# tablica [0, 1, ... , 254, 255]
+		bins = np.arange(256)
+		self.plotHistogram(bins, hist)
+	
+	return hist                 # [0] - hist R, [1] - hist G, [2] - hist B
+\end{lstlisting}
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent bin = image[i, j] \newline
-\indent for k in range(3): \newline
-\indent hist[k][bin[k]] += 1 \newline
-
-if plot: \newline
-\indent bins = np.arange(256) \newline
-\indent self.plotHistogram(bins, hist) \newline
-
-return hist \newline
 \pagebreak
 
 
-\section*{2. Przemieszczanie histogramu}
+\section{Przemieszczanie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -984,35 +1060,39 @@ Nie można przekroczyć przyjętego zakresu poziomu barwy.
 \end{figure}
 
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def move(self, const = 0, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Przemieszczanie histogramu]
+def move(self, const = 0, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	# przemieszczanie
+	for i in range(height):
+		for j in range(width):
+			value = self.im[i, j]
+			for k in range(len(value)):
+				v = value[k]
+				v += const
+				if v < 0:
+					v = 0
+				elif v > 255:
+					v = 255
+				value[k] = v
+			resultImage[i, j] = value
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "moveHist")
+\end{lstlisting}
 
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent value = self.im[i, j] \newline
-\indent for k in range(len(value)): \newline
-\indent v = value[k] \newline
-\indent v += const \newline
-\indent if v $<$ 0: \newline
-\indent v = 0 \newline
-\indent \indent \indent elif v $>$ 255: \newline
-\indent \indent \indent v = 255 \newline
-\indent \indent \indent value[k] = v \newline
-\indent \indent \indent resultImage[i, j] = value \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent \indent \indent self.calculate(plot, resultImage) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "moveHist") \newline
 \newpage
 
-\section*{3. Rozciąganie histogramu}
+\section{Rozciąganie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -1060,78 +1140,62 @@ resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
 	\caption{Obraz po rozciągnięciu, histogram barw tego obrazu}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def stretch(self, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent resultImage[i, j] = self.im[i, j] \newline
-
-
-maxValue = [0] * 3 \newline
-\indent minValue = [255] * 3 \newline
-\indent while (maxValue[0] != 255) $\&$ (maxValue[1] != 255) $\&$ (maxValue[2] != 255): \newline
-
-\noindent for i in range(height): \newline
-for j in range(width): \newline
-currValue = resultImage[i, j] \newline
-for k in range(3): \newline
-maxValue[k] = max(maxValue[k], currValue[k]) \newline
-minValue[k] = min(minValue[k], currValue[k]) \newline
-
-\noindent for i in range(height): \newline
-for j in range(width): \newline
-pix = resultImage[i, j] \newline
-for k in range(3): \newline
-pix[k] = ((255 $//$ (maxValue[k] - minValue[k])) * (pix[k] - minValue[k])) \newline
-resultImage[i, j] = pix \newline
-
-\noindent if show: \newline
-self.show(Image.fromarray(resultImage, "RGB")) \newline
-self.calculate(plot, resultImage) \newline
-self.save(resultImage, self.imName, "stretchHist") \newline
-\newpage
-
-\section*{4. Progowanie 1-progowe}
-\subsection*{Opis algorytmu}
-\hfill
-\\\\
-\indent 
-\begin{enumerate}
-	\item 
-\end{enumerate}
+\begin{lstlisting}[caption=Rozciąganie histogramu]
+def stretch(self, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	for i in range(height):
+		for j in range(width):
+			resultImage[i, j] = self.im[i, j]
+	
+	# wartosci min i max w obrazie
+	maxValue = [0] * 3
+	minValue = [255] * 3
+	while (maxValue[0] != 255) & (maxValue[1] != 255) & (maxValue[2] != 255):
+		# wartosci max i min w obrazie
+		for i in range(height):
+			for j in range(width):
+				currValue = resultImage[i, j]
+				for k in range(3):
+					maxValue[k] = max(maxValue[k], currValue[k])
+					minValue[k] = min(minValue[k], currValue[k])
+	
+	# rozciaganie
+	for i in range(height):
+		for j in range(width):
+			pix = resultImage[i, j]
+			for k in range(3):
+				pix[k] = ((255 / (maxValue[k] - minValue[k])) * (pix[k] - minValue[k]))
+			resultImage[i, j] = pix
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "stretchHist")
+\end{lstlisting}
 
 \newpage
 
-\section*{5. Progowanie wielo-progowe}
-\subsection*{Opis algorytmu}
-\hfill
-\\\\
-\indent 
-\begin{enumerate}
-	\item 
-\end{enumerate}
-\newpage
 
-\section*{6. progowanie lokalne}
+
+\section{Progowanie 1-progowe lokalne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent Progowanie lokalne oblicza wartość progową dla każdego piksla z osobna. W wyniku takiego progowania obraz dokładniej odwzorowuje kształt obiektu.
+\indent Progowanie 1-progowe lokalne oblicza wartość progową dla każdego piksla z osobna. W wyniku takiego progowania obraz dokładniej odwzorowuje kształt obiektu. Próg obliczany jest jako średnia wartość piksli w obrazie, dla każdego kanału z osobna.
 \begin{enumerate}
 	\item Zdefiniuj wielkość otoczenia piksla (musi być nieparzysta, po to, aby mógł istnieć piksel środkowy).
-	\item Przenieś obraz do przestrzeni HSI.
 	\item Dla każdego piskla($P$):
-	\item Oblicz wartość progową składowej $I$ jako średnią wartość piksli w otoczeniu danego piksla($P$).
-	\item Jeśli wartość skłądowej $I$ piksla $P$ jest $< 0$:
+	\item Dla każdego kanału($C$):
+	\item Oblicz wartość progową $T_C$ jako średnią wartość piksli $P_C$ w otoczeniu danego piksla($P$).
+	\item Jeśli wartość piksla $P_C$ jest $< T_C$:
 	\item Przypisz mu wartość $0$.
-	\item W przeciwnym przypadku przypisz mu wartość $1$.
-	\item Przenieś obraz spowrotem do przestrzeni RGB.
+	\item W przeciwnym przypadku przypisz mu wartość $255$.
 \end{enumerate}
 
 \begin{figure}[H]
@@ -1144,8 +1208,8 @@ self.save(resultImage, self.imName, "stretchHist") \newline
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.35\textwidth]{lena_color_locThreshold_result}
-		\includegraphics[width=0.35\textwidth]{lena_color_locThreshold_histogram}
+		\includegraphics[width=0.35\textwidth]{lena_color_localSingleThreshold_result}
+		\includegraphics[width=0.35\textwidth]{lena_color_localSingleThreshold_histogram}
 	\end{center}
 	\caption{Obraz po progowaniu z otoczeniem piksla 21x21, histogram szarości tego obrazu}
 \end{figure}
@@ -1160,70 +1224,77 @@ self.save(resultImage, self.imName, "stretchHist") \newline
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.35\textwidth]{peppers_color_locThreshold_result}
-		\includegraphics[width=0.35\textwidth]{peppers_color_locThreshold_histogram}
+		\includegraphics[width=0.35\textwidth]{peppers_color_localSingleThreshold_result}
+		\includegraphics[width=0.35\textwidth]{peppers_color_localSingleThreshold_histogram}
 	\end{center}
 	\caption{Obraz po progowaniu z otoczeniem piksla 21x21, histogram szarości tego obrazu}
 \end{figure}
 
-\subsection*{Kod źródłowy}
-\hfill
-\\\\
-\noindent def localThreshold(self, dim = 3, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-\indent low, up = -(int(round(dim $//$ 2))), int(round(dim $//$ 2) + 1) \newline
+%\subsection*{Kod źródłowy}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
+\begin{lstlisting}[caption=Progowanie 1-progowe lokalne]
+def localSingleThreshold(self, dim = 3, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	low, up = -(int(dim / 2)), (int(dim / 2) + 1)  # wsp. sasiadow
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	# progowanie lokalne
+	for i in range(height):
+		for j in range(width):
+			n = 0
+			r = 0
+			g = 0
+			b = 0
+			currPix = self.im[i, j]
+			for iOff in range(low, up):
+				for jOff in range(low, up):
+					iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
+					r += int(self.im[iSafe, jSafe][0])
+					g += int(self.im[iSafe, jSafe][1])
+					b += int(self.im[iSafe, jSafe][2])
+					n += 1
+			r = int(round(r / n))
+			g = int(round(g / n))
+			b = int(round(b / n))
+			resultImage[i, j] = (0 if (currPix[0] < r) else 255, 0 if (currPix[1] < g) else 255, 0 if (currPix[2] < b) else 255)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "localSingleThreshold")
+\end{lstlisting}
 
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r, g, b = self.im[i, j] \newline
-\indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
-
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent H = 0 \newline
-\indent n = 0 \newline
-\indent currPix = tmp[i, j] \newline
-\indent for iOff in range(low, up): \newline
-\indent for jOff in range(low, up): \newline
-\indent iSafe = i $if$ ((i + iOff) $>$ (height + low)) $\mid$ ((i + iOff) $<$ 0) $else$ (i + iOff) \newline
-\indent jSafe = j $if$ ((j + jOff) $>$ (width + low)) $\mid$ ((j + jOff) $<$ 0) $else$ (j + jOff) \newline
-\indent H += tmp[iSafe, jSafe][2] \newline
-\indent n += 1 \newline
-\indent H = H $//$ n \newline
-\indent tmp2[i, j] = currPix \newline
-\indent tmp2[i, j][2] = 0 $if$ currPix[2] $<$ H $else$ 1 \newline
-
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent h, s, I = tmp2[i, j] \newline
-\indent resultImage[i, j] = self.HSItoRGB((h, s, I)) \newline
-
-\indent if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.calculate(plot, resultImage) \newline
-\indent self.save(resultImage, self.imName, "locThreshold") \newline
 \newpage
 
-\section*{7. Progowanie globalne}
+
+
+
+\section{Progowanie wielo-progowe lokalne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent W progowaniu globalnym wartość progowa jest ustalana globalnie, biorąc pod uwagę wartość składowej intensywnościowej (z przestrzeni HSI) każdego piklsla w obrazie. Następnie, tak wyliczona wartość progowa, jest stosowana do nadania każdemu pikslowi nową wartość.
+\indent Progowanie wielo-progowe lokalne oblicza wartości progowe dla każdego piksla z osobna. W wyniku takiego progowania obraz ma mniejszą ilość kolorów w obrazie. Progi obliczane są dla każdego kanału z osobna.
+
 \begin{enumerate}
-	\item Przenieś obraz do przestrzeni HSI.
-	\item Oblicz wartość progową $T$, jako średnią wartość składowej intensywnościowej ($I$) z wszystkich piskli w obrazie.
-	\item Dla każdego piskla:
-	\item Jeśli wartość $I$ danego piskla jest $< T$:
-	\item przypisz mu wartość $0$.
-	\item W przeciwnym przypadku przypisz mu wartość 1.
-	\item Przenieś obraz spowrotem do przestrzeni RGB.
+	\item Zdefiniuj wielkość otoczenia piksla (musi być nieparzysta, po to aby mógł istnieć piksel środkowy).
+	\item Zdefiniuj ilość progów($T$).
+	\item Dla każdego piksla($P$):
+	\item Dla każdego kanału($C$):
+	\item Znajdź $MAX(P_C)$ i $MIN(P_C)$.
+	\item Oblicz skalę($S_C$) wg. wzoru:\\
+	\centerline{$S_C = \frac{MAX(P_C)}{(T - 1)}$.}
+	\item Jeśli $S_C = 0$:
+	\item Przypisz $S_C$ wartość 1 (aby uniknąć dzielenia przez 0).
+	\item Wylicz nową wartość piksla($P_{C_{n}}$) wg. wzoru:\\
+	\centerline{$P_{C_{n}} = \lceil \frac{P_C}{S_C} \rceil * S_C $.}
 \end{enumerate}
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -1235,10 +1306,10 @@ for i in range(height): \newline
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.35\textwidth]{lena_color_globThreshold_result}
-		\includegraphics[width=0.35\textwidth]{lena_color_globThreshold_histogram}
+		\includegraphics[width=0.35\textwidth]{lena_color_localMultiThreshold_result}
+		\includegraphics[width=0.35\textwidth]{lena_color_localMultiThreshold_histogram}
 	\end{center}
-	\caption{Obraz po progowaniu globalnym, histogram barw tego obrazu}
+	\caption{Obraz po progowaniu lokalnym (okno 21x21, progi 4), histogram barw tego obrazu}
 \end{figure}
 
 \begin{figure}[H]
@@ -1251,52 +1322,256 @@ for i in range(height): \newline
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.35\textwidth]{peppers_color_globThreshold_result}
-		\includegraphics[width=0.35\textwidth]{peppers_color_globThreshold_histogram}
+		\includegraphics[width=0.35\textwidth]{peppers_color_localMultiThreshold_result}
+		\includegraphics[width=0.35\textwidth]{peppers_color_localMultiThreshold_histogram}
 	\end{center}
-	\caption{Obraz po progowaniu globalnym, histogram barw tego obrazu}
+\caption{Obraz po progowaniu lokalnym (okno 21x21, progi 4), histogram barw tego obrazu}
 \end{figure}
 
-\subsection*{Kod źródłowy}
+
+%\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Progowanie wielo-progowe lokalne]
+def localMultiThreshold(self, dim=3, bins=4, show=False, plot=False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	low, up = -(int(dim / 2)), (int(dim / 2) + 1)  # wsp. sasiadow
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	# progowanie lokalne
+	for i in range(height):
+		for j in range(width):
+			n = 0
+			r = 0
+			g = 0
+			b = 0
+			currPix = self.im[i, j]
+			maxValue = [0] * 3
+			minValue = [255] * 3
+			for iOff in range(low, up):
+				for jOff in range(low, up):
+					iSafe = i if ((i + iOff) > (height + low)) | ((i + iOff) < 0) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width + low)) | ((j + jOff) < 0) else (j + jOff)
+					currValue = self.im[iSafe, jSafe]
+					for k in range(3):
+						maxValue[k] = max(maxValue[k], currValue[k])
+						minValue[k] = min(minValue[k], currValue[k])
+			scale = [0] * 3
+			for k in range(3):
+				scale[k] = maxValue[k] / (bins - 1)
+				if scale[k] == 0:
+					scale[k] = 1
+			for k in range(3):
+				v = int(round(currPix[k] / scale[k])) * scale[k]
+				currPix[k] = v
+			resultImage[i, j] = currPix
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "localMultiThreshold")
+\end{lstlisting}
+
+\newpage
+
+
+
+
+\section{Progowanie 1-progowe globalne}
+\subsection*{Opis algorytmu}
 \hfill
 \\\\
-\noindent def globalThreshold(self, show = False, plot = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+\indent W progowaniu 1-progowym globalnym wartość progowa jest ustalana globalnie dla każdego kanału z osobna, biorąc pod uwagę wartość każdego piklsla w obrazie. Następnie, tak wyliczona wartość progowa, jest stosowana do nadania każdemu pikslowi nową wartość.
+\begin{enumerate}
+	\item Dla każdego kanału($C$):
+	\item Oblicz wartość progową $T_C$, jako średnią wartość z wszystkich piskli $P_C$ w obrazie.
+	\item Dla każdego piskla($P$):
+	\item Dla każdego kanału($C$):
+	\item Jeśli wartość $P_C$ danego piskla jest $< T_C$:
+	\item przypisz mu wartość $0$.
+	\item W przeciwnym przypadku przypisz mu wartość 255.
+\end{enumerate}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{lena_color}
+		\includegraphics[width=0.35\textwidth]{lena_color_histogram}
+	\end{center}
+	\caption{Obraz wejściowy, histogram barw tego obrazu}
+\end{figure}
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{lena_color_globalSingleThreshold_result}
+		\includegraphics[width=0.35\textwidth]{lena_color_globalSingleThreshold_histogram}
+	\end{center}
+	\caption{Obraz po progowaniu 1-progowym globalnym, histogram barw tego obrazu}
+\end{figure}
 
-\indent for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r, g, b = self.im[i, j] \newline
-\indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{peppers_color}
+		\includegraphics[width=0.35\textwidth]{peppers_color_histogram}
+	\end{center}
+	\caption{Obraz wejściowy, histogram barw tego obrazu}
+\end{figure}
 
-\noindent H = 0 \newline
-n = 0 \newline
-for i in range(height): \newline
-for j in range(width): \newline
-H += tmp[i, j][2] \newline
-n += 1 \newline
-H = H $//$ n \newline
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{peppers_color_globalSingleThreshold_result}
+		\includegraphics[width=0.35\textwidth]{peppers_color_globalSingleThreshold_histogram}
+	\end{center}
+	\caption{Obraz po progowaniu 1-progowym globalnym, histogram barw tego obrazu}
+\end{figure}
 
-\noindent for i in range(height): \newline
-for j in range(width): \newline
-tmp2[i, j] = tmp[i, j] \newline
-tmp2[i, j][2] = 0 if tmp[i, j][2] $<$ H else 1 \newline
+%\subsection*{Kod źródłowy}
 
-\noindent for i in range(height): \newline
-for j in range(width): \newline
-h, s, I = tmp2[i, j] \newline
-resultImage[i, j] = self.HSItoRGB((h, s, I)) \newline
+\begin{lstlisting}[caption=Progowanie 1-progowe globalne]
+def globalSingleThreshold(self, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	# prog globalny
+	globalR = 0
+	globalG = 0
+	globalB = 0
+	nR = 0
+	nG = 0
+	nB = 0
+	for i in range(height):
+		for j in range(width):
+			globalR += self.im[i, j][0]
+			nR += 1
+			globalG += self.im[i, j][1]
+			nG += 1
+			globalB += self.im[i, j][2]
+			nB += 1
+	globalR = int(round(globalR / nR))
+	globalG = int(round(globalG / nG))
+	globalB = int(round(globalB / nB))
+	
+	# kwantzyacja
+	for i in range(height):
+		for j in range(width):
+			resultImage[i, j] = (0 if (self.im[i, j][0] < globalR) else 255, 0 if (self.im[i, j][1] < globalG) else 255, 0 if (self.im[i, j][2] < globalB) else 255)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "globalSingleThreshold")
+\end{lstlisting}
 
-\noindent if show: \newline
-self.show(Image.fromarray(resultImage, "RGB")) \newline
-self.calculate(plot, resultImage) \newline
-self.save(resultImage, self.imName, "globThreshold") \newline
 \newpage
+
+
+
+
+\section{Progowanie wielo-progowe globalne}
+\subsection*{Opis algorytmu}
+\hfill
+\\\\
+\indent W progowaniu wielo-progowym globalnym wartości progowe są ustalane dla każdego kanału z osobna, biorąc pod uwagę wartość każdego piksla w obrazie. Następnie, tak wyliczona wartość progowa, jest stosowana do nadania każdemu pikslowi nowej wartości.
+
+\begin{enumerate}
+	\item Zdefiniuj ilość progów($T$).
+	\item Dla każdego piksla($P$):
+	\item Dla każdego kanału($C$):
+	\item Znajdź $MAX(P_C)$ i $MIN(P_C)$.
+	\item Oblicz skalę($S_C$) wg. wzoru:\\
+	\centerline{$S_C = \frac{MAX(P_C)}{(T - 1)}$.}
+	\item Dla każdego piskla($P$):
+	\item Dla każdego kanału($C$):
+	\item Wylicz nową wartość piksla($P_{C_{n}}$) wg. wzoru:\\
+	\centerline{$P_{C_{n}} = \lceil \frac{P_C}{S_C} \rceil * S_C $.}
+\end{enumerate}
+
+
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{lena_color}
+		\includegraphics[width=0.35\textwidth]{lena_color_histogram}
+	\end{center}
+	\caption{Obraz wejściowy, histogram barw tego obrazu}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{lena_color_globalMultiThreshold_result}
+		\includegraphics[width=0.35\textwidth]{lena_color_globalMultiThreshold_histogram}
+	\end{center}
+	\caption{Obraz po progowaniu wielo-progowym globalnym (progi 4), histogram barw tego obrazu}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{peppers_color}
+		\includegraphics[width=0.35\textwidth]{peppers_color_histogram}
+	\end{center}
+	\caption{Obraz wejściowy, histogram barw tego obrazu}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{peppers_color_globalMultiThreshold_result}
+		\includegraphics[width=0.35\textwidth]{peppers_color_globalMultiThreshold_histogram}
+	\end{center}
+	\caption{Obraz po progowaniu wielo-progowym globalnym (progi 4), histogram barw tego obrazu}
+\end{figure}
+
+
+
+
+%\subsection*{Kod źródłowy}
+\begin{lstlisting}[caption=Progowanie wielo-progowe globalne]
+	
+def globalMultiThreshold(self, bins = 4, show = False, plot = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	maxValue = [0] * 3
+	minValue = [255] * 3
+	# wartosci max i min w obrazie
+	for i in range(height):
+		for j in range(width):
+			currValue = self.im[i, j]
+			for k in range(3):
+				maxValue[k] = max(maxValue[k], currValue[k])
+				minValue[k] = min(minValue[k], currValue[k])
+	
+	scale = [0] * 3
+	for k in range(3):
+	scale[k] = maxValue[k] / (bins - 1)
+	
+	for i in range(height):
+		for j in range(width):
+			pix = self.im[i, j]
+			for k in range(3):
+				pix[k] = int(round(pix[k] / scale[k])) * scale[k]
+			resultImage[i, j] = pix
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.calculate(plot, resultImage)
+	self.save(resultImage, self.imName, "globalMultiThreshold")
+	
+\end{lstlisting}
+
+\newpage
+
+
+
 
 
 \chapter{Operacje morfologiczne na obrazach binarnych}
@@ -1315,7 +1590,7 @@ self.save(resultImage, self.imName, "globThreshold") \newline
 \newpage
 
 
-\section*{1.1 Filtr dolnoprzepustowy uśredniający}
+\section{Filtr dolnoprzepustowy uśredniający}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -1374,72 +1649,89 @@ self.save(resultImage, self.imName, "globThreshold") \newline
 \end{figure}
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def averageGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
 
-mask = np.ones((3, 3)) \newline
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent avg = 0 \newline
-\indent n = 0 \newline
-\indent for iOff in range(-1, 1): \newline
-\indent for jOff in range(-1, 1): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent avg += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1] \newline
-\indent n += mask[iOff + 1, jOff + 1] \newline
-\indent avg = int(round(avg $//$ n)) \newline
-\indent resultImage[i, j] = avg \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "lowpassAvg") \newline
-\newpage
+\begin{lstlisting}[caption=Filtr dolnoprzepustowy uśredniający (obraz szary)]
 
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def averageColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+def averageGray(self, show = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
+	mask = np.ones((3, 3))      
+	
+	# wygladzanie
+	for i in range(height):
+		for j in range(width):
+			avg = 0
+			n = 0
+			for iOff in range(-1, 1):
+				for jOff in range(-1, 1):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					avg += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1]
+					n += mask[iOff + 1, jOff + 1]
+		avg = int(round(avg / n))
+		resultImage[i, j] = avg
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "lowpassAvg")
 
-mask = np.ones((3, 3)) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent avgr = 0 \newline
-\indent avgg = 0 \newline
-\indent avgb = 0 \newline
-\indent n = 0 \newline
-\indent for iOff in range(-1, 1): \newline
-\indent for jOff in range(-1, 1): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent avgr += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1] \newline
-\indent avgg += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1] \newline
-\indent avgb += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] \newline
-\indent n += mask[iOff + 1, jOff + 1] \newline
-\indent avgr = int(round(avgr $//$ n)) \newline
-\indent avgg = int(round(avgg $//$ n)) \newline
-\indent avgb = int(round(avgb $//$ n)) \newline
-\indent resultImage[i, j] = (avgr, avgg, avgb) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "lowpassAvg") \newline
+\end{lstlisting}
 
 \newpage
 
-\section*{1.2 Filtr dolnoprzepustowy Gaussowski}
+
+%\subsection*{Kod źródłowy dla obrazów barwnych}
+
+\begin{lstlisting}[caption=Filtr dolnoprzepustowy uśredniający (obraz barwny)]
+	
+def averageColor(self, show = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+
+	mask = np.ones((3, 3))      
+
+	# wygladzanie
+	for i in range(height):
+		for j in range(width):
+			avgr = 0
+			avgg = 0
+			avgb = 0
+			n = 0
+			for iOff in range(-1, 1):
+				for jOff in range(-1, 1):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					avgr += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
+					avgg += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
+					avgb += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
+					n += mask[iOff + 1, jOff + 1]
+			avgr = int(round(avgr / n))
+			avgg = int(round(avgg / n))
+			avgb = int(round(avgb / n))
+			resultImage[i, j] = (avgr, avgg, avgb)
+			
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "lowpassAvg")
+	
+\end{lstlisting}
+
+\newpage
+
+
+
+\section{Filtr dolnoprzepustowy Gaussowski}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -1502,75 +1794,87 @@ if show: \newline
 \end{figure}
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def gaussGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Filtr dolnoprzepustowy Gaussowski (obraz szary)]
+	
+def gaussGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	mask = np.ones((5, 5))
+	mask[1, 1] = mask[3, 3] = mask[1, 3] = mask[3, 1] = 4
+	mask[1, 2] = mask[3, 2] = 6
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			n = 0
+			value = 0
+			for iOff in range(-2, 3):
+				for jOff in range(-2, 3):
+					iSafe = i if ((i + iOff) > (height - 2)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 2)) else (j + jOff)
+					value += self.im[iSafe, jSafe] * mask[iOff + 2, jOff + 2]
+					n += mask[iOff + 2, jOff + 2]
+			value = int(round(value / n))
+			resultImage[i, j] = value
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "lowpassGauss")
+	
+\end{lstlisting}
 
-mask = np.ones((5, 5)) \newline
-\indent mask[1, 1] = mask[3, 3] = mask[1, 3] = mask[3, 1] = 4 \newline
-\indent mask[1, 2] = mask[3, 2] = 6 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent n = 0 \newline
-\indent value = 0 \newline
-\indent for iOff in range(-2, 3): \newline
-\indent for jOff in range(-2, 3): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 2)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 2)) else (j + jOff) \newline
-\indent value += self.im[iSafe, jSafe] * mask[iOff + 2, jOff + 2] \newline
-\indent n += mask[iOff + 2, jOff + 2] \newline
-\indent value = int(round(value $//$ n)) \newline
-\indent resultImage[i, j] = value \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "lowpassGauss") \newline
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def gaussColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Filtr dolnoprzepustowy Gaussowski (obraz barwny)]
 
-mask = np.ones((5, 5)) \newline
-\indent mask[1, 1] = mask[3, 3] = mask[1, 3] = mask[3, 1] = 4 \newline
-\indent mask[1, 2] = mask[3, 2] = 6 \newline
+def gaussColor(self, show = False):
+	width = self.im.shape[1]    # szereoksc
+	height = self.im.shape[0]   # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	mask = np.ones((5, 5))
+	mask[1, 1] = mask[3, 3] = mask[1, 3] = mask[3, 1] = 4
+	mask[1, 2] = mask[3, 2] = 6
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent n = 0 \newline
-\indent r, g, b = 0, 0, 0 \newline
-\indent for iOff in range(-2, 3): \newline
-\indent for jOff in range(-2, 3): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 2)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 2)) else (j + jOff) \newline
-\indent r += self.im[iSafe, jSafe][0] * mask[iOff + 2, jOff + 2] \newline
-\indent g += self.im[iSafe, jSafe][1] * mask[iOff + 2, jOff + 2] \newline
-\indent b += self.im[iSafe, jSafe][2] * mask[iOff + 2, jOff + 2] \newline
-\indent n += mask[iOff + 2, jOff + 2] \newline
-\indent r = int(round(r $//$ n)) \newline
-\indent g = int(round(g $//$ n)) \newline
-\indent b = int(round(b $//$ n)) \newline
-\indent resultImage[i, j] = (r, g, b) \newline
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			n = 0
+			r, g, b = 0, 0, 0
+			for iOff in range(-2, 3):
+				for jOff in range(-2, 3):
+					iSafe = i if ((i + iOff) > (height - 2)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 2)) else (j + jOff)
+					r += self.im[iSafe, jSafe][0] * mask[iOff + 2, jOff + 2]
+					g += self.im[iSafe, jSafe][1] * mask[iOff + 2, jOff + 2]
+					b += self.im[iSafe, jSafe][2] * mask[iOff + 2, jOff + 2]
+					n += mask[iOff + 2, jOff + 2]
+			r = int(round(r / n))
+			g = int(round(g / n))
+			b = int(round(b / n))
+			resultImage[i, j] = (r, g, b)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "lowpassGauss")
 
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "lowpassGauss") \newline
+\end{lstlisting}
+
 \newpage
 
 
 
-\section*{2.1 Operator Roberts'a}
+\section{Operator Roberts'a}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -1588,10 +1892,9 @@ if show: \newline
 \end{center}
 
 \begin{enumerate}
-	\item Jeśli obraz kolorowy:
-	\item Przejdź do przestrzeni HSI.
 	\item Dla każdego piksla($P$):
-	\item Zsumuj wartości (składowej intensywnościowej dla obrazu barwnego) piksli, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
+	\item Dla każdego kanału($C$):
+	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
@@ -1629,85 +1932,87 @@ if show: \newline
 \end{figure}
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def robertsGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-
-mask = np.zeros((3, 3)) \newline
-\indent mask[2, 1] = 1 \newline
-\indent mask[1, 2] = -1 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent value = 0 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1] \newline
-\indent resultImage[i, j] = abs(value) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "highpassRoberts") \newline
+\begin{lstlisting}[caption=Operator Roberts'a (obraz szary)]
+	
+def robertsGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	mask = np.zeros((3, 3))
+	mask[2, 1] = 1
+	mask[1, 2] = -1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			value = 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1]
+			resultImage[i, j] = abs(value)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "highpassRoberts")
+	
+\end{lstlisting}
 
 
 \newpage
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def robertsColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
+\begin{lstlisting}[caption=Operator Roberts'a (obraz barwny)]
+	
+def robertsColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	mask = np.zeros((3, 3))
+	mask[2, 1] = 1
+	mask[1, 2] = -1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			r, g, b = 0, 0, 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
+					g += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
+					b += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
+			resultImage[i, j] = (abs(r), abs(g), abs(b))
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "highpassRoberts")
+	
+\end{lstlisting}
 
-mask = np.zeros((3, 3)) \newline
-\indent mask[2, 1] = 1 \newline
-\indent mask[1, 2] = -1 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r, g, b = self.im[i, j] \newline
-\indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent I = 0 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) $\mid$ ((i + iOff) $<$ 0) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) $\mid$ ((j + iOff) $<$ 0)else (j + jOff) \newline
-\indent I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255 \newline
-\indent tmp2[i, j] = tmp[i, j] \newline
-\indent tmp2[i, j][2] = abs(I $//$ 255) \newline
-
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent h, s, I = tmp2[i, j] \newline
-\indent resultImage[i, j] = self.HSItoRGB((h, s, I)) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "highpassRoberts") \newline
 \newpage
 
 
-\section*{2.2 Operator Prewitt'a}
+\section{Operator Prewitt'a}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
 \indent Filtr Prewitt'a, podobnie jak filtr Roberts'a, służy do wykrywania krawiędzi i może w wyniku wygenerować wartość ujemną, aby temu zapobiec należy użyc wartości bezwzględnej. Maska Prewitt'a jest rozszerzeniem maski Roberts'a i nie jest tak wrażliwa na szum. Maska:
 
 \begin{center}
+	$\frac{1}{2}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		-1 & 0 & 1\\
@@ -1720,10 +2025,9 @@ if show: \newline
 \end{center}
 
 \begin{enumerate}
-	\item Jeśli obraz kolorowy:
-	\item Przejdź do przestrzeni HSI.
 	\item Dla każdego piksla($P$):
-	\item Zsumuj wartości (składowej intensywnościowej dla obrazu barwnego) piksli, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
+	\item Dla każdego kanału($C$):
+	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
@@ -1761,82 +2065,86 @@ if show: \newline
 \end{figure}
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def prewittGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Operator Prewitt'a (obraz szary)]
+	
+def prewittGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	mask = np.zeros((3, 3))
+	mask[0, 0] = mask[1, 0] = mask[2, 0] = -1
+	mask[0, 2] = mask[1, 2] = mask[2, 2] = 1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			value = 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1]
+			resultImage[i, j] = abs(value / 2)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "highpassPrewitt")
+	
+\end{lstlisting}
 
-mask = np.zeros((3, 3)) \newline
-\indent mask[0, 0] = mask[1, 0] = mask[2, 0] = -1 \newline
-\indent mask[0, 2] = mask[1, 2] = mask[2, 2] = 1 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent value = 0 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1] \newline
-\indent resultImage[i, j] = abs(value) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "highpassPrewitt") \newline
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def prewittColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
+\begin{lstlisting}[caption=Operator Prewitt'a (obraz barwny)]
+	
+def prewittColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	mask = np.zeros((3, 3))
+	mask[0, 0] = mask[1, 0] = mask[2, 0] = -1
+	mask[0, 2] = mask[1, 2] = mask[2, 2] = 1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			r, g, b = 0, 0, 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
+					g += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
+					b += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
+			resultImage[i, j] = (abs(r)/2, abs(g)/2, abs(b)/2)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "highpassPrewitt")
+	
+\end{lstlisting}
 
-mask = np.zeros((3, 3)) \newline
-\indent mask[0, 0] = mask[1, 0] = mask[2, 0] = -1 \newline
-\indent mask[0, 2] = mask[1, 2] = mask[2, 2] = 1 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r, g, b = self.im[i, j] \newline
-\indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent I = 0 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) $\mid$ ((i + iOff) $<$ 0) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) $\mid$ ((j + iOff) $<$ 0)else (j + jOff) \newline
-\indent I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255 \newline
-\indent tmp2[i, j] = tmp[i, j] \newline
-\indent tmp2[i, j][2] = abs(I $//$ 255) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent h, s, l = tmp2[i, j] \newline
-\indent resultImage[i, j] = self.HSItoRGB((h, s, l)) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "highpassPrewitt") \newline
 \newpage
 
-\section*{2.3 Operator Sobel'a}
+\section{Operator Sobel'a}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
 \indent Filtr Prewitt'a, podobnie jak filtr Roberts'a, służy do wykrywania krawiędzi i może w wyniku wygenerować wartość ujemną, aby temu zapobiec należy użyc wartości bezwzględnej. Maska Prewitt'a jest rozszerzeniem maski Roberts'a i nie jest tak wrażliwa na szum. Maska:
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		1 & 2 & 1\\
@@ -1849,10 +2157,9 @@ if show: \newline
 \end{center}
 
 \begin{enumerate}
-	\item Jeśli obraz kolorowy:
-	\item Przejdź do przestrzeni HSI.
 	\item Dla każdego piksla($P$):
-	\item Zsumuj wartości (składowej intensywnościowej dla obrazu barwnego) piksli, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
+	\item Dla każdego kanału($C$):
+	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
@@ -1890,87 +2197,99 @@ if show: \newline
 \end{figure}
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def sobolGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Operator Sobel'a (obraz szary)]
+	
+def sobolGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	mask = np.zeros((3, 3))
+	mask[0, 0] = mask[0, 2] = 1
+	mask[2, 0] = mask[2, 2] = -1
+	mask[0, 1] = 2
+	mask[2, 1] = -2
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			value = 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1]
+			resultImage[i, j] = abs(value / 4)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "highpassSobol")
+	
+\end{lstlisting}
 
-mask = np.zeros((3, 3)) \newline
-\indent mask[0, 0] = mask[0, 2] = 1 \newline
-\indent mask[2, 0] = mask[2, 2] = -1 \newline
-\indent mask[0, 1] = 2 \newline
-\indent mask[2, 1] = -2 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent value = 0 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1] \newline
-\indent resultImage[i, j] = abs(value) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "highpassSobol") \newline
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def sobolColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
+\begin{lstlisting}[caption=Operator Sobel'a (obraz barwny)]
+	
+def sobolColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	mask = np.zeros((3, 3))
+	mask[0, 0] = mask[0, 2] = 1
+	mask[2, 0] = mask[2, 2] = -1
+	mask[0, 1] = 2
+	mask[2, 1] = -2
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			r, g, b = 0, 0, 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
+					g += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
+					b += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
+			r = abs(r) / 2
+			g = abs(g) / 2
+			b = abs(b) / 2
+			if r > 255:
+				r = 255
+			if g > 255:
+				g = 255
+			if b > 255:
+				b = 255
+			resultImage[i, j] = (r, g, b)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "highpassSobol")
+	
+\end{lstlisting}
 
-mask = np.zeros((3, 3)) \newline
-\indent mask[0, 0] = mask[0, 2] = 1 \newline
-\indent mask[2, 0] = mask[2, 2] = -1 \newline
-\indent mask[0, 1] = 2 \newline
-\indent mask[2, 1] = -2 \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r, g, b = self.im[i, j] \newline
-\indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent I = 0 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) $\mid$ ((i + iOff) $<$ 0) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) $\mid$ ((j + iOff) $<$ 0)else (j + jOff) \newline
-\indent I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255 \newline
-\indent tmp2[i, j] = tmp[i, j] \newline
-\indent tmp2[i, j][2] = abs(I $//$ 255) \newline
-
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent h, s, I = tmp2[i, j] \newline
-\indent resultImage[i, j] = self.HSItoRGB((h, s, I)) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "highpassSobol") \newline
 \newpage
 
-\section*{3.1 Filtr kompasowy}
+\section{Filtr kompasowy}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
 \indent Filtr kompasowy polega na splecieniu zbioru 8 masek wzornikowych, gdzie każda z nich jest czuła w innym kierunku. Dla każdego piksla wybierana jest maska o maksymalnej reakcji. Maski Sobel'a:
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		-1 & 0 & 1\\
@@ -1983,6 +2302,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		0 & 1 & 2\\
@@ -1995,6 +2315,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		1 & 2 & 1\\
@@ -2007,6 +2328,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		2 & 1 & 0\\
@@ -2019,6 +2341,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		1 & 0 & -1\\
@@ -2031,6 +2354,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		0 & -1 & -2\\
@@ -2043,6 +2367,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		-1 & -2 & -1\\
@@ -2055,6 +2380,7 @@ if show: \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{4}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		-2 & -1 & 0\\
@@ -2067,12 +2393,12 @@ if show: \newline
 \end{center}
 
 \begin{enumerate}
-	\item Jeśli obraz kolorowy:
-	\item Przejdź do przestrzeni HSI.
 	\item Dla każdego piksla($P$):
+	\item Dla każdego kanału($C$):
 	\item Dla każdej z masek($M$):
-	\item Zsumuj wartości (składowej intensywnościowej dla obrazu barwnego) piksli, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski $M$.
+	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski $M$.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
+	\item Następnie podziel ją przez 4.
 	\item Wybierz największą z wartości, która jest maksymalną reakcją gradientu.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
@@ -2110,177 +2436,185 @@ if show: \newline
 \end{figure}
 
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def compassGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-\indent mask = [0] * 8 \newline
-
-mask[0] = np.zeros((3, 3)) \newline
-\indent mask[0][0, 2] = mask[0][2, 2] = 1 \newline
-\indent mask[0][0, 0] = mask[0][2, 0] = -1 \newline
-\indent mask[0][1, 2] = 2 \newline
-\indent mask[0][1, 0] = -2 \newline
-
-mask[1] = np.zeros((3, 3)) \newline
-\indent mask[1][0, 1] = mask[1][1, 2] = 1 \newline
-\indent mask[1][1, 0] = mask[1][2, 1] = -1 \newline
-\indent mask[1][0, 2] = 2 \newline
-\indent mask[1][2, 0] = -2 \newline
-
-mask[2] = np.zeros((3, 3)) \newline
-\indent mask[2][0, 0] = mask[2][0, 2] = 1 \newline
-\indent mask[2][2, 0] = mask[2][2, 2] = -1 \newline
-\indent mask[2][0, 1] = 2 \newline
-\indent mask[2][2, 1] = -2 \newline
-
-mask[3] = np.zeros((3, 3)) \newline
-\indent mask[3][0, 1] = mask[3][1, 0] = 1 \newline
-\indent mask[3][1, 2] = mask[3][2, 1] = -1 \newline
-\indent \indent \indent mask[3][0, 0] = 2 \newline
-\indent \indent \indent mask[3][2, 2] = -2 \newline
-
-\indent \indent \indent mask[4] = np.zeros((3, 3)) \newline
-\indent \indent \indent mask[4][0, 0] = mask[4][2, 0] = 1 \newline
-\indent \indent \indent mask[4][0, 2] = mask[4][2, 2] = -1 \newline
-\indent \indent \indent mask[4][1, 0] = 2 \newline
-\indent \indent \indent mask[4][1, 2] = -2 \newline
-
-\indent \indent \indent mask[5] = np.zeros((3, 3)) \newline
-\indent \indent \indent mask[5][1, 0] = mask[5][2, 1] = 1 \newline
-\indent \indent \indent mask[5][0, 1] = mask[5][1, 2] = -1 \newline
-\indent \indent \indent mask[5][2, 0] = 2 \newline
-\indent \indent \indent mask[5][0, 2] = -2 \newline
-
-\indent \indent \indent mask[6] = np.zeros((3, 3)) \newline
-\indent \indent \indent mask[6][2, 0] = mask[6][2, 2] = 1 \newline
-\indent \indent \indent mask[6][0, 0] = mask[6][0, 2] = -1 \newline
-\indent \indent \indent mask[6][2, 1] = 2 \newline
-\indent \indent \indent mask[6][0, 1] = -2 \newline
-
-\indent \indent \indent mask[7] = np.zeros((3, 3)) \newline
-\indent \indent \indent mask[7][1, 2] = mask[7][2, 1] = 1 \newline
-\indent \indent \indent mask[7][0, 1] = mask[7][1, 0] = -1 \newline
-\indent \indent \indent mask[7][2, 2] = 2 \newline
-\indent \indent \indent mask[7][0, 0] = -2 \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent value = [0] * 8 \newline
-\indent \indent \indent for iOff in range(-1, 2): \newline
-\indent \indent \indent for jOff in range(-1, 2): \newline
-\indent \indent \indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent \indent \indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent \indent \indent for k in range(8): \newline
-\indent \indent \indent value[k] += self.im[iSafe, jSafe] * mask[k][iOff + 1, jOff + 1] \newline
-
-\indent \indent \indent resultImage[i, j] = max(map(abs, value)) \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "compassSobol") \newline
-
-\newpage
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def compassColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
-\indent mask = [0] * 8 \newline
-
-mask[0] = np.zeros((3, 3)) \newline
-\indent mask[0][0, 2] = mask[0][2, 2] = 1 \newline
-\indent mask[0][0, 0] = mask[0][2, 0] = -1 \newline
-\indent mask[0][1, 2] = 2 \newline
-\indent mask[0][1, 0] = -2 \newline
-
-mask[1] = np.zeros((3, 3)) \newline
-\indent mask[1][0, 1] = mask[1][1, 2] = 1 \newline
-\indent mask[1][1, 0] = mask[1][2, 1] = -1 \newline
-\indent mask[1][0, 2] = 2 \newline
-\indent mask[1][2, 0] = -2 \newline
-
-mask[2] = np.zeros((3, 3)) \newline
-\indent mask[2][0, 0] = mask[2][0, 2] = 1 \newline
-\indent mask[2][2, 0] = mask[2][2, 2] = -1 \newline
-\indent mask[2][0, 1] = 2 \newline
-\indent mask[2][2, 1] = -2 \newline
-
-mask[3] = np.zeros((3, 3)) \newline
-\indent mask[3][0, 1] = mask[3][1, 0] = 1 \newline
-\indent mask[3][1, 2] = mask[3][2, 1] = -1 \newline
-\indent mask[3][0, 0] = 2 \newline
-\indent mask[3][2, 2] = -2 \newline
-
-\indent mask[4] = np.zeros((3, 3)) \newline
-\indent mask[4][0, 0] = mask[4][2, 0] = 1 \newline
-\indent mask[4][0, 2] = mask[4][2, 2] = -1 \newline
-\indent mask[4][1, 0] = 2 \newline
-\indent mask[4][1, 2] = -2 \newline
-
-\indent mask[5] = np.zeros((3, 3)) \newline
-\indent mask[5][1, 0] = mask[5][2, 1] = 1 \newline
-\indent \indent \indent mask[5][0, 1] = mask[5][1, 2] = -1 \newline
-\indent \indent \indent mask[5][2, 0] = 2 \newline
-\indent \indent \indent mask[5][0, 2] = -2 \newline
-
-\indent \indent \indent mask[6] = np.zeros((3, 3)) \newline
-\indent \indent \indent mask[6][2, 0] = mask[6][2, 2] = 1 \newline
-\indent \indent \indent mask[6][0, 0] = mask[6][0, 2] = -1 \newline
-\indent \indent \indent mask[6][2, 1] = 2 \newline
-\indent \indent \indent mask[6][0, 1] = -2 \newline
-
-\indent \indent \indent mask[7] = np.zeros((3, 3)) \newline
-\indent \indent \indent mask[7][1, 2] = mask[7][2, 1] = 1 \newline
-\indent \indent \indent mask[7][0, 1] = mask[7][1, 0] = -1 \newline
-\indent \indent \indent mask[7][2, 2] = 2 \newline
-\indent \indent \indent mask[7][0, 0] = -2 \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent r, g, b = self.im[i, j] \newline
-\indent \indent \indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent I = [0] * 8 \newline
-\indent \indent \indent for iOff in range(-1, 2): \newline
-\indent \indent \indent for jOff in range(-1, 2): \newline
-\indent \indent \indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent \indent \indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent \indent \indent for k in range(8): \newline
-\indent \indent \indent I[k] += tmp[iSafe, jSafe][2] * mask[k][iOff + 1, jOff + 1] \newline
-
-\indent \indent \indent tmp2[i, j] = tmp[i, j] \newline
-\indent \indent \indent tmp2[i, j][2] = max(I) \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent h, s, l = tmp2[i, j] \newline
-\indent \indent \indent resultImage[i, j] = self.HSItoRGB((h, s, l)) \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "compassSobol") \newline
+\begin{lstlisting}[caption=Filtr kompasowy (obraz szary)]
+	
+def compassGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	#maska
+	mask = [0] * 8
+	
+	mask[0] = np.zeros((3, 3))
+	mask[0][0, 2] = mask[0][2, 2] = 1
+	mask[0][0, 0] = mask[0][2, 0] = -1
+	mask[0][1, 2] = 2
+	mask[0][1, 0] = -2
+	
+	mask[1] = np.zeros((3, 3))
+	mask[1][0, 1] = mask[1][1, 2] = 1
+	mask[1][1, 0] = mask[1][2, 1] = -1
+	mask[1][0, 2] = 2
+	mask[1][2, 0] = -2
+	
+	mask[2] = np.zeros((3, 3))
+	mask[2][0, 0] = mask[2][0, 2] = 1
+	mask[2][2, 0] = mask[2][2, 2] = -1
+	mask[2][0, 1] = 2
+	mask[2][2, 1] = -2
+	
+	mask[3] = np.zeros((3, 3))
+	mask[3][0, 1] = mask[3][1, 0] = 1
+	mask[3][1, 2] = mask[3][2, 1] = -1
+	mask[3][0, 0] = 2
+	mask[3][2, 2] = -2
+	
+	mask[4] = np.zeros((3, 3))
+	mask[4][0, 0] = mask[4][2, 0] = 1
+	mask[4][0, 2] = mask[4][2, 2] = -1
+	mask[4][1, 0] = 2
+	mask[4][1, 2] = -2
+	
+	mask[5] = np.zeros((3, 3))
+	mask[5][1, 0] = mask[5][2, 1] = 1
+	mask[5][0, 1] = mask[5][1, 2] = -1
+	mask[5][2, 0] = 2
+	mask[5][0, 2] = -2
+	
+	mask[6] = np.zeros((3, 3))
+	mask[6][2, 0] = mask[6][2, 2] = 1
+	mask[6][0, 0] = mask[6][0, 2] = -1
+	mask[6][2, 1] = 2
+	mask[6][0, 1] = -2
+	
+	mask[7] = np.zeros((3, 3))
+	mask[7][1, 2] = mask[7][2, 1] = 1
+	mask[7][0, 1] = mask[7][1, 0] = -1
+	mask[7][2, 2] = 2
+	mask[7][0, 0] = -2
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			value = [0] * 8
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+						jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+						for k in range(8):
+						value[k] += self.im[iSafe, jSafe] * mask[k][iOff + 1, jOff + 1]
+	
+			resultImage[i, j] = max(map(abs, value)) / 4
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "compassSobol")
+	
+\end{lstlisting}
 
 \newpage
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-\section*{3.2 Gradient wektora kierunkowego}
+\begin{lstlisting}[caption=Filtr kompasowy (obraz barwny)]
+	
+def compassColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	#maska
+	mask = [0] * 8
+	
+	mask[0] = np.zeros((3, 3))
+	mask[0][0, 2] = mask[0][2, 2] = 1
+	mask[0][0, 0] = mask[0][2, 0] = -1
+	mask[0][1, 2] = 2
+	mask[0][1, 0] = -2
+	
+	mask[1] = np.zeros((3, 3))
+	mask[1][0, 1] = mask[1][1, 2] = 1
+	mask[1][1, 0] = mask[1][2, 1] = -1
+	mask[1][0, 2] = 2
+	mask[1][2, 0] = -2
+	
+	mask[2] = np.zeros((3, 3))
+	mask[2][0, 0] = mask[2][0, 2] = 1
+	mask[2][2, 0] = mask[2][2, 2] = -1
+	mask[2][0, 1] = 2
+	mask[2][2, 1] = -2
+	
+	mask[3] = np.zeros((3, 3))
+	mask[3][0, 1] = mask[3][1, 0] = 1
+	mask[3][1, 2] = mask[3][2, 1] = -1
+	mask[3][0, 0] = 2
+	mask[3][2, 2] = -2
+	
+	mask[4] = np.zeros((3, 3))
+	mask[4][0, 0] = mask[4][2, 0] = 1
+	mask[4][0, 2] = mask[4][2, 2] = -1
+	mask[4][1, 0] = 2
+	mask[4][1, 2] = -2
+	
+	mask[5] = np.zeros((3, 3))
+	mask[5][1, 0] = mask[5][2, 1] = 1
+	mask[5][0, 1] = mask[5][1, 2] = -1
+	mask[5][2, 0] = 2
+	mask[5][0, 2] = -2
+	
+	mask[6] = np.zeros((3, 3))
+	mask[6][2, 0] = mask[6][2, 2] = 1
+	mask[6][0, 0] = mask[6][0, 2] = -1
+	mask[6][2, 1] = 2
+	mask[6][0, 1] = -2
+	
+	mask[7] = np.zeros((3, 3))
+	mask[7][1, 2] = mask[7][2, 1] = 1
+	mask[7][0, 1] = mask[7][1, 0] = -1
+	mask[7][2, 2] = 2
+	mask[7][0, 0] = -2
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			r = [0] * 8
+			g = [0] * 8
+			b = [0] * 8
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					for k in range(8):
+						r[k] += self.im[iSafe, jSafe][0] * mask[k][iOff + 1, jOff + 1]
+						g[k] += self.im[iSafe, jSafe][1] * mask[k][iOff + 1, jOff + 1]
+						b[k] += self.im[iSafe, jSafe][2] * mask[k][iOff + 1, jOff + 1]
+	
+			resultImage[i, j] = (max(map(abs, r)) / 4, max(map(abs, g)) / 4, max(map(abs, b)) / 4)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "compassSobol")
+	
+\end{lstlisting}
+
+\newpage
+
+\section{Gradient wektora kierunkowego}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
 \indent Filtr ten służy do wykrywania krawędzi w obrazie. Podobnie jak dla filtru kompasowego, filtr wektora kierunkowego polega na splecieniu 4 masek wzornikowych, gdzie każda z nich jest czuła w innym kierunku, a dla każdego piksla wybierana jest maska o maksymalnej reakcji. Maski Prewitt'a:
 
 \begin{center}
+	$\frac{1}{2}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		-1 & 0 & 1\\
@@ -2288,11 +2622,12 @@ mask[3] = np.zeros((3, 3)) \newline
 		-1 & 0 & 1\\
 		\hline
 		-1 & 0 & 1\\
-		\hline
+		\hline	
 	\end{tabular}
 \end{center}
 
 \begin{center}
+	$\frac{1}{2}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		1 & 1 & 1\\
@@ -2305,6 +2640,7 @@ mask[3] = np.zeros((3, 3)) \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{2}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		1 & 0 & -1\\
@@ -2317,6 +2653,7 @@ mask[3] = np.zeros((3, 3)) \newline
 \end{center}
 
 \begin{center}
+	$\frac{1}{2}$
 	\begin{tabular}{|c|c|c|}
 		\hline
 		-1 & -1 & -1\\
@@ -2327,14 +2664,15 @@ mask[3] = np.zeros((3, 3)) \newline
 		\hline
 	\end{tabular}
 \end{center}
+
 
 \begin{enumerate}
-	\item Jeśli obraz kolorowy:
-	\item Przejdź do przestrzeni HSI.
 	\item Dla każdego piksla($P$):
+	\item Dla każdego kanału($C$):
 	\item Dla każdej z masek($M$):
-	\item Zsumuj wartości (składowej intensywnościowej dla obrazu barwnego) piksli, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski $M$.
+	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski $M$.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
+	\item Następnie podziel ją przez 4.
 	\item Wybierz największą z wartości, która jest maksymalną reakcją gradientu.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
@@ -2372,125 +2710,131 @@ mask[3] = np.zeros((3, 3)) \newline
 \end{figure}
 
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def VDGGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-
-mask = [0] * 4 \newline
-
-mask[0] = np.zeros((3, 3)) \newline
-\indent mask[0][0, 2] = mask[0][2, 2] = 1 \newline
-\indent mask[0][0, 0] = mask[0][2, 0] = -1 \newline
-\indent mask[0][1, 2] = 1 \newline
-\indent mask[0][1, 0] = -1 \newline
-
-mask[1] = np.zeros((3, 3)) \newline
-\indent mask[1][0, 0] = mask[1][0, 2] = 1 \newline
-\indent mask[1][2, 0] = mask[1][2, 2] = -1 \newline
-\indent mask[1][0, 1] = 1 \newline
-\indent mask[1][2, 1] = -1 \newline
-
-mask[2] = np.zeros((3, 3)) \newline
-\indent mask[2][0, 0] = mask[2][2, 0] = 1 \newline
-\indent mask[2][0, 2] = mask[2][2, 2] = -1 \newline
-\indent mask[2][1, 0] = 1 \newline
-\indent mask[2][1, 2] = -1 \newline
-
-mask[3] = np.zeros((3, 3)) \newline
-\indent mask[3][2, 0] = mask[3][2, 2] = 1 \newline
-\indent \indent \indent mask[3][0, 0] = mask[3][0, 2] = -1 \newline
-\indent \indent \indent mask[3][2, 1] = 1 \newline
-\indent \indent \indent mask[3][0, 1] = -1 \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent value = [0] * 4 \newline
-\indent \indent \indent for iOff in range(-1, 2): \newline
-\indent \indent \indent for jOff in range(-1, 2): \newline
-\indent \indent \indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent \indent \indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent \indent \indent for k in range(4): \newline
-\indent \indent \indent value[k] += self.im[iSafe, jSafe] * mask[k][iOff + 1, jOff + 1] \newline
-
-\indent \indent \indent resultImage[i, j] = max(map(abs, value)) $//$ 2 \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "vdgPrewitt") \newline
+\begin{lstlisting}[caption=Gradient wektora kierunkowego (obraz szary)]
+	
+def VDGGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	#maska
+	mask = [0] * 4
+	
+	mask[0] = np.zeros((3, 3))
+	mask[0][0, 2] = mask[0][2, 2] = 1
+	mask[0][0, 0] = mask[0][2, 0] = -1
+	mask[0][1, 2] = 1
+	mask[0][1, 0] = -1
+	
+	mask[1] = np.zeros((3, 3))
+	mask[1][0, 0] = mask[1][0, 2] = 1
+	mask[1][2, 0] = mask[1][2, 2] = -1
+	mask[1][0, 1] = 1
+	mask[1][2, 1] = -1
+	
+	mask[2] = np.zeros((3, 3))
+	mask[2][0, 0] = mask[2][2, 0] = 1
+	mask[2][0, 2] = mask[2][2, 2] = -1
+	mask[2][1, 0] = 1
+	mask[2][1, 2] = -1
+	
+	mask[3] = np.zeros((3, 3))
+	mask[3][2, 0] = mask[3][2, 2] = 1
+	mask[3][0, 0] = mask[3][0, 2] = -1
+	mask[3][2, 1] = 1
+	mask[3][0, 1] = -1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			value = [0] * 4
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+				iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+				jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+				for k in range(4):
+					value[k] += self.im[iSafe, jSafe] * mask[k][iOff + 1, jOff + 1]
+	
+			resultImage[i, j] = max(map(abs, value)) / 2
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "vdgSobol")
+	
+\end{lstlisting}
 
 \newpage
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def VDGColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-\indent tmp = np.empty((height, width, 3)) \newline
-\indent tmp2 = np.empty((height, width, 3)) \newline
+\begin{lstlisting}[caption=Gradient wektora kierunkowego (obraz barwny)]
+	
+def VDGColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
 
-mask = [0] * 4 \newline
+	#maska
+	mask = [0] * 4
+	
+	mask[0] = np.zeros((3, 3))
+	mask[0][0, 2] = mask[0][2, 2] = 1
+	mask[0][0, 0] = mask[0][2, 0] = -1
+	mask[0][1, 2] = 1
+	mask[0][1, 0] = -1
+	
+	mask[1] = np.zeros((3, 3))
+	mask[1][0, 0] = mask[1][0, 2] = 1
+	mask[1][2, 0] = mask[1][2, 2] = -1
+	mask[1][0, 1] = 1
+	mask[1][2, 1] = -1
+	
+	mask[2] = np.zeros((3, 3))
+	mask[2][0, 0] = mask[2][2, 0] = 1
+	mask[2][0, 2] = mask[2][2, 2] = -1
+	mask[2][1, 0] = 1
+	mask[2][1, 2] = -1
+	
+	mask[3] = np.zeros((3, 3))
+	mask[3][2, 0] = mask[3][2, 2] = 1
+	mask[3][0, 0] = mask[3][0, 2] = -1
+	mask[3][2, 1] = 1
+	mask[3][0, 1] = -1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			r = [0] * 4
+			g = [0] * 4
+			b = [0] * 4
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					for k in range(4):
+						r[k] += self.im[iSafe, jSafe][0] * mask[k][iOff + 1, jOff + 1]
+						g[k] += self.im[iSafe, jSafe][1] * mask[k][iOff + 1, jOff + 1]
+						b[k] += self.im[iSafe, jSafe][2] * mask[k][iOff + 1, jOff + 1]
+	
+			resultImage[i, j] = (max(map(abs, r)) / 4, max(map(abs, g)) / 4, max(map(abs, b)) / 4)
+	
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "vdgSobol")
+	
+\end{lstlisting}
 
-mask[0] = np.zeros((3, 3)) \newline
-\indent mask[0][0, 2] = mask[0][2, 2] = 1 \newline
-\indent mask[0][0, 0] = mask[0][2, 0] = -1 \newline
-\indent mask[0][1, 2] = 1 \newline
-\indent mask[0][1, 0] = -1 \newline
-
-mask[1] = np.zeros((3, 3)) \newline
-\indent mask[1][0, 0] = mask[1][0, 2] = 1 \newline
-\indent mask[1][2, 0] = mask[1][2, 2] = -1 \newline
-\indent mask[1][0, 1] = 1 \newline
-\indent mask[1][2, 1] = -1 \newline
-
-mask[2] = np.zeros((3, 3)) \newline
-\indent mask[2][0, 0] = mask[2][2, 0] = 1 \newline
-\indent mask[2][0, 2] = mask[2][2, 2] = -1 \newline
-\indent mask[2][1, 0] = 1 \newline
-\indent mask[2][1, 2] = -1 \newline
-
-mask[3] = np.zeros((3, 3)) \newline
-\indent mask[3][2, 0] = mask[3][2, 2] = 1 \newline
-\indent mask[3][0, 0] = mask[3][0, 2] = -1 \newline
-\indent mask[3][2, 1] = 1 \newline
-\indent mask[3][0, 1] = -1 \newline
-
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r, g, b = self.im[i, j] \newline
-\indent tmp[i, j] = self.RGBtoHSI((r, g, b)) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent \indent \indent I = [0] * 4 \newline
-\indent \indent \indent for iOff in range(-1, 2): \newline
-\indent \indent \indent for jOff in range(-1, 2): \newline
-\indent \indent \indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent \indent \indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent \indent \indent for k in range(4): \newline
-\indent \indent \indent I[k] += tmp[iSafe, jSafe][2] * mask[k][iOff + 1, jOff + 1] \newline
-
-\indent \indent \indent tmp2[i, j] = tmp[i, j] \newline
-\indent \indent \indent tmp2[i, j][2] = max(I) $//$ 2 \newline
-
-\indent \indent \indent for i in range(height): \newline
-\indent \indent \indent for j in range(width): \newline
-\indent \indent \indent h, s, l = tmp2[i, j] \newline
-\indent \indent \indent resultImage[i, j] = self.HSItoRGB((h, s, l)) \newline
-
-\indent \indent \indent if show: \newline
-\indent \indent \indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent \indent \indent self.save(resultImage, self.imName, "vdgPrewitt") \newline
 \newpage
 
-\section*{4. Filtr medianowy}
+\section{Filtr medianowy}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -2538,67 +2882,76 @@ for i in range(height): \newline
 
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def medianGray(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent median = [0] * 9 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent median[3*(1 + iOff) + jOff + 1] = self.im[iSafe, jSafe] \newline
-\indent median.sort() \newline
-\indent u = int(round(len(median)$//$2)) \newline
-\indent resultImage[i, j] = median[u] if ((u*2) $\%$ 2 == 0) else ((median[u - 1] + median[u])$//$2) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "median") \newline
-\newpage
-
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def medianColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r = [0] * 9 \newline
-\indent g = [0] * 9 \newline
-\indent b = [0] * 9 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent r[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][0] \newline
-\indent g[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][1] \newline
-\indent b[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][2] \newline
-\indent r.sort() \newline
-\indent g.sort() \newline
-\indent b.sort() \newline
-\indent ur = int(round(len(r) $//$ 2)) \newline
-\indent ug = int(round(len(g) $//$ 2)) \newline
-\indent ub = int(round(len(b) $//$ 2)) \newline
-\indent resultImage[i, j] = (r[ur] if ((ur*2) $\%$ 2 == 0) else ((r[ur - 1] + r[ur])$//$2), g[ug] if ((ug*2) $\%$ 2 == 0) else ((g[ug - 1] + g[ug])$//$2), b[ub] if ((ub*2) $\%$ 2 == 0) else ((b[ub - 1] + b[ub])$//$2)) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB") \newline)
-\indent self.save(resultImage, self.imName, "median") \newline
+\begin{lstlisting}[caption=Filtr medianowy (obraz szary)]
+	
+def medianGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	for i in range(height):
+		for j in range(width):
+			median = [0] * 9
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					median[3*(1 + iOff) + jOff + 1] = self.im[iSafe, jSafe]
+			median.sort()
+			u = int(round(len(median)/2))
+			resultImage[i, j] = median[u] if ((u*2) % 2 == 0) else ((median[u - 1] + median[u])/2)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "median")
+	
+\end{lstlisting}
 
 \newpage
-\section*{5.1. Filtr maksymalny}
+
+%\subsection*{Kod źródłowy dla obrazów szarych}
+
+\begin{lstlisting}[caption=Filtr medianowy (obraz brawny)]
+	
+def medianColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	for i in range(height):
+		for j in range(width):
+			r = [0] * 9
+			g = [0] * 9
+			b = [0] * 9
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][0]
+					g[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][1]
+					b[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][2]
+			r.sort()
+			g.sort()
+			b.sort()
+			ur = int(round(len(r) / 2))
+			ug = int(round(len(g) / 2))
+			ub = int(round(len(b) / 2))
+			resultImage[i, j] = (r[ur] if ((ur*2) % 2 == 0) else ((r[ur - 1] + r[ur])/2), g[ug] if ((ug*2) % 2 == 0) else ((g[ug - 1] + g[ug])/2), b[ub] if ((ub*2) % 2 == 0) else ((b[ub - 1] + b[ub])/2))
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "median")
+	
+\end{lstlisting}
+
+\newpage
+\section{Filtr maksymalny}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -2646,67 +2999,73 @@ if show: \newline
 
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def maxGray(self, show=False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+%\subsection*{Kod źródłowy dla obrazów szarych}
 
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
+\begin{lstlisting}[caption=Filtr maksymalny (obraz szary)]
+	
+def maxGray(self, show=False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	for i in range(height):
+		for j in range(width):
+			median = [0] * 9
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					median[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe]
+			median.sort()
+			resultImage[i, j] = median[len(median) - 1]
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "max")
+	
+\end{lstlisting}
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent median = [0] * 9 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff) \newline
-\indent median[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe] \newline
-\indent median.sort() \newline
-\indent resultImage[i, j] = median[len(median) - 1] \newline
+\newpage
+%\subsection*{Kod źródłowy dla obrazów barwnych}
 
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "max") \newline
+\begin{lstlisting}[caption=Filtr maksymalny (obraz barwny)]
+	
+def maxColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	for i in range(height):
+		for j in range(width):
+			r = [0] * 9
+			g = [0] * 9
+			b = [0] * 9
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][0]
+					g[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][1]
+					b[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][2]
+			r.sort()
+			g.sort()
+			b.sort()
+			resultImage[i, j] = (r[len(r) - 1], g[len(g) - 1], b[len(b) - 1])
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "max")
+	
+\end{lstlisting}
+
 
 
 \newpage
-\subsection*{Kod źródłowy dla obrazów barwnych}
-\hfill
-\\\\
-\noindent def maxColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r = [0] * 9 \newline
-\indent g = [0] * 9 \newline
-\indent b = [0] * 9 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff) \newline
-\indent r[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][0] \newline
-\indent g[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][1] \newline
-\indent b[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][2] \newline
-\indent r.sort() \newline
-\indent g.sort() \newline
-\indent b.sort() \newline
-\indent resultImage[i, j] = (r[len(r) - 1], g[len(g) - 1], b[len(b) - 1]) \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "max") \newline
-
-
-
-
-\newpage
-\section*{5.2. Filtr minimalny}
+\section{Filtr minimalny}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
@@ -2752,63 +3111,229 @@ if show: \newline
 	\caption{Obraz wejściowy, obraz po filtracji filtrem minimalnym}
 \end{figure}
 
+%\subsection*{Kod źródłowy dla obrazów szarych}
 \newpage
 
-\subsection*{Kod źródłowy dla obrazów szarych}
-\hfill
-\\\\
-\noindent def minGray(self, show=False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
-
-resultImage = np.empty((height, width), dtype=np.uint8) \newline
-
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent median = [0] * 9 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent median[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe] \newline
-\indent median.sort() \newline
-\indent resultImage[i, j] = median[0] \newline
-
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "L")) \newline
-\indent self.save(resultImage, self.imName, "min") \newline
+\begin{lstlisting}[caption=Filtr minimalny (obraz szary)]
+	
+def minGray(self, show=False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	for i in range(height):
+		for j in range(width):
+			median = [0] * 9
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					median[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe]
+			median.sort()
+			resultImage[i, j] = median[0]
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "min")
+	
+\end{lstlisting}
 
 
 \newpage
-\subsection*{Kod źródłowy dla obrazów barwnych}
+%\subsection*{Kod źródłowy dla obrazów barwnych}
+
+\begin{lstlisting}[caption=Filtr minimalny (obraz barwny)]
+	
+def minColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	
+	for i in range(height):
+		for j in range(width):
+			r = [0] * 9
+			g = [0] * 9
+			b = [0] * 9
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][0]
+					g[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][1]
+					b[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][2]
+			r.sort()
+			g.sort()
+			b.sort()
+			resultImage[i, j] = (r[0], g[0], b[0])
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "min")
+	
+\end{lstlisting}
+\newpage
+
+
+
+\section{Filtr płaskorzeźbowy}
+\subsection*{Opis algorytmu}
 \hfill
 \\\\
-\noindent def minColor(self, show = False): \newline
-\indent width = self.im.shape[1] \newline
-\indent height = self.im.shape[0] \newline
+\indent Filtr płaskorzeźbowy swoją nazwę zdobył od efektu jaki generuje jego maska, obrazy przepuszczone przez ten filtr, w efekcie przypominają płaskorzeźbę. Sposób definiowania kierunków jest podobny jak w przypadku kierunkowych filtrów gradientowych. Różnicą jest jedynie wartość środkowa mająca wartość 1. W tym programie została użyta maska Prewitt'a. Maska:
 
-resultImage = np.empty((height, width, 3), dtype=np.uint8) \newline
+\begin{center}
+	$\frac{1}{2}$ 
+	\begin{tabular}{|c|c|c|}
+		\hline
+		-1 & 0 & 1\\
+		\hline
+		-1 & 1 & 1\\
+		\hline
+		-1 & 0 & 1\\
+		\hline
+	\end{tabular}
+\end{center}
 
-for i in range(height): \newline
-\indent for j in range(width): \newline
-\indent r = [0] * 9 \newline
-\indent g = [0] * 9 \newline
-\indent b = [0] * 9 \newline
-\indent for iOff in range(-1, 2): \newline
-\indent for jOff in range(-1, 2): \newline
-\indent iSafe = i if ((i + iOff) $>$ (height - 1)) else (i + iOff) \newline
-\indent jSafe = j if ((j + jOff) $>$ (width - 1)) else (j + jOff) \newline
-\indent r[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][0] \newline
-\indent g[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][1] \newline
-\indent b[3 * (1 + iOff) + jOff + 1] = self.im[iSafe, jSafe][2] \newline
-\indent r.sort() \newline
-\indent g.sort() \newline
-\indent b.sort() \newline
-\indent resultImage[i, j] = (r[0], g[0], b[0]) \newline
+\begin{enumerate}
+	\item Dla każdego piksla($P$):
+	\item Dla każdego kanału($C$):
+	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
+	\item Zastosój wartość bezwzględną na otrzymanej sumie.
+	\item Następnie podziel ją przez 2.
+	\item Jeśli otrzymana wartość jest $> 255$.
+	\item Przypisz jej wartość 255.
+	\item Przypisz nową wartość barwy pikslowi $P$.
+\end{enumerate}
 
-if show: \newline
-\indent self.show(Image.fromarray(resultImage, "RGB")) \newline
-\indent self.save(resultImage, self.imName, "min") \newline
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{gentelman_gray}
+		\includegraphics[width=0.35\textwidth]{gentelman_gray_reliefPrewitt_result}
+	\end{center}
+	\caption{Obraz wejściowy, obraz po filtracji filtrem płaskorzeźbowym}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{pirate_gray}
+		\includegraphics[width=0.35\textwidth]{pirate_gray_reliefPrewitt_result}
+	\end{center}
+	\caption{Obraz wejściowy, obraz po filtracji filtrem płaskorzeźbowym}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{lena_color}
+		\includegraphics[width=0.35\textwidth]{lena_color_reliefPrewitt_result}
+	\end{center}
+	\caption{Obraz wejściowy, obraz po filtracji filtrem płaskorzeźbowym}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{peppers_color}
+		\includegraphics[width=0.35\textwidth]{peppers_color_reliefPrewitt_result}
+	\end{center}
+	\caption{Obraz wejściowy, obraz po filtracji filtrem płaskorzeźbowym}
+\end{figure}
+\newpage
+
+%\subsection*{Kod źródłowy dla obrazów szarych}
+
+\begin{lstlisting}[caption=Filtr płaskorzeźbowy (obraz szary)]
+	
+def reliefGray(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width), dtype=np.uint8)
+	
+	mask = np.zeros((3, 3))
+	mask[0, 0] = mask[1, 0] = mask[2, 0] = -1
+	mask[0, 2] = mask[1, 2] = mask[2, 2] = 1
+	mask[1, 1] = 1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+		value = 0
+		for iOff in range(-1, 2):
+			for jOff in range(-1, 2):
+				iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+				jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+				value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1]
+			value = abs(value) / 2
+			if value > 255:
+				value = 255
+			resultImage[i, j] = value
+	
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "L"))
+	self.save(resultImage, self.imName, "reliefPrewitt")
+	
+\end{lstlisting}
+
+\newpage
+
+%\subsection*{Kod źródłowy dla obrazów barwnych}
+
+\begin{lstlisting}[caption=Filtr płaskorzeźbowy (obraz barwny)]
+	
+def reliefColor(self, show = False):
+	width = self.im.shape[1]  # szereoksc
+	height = self.im.shape[0]  # wysokosc
+	
+	# alokacja pamieci na obraz wynikowy
+	resultImage = np.empty((height, width, 3), dtype=np.uint8)
+	tmp = np.empty((height, width, 3))
+	tmp2 = np.empty((height, width, 3))
+	
+	mask = np.zeros((3, 3))
+	mask[0, 0] = mask[1, 0] = mask[2, 0] = -1
+	mask[0, 2] = mask[1, 2] = mask[2, 2] = 1
+	mask[1, 1] = 1
+	
+	# filtracja
+	for i in range(height):
+		for j in range(width):
+			r, g, b = 0, 0, 0
+			for iOff in range(-1, 2):
+				for jOff in range(-1, 2):
+					iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
+					jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
+					r += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
+					g += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
+					b += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
+			r = abs(r) / 2
+			g = abs(g) / 2
+			b = abs(b) / 2
+			if r > 255:
+				r = 255
+			if g > 255:
+				g = 255
+			if b > 255:
+				b = 255
+			resultImage[i, j] = (r, g, b)
+	
+	if show:
+		self.show(Image.fromarray(resultImage, "RGB"))
+	self.save(resultImage, self.imName, "reliefPrewitt")
+	
+\end{lstlisting}
+
+\newpage
+
+
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@ from os import remove
 import numpy as np
 import matplotlib.pyplot as plt
 import math
-
+import colorsys
 
 # ZADANIE 9
 class Filter:
@@ -539,7 +539,7 @@ class Filter:
         #for i in range(height):
         #    for j in range(width):
         #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
+        #        tmp[i, j] = self.RGBtoHSL((r, g, b))
         #
         ## filtracja
         #for i in range(height):
@@ -558,7 +558,7 @@ class Filter:
         #for i in range(height):
         #    for j in range(width):
         #        h, s, l = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, l))
+        #        resultImage[i, j] = self.HSLtoRGB((h, s, l))
 
 
         # filtracja
@@ -609,7 +609,10 @@ class Filter:
                         iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
                         jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
                         value += self.im[iSafe, jSafe] * mask[iOff + 1, jOff + 1]
-                resultImage[i, j] = abs(value) / 2
+                value = abs(value) / 2
+                if value > 255:
+                    value = 255
+                resultImage[i, j] = value
 
 
         if show:
@@ -639,7 +642,7 @@ class Filter:
         #for i in range(height):
         #    for j in range(width):
         #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
+        #        tmp[i, j] = self.RGBtoHSL((r, g, b))
         #
         #for i in range(height):
         #    for j in range(width):
@@ -655,7 +658,7 @@ class Filter:
         #for i in range(height):
         #    for j in range(width):
         #        h, s, l = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, l))
+        #        resultImage[i, j] = self.HSLtoRGB((h, s, l))
 
 
         # filtracja
@@ -733,7 +736,7 @@ class Filter:
 
         if show:
             self.show(Image.fromarray(resultImage, "L"))
-        self.save(resultImage, self.imName, "vdgPrewitt")
+        self.save(resultImage, self.imName, "vdgSobol")
 
     # punkt 3, gradient 3
     def VDGColor(self, show = False):
@@ -816,7 +819,7 @@ class Filter:
 
         if show:
             self.show(Image.fromarray(resultImage, "RGB"))
-        self.save(resultImage, self.imName, "vdgPrewitt")
+        self.save(resultImage, self.imName, "vdgSobol")
 
     # punkt 4, medianowy
     def medianGray(self, show = False):
@@ -1054,3 +1057,13 @@ class Filter:
         Image.fromarray(image).save(fileName)
         fileName = "img/zad9/"+ name + "_" + task + "_result.png"
         Image.fromarray(image).save(fileName)
+
+    def RGBtoHSL(self, RGB):
+        R, G, B = int(RGB[0]) / 255, int(RGB[1]) / 255, int(RGB[2]) / 255
+        H, L, S = colorsys.rgb_to_hls(R, G, B)
+        return (H, S, L)
+
+    def HSLtoRGB(self, HSL):
+        H, S, L = HSL[0], HSL[1], HSL[2]
+        R, G, B = colorsys.hls_to_rgb(H, L, S)
+        return (round(R * 255), round(G * 255), round(B * 255))
