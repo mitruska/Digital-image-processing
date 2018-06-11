@@ -100,28 +100,7 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "stretchHist")
 
-    # punkt 4, progowanie 1-progowe
-    def monoThresholding(self, threshold = 127, show = False, plot = False):
-        width = self.im.shape[1]    # szereokść
-        height = self.im.shape[0]   # wysokość
-
-        # alokacja pamięci na obraz wynikowy
-        resultImage = np.empty((height, width, 3), dtype=np.uint8)
-
-        # binaryzacja
-        for i in range(height):
-            for j in range(width):
-                r = 0 if (self.im[i, j][0] < threshold) else 255
-                g = 0 if (self.im[i, j][1] < threshold) else 255
-                b = 0 if (self.im[i, j][2] < threshold) else 255
-                resultImage[i, j] = (r, g, b)
-
-        if show:
-            self.show(Image.fromarray(resultImage, "RGB"))
-        self.calculate(plot, resultImage)
-        self.save(resultImage, self.imName, "monoThresh")
-
-    # punkt 7
+    # punkt 4.1
     def globalSingleThreshold(self, show = False, plot = False):
         width = self.im.shape[1]    # szereokść
         height = self.im.shape[0]   # wysokość
@@ -184,7 +163,7 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "globalSingleThreshold")
 
-    #punkt 5, progowanie globalne wielo-progowe
+    #punkt 5.1
     def globalMultiThreshold(self, bins = 4, show = False, plot = False):
         width = self.im.shape[1]    # szereokść
         height = self.im.shape[0]   # wysokość
@@ -220,7 +199,7 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "globalMultiThreshold")
 
-    # punkt 6
+    # punkt 4.2
     def localSingleThreshold(self, dim = 3, show = False, plot = False):
         width = self.im.shape[1]    # szereokść
         height = self.im.shape[0]   # wysokość
@@ -285,6 +264,7 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "localSingleThreshold")
 
+    # punkt 5.2
     def localMultiThreshold(self, dim=3, bins=4, show=False, plot=False):
         width = self.im.shape[1]  # szereokść
         height = self.im.shape[0]  # wysokość
@@ -332,30 +312,10 @@ class HistogramColor:
         self.calculate(plot, resultImage)
         self.save(resultImage, self.imName, "localMultiThreshold")
 
-    def test(self, show=True):
-        width = self.im.shape[1]  # szereokść
-        height = self.im.shape[0]  # wysokość
-
-        # alokacja pamięci na obraz wynikowy
-        resultImage = np.empty((height, width, 3), dtype=np.uint8)
-        tmp = np.empty((height, width, 3))
-        tmp2 = np.empty((height, width, 3))
-
-        for i in range(height):
-            for j in range(width):
-                r, g, b = self.im[i, j]
-                tmp[i, j] = self.RGBtoHSI((r, g, b))
-
-        for i in range(height):
-            for j in range(width):
-                h, s, I = tmp[i, j]
-                resultImage[i, j] = self.HSItoRGB((h, s, I))
-
-        if show:
-            self.show(Image.fromarray(resultImage, "RGB"))
-        self.save(resultImage, self.imName, "test")
 
 
+
+    # metody użytkowe
 
     def plotHistogram(self, bins, values):
         fig = plt.figure()
@@ -402,77 +362,3 @@ class HistogramColor:
         Image.fromarray(image).save(fileName)
         fileName = "img/zad6/"+ name + "_" + task + "_result.png"
         Image.fromarray(image).save(fileName)
-
-    def RGBtoHSI(self, RGB):
-        R , G, B = int(RGB[0]), int(RGB[1]), int(RGB[2])
-        i = R + G + B
-        I = i / (3 * 255)
-        H = S = 0
-        w = 0
-        if (R == G) & (G == B):
-            S = 0
-            H = 0
-        else:
-            r = R / i
-            g = G / i
-            b = B / i
-            w = 0.5 * (r - g + r - b) / math.sqrt((r - g) * (r - g) + (r - b) * (g - b))
-            if w > 1:
-                w = 1
-            if w < - 1:
-                w = -1
-            H = math.acos(w)
-            if B > G:
-                H = 2 * math.pi - H
-            S = 1 - 3 * min(r, g, b)
-        H = H * 180 / math.pi
-        return (H, S, I)
-
-    def HSItoRGB(self, HSI):
-        H, S, I = HSI
-        R = G = B = 0
-        x = I * (1 - S)
-        H = H * math.pi / 180
-        if H < 2 * math.pi / 3:
-            y = I * (1 + (S * math.cos(H)) / math.cos(math.pi / 3 - H))
-            z = 3 * I - (x + y)
-            B = x
-            R = y
-            G = z
-        elif H < 4 * math.pi / 3:
-            y = I * (1 + (S * math.cos(H - 2 * math.pi / 3)) / (math.cos(math.pi / 3 - (H - 2 * math.pi / 3))))
-            z = 3 * I - (x + y)
-            R = x
-            G = y
-            B = z
-        else:
-            y = I * (1 + (S * math.cos(H - 4 * math.pi / 3)) / (math.cos(math.pi / 3 - (H - 4 * math.pi / 3))))
-            z = 3 * I - (x + y)
-            R = z
-            G = x
-            B = y
-        return (int(round(R*255)), int(round(G*255)), int(round(B*255)))
-
-    def RGBtoHSL(self, RGB):
-        R, G, B = int(RGB[0]) / 255, int(RGB[1]) / 255, int(RGB[2]) / 255
-        H, L, S = colorsys.rgb_to_hls(R, G, B)
-        return (H, S, L)
-
-    def HSLtoRGB(self, HSL):
-        H, S, L = HSL[0], HSL[1], HSL[2]
-        R, G, B = colorsys.hls_to_rgb(H, L, S)
-        return (round(R * 255), round(G * 255), round(B * 255))
-
-    def RGBtoIII(self, RGB):
-        R, G, B = int(RGB[0]), int(RGB[1]), int(RGB[2])
-        I = R * 0.34 + G * 0.33 + B * 0.33
-        II = R * 0.07 + G * 0.39 - B * 0.54
-        III = -R * 0.35 + G * 0.51 - B * 0.14
-        return (I, II, III)
-
-    def IIItoRGB(self, iii):
-        I, II, III = iii[0], iii[1], iii[2]
-
-
-
-

@@ -154,30 +154,6 @@ class Filter:
         mask[2, 1] = 1              # [0, 0,-1]
         mask[1, 2] = -1             # [0, 1, 0]
 
-
-        #for i in range(height):
-        #    for j in range(width):
-        #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
-        #
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        I = 0
-        #        for iOff in range(-1, 2):
-        #            for jOff in range(-1, 2):
-        #                iSafe = i if ((i + iOff) > (height - 1)) | ((i + iOff) < 0) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width - 1)) | ((j + iOff) < 0)else (j + jOff)
-        #                I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255
-        #        tmp2[i, j] = tmp[i, j]
-        #        tmp2[i, j][2] = abs(I / 255)
-        #
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        h, s, I = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, I))
-
         # filtracja
         for i in range(height):
             for j in range(width):
@@ -236,30 +212,6 @@ class Filter:
         mask[0, 0] = mask[1, 0] = mask[2, 0] = -1             # [-1, 0, 1]
         mask[0, 2] = mask[1, 2] = mask[2, 2] = 1              # [-1, 0, 1]
 
-
-        #for i in range(height):
-        #    for j in range(width):
-        #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
-        #
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        I = 0
-        #        for iOff in range(-1, 2):
-        #            for jOff in range(-1, 2):
-        #                iSafe = i if ((i + iOff) > (height - 1)) | ((i + iOff) < 0) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width - 1)) | ((j + iOff) < 0)else (j + jOff)
-        #                I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255
-        #        tmp2[i, j] = tmp[i, j]
-        #        tmp2[i, j][2] = abs((I / 255) / 2)
-        #
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        h, s, l = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, l))
-
         # filtracja
         for i in range(height):
             for j in range(width):
@@ -271,7 +223,14 @@ class Filter:
                         r += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
                         g += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
                         b += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
-                resultImage[i, j] = (abs(r)/2, abs(g)/2, abs(b)/2)
+                r, g, b = (abs(r)/2, abs(g)/2, abs(b)/2)
+                if r > 255:
+                    r = 255
+                if g > 255:
+                    g = 255
+                if b > 255:
+                    b = 255
+                resultImage[i, j] = (r, g, b)
 
         if show:
             self.show(Image.fromarray(resultImage, "RGB"))
@@ -319,31 +278,6 @@ class Filter:
         mask[2, 0] = mask[2, 2] = -1             # [-1,-2,-1]
         mask[0, 1] = 2
         mask[2, 1] = -2
-
-
-        #for i in range(height):
-        #    for j in range(width):
-        #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
-        #
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        I = 0
-        #        for iOff in range(-1, 2):
-        #            for jOff in range(-1, 2):
-        #                iSafe = i if ((i + iOff) > (height - 1)) | ((i + iOff) < 0) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width - 1)) | ((j + iOff) < 0)else (j + jOff)
-        #                I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255
-        #        tmp2[i, j] = tmp[i, j]
-        #        tmp2[i, j][2] = abs((I / 255) / 4)
-        #
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        h, s, I = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, I))
-
 
         # filtracja
         for i in range(height):
@@ -535,32 +469,6 @@ class Filter:
         mask[7][2, 2] = 2
         mask[7][0, 0] = -2
 
-
-        #for i in range(height):
-        #    for j in range(width):
-        #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSL((r, g, b))
-        #
-        ## filtracja
-        #for i in range(height):
-        #    for j in range(width):
-        #        I = [0] * 8
-        #        for iOff in range(-1, 2):
-        #            for jOff in range(-1, 2):
-        #                iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
-        #                for k in range(8):
-        #                    I[k] += tmp[iSafe, jSafe][2] * mask[k][iOff + 1, jOff + 1]
-        #
-        #        tmp2[i, j] = tmp[i, j]
-        #        tmp2[i, j][2] = max(I) / 4
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        h, s, l = tmp2[i, j]
-        #        resultImage[i, j] = self.HSLtoRGB((h, s, l))
-
-
         # filtracja
         for i in range(height):
             for j in range(width):
@@ -629,37 +537,10 @@ class Filter:
         tmp = np.empty((height, width, 3))
         tmp2 = np.empty((height, width, 3))
 
-#        mask = np.zeros((3, 3))     # [0, 0, 0]
-#        mask[2, 1] = 1              # [0, 0,-1]
-#        mask[1, 2] = -1             # [0, 1, 0]
-#        mask[1, 1] = 1
-
         mask = np.zeros((3, 3))                               # [-1, 0, 1]
         mask[0, 0] = mask[1, 0] = mask[2, 0] = -1             # [-1, 1, 1]
         mask[0, 2] = mask[1, 2] = mask[2, 2] = 1              # [-1, 0, 1]
         mask[1, 1] = 1
-
-        #for i in range(height):
-        #    for j in range(width):
-        #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSL((r, g, b))
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        I = 0
-        #        for iOff in range(-1, 2):
-        #            for jOff in range(-1, 2):
-        #                iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
-        #                I += tmp[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1] * 255
-        #        tmp2[i, j] = tmp[i, j]
-        #        tmp2[i, j][2] = abs((I / 255) / 2)
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        h, s, l = tmp2[i, j]
-        #        resultImage[i, j] = self.HSLtoRGB((h, s, l))
-
 
         # filtracja
         for i in range(height):
@@ -774,31 +655,6 @@ class Filter:
         mask[3][2, 1] = 1
         mask[3][0, 1] = -1
 
-
-        #for i in range(height):
-        #    for j in range(width):
-        #        r, g, b = self.im[i, j]
-        #        tmp[i, j] = self.RGBtoHSI((r, g, b))
-        #
-        ## filtracja
-        #for i in range(height):
-        #    for j in range(width):
-        #        I = [0] * 4
-        #        for iOff in range(-1, 2):
-        #            for jOff in range(-1, 2):
-        #                iSafe = i if ((i + iOff) > (height - 1)) else (i + iOff)
-        #                jSafe = j if ((j + jOff) > (width - 1)) else (j + jOff)
-        #                for k in range(4):
-        #                    I[k] += tmp[iSafe, jSafe][2] * mask[k][iOff + 1, jOff + 1]
-        #
-        #        tmp2[i, j] = tmp[i, j]
-        #        tmp2[i, j][2] = max(I) / 2
-        #
-        #for i in range(height):
-        #    for j in range(width):
-        #        h, s, l = tmp2[i, j]
-        #        resultImage[i, j] = self.HSItoRGB((h, s, l))
-
         # filtracja
         for i in range(height):
             for j in range(width):
@@ -900,7 +756,7 @@ class Filter:
             self.show(Image.fromarray(resultImage, "L"))
         self.save(resultImage, self.imName, "max")
 
-    # punkt 4, maksymalny
+    # punkt 5, maksymalny
     def maxColor(self, show = False):
         width = self.im.shape[1]  # szereokść
         height = self.im.shape[0]  # wysokość
@@ -952,7 +808,7 @@ class Filter:
             self.show(Image.fromarray(resultImage, "L"))
         self.save(resultImage, self.imName, "min")
 
-    # punkt 4, minimalny
+    # punkt 5, minimalny
     def minColor(self, show = False):
         width = self.im.shape[1]  # szereokść
         height = self.im.shape[0]  # wysokość
@@ -985,55 +841,8 @@ class Filter:
 
 
 
-    def RGBtoHSI(self, RGB):
-        R , G, B = int(RGB[0]), int(RGB[1]), int(RGB[2])
-        i = R + G + B
-        I = i / (3 * 255)
-        H = S = 0
-        w = 0
-        if (R == G) & (G == B):
-            S = 0
-            H = 0
-        else:
-            r = R / i
-            g = G / i
-            b = B / i
-            w = 0.5 * (r - g + r - b) / math.sqrt((r - g) * (r - g) + (r - b) * (g - b))
-            if w > 1:
-                w = 1
-            if w < - 1:
-                w = -1
-            H = math.acos(w)
-            if B > G:
-                H = 2 * math.pi - H
-            S = 1 - 3 * min(r, g, b)
-        H = H * 180 / math.pi
-        return (H, S, I)
 
-    def HSItoRGB(self, HSI):
-        H, S, I = HSI
-        R = G = B = 0
-        x = I * (1 - S)
-        H = H * math.pi / 180
-        if H < 2 * math.pi / 3:
-            y = I * (1 + (S * math.cos(H)) / math.cos(math.pi / 3 - H))
-            z = 3 * I - (x + y)
-            B = x
-            R = y
-            G = z
-        elif H < 4 * math.pi / 3:
-            y = I * (1 + (S * math.cos(H - 2 * math.pi / 3)) / (math.cos(math.pi / 3 - (H - 2 * math.pi / 3))))
-            z = 3 * I - (x + y)
-            R = x
-            G = y
-            B = z
-        else:
-            y = I * (1 + (S * math.cos(H - 4 * math.pi / 3)) / (math.cos(math.pi / 3 - (H - 4 * math.pi / 3))))
-            z = 3 * I - (x + y)
-            R = z
-            G = x
-            B = y
-        return (int(round(R*255)), int(round(G*255)), int(round(B*255)))
+    # metody użytkowe
 
     def load(self, imagePath):
         self.imName = self.getName(imagePath)
@@ -1057,13 +866,3 @@ class Filter:
         Image.fromarray(image).save(fileName)
         fileName = "img/zad9/"+ name + "_" + task + "_result.png"
         Image.fromarray(image).save(fileName)
-
-    def RGBtoHSL(self, RGB):
-        R, G, B = int(RGB[0]) / 255, int(RGB[1]) / 255, int(RGB[2]) / 255
-        H, L, S = colorsys.rgb_to_hls(R, G, B)
-        return (H, S, L)
-
-    def HSLtoRGB(self, HSL):
-        H, S, L = HSL[0], HSL[1], HSL[2]
-        R, G, B = colorsys.hls_to_rgb(H, L, S)
-        return (round(R * 255), round(G * 255), round(B * 255))

@@ -225,6 +225,9 @@ class Unification:
 
 
 
+
+    # metody użytkowe
+
     def load(self, image1Path, image2Path):
         self.im1Name = self.getName(image1Path)
         self.im2Name = self.getName(image2Path)
@@ -249,13 +252,3 @@ class Unification:
         Image.fromarray(image).save(fileName)
         fileName = "img/zad1/" + name + "_" + task + "_result.png"
         Image.fromarray(image).save(fileName)
-
-
-
-#def grayscale(self):
-#    for i in range(0, self.height):
-#        for j in range(0, self.width):
-#            r, g, b = self.pix[i, j]
-#            gray = int(round(0.21 * r + 0.71 * g + 0.07 * b / 3))
-#            self.pix[i, j] = (gray, gray, gray)
-
