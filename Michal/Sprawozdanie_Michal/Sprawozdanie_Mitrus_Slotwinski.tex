@@ -150,15 +150,14 @@ Laboratoria oh oh...~\cite{BookMok} %przynajmniej jedna cytacja dla kompilatora 
 
 
 \chapter{Operacje ujednolicania obrazów}
+Operacja ujednolicania obrazów dzieli się na dwa etapy. Pierwszym jest ujednolicenie geometryczne, drugim zaś ujednolicenie rozdzielczościowe. W tym programie ujednolicane są dwa obrazy rastrowe w taki sopsób, że mniejszy doprowadzany jest do większego, przez co generowany jest nowy obraz o większe liczbie piksli niż początkowo. Taki sposób ujednolicania nie powoduje widocznego spadku jakości.
 \newpage
 
 \section{Ujednolicenie obrazów szarych geometryczne}
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent Operacja ujednolicania obrazów dzieli się na dwa etapy. Pierwszym jest ujednolicenie geometryczne, drugim zaś ujednolicenie rozdzielczościowe.
-
-Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu obrazów do takiej samej liczby wierszy piksli w każdym obrazie i takiej samej liczby kolumn piksli w każdym obrazie.
+\indent Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu obrazów do takiej samej liczby wierszy piksli w każdym obrazie i takiej samej liczby kolumn piksli w każdym obrazie.
 \begin{enumerate}
 	\item Wybierz największą wysokość i największą szerokość z dwuch obrazów.\\
 	\item Jeśli dany obraz ma mniejszą szerokość albo wysokość, wypełnij różnicę pikslami o wartości 1 (aby uniknąć dzielenia przez 0).
@@ -178,6 +177,22 @@ Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu ob
 		\includegraphics[width=0.4\textwidth]{pirate_gray_unificationGeo_result}
 	\end{center}
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{clock_gray}
+		\includegraphics[width=0.4\textwidth]{boat_gray}
+	\end{center}
+	\caption{Obrazy wejściowe (od lewej): obraz 3 (256x256), obraz 4 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{clock_gray_unificationGeo_result}
+		\includegraphics[width=0.4\textwidth]{boat_gray_unificationGeo_result}
+	\end{center}
+	\caption{Obrazy wyjściowe (od lewej): obraz 3 (512x512), obraz 4 (512x512)}
 \end{figure}
 
 %\subsection*{Kod źródłowy}
@@ -245,10 +260,8 @@ def geometricGray(self, show = False):
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent 
-Operacja ujednolicania obrazów dzieli się na dwa etapy. Pierwszym jest ujednolicenie geometryczne, drugim zaś ujednolicenie rozdzielczościowe.
+\indent Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu geometrycznym i polega na wypełnieniu obrazu pikslami, a brakujące piksle powinny być zinterpolowane.
 
-Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu geometrycznym i polega na wypełnieniu obrazu pikslami, a brakujące piksle powinny być zinterpolowane.
 \begin{enumerate}
 	\item Wypełnij cały obraz pikslami o znanej wartości zachowując pewien odstęp między nimi.
 	\item Każdemu pikslowi o nieznanej wartości przypisz zinterpolowaną wartość znanych piksli z jego bezpośredniego otoczenia.
@@ -268,6 +281,22 @@ Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu
 		\includegraphics[width=0.35\textwidth]{pirate_gray_unificationRas_result}
 	\end{center}
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{clock_gray_unificationGeo_result}
+		\includegraphics[width=0.35\textwidth]{boat_gray_unificationGeo_result}
+	\end{center}
+	\caption{Obrazy wejściowe (od lewej): obraz 3 (512x512), obraz 4 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{clock_gray_unificationRas_result}
+		\includegraphics[width=0.35\textwidth]{boat_gray_unificationRas_result}
+	\end{center}
+	\caption{Obrazy wyjściowe (od lewej): obraz 3 (512x512), obraz 4 (512x512)}
 \end{figure}
 
 %\subsection*{Kod źródłowy}
@@ -341,10 +370,8 @@ def rasterGray(self, show = False):
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent 
-Operacja ujednolicania obrazów dzieli się na dwa etapy. Pierwszym jest ujednolicenie geometryczne, drugim zaś ujednolicenie rozdzielczościowe.
+\indent Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu obrazów do takiej samej liczby wierszy piksli w każdym obrazie i takiej samej liczby kolumn piksli w każdym obrazie.
 
-Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu obrazów do takiej samej liczby wierszy piksli w każdym obrazie i takiej samej liczby kolumn piksli w każdym obrazie.
 \begin{enumerate}
 	\item Wybierz największą wysokość i największą szerokość z dwuch obrazów.
 	\item Jeśli dany obraz ma mniejszą szerokość albo wysokość, wypełnij różnicę pikslami o wartości 1 dla każdego z kanałów R, G i B (aby uniknąć dzielenia przez 0).
@@ -364,6 +391,22 @@ Operacja geometrycznego ujednolicenia obrazów polega na doprowadzeniu obydwu ob
 		\includegraphics[width=0.4\textwidth]{peppers_color_unificationGeo_result}
 	\end{center}
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{candy_color}
+		\includegraphics[width=0.4\textwidth]{mandrill_color}
+	\end{center}
+	\caption{Obrazy wejściowe (od lewej): obraz 3 (256x256), obraz 4 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{candy_color_unificationGeo_result}
+		\includegraphics[width=0.4\textwidth]{mandrill_color_unificationGeo_result}
+	\end{center}
+	\caption{Obrazy wyjściowe (od lewej): obraz 3 (512x512), obraz 4 (512x512)}
 \end{figure}
 
 %\subsection*{Kod źródłowy}
@@ -429,10 +472,8 @@ def geometricColor(self, show = False):
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent 
-Operacja ujednolicania obrazów dzieli się na dwa etapy. Pierwszym jest ujednolicenie geometryczne, drugim zaś ujednolicenie rozdzielczościowe.
+\indent Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu geometrycznym i polega na wypełnieniu obrazu pikslami, a brakujące piksle powinny być zinterpolowane.
 
-Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu geometrycznym i polega na wypełnieniu obrazu pikslami, a brakujące piksle powinny być zinterpolowane.
 \begin{enumerate}
 	\item Wypełnij cały obraz pikslami o znanej wartości zachowując pewien odstęp między nimi.
 	\item Każdemu pikslowi o nieznanej wartości przypisz zinterpolowaną wartość (dla każdego z kanałów R, G, B) znanych piksli z jego bezpośredniego otoczenia.
@@ -452,6 +493,22 @@ Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu
 		\includegraphics[width=0.4\textwidth]{peppers_color_unificationRas_result}
 	\end{center}
 	\caption{Obrazy wyjściowe (od lewej): obraz 1 (512x512), obraz 2 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{candy_color_unificationGeo_result}
+		\includegraphics[width=0.4\textwidth]{mandrill_color_unificationGeo_result}
+	\end{center}
+	\caption{Obrazy wejściowe (od lewej): obraz 3 (512x512), obraz 4 (512x512)}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{candy_color_unificationRas_result}
+		\includegraphics[width=0.4\textwidth]{mandrill_color_unificationRas_result}
+	\end{center}
+	\caption{Obrazy wyjściowe (od lewej): obraz 3 (512x512), obraz 4 (512x512)}
 \end{figure}
 
 %\subsection*{Kod źródłowy}
@@ -551,7 +608,11 @@ def rasterColor(self, show = False):
 6. kopiowanie fragmentów obrazów
 
 \chapter{Operacje na histogramie obrazu szarego}
-\pagebreak
+Histogram to najprostszy opis całościowy obrazu. Dlatego stosuje się go, by rozpoznać, jakie dalsze metody i operacje należy zastosować na przetwarzanym obrazie, by osiągnać założony cel. Jego obliczenie polega na odczytaniu szarości każdego piksla i rejestrowaniu jej wystąpienia o danym poziomie.\\
+Histogram to funkcja przypisująca każdemu poziomowi szarości obrazu, liczbę piksli z danym poziomem szarości, czyli jest to wykres częstości występowania wartości piksli w obrazie.
+\newpage
+
+
 \section{Obliczanie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
@@ -812,7 +873,7 @@ def stretch(self, show = False, plot = False):
 		\includegraphics[width=0.37\textwidth]{gentelman_gray_locThreshold_result}
 		\includegraphics[width=0.37\textwidth]{gentelman_gray_locThreshold_histogram}
 	\end{center}
-	\caption{Obraz po progowaniu z parametrem 20, histogram szarości tego obrazu}
+	\caption{Obraz po progowaniu z parametrem 21, histogram szarości tego obrazu}
 \end{figure}
 
 \begin{figure}[H]
@@ -828,7 +889,7 @@ def stretch(self, show = False, plot = False):
 		\includegraphics[width=0.4\textwidth]{pirate_gray_locThreshold_result}
 		\includegraphics[width=0.4\textwidth]{pirate_gray_locThreshold_histogram}
 	\end{center}
-	\caption{Obraz po progowaniu z parametrem 20, histogram szarości tego obrazu}
+	\caption{Obraz po progowaniu z parametrem 21, histogram szarości tego obrazu}
 \end{figure}
 
 %\subsection*{Kod źródłowy}
@@ -873,7 +934,7 @@ def localThreshold(self, dim = 3, show = False, plot = False):
 \subsection*{Opis algorytmu}
 \hfill
 \\\\
-\indent Progowanie globalne jest jedną z metod binaryzacji obrazu. Wartość progowa jest ustalana globalnie biorąc pod uwagę wartość każdego piklsla w obrazie, po czym stosując wyliczony próg aby nadać nową wartość każdemu poikslowi obraz w wyniku jest binarny.
+\indent Progowanie globalne jest jedną z metod binaryzacji obrazu. Wartość progowa jest ustalana globalnie biorąc pod uwagę wartość każdego piklsla w obrazie, po czym stosując wyliczony próg aby nadać nową wartość każdemu poikslowi. Obraz w wyniku jest binarny.
 \begin{enumerate}
 	\item Oblicz wartość progową $T$, jako średnią wartość z wszystkich piskli w obrazie
 	\item Dla każdego piskla:
@@ -895,7 +956,7 @@ def localThreshold(self, dim = 3, show = False, plot = False):
 		\includegraphics[width=0.4\textwidth]{gentelman_gray_globThreshold_result}
 		\includegraphics[width=0.4\textwidth]{gentelman_gray_globThreshold_histogram}
 	\end{center}
-	\caption{Obraz po progowaniu z parametrem 20, histogram szarości tego obrazu}
+	\caption{Obraz po progowaniu globalnym, histogram szarości tego obrazu}
 \end{figure}
 
 \begin{figure}[H]
@@ -911,7 +972,7 @@ def localThreshold(self, dim = 3, show = False, plot = False):
 		\includegraphics[width=0.4\textwidth]{pirate_gray_globThreshold_result}
 		\includegraphics[width=0.4\textwidth]{pirate_gray_globThreshold_histogram}
 	\end{center}
-	\caption{Obraz po progowaniu z parametrem 20, histogram szarości tego obrazu}
+	\caption{Obraz po progowaniu globalnym, histogram szarości tego obrazu}
 \end{figure}
 
 %\subsection*{Kod źródłowy}
@@ -950,7 +1011,10 @@ def globalThreshold(self, show = False, plot = False):
 
 
 \chapter{Operacje na histogramie obrazu barwowego}
-\pagebreak
+Histogram to najprostszy opis całościowy obrazu. Dlatego stosuje się go, by rozpoznać, jakie dalsze metody i operacje należy zastosować na przetwarzanym obrazie, by osiągnać założony cel. Jego obliczenie polega na odczytaniu barwy każdego piksla i rejestrowaniu jej wystąpienia o danym poziomie.\\
+Histogram to funkcja przypisująca każdemu poziomowi barwy obrazu, liczbę piksli z danym poziomem barwy, czyli jest to wykres częstości występowania wartości piksli w obrazie.
+\newpage
+
 \section{Obliczanie histogramu}
 \subsection*{Opis algorytmu}
 \hfill
@@ -1587,6 +1651,28 @@ def globalMultiThreshold(self, bins = 4, show = False, plot = False):
 4. zamknięcie
 
 \chapter {Filtrowanie liniowe i nieliniowe}
+Filtrowanie obrazów oznacza, że do obliczenia nowej wartości danego piksela brane są pod uwagę wartości pikseli z jego otoczenia. Każdy punkt z otoczenia wnosi swój wkład (wagę) podczas przeprowadzania końcowych obliczeń. Wagi te są zapisywane w postaci maski. Najczęściej spotykane rozmiary filtrów to maski o rozmiarach 3x3, 5x5. Ale filtry o rozmiarach 7x7, 9x9 również są nierzadko używane. Filtrowanie odbywa się w ten sposób, że maskę przemieszcza się w obrębie obrazu z krokiem równym odległości międzypikslowej. Poniżej przykład dla maski o wymiarach 3x3:
+
+\begin{center}
+	\begin{tabular}{ c c c }
+		$f_{-1,-1}$ & $f_{0,-1}$ & $f_{1,-1}$ \\
+		$f_{-1, 0}$ & $f_{0, 0}$ & $f_{1, 0}$ \\
+		$f_{-1, 1}$ & $f_{0, 1}$ & $f_{1, 1}$    
+	\end{tabular}
+\end{center}
+
+By obliczyć nową wartość piksla należy wpierw obliczyć sumę ważoną składowych punktu oraz wszystkich sąsiadujących punktów zgodnie z wagami wskazanymi przez maskę.
+
+\begin{center}
+	$s = f_{-1,-1} * a_{i-1,j-1} + f_{0,-1} * a_{i,j-1} + f_{1,-1} * a_{i+1,j-1} + f_{-1,0} * a_{i-1,j} + f_{0,0} * a_{i,j} + f_{1,0} * a_{i+1,j} + f_{-1,1} * a_{i-1,j+1} + f_{0,1} * a_{i,j+1} + f_{1,1} * a_{i+1,j+1}$
+\end{center}
+
+Otrzymaną sumę dzielimy przez sumę wszystkich wag maski, jeżeli jest ona różna od 0.
+
+\begin{center}
+	$a'_{i,j} = \frac{s}{f_{-1,-1} + f_{0,-1} + f_{1,-1} + f_{-1,0} + f_{0,0} + f_{1,0} + f_{-1,1} + f_{0,1} + f_{1,1}}$
+\end{center}
+
 \newpage
 
 
@@ -2029,6 +2115,9 @@ def robertsColor(self, show = False):
 	\item Dla każdego kanału($C$):
 	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
+	\item Następnie podziel ją przez 2.
+	\item Jeśli otrzymany wynik jest $> 255$.
+	\item Przypisz mu wartość 255.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
 
@@ -2127,7 +2216,14 @@ def prewittColor(self, show = False):
 					r += self.im[iSafe, jSafe][0] * mask[iOff + 1, jOff + 1]
 					g += self.im[iSafe, jSafe][1] * mask[iOff + 1, jOff + 1]
 					b += self.im[iSafe, jSafe][2] * mask[iOff + 1, jOff + 1]
-			resultImage[i, j] = (abs(r)/2, abs(g)/2, abs(b)/2)
+			r, g, b = (abs(r)/2, abs(g)/2, abs(b)/2)
+			if r > 255:
+				r = 255
+			if g > 255:
+				g = 255
+			if b > 255:
+				b = 255
+			resultImage[i, j] = (r, g, b)
 	
 	if show:
 		self.show(Image.fromarray(resultImage, "RGB"))
@@ -2161,6 +2257,9 @@ def prewittColor(self, show = False):
 	\item Dla każdego kanału($C$):
 	\item Zsumuj wartości piksli $P_C$, otaczających piksel $P$ pomnożonych przez odpowiednią wagę maski.
 	\item Zastosój wartość bezwzględną na otrzymanej sumie.
+	\item Następnie podziel ją przez 4.
+	\item Jeśli otrzymana wartość jest $> 255$.
+	\item Przypisz jej wartość 255.
 	\item Przypisz nową wartość barwy pikslowi $P$.
 \end{enumerate}
 
