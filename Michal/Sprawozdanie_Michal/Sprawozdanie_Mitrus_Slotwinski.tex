@@ -144,6 +144,56 @@ Laboratoria oh oh...~\cite{BookMok} %przynajmniej jedna cytacja dla kompilatora 
 
 
 \section {Specyfikacja wykorzystanego fortmatu obrazu}
+\textbf{Tagged Imange File Format} (\textbf{TIFF} or \textbf{TIF}) jest formatem pliku komputerowego do przechowywania obrazów grafiki rastrowej(oraz osadzania elementów grafiki wektorowej). Jest rastrowym formatem uniwersalnym, tzn. może być zapisany w trybie kolorów:
+\begin{itemize}
+	\item CMYK
+	\item YCbCr
+	\item CIELab
+	\item RGB
+	\item skala szarości
+	\item kolor opary na indeksowaniu
+	\item kolor oparty na bitmapie z dowolną głębokością bitową
+\end{itemize}
+Również można dobrać dowolną rozdzielczość z opcją kanału przezroczystości alfa lub bez.
+Format TIFF wiele algorytmów kompresji bezstratnej:
+\begin{itemize}
+	\item PackBits
+	\item LZW (Lempel-Ziv-Welch)
+	\item CCITT Fax group 3 \& 4
+\end{itemize}
+Plik TIFF podzielony jest na trzy części:
+\begin{enumerate}
+	\item nagłówek pliku obrazowego ( Image File Header, IFH)
+	\item katalog pliku obrazowego (Image File Directory, IFD)
+	\item część danych obrazu
+\end{enumerate}
+Plik TIFF może zawierać wiele obrazów. Nagłówek pliku składa się
+z ośmiu bajtów. Jak sama nazwa wskazuje, format TIFF używa struktur danych noszących nazwę Tag, definiujących cechy zawartych w nim obrazów. Np. dla obrazu 320x240 piksli, szerokość była by oznaczona tag'iem "width", a wysokość "height", po którym następuje liczba 320 lub 240.
+Poniżej znajdują się trzy możliwe formy wewnętrznej struktury danych pliku TIFF(zawierającej trzy obrazy).
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		header & header & header\\
+		\hline
+		IFD 0 & IFD 0 & Image 0\\
+		\hline
+		IFD 1 & Image 0 & Image 1\\
+		\hline
+		IFD n & IFD 1 & Image 2\\
+		\hline
+		Image 0 & Image 1 & IFD 0\\
+		\hline
+		Image 1 & IFD 2 & IFD 1\\
+		\hline
+		Image n & Image 2 & IFD 2\\
+		\hline
+	\end{tabular}
+\end{center}
+W każdym przykładzie nagłówek pojawia się na początku.
+W pierwszym przykładzie katalog(IFD) jest zapisany na początku jeden za drugim, taki sposób pozwala na szybki odczyt danych.\\
+W drugim przykładzie po każdym katalogu(IFD) są dane bitmapowe, co jest najczęściej spotykanym rozowiązaniem przy plikach z wieloma obrazami.\\
+W ostatnim przykładzie najpierw są zapisane dane bitmapowe, a następnie katalogi(IFD).\\
+Aby sprawdzić, czy obraz jest zapisany w formacie TIFF wystarczy odczytać z nagłówka pierwsze 4 bajty, jeśli mają wartość 49h 49h 00h 2Ah lub 4Dh 4Dh 00h 2Ah, to jest to plik TIFF.
 
 \section {Intstrukcja obsługi programu}
 
@@ -263,8 +313,8 @@ def geometricGray(self, show = False):
 \indent Operacja rozdzielczościowego ujednolicenia obrazów następuje po ujednoliceniu geometrycznym i polega na wypełnieniu obrazu pikslami, a brakujące piksle powinny być zinterpolowane.
 
 \begin{enumerate}
-	\item Wypełnij cały obraz pikslami o znanej wartości zachowując pewien odstęp między nimi.
-	\item Każdemu pikslowi o nieznanej wartości przypisz zinterpolowaną wartość znanych piksli z jego bezpośredniego otoczenia.
+	\item Wypełnij cały obraz pikslami o znanej wartości zachowując pewien odstęp między nimi, gdzie odstępem będą piksle o wartości 0.
+	\item Każdemu pikslowi o nieznanej wartości przypisz średnią wartość znanych ($> 0$) piksli z jego bezpośredniego otoczenia.
 \end{enumerate}
 
 \begin{figure}[H]

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.2.24)  11 JUN 2018 20:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.2.24)  11 JUN 2018 22:58
 entering extended mode
 **./Sprawozdanie_Mitrus_Slotwinski.tex
 (Sprawozdanie_Mitrus_Slotwinski.tex
@@ -820,99 +820,109 @@ LaTeX Font Info:    External font `plex10' loaded for size
 
  [6]
 Rozdzia\PlPrIeC {\l } 1.
-[7
+
+Underfull \hbox (badness 1043) in paragraph at lines 147--148
+[] |\OT4/cmr/bx/n/17.28 1.1 Spe-cy-fi-ka-cja wy-ko-rzy-sta-ne-go fort-ma-tu ob-
+ra-zu
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7
 
 ]
+[8]
 Rozdzia\PlPrIeC {\l } 2.
-[8
+[9
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 158--162
+Underfull \hbox (badness 10000) in paragraph at lines 208--212
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
 
  []
 
-<img/gentelman_gray.png, id=32, 256.96pt x 256.96pt>
+<img/gentelman_gray.png, id=35, 256.96pt x 256.96pt>
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 168. on inp
-ut line 168.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 218. on inp
+ut line 218.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 168.
-<img/pirate_gray.png, id=33, 513.92pt x 513.92pt>
+e 218.
+<img/pirate_gray.png, id=36, 513.92pt x 513.92pt>
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 169. on input 
-line 169.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 219. on input 
+line 219.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 169.
-<img/gentelman_gray_unificationGeo_result.png, id=34, 513.92pt x 513.92pt>
+ 219.
+<img/gentelman_gray_unificationGeo_result.png, id=37, 513.92pt x 513.92pt>
 File: img/gentelman_gray_unificationGeo_result.png Graphic file (type png)
 <use img/gentelman_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/gentelman_gray_unificationGeo_result.png  used on 
-input line 176. on input line 176.
+input line 226. on input line 226.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 176.
-<img/pirate_gray_unificationGeo_result.png, id=35, 513.92pt x 513.92pt>
+ 226.
+<img/pirate_gray_unificationGeo_result.png, id=38, 513.92pt x 513.92pt>
 File: img/pirate_gray_unificationGeo_result.png Graphic file (type png)
 <use img/pirate_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/pirate_gray_unificationGeo_result.png  used on inp
-ut line 177. on input line 177.
+ut line 227. on input line 227.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 177.
-<img/clock_gray.png, id=36, 256.96pt x 256.96pt>
+ 227.
+<img/clock_gray.png, id=39, 256.96pt x 256.96pt>
 File: img/clock_gray.png Graphic file (type png)
 <use img/clock_gray.png>
-Package pdftex.def Info: img/clock_gray.png  used on input line 184. on input l
-ine 184.
+Package pdftex.def Info: img/clock_gray.png  used on input line 234. on input l
+ine 234.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 184.
-<img/boat_gray.png, id=37, 513.92pt x 513.92pt>
+e 234.
+<img/boat_gray.png, id=40, 513.92pt x 513.92pt>
 File: img/boat_gray.png Graphic file (type png)
 <use img/boat_gray.png>
-Package pdftex.def Info: img/boat_gray.png  used on input line 185. on input li
-ne 185.
+Package pdftex.def Info: img/boat_gray.png  used on input line 235. on input li
+ne 235.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 185.
-[9 <./img/gentelman_gray.png (PNG copy)> <./img/pirate_gray.png (PNG copy)> <./
-img/gentelman_gray_unificationGeo_result.png (PNG copy)> <./img/pirate_gray_uni
-ficationGeo_result.png (PNG copy)>]
-<img/clock_gray_unificationGeo_result.png, id=41, 513.92pt x 513.92pt>
+ 235.
+[10 <./img/gentelman_gray.png (PNG copy)> <./img/pirate_gray.png (PNG copy)> <.
+/img/gentelman_gray_unificationGeo_result.png (PNG copy)> <./img/pirate_gray_un
+ificationGeo_result.png (PNG copy)>]
+<img/clock_gray_unificationGeo_result.png, id=44, 513.92pt x 513.92pt>
 File: img/clock_gray_unificationGeo_result.png Graphic file (type png)
 <use img/clock_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/clock_gray_unificationGeo_result.png  used on inpu
-t line 192. on input line 192.
+t line 242. on input line 242.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 192.
-<img/boat_gray_unificationGeo_result.png, id=42, 513.92pt x 513.92pt>
+ 242.
+<img/boat_gray_unificationGeo_result.png, id=45, 513.92pt x 513.92pt>
 File: img/boat_gray_unificationGeo_result.png Graphic file (type png)
 <use img/boat_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/boat_gray_unificationGeo_result.png  used on input
- line 193. on input line 193.
+ line 243. on input line 243.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 193.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 206.
+ 243.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 256.
 
 
 ("C:\Users\Michal\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 206.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 256.
 
-[10 <./img/clock_gray.png (PNG copy)> <./img/boat_gray.png (PNG copy)> <./img/c
+[11 <./img/clock_gray.png (PNG copy)> <./img/boat_gray.png (PNG copy)> <./img/c
 lock_gray_unificationGeo_result.png (PNG copy)> <./img/boat_gray_unificationGeo
-_result.png (PNG copy)>] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 261--264
+_result.png (PNG copy)>] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 311--314
 
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 261--264
+Underfull \hbox (badness 1742) in paragraph at lines 311--314
 []\OT4/cmr/m/n/12 Operacja roz-dziel-czo-±cio-we-go ujed-no-li-ce-nia ob-ra-zów
  na-st¦-pu-je po ujed-no-li-ce-niu
  []
@@ -920,147 +930,147 @@ Underfull \hbox (badness 1742) in paragraph at lines 261--264
 File: img/gentelman_gray_unificationGeo_result.png Graphic file (type png)
 <use img/gentelman_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/gentelman_gray_unificationGeo_result.png  used on 
-input line 272. on input line 272.
+input line 322. on input line 322.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 272.
+ 322.
 File: img/pirate_gray_unificationGeo_result.png Graphic file (type png)
 <use img/pirate_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/pirate_gray_unificationGeo_result.png  used on inp
-ut line 273. on input line 273.
+ut line 323. on input line 323.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 273.
-<img/gentelman_gray_unificationRas_result.png, id=52, 513.92pt x 513.92pt>
+ 323.
+<img/gentelman_gray_unificationRas_result.png, id=55, 513.92pt x 513.92pt>
 File: img/gentelman_gray_unificationRas_result.png Graphic file (type png)
 <use img/gentelman_gray_unificationRas_result.png>
 Package pdftex.def Info: img/gentelman_gray_unificationRas_result.png  used on 
-input line 280. on input line 280.
+input line 330. on input line 330.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 280.
-<img/pirate_gray_unificationRas_result.png, id=53, 513.92pt x 513.92pt>
+ 330.
+<img/pirate_gray_unificationRas_result.png, id=56, 513.92pt x 513.92pt>
 File: img/pirate_gray_unificationRas_result.png Graphic file (type png)
 <use img/pirate_gray_unificationRas_result.png>
 Package pdftex.def Info: img/pirate_gray_unificationRas_result.png  used on inp
-ut line 281. on input line 281.
+ut line 331. on input line 331.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 281.
+ 331.
 File: img/clock_gray_unificationGeo_result.png Graphic file (type png)
 <use img/clock_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/clock_gray_unificationGeo_result.png  used on inpu
-t line 288. on input line 288.
+t line 338. on input line 338.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 288.
+ 338.
 File: img/boat_gray_unificationGeo_result.png Graphic file (type png)
 <use img/boat_gray_unificationGeo_result.png>
 Package pdftex.def Info: img/boat_gray_unificationGeo_result.png  used on input
- line 289. on input line 289.
+ line 339. on input line 339.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 289.
+ 339.
 
 Underfull \vbox (badness 1360) has occurred while \output is active []
 
- [12 <./img/gentelman_gray_unificationRas_result.png (PNG copy)> <./img/pirate_
+ [13 <./img/gentelman_gray_unificationRas_result.png (PNG copy)> <./img/pirate_
 gray_unificationRas_result.png (PNG copy)>]
-<img/clock_gray_unificationRas_result.png, id=57, 513.92pt x 513.92pt>
+<img/clock_gray_unificationRas_result.png, id=62, 513.92pt x 513.92pt>
 File: img/clock_gray_unificationRas_result.png Graphic file (type png)
 <use img/clock_gray_unificationRas_result.png>
 Package pdftex.def Info: img/clock_gray_unificationRas_result.png  used on inpu
-t line 296. on input line 296.
+t line 346. on input line 346.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 296.
-<img/boat_gray_unificationRas_result.png, id=58, 513.92pt x 513.92pt>
+ 346.
+<img/boat_gray_unificationRas_result.png, id=63, 513.92pt x 513.92pt>
 File: img/boat_gray_unificationRas_result.png Graphic file (type png)
 <use img/boat_gray_unificationRas_result.png>
 Package pdftex.def Info: img/boat_gray_unificationRas_result.png  used on input
- line 297. on input line 297.
+ line 347. on input line 347.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 297.
- [13 <./img/clock_gray_unificationRas_result.png (PNG copy)> <./img/boat_gray_u
+ 347.
+ [14 <./img/clock_gray_unificationRas_result.png (PNG copy)> <./img/boat_gray_u
 nificationRas_result.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 331.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 381.
 
 
 ("C:\Users\Michal\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 331.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 381.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 371--374
+ [15]
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 421--424
 
  []
 
-<img/lena_color.png, id=70, 256.96pt x 256.96pt>
+<img/lena_color.png, id=74, 256.96pt x 256.96pt>
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 382. on input l
-ine 382.
+Package pdftex.def Info: img/lena_color.png  used on input line 432. on input l
+ine 432.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 382.
-<img/peppers_color.png, id=71, 513.92pt x 513.92pt>
+e 432.
+<img/peppers_color.png, id=75, 513.92pt x 513.92pt>
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 383. on inpu
-t line 383.
+Package pdftex.def Info: img/peppers_color.png  used on input line 433. on inpu
+t line 433.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 383.
-<img/lena_color_unificationGeo_result.png, id=72, 513.92pt x 513.92pt>
+ 433.
+<img/lena_color_unificationGeo_result.png, id=76, 513.92pt x 513.92pt>
 File: img/lena_color_unificationGeo_result.png Graphic file (type png)
 <use img/lena_color_unificationGeo_result.png>
 Package pdftex.def Info: img/lena_color_unificationGeo_result.png  used on inpu
-t line 390. on input line 390.
+t line 440. on input line 440.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 390.
-<img/peppers_color_unificationGeo_result.png, id=73, 513.92pt x 513.92pt>
+ 440.
+<img/peppers_color_unificationGeo_result.png, id=77, 513.92pt x 513.92pt>
 File: img/peppers_color_unificationGeo_result.png Graphic file (type png)
 <use img/peppers_color_unificationGeo_result.png>
 Package pdftex.def Info: img/peppers_color_unificationGeo_result.png  used on i
-nput line 391. on input line 391.
+nput line 441. on input line 441.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 391.
-<img/candy_color.png, id=74, 256.96pt x 256.96pt>
+ 441.
+<img/candy_color.png, id=78, 256.96pt x 256.96pt>
 File: img/candy_color.png Graphic file (type png)
 <use img/candy_color.png>
-Package pdftex.def Info: img/candy_color.png  used on input line 398. on input 
-line 398.
+Package pdftex.def Info: img/candy_color.png  used on input line 448. on input 
+line 448.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 398.
-<img/mandrill_color.png, id=75, 513.92pt x 513.92pt>
+e 448.
+<img/mandrill_color.png, id=79, 513.92pt x 513.92pt>
 File: img/mandrill_color.png Graphic file (type png)
 <use img/mandrill_color.png>
-Package pdftex.def Info: img/mandrill_color.png  used on input line 399. on inp
-ut line 399.
+Package pdftex.def Info: img/mandrill_color.png  used on input line 449. on inp
+ut line 449.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 399.
-[16 <./img/lena_color.png (PNG copy)> <./img/peppers_color.png (PNG copy)> <./i
+ 449.
+[17 <./img/lena_color.png (PNG copy)> <./img/peppers_color.png (PNG copy)> <./i
 mg/lena_color_unificationGeo_result.png (PNG copy)> <./img/peppers_color_unific
 ationGeo_result.png (PNG copy)>]
-<img/candy_color_unificationGeo_result.png, id=79, 513.92pt x 513.92pt>
+<img/candy_color_unificationGeo_result.png, id=83, 513.92pt x 513.92pt>
 File: img/candy_color_unificationGeo_result.png Graphic file (type png)
 <use img/candy_color_unificationGeo_result.png>
 Package pdftex.def Info: img/candy_color_unificationGeo_result.png  used on inp
-ut line 406. on input line 406.
+ut line 456. on input line 456.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 406.
-<img/mandrill_color_unificationGeo_result.png, id=80, 513.92pt x 513.92pt>
+ 456.
+<img/mandrill_color_unificationGeo_result.png, id=84, 513.92pt x 513.92pt>
 File: img/mandrill_color_unificationGeo_result.png Graphic file (type png)
 <use img/mandrill_color_unificationGeo_result.png>
 Package pdftex.def Info: img/mandrill_color_unificationGeo_result.png  used on 
-input line 407. on input line 407.
+input line 457. on input line 457.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 407.
- [17 <./img/candy_color.png (PNG copy)> <./img/mandrill_color.png (PNG copy)> <
+ 457.
+ [18 <./img/candy_color.png (PNG copy)> <./img/mandrill_color.png (PNG copy)> <
 ./img/candy_color_unificationGeo_result.png (PNG copy)> <./img/mandrill_color_u
-nificationGeo_result.png (PNG copy)>] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 473--476
+nificationGeo_result.png (PNG copy)>] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 523--526
 
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 473--476
+Underfull \hbox (badness 1742) in paragraph at lines 523--526
 []\OT4/cmr/m/n/12 Operacja roz-dziel-czo-±cio-we-go ujed-no-li-ce-nia ob-ra-zów
  na-st¦-pu-je po ujed-no-li-ce-niu
  []
@@ -1068,1616 +1078,1616 @@ Underfull \hbox (badness 1742) in paragraph at lines 473--476
 File: img/lena_color_unificationGeo_result.png Graphic file (type png)
 <use img/lena_color_unificationGeo_result.png>
 Package pdftex.def Info: img/lena_color_unificationGeo_result.png  used on inpu
-t line 484. on input line 484.
+t line 534. on input line 534.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 484.
+ 534.
 File: img/peppers_color_unificationGeo_result.png Graphic file (type png)
 <use img/peppers_color_unificationGeo_result.png>
 Package pdftex.def Info: img/peppers_color_unificationGeo_result.png  used on i
-nput line 485. on input line 485.
+nput line 535. on input line 535.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 485.
-<img/lena_color_unificationRas_result.png, id=87, 513.92pt x 513.92pt>
+ 535.
+<img/lena_color_unificationRas_result.png, id=92, 513.92pt x 513.92pt>
 File: img/lena_color_unificationRas_result.png Graphic file (type png)
 <use img/lena_color_unificationRas_result.png>
 Package pdftex.def Info: img/lena_color_unificationRas_result.png  used on inpu
-t line 492. on input line 492.
+t line 542. on input line 542.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 492.
-<img/peppers_color_unificationRas_result.png, id=88, 513.92pt x 513.92pt>
+ 542.
+<img/peppers_color_unificationRas_result.png, id=93, 513.92pt x 513.92pt>
 File: img/peppers_color_unificationRas_result.png Graphic file (type png)
 <use img/peppers_color_unificationRas_result.png>
 Package pdftex.def Info: img/peppers_color_unificationRas_result.png  used on i
-nput line 493. on input line 493.
+nput line 543. on input line 543.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 493.
+ 543.
 File: img/candy_color_unificationGeo_result.png Graphic file (type png)
 <use img/candy_color_unificationGeo_result.png>
 Package pdftex.def Info: img/candy_color_unificationGeo_result.png  used on inp
-ut line 500. on input line 500.
+ut line 550. on input line 550.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 500.
+ 550.
 File: img/mandrill_color_unificationGeo_result.png Graphic file (type png)
 <use img/mandrill_color_unificationGeo_result.png>
 Package pdftex.def Info: img/mandrill_color_unificationGeo_result.png  used on 
-input line 501. on input line 501.
+input line 551. on input line 551.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 501.
-[19 <./img/lena_color_unificationRas_result.png (PNG copy)> <./img/peppers_colo
+ 551.
+[20 <./img/lena_color_unificationRas_result.png (PNG copy)> <./img/peppers_colo
 r_unificationRas_result.png (PNG copy)>]
-<img/candy_color_unificationRas_result.png, id=93, 513.92pt x 513.92pt>
+<img/candy_color_unificationRas_result.png, id=97, 513.92pt x 513.92pt>
 File: img/candy_color_unificationRas_result.png Graphic file (type png)
 <use img/candy_color_unificationRas_result.png>
 Package pdftex.def Info: img/candy_color_unificationRas_result.png  used on inp
-ut line 508. on input line 508.
+ut line 558. on input line 558.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 508.
-<img/mandrill_color_unificationRas_result.png, id=94, 513.92pt x 513.92pt>
+ 558.
+<img/mandrill_color_unificationRas_result.png, id=98, 513.92pt x 513.92pt>
 File: img/mandrill_color_unificationRas_result.png Graphic file (type png)
 <use img/mandrill_color_unificationRas_result.png>
 Package pdftex.def Info: img/mandrill_color_unificationRas_result.png  used on 
-input line 509. on input line 509.
+input line 559. on input line 559.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 509.
- [20 <./img/candy_color_unificationRas_result.png (PNG copy)> <./img/mandrill_c
+ 559.
+ [21 <./img/candy_color_unificationRas_result.png (PNG copy)> <./img/mandrill_c
 olor_unificationRas_result.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21]
-[22]
+ [22]
+[23]
 Rozdzia\PlPrIeC {\l } 3.
-[23
-
-]
-Rozdzia\PlPrIeC {\l } 4.
 [24
 
 ]
-Rozdzia\PlPrIeC {\l } 5.
+Rozdzia\PlPrIeC {\l } 4.
 [25
 
 ]
-Rozdzia\PlPrIeC {\l } 6.
+Rozdzia\PlPrIeC {\l } 5.
 [26
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 618--624
+Rozdzia\PlPrIeC {\l } 6.
+[27
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 668--674
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 618--624
+Underfull \hbox (badness 10000) in paragraph at lines 668--674
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 631. on inp
-ut line 631.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 681. on inp
+ut line 681.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 631.
-<img/gentelman_gray_histogram.png, id=117, 462.528pt x 346.896pt>
+e 681.
+<img/gentelman_gray_histogram.png, id=121, 462.528pt x 346.896pt>
 File: img/gentelman_gray_histogram.png Graphic file (type png)
 <use img/gentelman_gray_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_histogram.png  used on input line 6
-32. on input line 632.
+82. on input line 682.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 632.
+e 682.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 639. on input 
-line 639.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 689. on input 
+line 689.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 639.
-<img/pirate_gray_histogram.png, id=119, 462.528pt x 346.896pt>
+ 689.
+<img/pirate_gray_histogram.png, id=123, 462.528pt x 346.896pt>
 File: img/pirate_gray_histogram.png Graphic file (type png)
 <use img/pirate_gray_histogram.png>
-Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 640.
- on input line 640.
+Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 690.
+ on input line 690.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 640.
-[27 <./img/gentelman_gray_histogram.png> <./img/pirate_gray_histogram.png>]
-[28]
-Underfull \hbox (badness 10000) in paragraph at lines 680--686
+e 690.
+[28 <./img/gentelman_gray_histogram.png> <./img/pirate_gray_histogram.png>]
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 730--736
 
  []
 
 
-Underfull \hbox (badness 1082) in paragraph at lines 680--686
+Underfull \hbox (badness 1082) in paragraph at lines 730--736
 []\OT4/cmr/m/n/12 Przemieszczenie hi-sto-gra-mu po-le-ga na do-da-niu lub od-j¦
 -ciu tej sa-mej war-to-±ci
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 695. on inp
-ut line 695.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 745. on inp
+ut line 745.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 695.
+e 745.
 File: img/gentelman_gray_histogram.png Graphic file (type png)
 <use img/gentelman_gray_histogram.png>
-Package pdftex.def Info: img/gentelman_gray_histogram.png  used on input line 6
-96. on input line 696.
+Package pdftex.def Info: img/gentelman_gray_histogram.png  used on input line 7
+46. on input line 746.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 696.
-<img/gentelman_gray_moveHist_result.png, id=128, 256.96pt x 256.96pt>
+e 746.
+<img/gentelman_gray_moveHist_result.png, id=132, 256.96pt x 256.96pt>
 File: img/gentelman_gray_moveHist_result.png Graphic file (type png)
 <use img/gentelman_gray_moveHist_result.png>
 Package pdftex.def Info: img/gentelman_gray_moveHist_result.png  used on input 
-line 703. on input line 703.
+line 753. on input line 753.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 703.
-<img/gentelman_gray_moveHist_histogram.png, id=129, 462.528pt x 346.896pt>
+e 753.
+<img/gentelman_gray_moveHist_histogram.png, id=133, 462.528pt x 346.896pt>
 File: img/gentelman_gray_moveHist_histogram.png Graphic file (type png)
 <use img/gentelman_gray_moveHist_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_moveHist_histogram.png  used on inp
-ut line 704. on input line 704.
+ut line 754. on input line 754.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 704.
+e 754.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29]
+ [30]
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 711. on input 
-line 711.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 761. on input 
+line 761.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 711.
+ 761.
 File: img/pirate_gray_histogram.png Graphic file (type png)
 <use img/pirate_gray_histogram.png>
-Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 712.
- on input line 712.
+Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 762.
+ on input line 762.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 712.
-<img/pirate_gray_moveHist_result.png, id=133, 513.92pt x 513.92pt>
+e 762.
+<img/pirate_gray_moveHist_result.png, id=137, 513.92pt x 513.92pt>
 File: img/pirate_gray_moveHist_result.png Graphic file (type png)
 <use img/pirate_gray_moveHist_result.png>
 Package pdftex.def Info: img/pirate_gray_moveHist_result.png  used on input lin
-e 719. on input line 719.
+e 769. on input line 769.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 719.
-<img/pirate_gray_moveHist_histogram.png, id=134, 462.528pt x 346.896pt>
+ 769.
+<img/pirate_gray_moveHist_histogram.png, id=138, 462.528pt x 346.896pt>
 File: img/pirate_gray_moveHist_histogram.png Graphic file (type png)
 <use img/pirate_gray_moveHist_histogram.png>
 Package pdftex.def Info: img/pirate_gray_moveHist_histogram.png  used on input 
-line 720. on input line 720.
+line 770. on input line 770.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 720.
+e 770.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30 <./img/gentelman_gray_moveHist_result.png (PNG copy)> <./img/gentelman_gra
-y_moveHist_histogram.png>] [31 <./img/pirate_gray_moveHist_result.png (PNG copy
+ [31 <./img/gentelman_gray_moveHist_result.png (PNG copy)> <./img/gentelman_gra
+y_moveHist_histogram.png>] [32 <./img/pirate_gray_moveHist_result.png (PNG copy
 )> <./img/pirate_gray_moveHist_histogram.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 761--766
+Underfull \hbox (badness 10000) in paragraph at lines 811--816
 
  []
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 768--773
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 818--823
 []
  []
 
 File: img/gentelman_gray_moveHist_result.png Graphic file (type png)
 <use img/gentelman_gray_moveHist_result.png>
 Package pdftex.def Info: img/gentelman_gray_moveHist_result.png  used on input 
-line 777. on input line 777.
+line 827. on input line 827.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 777.
+ 827.
 File: img/gentelman_gray_moveHist_histogram.png Graphic file (type png)
 <use img/gentelman_gray_moveHist_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_moveHist_histogram.png  used on inp
-ut line 778. on input line 778.
+ut line 828. on input line 828.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 778.
-<img/gentelman_gray_stretchHist_result.png, id=144, 256.96pt x 256.96pt>
+ 828.
+<img/gentelman_gray_stretchHist_result.png, id=148, 256.96pt x 256.96pt>
 File: img/gentelman_gray_stretchHist_result.png Graphic file (type png)
 <use img/gentelman_gray_stretchHist_result.png>
 Package pdftex.def Info: img/gentelman_gray_stretchHist_result.png  used on inp
-ut line 785. on input line 785.
+ut line 835. on input line 835.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 785.
-<img/gentelman_gray_stretchHist_histogram.png, id=145, 462.528pt x 346.896pt>
+ 835.
+<img/gentelman_gray_stretchHist_histogram.png, id=149, 462.528pt x 346.896pt>
 File: img/gentelman_gray_stretchHist_histogram.png Graphic file (type png)
 <use img/gentelman_gray_stretchHist_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_stretchHist_histogram.png  used on 
-input line 786. on input line 786.
+input line 836. on input line 836.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 786.
+ 836.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 793. on input 
-line 793.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 843. on input 
+line 843.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 793.
+ 843.
 File: img/pirate_gray_histogram.png Graphic file (type png)
 <use img/pirate_gray_histogram.png>
-Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 794.
- on input line 794.
+Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 844.
+ on input line 844.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 794.
-[32 <./img/gentelman_gray_stretchHist_result.png (PNG copy)> <./img/gentelman_g
+ 844.
+[33 <./img/gentelman_gray_stretchHist_result.png (PNG copy)> <./img/gentelman_g
 ray_stretchHist_histogram.png>]
-<img/pirate_gray_stretchHist_result.png, id=152, 513.92pt x 513.92pt>
+<img/pirate_gray_stretchHist_result.png, id=155, 513.92pt x 513.92pt>
 File: img/pirate_gray_stretchHist_result.png Graphic file (type png)
 <use img/pirate_gray_stretchHist_result.png>
 Package pdftex.def Info: img/pirate_gray_stretchHist_result.png  used on input 
-line 801. on input line 801.
+line 851. on input line 851.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 801.
-<img/pirate_gray_stretchHist_histogram.png, id=153, 462.528pt x 346.896pt>
+ 851.
+<img/pirate_gray_stretchHist_histogram.png, id=156, 462.528pt x 346.896pt>
 File: img/pirate_gray_stretchHist_histogram.png Graphic file (type png)
 <use img/pirate_gray_stretchHist_histogram.png>
 Package pdftex.def Info: img/pirate_gray_stretchHist_histogram.png  used on inp
-ut line 802. on input line 802.
+ut line 852. on input line 852.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 802.
- [33 <./img/pirate_gray_stretchHist_result.png (PNG copy)> <./img/pirate_gray_s
-tretchHist_histogram.png>] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 851--855
+ 852.
+ [34 <./img/pirate_gray_stretchHist_result.png (PNG copy)> <./img/pirate_gray_s
+tretchHist_histogram.png>] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 901--905
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 865. on inp
-ut line 865.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 915. on inp
+ut line 915.
 Package pdftex.def Info: Requested size: 168.43808pt x 168.44138pt on input lin
-e 865.
+e 915.
 File: img/gentelman_gray_histogram.png Graphic file (type png)
 <use img/gentelman_gray_histogram.png>
-Package pdftex.def Info: img/gentelman_gray_histogram.png  used on input line 8
-66. on input line 866.
+Package pdftex.def Info: img/gentelman_gray_histogram.png  used on input line 9
+16. on input line 916.
 Package pdftex.def Info: Requested size: 168.43808pt x 126.3275pt on input line
- 866.
-<img/gentelman_gray_locThreshold_result.png, id=161, 256.96pt x 256.96pt>
+ 916.
+<img/gentelman_gray_locThreshold_result.png, id=164, 256.96pt x 256.96pt>
 File: img/gentelman_gray_locThreshold_result.png Graphic file (type png)
 <use img/gentelman_gray_locThreshold_result.png>
 Package pdftex.def Info: img/gentelman_gray_locThreshold_result.png  used on in
-put line 873. on input line 873.
+put line 923. on input line 923.
 Package pdftex.def Info: Requested size: 168.43808pt x 168.44138pt on input lin
-e 873.
-<img/gentelman_gray_locThreshold_histogram.png, id=162, 462.528pt x 346.896pt>
+e 923.
+<img/gentelman_gray_locThreshold_histogram.png, id=165, 462.528pt x 346.896pt>
 File: img/gentelman_gray_locThreshold_histogram.png Graphic file (type png)
 <use img/gentelman_gray_locThreshold_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_locThreshold_histogram.png  used on
- input line 874. on input line 874.
+ input line 924. on input line 924.
 Package pdftex.def Info: Requested size: 168.43808pt x 126.3275pt on input line
- 874.
+ 924.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 881. on input 
-line 881.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 931. on input 
+line 931.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 881.
+ 931.
 File: img/pirate_gray_histogram.png Graphic file (type png)
 <use img/pirate_gray_histogram.png>
-Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 882.
- on input line 882.
+Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 932.
+ on input line 932.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 882.
-[35 <./img/gentelman_gray_locThreshold_result.png (PNG copy)> <./img/gentelman_
+e 932.
+[36 <./img/gentelman_gray_locThreshold_result.png (PNG copy)> <./img/gentelman_
 gray_locThreshold_histogram.png>]
-<img/pirate_gray_locThreshold_result.png, id=167, 513.92pt x 513.92pt>
+<img/pirate_gray_locThreshold_result.png, id=170, 513.92pt x 513.92pt>
 File: img/pirate_gray_locThreshold_result.png Graphic file (type png)
 <use img/pirate_gray_locThreshold_result.png>
 Package pdftex.def Info: img/pirate_gray_locThreshold_result.png  used on input
- line 889. on input line 889.
+ line 939. on input line 939.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 889.
-<img/pirate_gray_locThreshold_histogram.png, id=168, 462.528pt x 346.896pt>
+ 939.
+<img/pirate_gray_locThreshold_histogram.png, id=171, 462.528pt x 346.896pt>
 File: img/pirate_gray_locThreshold_histogram.png Graphic file (type png)
 <use img/pirate_gray_locThreshold_histogram.png>
 Package pdftex.def Info: img/pirate_gray_locThreshold_histogram.png  used on in
-put line 890. on input line 890.
+put line 940. on input line 940.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 890.
- [36 <./img/pirate_gray_locThreshold_result.png (PNG copy)> <./img/pirate_gray_
-locThreshold_histogram.png>] [37]
-Underfull \hbox (badness 10000) in paragraph at lines 935--939
+e 940.
+ [37 <./img/pirate_gray_locThreshold_result.png (PNG copy)> <./img/pirate_gray_
+locThreshold_histogram.png>] [38]
+Underfull \hbox (badness 10000) in paragraph at lines 985--989
 
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 935--939
+Underfull \hbox (badness 1122) in paragraph at lines 985--989
 []\OT4/cmr/m/n/12 Progowanie glo-bal-ne jest jed-n¡ z me-tod bi-na-ry-za-cji ob
 -ra-zu. War-to±¢ pro-go-wa
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 948. on inp
-ut line 948.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 998. on inp
+ut line 998.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 948.
+e 998.
 File: img/gentelman_gray_histogram.png Graphic file (type png)
 <use img/gentelman_gray_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_histogram.png  used on input line 9
-49. on input line 949.
+99. on input line 999.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 949.
-<img/gentelman_gray_globThreshold_result.png, id=177, 256.96pt x 256.96pt>
+e 999.
+<img/gentelman_gray_globThreshold_result.png, id=180, 256.96pt x 256.96pt>
 File: img/gentelman_gray_globThreshold_result.png Graphic file (type png)
 <use img/gentelman_gray_globThreshold_result.png>
 Package pdftex.def Info: img/gentelman_gray_globThreshold_result.png  used on i
-nput line 956. on input line 956.
+nput line 1006. on input line 1006.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 956.
-<img/gentelman_gray_globThreshold_histogram.png, id=178, 462.528pt x 346.896pt>
+e 1006.
+<img/gentelman_gray_globThreshold_histogram.png, id=181, 462.528pt x 346.896pt>
 
 File: img/gentelman_gray_globThreshold_histogram.png Graphic file (type png)
 <use img/gentelman_gray_globThreshold_histogram.png>
 Package pdftex.def Info: img/gentelman_gray_globThreshold_histogram.png  used o
-n input line 957. on input line 957.
+n input line 1007. on input line 1007.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 957.
+e 1007.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38
+ [39
 
 ]
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 964. on input 
-line 964.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 1014. on input
+ line 1014.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 964.
+ 1014.
 File: img/pirate_gray_histogram.png Graphic file (type png)
 <use img/pirate_gray_histogram.png>
-Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 965.
- on input line 965.
+Package pdftex.def Info: img/pirate_gray_histogram.png  used on input line 1015
+. on input line 1015.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 965.
-<img/pirate_gray_globThreshold_result.png, id=182, 513.92pt x 513.92pt>
+e 1015.
+<img/pirate_gray_globThreshold_result.png, id=185, 513.92pt x 513.92pt>
 File: img/pirate_gray_globThreshold_result.png Graphic file (type png)
 <use img/pirate_gray_globThreshold_result.png>
 Package pdftex.def Info: img/pirate_gray_globThreshold_result.png  used on inpu
-t line 972. on input line 972.
+t line 1022. on input line 1022.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 972.
-<img/pirate_gray_globThreshold_histogram.png, id=183, 462.528pt x 346.896pt>
+ 1022.
+<img/pirate_gray_globThreshold_histogram.png, id=186, 462.528pt x 346.896pt>
 File: img/pirate_gray_globThreshold_histogram.png Graphic file (type png)
 <use img/pirate_gray_globThreshold_histogram.png>
 Package pdftex.def Info: img/pirate_gray_globThreshold_histogram.png  used on i
-nput line 973. on input line 973.
+nput line 1023. on input line 1023.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 973.
+e 1023.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39 <./img/gentelman_gray_globThreshold_result.png (PNG copy)> <./img/gentelma
-n_gray_globThreshold_histogram.png>] [40 <./img/pirate_gray_globThreshold_resul
+ [40 <./img/gentelman_gray_globThreshold_result.png (PNG copy)> <./img/gentelma
+n_gray_globThreshold_histogram.png>] [41 <./img/pirate_gray_globThreshold_resul
 t.png (PNG copy)> <./img/pirate_gray_globThreshold_histogram.png>]
 Rozdzia\PlPrIeC {\l } 7.
-[41
+[42
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1020--1025
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1075
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1020--1025
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1075
 
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1033. on input 
-line 1033.
+Package pdftex.def Info: img/lena_color.png  used on input line 1083. on input 
+line 1083.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.09782pt on input lin
-e 1033.
-<img/lena_color_histogram.png, id=195, 462.528pt x 346.896pt>
+e 1083.
+<img/lena_color_histogram.png, id=198, 462.528pt x 346.896pt>
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1034.
- on input line 1034.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1084.
+ on input line 1084.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 1034.
+e 1084.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1041. on inp
-ut line 1041.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1091. on inp
+ut line 1091.
 Package pdftex.def Info: Requested size: 182.09485pt x 182.0939pt on input line
- 1041.
-<img/peppers_color_histogram.png, id=196, 462.528pt x 346.896pt>
+ 1091.
+<img/peppers_color_histogram.png, id=199, 462.528pt x 346.896pt>
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
 Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 10
-42. on input line 1042.
+92. on input line 1092.
 Package pdftex.def Info: Requested size: 182.09485pt x 136.56984pt on input lin
-e 1042.
-[42 <./img/lena_color_histogram.png> <./img/peppers_color_histogram.png>]
+e 1092.
+[43 <./img/lena_color_histogram.png> <./img/peppers_color_histogram.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43]
-Underfull \hbox (badness 10000) in paragraph at lines 1081--1087
+ [44]
+Underfull \hbox (badness 10000) in paragraph at lines 1131--1137
 
  []
 
 
-Underfull \hbox (badness 1082) in paragraph at lines 1081--1087
+Underfull \hbox (badness 1082) in paragraph at lines 1131--1137
 []\OT4/cmr/m/n/12 Przemieszczenie hi-sto-gra-mu po-le-ga na do-da-niu lub od-j¦
 -ciu tej sa-mej war-to-±ci
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1096. on input 
-line 1096.
+Package pdftex.def Info: img/lena_color.png  used on input line 1146. on input 
+line 1146.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1096.
+ 1146.
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1097.
- on input line 1097.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1147.
+ on input line 1147.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1097.
-<img/lena_color_moveHist_result.png, id=206, 256.96pt x 256.96pt>
+ 1147.
+<img/lena_color_moveHist_result.png, id=209, 256.96pt x 256.96pt>
 File: img/lena_color_moveHist_result.png Graphic file (type png)
 <use img/lena_color_moveHist_result.png>
 Package pdftex.def Info: img/lena_color_moveHist_result.png  used on input line
- 1104. on input line 1104.
+ 1154. on input line 1154.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1104.
-<img/lena_color_moveHist_histogram.png, id=207, 462.528pt x 346.896pt>
+ 1154.
+<img/lena_color_moveHist_histogram.png, id=210, 462.528pt x 346.896pt>
 File: img/lena_color_moveHist_histogram.png Graphic file (type png)
 <use img/lena_color_moveHist_histogram.png>
 Package pdftex.def Info: img/lena_color_moveHist_histogram.png  used on input l
-ine 1105. on input line 1105.
+ine 1155. on input line 1155.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1105.
+ 1155.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1112. on inp
-ut line 1112.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1162. on inp
+ut line 1162.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1112.
+ 1162.
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
 Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 11
-13. on input line 1113.
+63. on input line 1163.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1113.
-[44 <./img/lena_color_moveHist_result.png (PNG copy)> <./img/lena_color_moveHis
+ 1163.
+[45 <./img/lena_color_moveHist_result.png (PNG copy)> <./img/lena_color_moveHis
 t_histogram.png>]
-<img/peppers_color_moveHist_result.png, id=212, 513.92pt x 513.92pt>
+<img/peppers_color_moveHist_result.png, id=215, 513.92pt x 513.92pt>
 File: img/peppers_color_moveHist_result.png Graphic file (type png)
 <use img/peppers_color_moveHist_result.png>
 Package pdftex.def Info: img/peppers_color_moveHist_result.png  used on input l
-ine 1120. on input line 1120.
+ine 1170. on input line 1170.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1120.
-<img/peppers_color_moveHist_histogram.png, id=213, 462.528pt x 346.896pt>
+ 1170.
+<img/peppers_color_moveHist_histogram.png, id=216, 462.528pt x 346.896pt>
 File: img/peppers_color_moveHist_histogram.png Graphic file (type png)
 <use img/peppers_color_moveHist_histogram.png>
 Package pdftex.def Info: img/peppers_color_moveHist_histogram.png  used on inpu
-t line 1121. on input line 1121.
+t line 1171. on input line 1171.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1121.
- [45 <./img/peppers_color_moveHist_result.png (PNG copy)> <./img/peppers_color_
-moveHist_histogram.png>] [46]
-Underfull \hbox (badness 10000) in paragraph at lines 1161--1166
+ 1171.
+ [46 <./img/peppers_color_moveHist_result.png (PNG copy)> <./img/peppers_color_
+moveHist_histogram.png>] [47]
+Underfull \hbox (badness 10000) in paragraph at lines 1211--1216
 
  []
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 1169--1173
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 1219--1223
 []
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1177. on input 
-line 1177.
+Package pdftex.def Info: img/lena_color.png  used on input line 1227. on input 
+line 1227.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1177.
+ 1227.
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1178.
- on input line 1178.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1228.
+ on input line 1228.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1178.
-<img/lena_color_stretchHist_result.png, id=221, 256.96pt x 256.96pt>
+ 1228.
+<img/lena_color_stretchHist_result.png, id=224, 256.96pt x 256.96pt>
 File: img/lena_color_stretchHist_result.png Graphic file (type png)
 <use img/lena_color_stretchHist_result.png>
 Package pdftex.def Info: img/lena_color_stretchHist_result.png  used on input l
-ine 1185. on input line 1185.
+ine 1235. on input line 1235.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1185.
-<img/lena_color_stretchHist_histogram.png, id=222, 462.528pt x 346.896pt>
+ 1235.
+<img/lena_color_stretchHist_histogram.png, id=225, 462.528pt x 346.896pt>
 File: img/lena_color_stretchHist_histogram.png Graphic file (type png)
 <use img/lena_color_stretchHist_histogram.png>
 Package pdftex.def Info: img/lena_color_stretchHist_histogram.png  used on inpu
-t line 1186. on input line 1186.
+t line 1236. on input line 1236.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1186.
+ 1236.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]
+ [48]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1193. on inp
-ut line 1193.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1243. on inp
+ut line 1243.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1193.
+ 1243.
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
-Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 11
-94. on input line 1194.
+Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 12
+44. on input line 1244.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1194.
-<img/peppers_color_stretchHist_result.png, id=226, 513.92pt x 513.92pt>
+ 1244.
+<img/peppers_color_stretchHist_result.png, id=229, 513.92pt x 513.92pt>
 File: img/peppers_color_stretchHist_result.png Graphic file (type png)
 <use img/peppers_color_stretchHist_result.png>
 Package pdftex.def Info: img/peppers_color_stretchHist_result.png  used on inpu
-t line 1201. on input line 1201.
+t line 1251. on input line 1251.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1201.
-<img/peppers_color_stretchHist_histogram.png, id=227, 462.528pt x 346.896pt>
+ 1251.
+<img/peppers_color_stretchHist_histogram.png, id=230, 462.528pt x 346.896pt>
 File: img/peppers_color_stretchHist_histogram.png Graphic file (type png)
 <use img/peppers_color_stretchHist_histogram.png>
 Package pdftex.def Info: img/peppers_color_stretchHist_histogram.png  used on i
-nput line 1202. on input line 1202.
+nput line 1252. on input line 1252.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1202.
+ 1252.
 
-[48 <./img/lena_color_stretchHist_result.png (PNG copy)> <./img/lena_color_stre
+[49 <./img/lena_color_stretchHist_result.png (PNG copy)> <./img/lena_color_stre
 tchHist_histogram.png> <./img/peppers_color_stretchHist_result.png (PNG copy)> 
-<./img/peppers_color_stretchHist_histogram.png>] [49]
-Underfull \hbox (badness 10000) in paragraph at lines 1252--1256
+<./img/peppers_color_stretchHist_histogram.png>] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 1302--1306
 
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 1252--1256
+Underfull \hbox (badness 2134) in paragraph at lines 1302--1306
 []\OT4/cmr/m/n/12 Progowanie 1-progowe lo-kal-ne ob-li-cza war-to±¢ pro-go-w¡ d
 la ka»-de-go pik-sla z
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1267. on input 
-line 1267.
+Package pdftex.def Info: img/lena_color.png  used on input line 1317. on input 
+line 1317.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1267.
+ 1317.
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1268.
- on input line 1268.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1318.
+ on input line 1318.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1268.
-<img/lena_color_localSingleThreshold_result.png, id=237, 256.96pt x 256.96pt>
+ 1318.
+<img/lena_color_localSingleThreshold_result.png, id=240, 256.96pt x 256.96pt>
 File: img/lena_color_localSingleThreshold_result.png Graphic file (type png)
 <use img/lena_color_localSingleThreshold_result.png>
 Package pdftex.def Info: img/lena_color_localSingleThreshold_result.png  used o
-n input line 1275. on input line 1275.
+n input line 1325. on input line 1325.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1275.
-<img/lena_color_localSingleThreshold_histogram.png, id=238, 462.528pt x 346.896
+ 1325.
+<img/lena_color_localSingleThreshold_histogram.png, id=241, 462.528pt x 346.896
 pt>
 File: img/lena_color_localSingleThreshold_histogram.png Graphic file (type png)
 
 <use img/lena_color_localSingleThreshold_histogram.png>
 Package pdftex.def Info: img/lena_color_localSingleThreshold_histogram.png  use
-d on input line 1276. on input line 1276.
+d on input line 1326. on input line 1326.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1276.
+ 1326.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [50]
+ [51]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1283. on inp
-ut line 1283.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1333. on inp
+ut line 1333.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1283.
+ 1333.
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
-Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 12
-84. on input line 1284.
+Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 13
+34. on input line 1334.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1284.
-<img/peppers_color_localSingleThreshold_result.png, id=242, 513.92pt x 513.92pt
+ 1334.
+<img/peppers_color_localSingleThreshold_result.png, id=245, 513.92pt x 513.92pt
 >
 File: img/peppers_color_localSingleThreshold_result.png Graphic file (type png)
 
 <use img/peppers_color_localSingleThreshold_result.png>
 Package pdftex.def Info: img/peppers_color_localSingleThreshold_result.png  use
-d on input line 1291. on input line 1291.
+d on input line 1341. on input line 1341.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1291.
-<img/peppers_color_localSingleThreshold_histogram.png, id=243, 462.528pt x 346.
+ 1341.
+<img/peppers_color_localSingleThreshold_histogram.png, id=246, 462.528pt x 346.
 896pt>
 File: img/peppers_color_localSingleThreshold_histogram.png Graphic file (type p
 ng)
 <use img/peppers_color_localSingleThreshold_histogram.png>
 Package pdftex.def Info: img/peppers_color_localSingleThreshold_histogram.png  
-used on input line 1292. on input line 1292.
+used on input line 1342. on input line 1342.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1292.
+ 1342.
 
-[51 <./img/lena_color_localSingleThreshold_result.png (PNG copy)> <./img/lena_c
+[52 <./img/lena_color_localSingleThreshold_result.png (PNG copy)> <./img/lena_c
 olor_localSingleThreshold_histogram.png> <./img/peppers_color_localSingleThresh
 old_result.png (PNG copy)> <./img/peppers_color_localSingleThreshold_histogram.
-png>] [52]
-Underfull \hbox (badness 10000) in paragraph at lines 1344--1347
+png>] [53]
+Underfull \hbox (badness 10000) in paragraph at lines 1394--1397
 
  []
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 1344--1347
+Underfull \hbox (badness 1132) in paragraph at lines 1394--1397
 []\OT4/cmr/m/n/12 Progowanie wielo-progowe lo-kal-ne ob-li-cza war-to-±ci pro-g
 o-we dla ka»-de-go pik-sla
  []
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 1354--1356
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 1404--1406
 [] 
  []
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 1358--1360
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 1408--1410
 [] 
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1365. on input 
-line 1365.
+Package pdftex.def Info: img/lena_color.png  used on input line 1415. on input 
+line 1415.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1365.
+ 1415.
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1366.
- on input line 1366.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1416.
+ on input line 1416.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1366.
-<img/lena_color_localMultiThreshold_result.png, id=252, 256.96pt x 256.96pt>
+ 1416.
+<img/lena_color_localMultiThreshold_result.png, id=255, 256.96pt x 256.96pt>
 File: img/lena_color_localMultiThreshold_result.png Graphic file (type png)
 <use img/lena_color_localMultiThreshold_result.png>
 Package pdftex.def Info: img/lena_color_localMultiThreshold_result.png  used on
- input line 1373. on input line 1373.
+ input line 1423. on input line 1423.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1373.
-<img/lena_color_localMultiThreshold_histogram.png, id=253, 462.528pt x 346.896p
+ 1423.
+<img/lena_color_localMultiThreshold_histogram.png, id=256, 462.528pt x 346.896p
 t>
 File: img/lena_color_localMultiThreshold_histogram.png Graphic file (type png)
 <use img/lena_color_localMultiThreshold_histogram.png>
 Package pdftex.def Info: img/lena_color_localMultiThreshold_histogram.png  used
- on input line 1374. on input line 1374.
+ on input line 1424. on input line 1424.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1374.
+ 1424.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [53]
+ [54]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1381. on inp
-ut line 1381.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1431. on inp
+ut line 1431.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1381.
+ 1431.
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
-Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 13
-82. on input line 1382.
+Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 14
+32. on input line 1432.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1382.
-<img/peppers_color_localMultiThreshold_result.png, id=260, 513.92pt x 513.92pt>
+ 1432.
+<img/peppers_color_localMultiThreshold_result.png, id=263, 513.92pt x 513.92pt>
 
 File: img/peppers_color_localMultiThreshold_result.png Graphic file (type png)
 <use img/peppers_color_localMultiThreshold_result.png>
 Package pdftex.def Info: img/peppers_color_localMultiThreshold_result.png  used
- on input line 1389. on input line 1389.
+ on input line 1439. on input line 1439.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1389.
-<img/peppers_color_localMultiThreshold_histogram.png, id=261, 462.528pt x 346.8
+ 1439.
+<img/peppers_color_localMultiThreshold_histogram.png, id=264, 462.528pt x 346.8
 96pt>
 File: img/peppers_color_localMultiThreshold_histogram.png Graphic file (type pn
 g)
 <use img/peppers_color_localMultiThreshold_histogram.png>
 Package pdftex.def Info: img/peppers_color_localMultiThreshold_histogram.png  u
-sed on input line 1390. on input line 1390.
+sed on input line 1440. on input line 1440.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1390.
+ 1440.
 
-[54 <./img/lena_color_localMultiThreshold_result.png (PNG copy)> <./img/lena_co
+[55 <./img/lena_color_localMultiThreshold_result.png (PNG copy)> <./img/lena_co
 lor_localMultiThreshold_histogram.png> <./img/peppers_color_localMultiThreshold
 _result.png (PNG copy)> <./img/peppers_color_localMultiThreshold_histogram.png>
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [55]
-[56]
-Underfull \hbox (badness 10000) in paragraph at lines 1448--1452
+ [56]
+[57]
+Underfull \hbox (badness 10000) in paragraph at lines 1498--1502
 
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1463. on input 
-line 1463.
+Package pdftex.def Info: img/lena_color.png  used on input line 1513. on input 
+line 1513.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1463.
+ 1513.
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1464.
- on input line 1464.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1514.
+ on input line 1514.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1464.
-<img/lena_color_globalSingleThreshold_result.png, id=274, 256.96pt x 256.96pt>
+ 1514.
+<img/lena_color_globalSingleThreshold_result.png, id=277, 256.96pt x 256.96pt>
 File: img/lena_color_globalSingleThreshold_result.png Graphic file (type png)
 <use img/lena_color_globalSingleThreshold_result.png>
 Package pdftex.def Info: img/lena_color_globalSingleThreshold_result.png  used 
-on input line 1471. on input line 1471.
+on input line 1521. on input line 1521.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1471.
-<img/lena_color_globalSingleThreshold_histogram.png, id=275, 462.528pt x 346.89
+ 1521.
+<img/lena_color_globalSingleThreshold_histogram.png, id=278, 462.528pt x 346.89
 6pt>
 File: img/lena_color_globalSingleThreshold_histogram.png Graphic file (type png
 )
 <use img/lena_color_globalSingleThreshold_histogram.png>
 Package pdftex.def Info: img/lena_color_globalSingleThreshold_histogram.png  us
-ed on input line 1472. on input line 1472.
+ed on input line 1522. on input line 1522.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1472.
+ 1522.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1479. on inp
-ut line 1479.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1529. on inp
+ut line 1529.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1479.
+ 1529.
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
-Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 14
-80. on input line 1480.
+Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 15
+30. on input line 1530.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1480.
-[57 <./img/lena_color_globalSingleThreshold_result.png (PNG copy)> <./img/lena_
+ 1530.
+[58 <./img/lena_color_globalSingleThreshold_result.png (PNG copy)> <./img/lena_
 color_globalSingleThreshold_histogram.png>]
-<img/peppers_color_globalSingleThreshold_result.png, id=280, 513.92pt x 513.92p
+<img/peppers_color_globalSingleThreshold_result.png, id=283, 513.92pt x 513.92p
 t>
 File: img/peppers_color_globalSingleThreshold_result.png Graphic file (type png
 )
 <use img/peppers_color_globalSingleThreshold_result.png>
 Package pdftex.def Info: img/peppers_color_globalSingleThreshold_result.png  us
-ed on input line 1487. on input line 1487.
+ed on input line 1537. on input line 1537.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1487.
-<img/peppers_color_globalSingleThreshold_histogram.png, id=281, 462.528pt x 346
+ 1537.
+<img/peppers_color_globalSingleThreshold_histogram.png, id=284, 462.528pt x 346
 .896pt>
 File: img/peppers_color_globalSingleThreshold_histogram.png Graphic file (type 
 png)
 <use img/peppers_color_globalSingleThreshold_histogram.png>
 Package pdftex.def Info: img/peppers_color_globalSingleThreshold_histogram.png 
- used on input line 1488. on input line 1488.
+ used on input line 1538. on input line 1538.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1488.
- [58 <./img/peppers_color_globalSingleThreshold_result.png (PNG copy)> <./img/p
-eppers_color_globalSingleThreshold_histogram.png>] [59]
-Underfull \hbox (badness 10000) in paragraph at lines 1542--1545
+ 1538.
+ [59 <./img/peppers_color_globalSingleThreshold_result.png (PNG copy)> <./img/p
+eppers_color_globalSingleThreshold_histogram.png>] [60]
+Underfull \hbox (badness 10000) in paragraph at lines 1592--1595
 
  []
 
 
-Underfull \hbox (badness 2707) in paragraph at lines 1542--1545
+Underfull \hbox (badness 2707) in paragraph at lines 1592--1595
 []\OT4/cmr/m/n/12 W pro-go-wa-niu wielo-progowym glo-bal-nym war-to-±ci pro-go-
 we s¡ usta-la-ne dla
  []
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 1551--1553
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 1601--1603
 [] 
  []
 
 
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 1555--1557
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 1605--1607
 [] 
  []
 
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1564. on input 
-line 1564.
+Package pdftex.def Info: img/lena_color.png  used on input line 1614. on input 
+line 1614.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1564.
+ 1614.
 File: img/lena_color_histogram.png Graphic file (type png)
 <use img/lena_color_histogram.png>
-Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1565.
- on input line 1565.
+Package pdftex.def Info: img/lena_color_histogram.png  used on input line 1615.
+ on input line 1615.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1565.
-<img/lena_color_globalMultiThreshold_result.png, id=289, 256.96pt x 256.96pt>
+ 1615.
+<img/lena_color_globalMultiThreshold_result.png, id=292, 256.96pt x 256.96pt>
 File: img/lena_color_globalMultiThreshold_result.png Graphic file (type png)
 <use img/lena_color_globalMultiThreshold_result.png>
 Package pdftex.def Info: img/lena_color_globalMultiThreshold_result.png  used o
-n input line 1572. on input line 1572.
+n input line 1622. on input line 1622.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1572.
-<img/lena_color_globalMultiThreshold_histogram.png, id=290, 462.528pt x 346.896
+ 1622.
+<img/lena_color_globalMultiThreshold_histogram.png, id=293, 462.528pt x 346.896
 pt>
 File: img/lena_color_globalMultiThreshold_histogram.png Graphic file (type png)
 
 <use img/lena_color_globalMultiThreshold_histogram.png>
 Package pdftex.def Info: img/lena_color_globalMultiThreshold_histogram.png  use
-d on input line 1573. on input line 1573.
+d on input line 1623. on input line 1623.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1573.
+ 1623.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [60]
+ [61]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1580. on inp
-ut line 1580.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1630. on inp
+ut line 1630.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1580.
+ 1630.
 File: img/peppers_color_histogram.png Graphic file (type png)
 <use img/peppers_color_histogram.png>
-Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 15
-81. on input line 1581.
+Package pdftex.def Info: img/peppers_color_histogram.png  used on input line 16
+31. on input line 1631.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1581.
-<img/peppers_color_globalMultiThreshold_result.png, id=294, 513.92pt x 513.92pt
+ 1631.
+<img/peppers_color_globalMultiThreshold_result.png, id=298, 513.92pt x 513.92pt
 >
 File: img/peppers_color_globalMultiThreshold_result.png Graphic file (type png)
 
 <use img/peppers_color_globalMultiThreshold_result.png>
 Package pdftex.def Info: img/peppers_color_globalMultiThreshold_result.png  use
-d on input line 1588. on input line 1588.
+d on input line 1638. on input line 1638.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1588.
-<img/peppers_color_globalMultiThreshold_histogram.png, id=295, 462.528pt x 346.
+ 1638.
+<img/peppers_color_globalMultiThreshold_histogram.png, id=299, 462.528pt x 346.
 896pt>
 File: img/peppers_color_globalMultiThreshold_histogram.png Graphic file (type p
 ng)
 <use img/peppers_color_globalMultiThreshold_histogram.png>
 Package pdftex.def Info: img/peppers_color_globalMultiThreshold_histogram.png  
-used on input line 1589. on input line 1589.
+used on input line 1639. on input line 1639.
 Package pdftex.def Info: Requested size: 159.3382pt x 119.50456pt on input line
- 1589.
+ 1639.
 
-[61 <./img/lena_color_globalMultiThreshold_result.png (PNG copy)> <./img/lena_c
+[62 <./img/lena_color_globalMultiThreshold_result.png (PNG copy)> <./img/lena_c
 olor_globalMultiThreshold_histogram.png> <./img/peppers_color_globalMultiThresh
 old_result.png (PNG copy)> <./img/peppers_color_globalMultiThreshold_histogram.
-png>] [62]
+png>] [63]
 Rozdzia\PlPrIeC {\l } 8.
-[63
-
-]
-Rozdzia\PlPrIeC {\l } 9.
 [64
 
 ]
-Rozdzia\PlPrIeC {\l } 10.
+Rozdzia\PlPrIeC {\l } 9.
 [65
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1681--1684
+Rozdzia\PlPrIeC {\l } 10.
+[66
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1731--1734
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 1707. on in
-put line 1707.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 1757. on in
+put line 1757.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1707.
-<img/gentelman_gray_lowpassAvg_result.png, id=316, 256.96pt x 256.96pt>
+ 1757.
+<img/gentelman_gray_lowpassAvg_result.png, id=319, 256.96pt x 256.96pt>
 File: img/gentelman_gray_lowpassAvg_result.png Graphic file (type png)
 <use img/gentelman_gray_lowpassAvg_result.png>
 Package pdftex.def Info: img/gentelman_gray_lowpassAvg_result.png  used on inpu
-t line 1708. on input line 1708.
+t line 1758. on input line 1758.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1708.
+ 1758.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 1715. on input
- line 1715.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 1765. on input
+ line 1765.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1715.
-<img/pirate_gray_lowpassAvg_result.png, id=317, 513.92pt x 513.92pt>
+ 1765.
+<img/pirate_gray_lowpassAvg_result.png, id=320, 513.92pt x 513.92pt>
 File: img/pirate_gray_lowpassAvg_result.png Graphic file (type png)
 <use img/pirate_gray_lowpassAvg_result.png>
 Package pdftex.def Info: img/pirate_gray_lowpassAvg_result.png  used on input l
-ine 1716. on input line 1716.
+ine 1766. on input line 1766.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1716.
+ 1766.
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1723. on input 
-line 1723.
+Package pdftex.def Info: img/lena_color.png  used on input line 1773. on input 
+line 1773.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1723.
-<img/lena_color_lowpassAvg_result.png, id=318, 256.96pt x 256.96pt>
+ 1773.
+<img/lena_color_lowpassAvg_result.png, id=321, 256.96pt x 256.96pt>
 File: img/lena_color_lowpassAvg_result.png Graphic file (type png)
 <use img/lena_color_lowpassAvg_result.png>
 Package pdftex.def Info: img/lena_color_lowpassAvg_result.png  used on input li
-ne 1724. on input line 1724.
+ne 1774. on input line 1774.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1724.
-[66 <./img/gentelman_gray_lowpassAvg_result.png (PNG copy)> <./img/pirate_gray_
+ 1774.
+[67 <./img/gentelman_gray_lowpassAvg_result.png (PNG copy)> <./img/pirate_gray_
 lowpassAvg_result.png (PNG copy)>]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1731. on inp
-ut line 1731.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1781. on inp
+ut line 1781.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1731.
-<img/peppers_color_lowpassAvg_result.png, id=322, 513.92pt x 513.92pt>
+ 1781.
+<img/peppers_color_lowpassAvg_result.png, id=326, 513.92pt x 513.92pt>
 File: img/peppers_color_lowpassAvg_result.png Graphic file (type png)
 <use img/peppers_color_lowpassAvg_result.png>
 Package pdftex.def Info: img/peppers_color_lowpassAvg_result.png  used on input
- line 1732. on input line 1732.
+ line 1782. on input line 1782.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1732.
- [67 <./img/lena_color_lowpassAvg_result.png (PNG copy)> <./img/peppers_color_l
-owpassAvg_result.png (PNG copy)>] [68]
-[69]
-Underfull \hbox (badness 10000) in paragraph at lines 1822--1825
+ 1782.
+ [68 <./img/lena_color_lowpassAvg_result.png (PNG copy)> <./img/peppers_color_l
+owpassAvg_result.png (PNG copy)>] [69]
+[70]
+Underfull \hbox (badness 10000) in paragraph at lines 1872--1875
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 1852. on in
-put line 1852.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 1902. on in
+put line 1902.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1852.
-<img/gentelman_gray_lowpassGauss_result.png, id=333, 256.96pt x 256.96pt>
+ 1902.
+<img/gentelman_gray_lowpassGauss_result.png, id=336, 256.96pt x 256.96pt>
 File: img/gentelman_gray_lowpassGauss_result.png Graphic file (type png)
 <use img/gentelman_gray_lowpassGauss_result.png>
 Package pdftex.def Info: img/gentelman_gray_lowpassGauss_result.png  used on in
-put line 1853. on input line 1853.
+put line 1903. on input line 1903.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1853.
+ 1903.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 1860. on input
- line 1860.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 1910. on input
+ line 1910.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1860.
-<img/pirate_gray_lowpassGauss_result.png, id=334, 513.92pt x 513.92pt>
+ 1910.
+<img/pirate_gray_lowpassGauss_result.png, id=337, 513.92pt x 513.92pt>
 File: img/pirate_gray_lowpassGauss_result.png Graphic file (type png)
 <use img/pirate_gray_lowpassGauss_result.png>
 Package pdftex.def Info: img/pirate_gray_lowpassGauss_result.png  used on input
- line 1861. on input line 1861.
+ line 1911. on input line 1911.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1861.
+ 1911.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [70 <./img/gentelman_gray_lowpassGauss_result.png (PNG copy)>]
+ [71 <./img/gentelman_gray_lowpassGauss_result.png (PNG copy)>]
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 1868. on input 
-line 1868.
+Package pdftex.def Info: img/lena_color.png  used on input line 1918. on input 
+line 1918.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1868.
-<img/lena_color_lowpassGauss_result.png, id=338, 256.96pt x 256.96pt>
+ 1918.
+<img/lena_color_lowpassGauss_result.png, id=341, 256.96pt x 256.96pt>
 File: img/lena_color_lowpassGauss_result.png Graphic file (type png)
 <use img/lena_color_lowpassGauss_result.png>
 Package pdftex.def Info: img/lena_color_lowpassGauss_result.png  used on input 
-line 1869. on input line 1869.
+line 1919. on input line 1919.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1869.
+ 1919.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 1876. on inp
-ut line 1876.
+Package pdftex.def Info: img/peppers_color.png  used on input line 1926. on inp
+ut line 1926.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1876.
-<img/peppers_color_lowpassGauss_result.png, id=339, 513.92pt x 513.92pt>
+ 1926.
+<img/peppers_color_lowpassGauss_result.png, id=342, 513.92pt x 513.92pt>
 File: img/peppers_color_lowpassGauss_result.png Graphic file (type png)
 <use img/peppers_color_lowpassGauss_result.png>
 Package pdftex.def Info: img/peppers_color_lowpassGauss_result.png  used on inp
-ut line 1877. on input line 1877.
+ut line 1927. on input line 1927.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1877.
- [71 <./img/pirate_gray_lowpassGauss_result.png (PNG copy)> <./img/lena_color_l
+ 1927.
+ [72 <./img/pirate_gray_lowpassGauss_result.png (PNG copy)> <./img/lena_color_l
 owpassGauss_result.png (PNG copy)> <./img/peppers_color_lowpassGauss_result.png
- (PNG copy)>] [72] [73]
-Underfull \hbox (badness 10000) in paragraph at lines 1965--1968
+ (PNG copy)>] [73] [74]
+Underfull \hbox (badness 10000) in paragraph at lines 2015--2018
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 1990. on in
-put line 1990.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 2040. on in
+put line 2040.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1990.
-<img/gentelman_gray_highpassRoberts_result.png, id=350, 256.96pt x 256.96pt>
+ 2040.
+<img/gentelman_gray_highpassRoberts_result.png, id=353, 256.96pt x 256.96pt>
 File: img/gentelman_gray_highpassRoberts_result.png Graphic file (type png)
 <use img/gentelman_gray_highpassRoberts_result.png>
 Package pdftex.def Info: img/gentelman_gray_highpassRoberts_result.png  used on
- input line 1991. on input line 1991.
+ input line 2041. on input line 2041.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 1991.
+ 2041.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 1998. on input
- line 1998.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 2048. on input
+ line 2048.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1998.
-<img/pirate_gray_highpassRoberts_result.png, id=351, 513.92pt x 513.92pt>
+ 2048.
+<img/pirate_gray_highpassRoberts_result.png, id=354, 513.92pt x 513.92pt>
 File: img/pirate_gray_highpassRoberts_result.png Graphic file (type png)
 <use img/pirate_gray_highpassRoberts_result.png>
 Package pdftex.def Info: img/pirate_gray_highpassRoberts_result.png  used on in
-put line 1999. on input line 1999.
+put line 2049. on input line 2049.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 1999.
+ 2049.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [74 <./img/gentelman_gray_highpassRoberts_result.png (PNG copy)>]
+ [75 <./img/gentelman_gray_highpassRoberts_result.png (PNG copy)>]
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 2006. on input 
-line 2006.
+Package pdftex.def Info: img/lena_color.png  used on input line 2056. on input 
+line 2056.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2006.
-<img/lena_color_highpassRoberts_result.png, id=355, 256.96pt x 256.96pt>
+ 2056.
+<img/lena_color_highpassRoberts_result.png, id=358, 256.96pt x 256.96pt>
 File: img/lena_color_highpassRoberts_result.png Graphic file (type png)
 <use img/lena_color_highpassRoberts_result.png>
 Package pdftex.def Info: img/lena_color_highpassRoberts_result.png  used on inp
-ut line 2007. on input line 2007.
+ut line 2057. on input line 2057.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2007.
+ 2057.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 2014. on inp
-ut line 2014.
+Package pdftex.def Info: img/peppers_color.png  used on input line 2064. on inp
+ut line 2064.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2014.
-<img/peppers_color_highpassRoberts_result.png, id=356, 513.92pt x 513.92pt>
+ 2064.
+<img/peppers_color_highpassRoberts_result.png, id=359, 513.92pt x 513.92pt>
 File: img/peppers_color_highpassRoberts_result.png Graphic file (type png)
 <use img/peppers_color_highpassRoberts_result.png>
 Package pdftex.def Info: img/peppers_color_highpassRoberts_result.png  used on 
-input line 2015. on input line 2015.
+input line 2065. on input line 2065.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2015.
- [75 <./img/pirate_gray_highpassRoberts_result.png (PNG copy)> <./img/lena_colo
+ 2065.
+ [76 <./img/pirate_gray_highpassRoberts_result.png (PNG copy)> <./img/lena_colo
 r_highpassRoberts_result.png (PNG copy)> <./img/peppers_color_highpassRoberts_r
 esult.png (PNG copy)>]
-[76] [77]
-Underfull \hbox (badness 10000) in paragraph at lines 2096--2099
+[77] [78]
+Underfull \hbox (badness 10000) in paragraph at lines 2146--2149
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 2126. on in
-put line 2126.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 2176. on in
+put line 2176.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2126.
-<img/gentelman_gray_highpassPrewitt_result.png, id=366, 256.96pt x 256.96pt>
+ 2176.
+<img/gentelman_gray_highpassPrewitt_result.png, id=369, 256.96pt x 256.96pt>
 File: img/gentelman_gray_highpassPrewitt_result.png Graphic file (type png)
 <use img/gentelman_gray_highpassPrewitt_result.png>
 Package pdftex.def Info: img/gentelman_gray_highpassPrewitt_result.png  used on
- input line 2127. on input line 2127.
+ input line 2177. on input line 2177.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2127.
+ 2177.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 2134. on input
- line 2134.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 2184. on input
+ line 2184.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2134.
-<img/pirate_gray_highpassPrewitt_result.png, id=367, 513.92pt x 513.92pt>
+ 2184.
+<img/pirate_gray_highpassPrewitt_result.png, id=370, 513.92pt x 513.92pt>
 File: img/pirate_gray_highpassPrewitt_result.png Graphic file (type png)
 <use img/pirate_gray_highpassPrewitt_result.png>
 Package pdftex.def Info: img/pirate_gray_highpassPrewitt_result.png  used on in
-put line 2135. on input line 2135.
+put line 2185. on input line 2185.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2135.
+ 2185.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [78 <./img/gentelman_gray_highpassPrewitt_result.png (PNG copy)>]
+ [79 <./img/gentelman_gray_highpassPrewitt_result.png (PNG copy)>]
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 2142. on input 
-line 2142.
+Package pdftex.def Info: img/lena_color.png  used on input line 2192. on input 
+line 2192.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2142.
-<img/lena_color_highpassPrewitt_result.png, id=371, 256.96pt x 256.96pt>
+ 2192.
+<img/lena_color_highpassPrewitt_result.png, id=375, 256.96pt x 256.96pt>
 File: img/lena_color_highpassPrewitt_result.png Graphic file (type png)
 <use img/lena_color_highpassPrewitt_result.png>
 Package pdftex.def Info: img/lena_color_highpassPrewitt_result.png  used on inp
-ut line 2143. on input line 2143.
+ut line 2193. on input line 2193.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2143.
+ 2193.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 2150. on inp
-ut line 2150.
+Package pdftex.def Info: img/peppers_color.png  used on input line 2200. on inp
+ut line 2200.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2150.
-<img/peppers_color_highpassPrewitt_result.png, id=372, 513.92pt x 513.92pt>
+ 2200.
+<img/peppers_color_highpassPrewitt_result.png, id=376, 513.92pt x 513.92pt>
 File: img/peppers_color_highpassPrewitt_result.png Graphic file (type png)
 <use img/peppers_color_highpassPrewitt_result.png>
 Package pdftex.def Info: img/peppers_color_highpassPrewitt_result.png  used on 
-input line 2151. on input line 2151.
+input line 2201. on input line 2201.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2151.
- [79 <./img/pirate_gray_highpassPrewitt_result.png (PNG copy)> <./img/lena_colo
+ 2201.
+ [80 <./img/pirate_gray_highpassPrewitt_result.png (PNG copy)> <./img/lena_colo
 r_highpassPrewitt_result.png (PNG copy)> <./img/peppers_color_highpassPrewitt_r
 esult.png (PNG copy)>]
-[80] [81]
-Underfull \hbox (badness 10000) in paragraph at lines 2238--2241
+[81] [82]
+Underfull \hbox (badness 10000) in paragraph at lines 2288--2291
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 2268. on in
-put line 2268.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 2318. on in
+put line 2318.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2268.
-<img/gentelman_gray_highpassSobol_result.png, id=383, 256.96pt x 256.96pt>
+ 2318.
+<img/gentelman_gray_highpassSobol_result.png, id=386, 256.96pt x 256.96pt>
 File: img/gentelman_gray_highpassSobol_result.png Graphic file (type png)
 <use img/gentelman_gray_highpassSobol_result.png>
 Package pdftex.def Info: img/gentelman_gray_highpassSobol_result.png  used on i
-nput line 2269. on input line 2269.
+nput line 2319. on input line 2319.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2269.
+ 2319.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 2276. on input
- line 2276.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 2326. on input
+ line 2326.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2276.
-<img/pirate_gray_highpassSobol_result.png, id=384, 513.92pt x 513.92pt>
+ 2326.
+<img/pirate_gray_highpassSobol_result.png, id=387, 513.92pt x 513.92pt>
 File: img/pirate_gray_highpassSobol_result.png Graphic file (type png)
 <use img/pirate_gray_highpassSobol_result.png>
 Package pdftex.def Info: img/pirate_gray_highpassSobol_result.png  used on inpu
-t line 2277. on input line 2277.
+t line 2327. on input line 2327.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2277.
+ 2327.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [82 <./img/gentelman_gray_highpassSobol_result.png (PNG copy)>]
+ [83 <./img/gentelman_gray_highpassSobol_result.png (PNG copy)>]
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 2284. on input 
-line 2284.
+Package pdftex.def Info: img/lena_color.png  used on input line 2334. on input 
+line 2334.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2284.
-<img/lena_color_highpassSobol_result.png, id=388, 256.96pt x 256.96pt>
+ 2334.
+<img/lena_color_highpassSobol_result.png, id=391, 256.96pt x 256.96pt>
 File: img/lena_color_highpassSobol_result.png Graphic file (type png)
 <use img/lena_color_highpassSobol_result.png>
 Package pdftex.def Info: img/lena_color_highpassSobol_result.png  used on input
- line 2285. on input line 2285.
+ line 2335. on input line 2335.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2285.
+ 2335.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 2292. on inp
-ut line 2292.
+Package pdftex.def Info: img/peppers_color.png  used on input line 2342. on inp
+ut line 2342.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2292.
-<img/peppers_color_highpassSobol_result.png, id=389, 513.92pt x 513.92pt>
+ 2342.
+<img/peppers_color_highpassSobol_result.png, id=392, 513.92pt x 513.92pt>
 File: img/peppers_color_highpassSobol_result.png Graphic file (type png)
 <use img/peppers_color_highpassSobol_result.png>
 Package pdftex.def Info: img/peppers_color_highpassSobol_result.png  used on in
-put line 2293. on input line 2293.
+put line 2343. on input line 2343.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2293.
- [83 <./img/pirate_gray_highpassSobol_result.png (PNG copy)> <./img/lena_color_
+ 2343.
+ [84 <./img/pirate_gray_highpassSobol_result.png (PNG copy)> <./img/lena_color_
 highpassSobol_result.png (PNG copy)> <./img/peppers_color_highpassSobol_result.
-png (PNG copy)>] [84]
+png (PNG copy)>] [85]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [85]
-[86]
-Underfull \hbox (badness 10000) in paragraph at lines 2386--2389
+ [86]
+[87]
+Underfull \hbox (badness 10000) in paragraph at lines 2436--2439
 
  []
 
-[87]
+[88]
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 2507. on in
-put line 2507.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 2557. on in
+put line 2557.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2507.
-<img/gentelman_gray_compassSobol_result.png, id=406, 256.96pt x 256.96pt>
+ 2557.
+<img/gentelman_gray_compassSobol_result.png, id=409, 256.96pt x 256.96pt>
 File: img/gentelman_gray_compassSobol_result.png Graphic file (type png)
 <use img/gentelman_gray_compassSobol_result.png>
 Package pdftex.def Info: img/gentelman_gray_compassSobol_result.png  used on in
-put line 2508. on input line 2508.
+put line 2558. on input line 2558.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2508.
+ 2558.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 2515. on input
- line 2515.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 2565. on input
+ line 2565.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2515.
-<img/pirate_gray_compassSobol_result.png, id=407, 513.92pt x 513.92pt>
+ 2565.
+<img/pirate_gray_compassSobol_result.png, id=410, 513.92pt x 513.92pt>
 File: img/pirate_gray_compassSobol_result.png Graphic file (type png)
 <use img/pirate_gray_compassSobol_result.png>
 Package pdftex.def Info: img/pirate_gray_compassSobol_result.png  used on input
- line 2516. on input line 2516.
+ line 2566. on input line 2566.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2516.
+ 2566.
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 2523. on input 
-line 2523.
+Package pdftex.def Info: img/lena_color.png  used on input line 2573. on input 
+line 2573.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2523.
-<img/lena_color_compassSobol_result.png, id=408, 256.96pt x 256.96pt>
+ 2573.
+<img/lena_color_compassSobol_result.png, id=411, 256.96pt x 256.96pt>
 File: img/lena_color_compassSobol_result.png Graphic file (type png)
 <use img/lena_color_compassSobol_result.png>
 Package pdftex.def Info: img/lena_color_compassSobol_result.png  used on input 
-line 2524. on input line 2524.
+line 2574. on input line 2574.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2524.
+ 2574.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 2531. on inp
-ut line 2531.
+Package pdftex.def Info: img/peppers_color.png  used on input line 2581. on inp
+ut line 2581.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2531.
-<img/peppers_color_compassSobol_result.png, id=409, 513.92pt x 513.92pt>
+ 2581.
+<img/peppers_color_compassSobol_result.png, id=412, 513.92pt x 513.92pt>
 File: img/peppers_color_compassSobol_result.png Graphic file (type png)
 <use img/peppers_color_compassSobol_result.png>
 Package pdftex.def Info: img/peppers_color_compassSobol_result.png  used on inp
-ut line 2532. on input line 2532.
+ut line 2582. on input line 2582.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2532.
- [88 <./img/gentelman_gray_compassSobol_result.png (PNG copy)> <./img/pirate_gr
+ 2582.
+ [89 <./img/gentelman_gray_compassSobol_result.png (PNG copy)> <./img/pirate_gr
 ay_compassSobol_result.png (PNG copy)> <./img/lena_color_compassSobol_result.pn
-g (PNG copy)>] [89 <./img/peppers_color_compassSobol_result.png (PNG copy)>]
+g (PNG copy)>] [90 <./img/peppers_color_compassSobol_result.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [90]
-[91]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [92]
+ [91]
+[92]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [93]
-[94]
-Underfull \hbox (badness 10000) in paragraph at lines 2711--2714
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [94]
+[95]
+Underfull \hbox (badness 10000) in paragraph at lines 2761--2764
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 2781. on in
-put line 2781.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 2831. on in
+put line 2831.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2781.
-<img/gentelman_gray_vdgPrewitt_result.png, id=432, 256.96pt x 256.96pt>
+ 2831.
+<img/gentelman_gray_vdgPrewitt_result.png, id=435, 256.96pt x 256.96pt>
 File: img/gentelman_gray_vdgPrewitt_result.png Graphic file (type png)
 <use img/gentelman_gray_vdgPrewitt_result.png>
 Package pdftex.def Info: img/gentelman_gray_vdgPrewitt_result.png  used on inpu
-t line 2782. on input line 2782.
+t line 2832. on input line 2832.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2782.
+ 2832.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [95]
+ [96]
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 2789. on input
- line 2789.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 2839. on input
+ line 2839.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2789.
-<img/pirate_gray_vdgPrewitt_result.png, id=436, 513.92pt x 513.92pt>
+ 2839.
+<img/pirate_gray_vdgPrewitt_result.png, id=439, 513.92pt x 513.92pt>
 File: img/pirate_gray_vdgPrewitt_result.png Graphic file (type png)
 <use img/pirate_gray_vdgPrewitt_result.png>
 Package pdftex.def Info: img/pirate_gray_vdgPrewitt_result.png  used on input l
-ine 2790. on input line 2790.
+ine 2840. on input line 2840.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2790.
+ 2840.
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 2797. on input 
-line 2797.
+Package pdftex.def Info: img/lena_color.png  used on input line 2847. on input 
+line 2847.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2797.
-<img/lena_color_vdgPrewitt_result.png, id=437, 256.96pt x 256.96pt>
+ 2847.
+<img/lena_color_vdgPrewitt_result.png, id=440, 256.96pt x 256.96pt>
 File: img/lena_color_vdgPrewitt_result.png Graphic file (type png)
 <use img/lena_color_vdgPrewitt_result.png>
 Package pdftex.def Info: img/lena_color_vdgPrewitt_result.png  used on input li
-ne 2798. on input line 2798.
+ne 2848. on input line 2848.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2798.
+ 2848.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 2805. on inp
-ut line 2805.
+Package pdftex.def Info: img/peppers_color.png  used on input line 2855. on inp
+ut line 2855.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2805.
-<img/peppers_color_vdgPrewitt_result.png, id=438, 513.92pt x 513.92pt>
+ 2855.
+<img/peppers_color_vdgPrewitt_result.png, id=441, 513.92pt x 513.92pt>
 File: img/peppers_color_vdgPrewitt_result.png Graphic file (type png)
 <use img/peppers_color_vdgPrewitt_result.png>
 Package pdftex.def Info: img/peppers_color_vdgPrewitt_result.png  used on input
- line 2806. on input line 2806.
+ line 2856. on input line 2856.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2806.
+ 2856.
 
 Underfull \vbox (badness 2126) has occurred while \output is active []
 
- [96 <./img/gentelman_gray_vdgPrewitt_result.png (PNG copy)> <./img/pirate_gray
+ [97 <./img/gentelman_gray_vdgPrewitt_result.png (PNG copy)> <./img/pirate_gray
 _vdgPrewitt_result.png (PNG copy)> <./img/lena_color_vdgPrewitt_result.png (PNG
  copy)>]
-[97 <./img/peppers_color_vdgPrewitt_result.png (PNG copy)>] [98]
+[98 <./img/peppers_color_vdgPrewitt_result.png (PNG copy)>] [99]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [99]
-[100]
-Underfull \hbox (badness 10000) in paragraph at lines 2938--2941
+ [100]
+[101]
+Underfull \hbox (badness 10000) in paragraph at lines 2988--2991
 
  []
 
-<img/gentelman_gray_noise.png, id=455, 256.96pt x 256.96pt>
+<img/gentelman_gray_noise.png, id=458, 256.96pt x 256.96pt>
 File: img/gentelman_gray_noise.png Graphic file (type png)
 <use img/gentelman_gray_noise.png>
-Package pdftex.def Info: img/gentelman_gray_noise.png  used on input line 2952.
- on input line 2952.
+Package pdftex.def Info: img/gentelman_gray_noise.png  used on input line 3002.
+ on input line 3002.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2952.
-<img/gentelman_gray_noise_median_result.png, id=456, 256.96pt x 256.96pt>
+ 3002.
+<img/gentelman_gray_noise_median_result.png, id=459, 256.96pt x 256.96pt>
 File: img/gentelman_gray_noise_median_result.png Graphic file (type png)
 <use img/gentelman_gray_noise_median_result.png>
 Package pdftex.def Info: img/gentelman_gray_noise_median_result.png  used on in
-put line 2953. on input line 2953.
+put line 3003. on input line 3003.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2953.
-<img/pirate_gray_noise.png, id=457, 513.92pt x 513.92pt>
+ 3003.
+<img/pirate_gray_noise.png, id=460, 513.92pt x 513.92pt>
 File: img/pirate_gray_noise.png Graphic file (type png)
 <use img/pirate_gray_noise.png>
-Package pdftex.def Info: img/pirate_gray_noise.png  used on input line 2960. on
- input line 2960.
+Package pdftex.def Info: img/pirate_gray_noise.png  used on input line 3010. on
+ input line 3010.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2960.
-<img/pirate_gray_noise_median_result.png, id=458, 513.92pt x 513.92pt>
+ 3010.
+<img/pirate_gray_noise_median_result.png, id=461, 513.92pt x 513.92pt>
 File: img/pirate_gray_noise_median_result.png Graphic file (type png)
 <use img/pirate_gray_noise_median_result.png>
 Package pdftex.def Info: img/pirate_gray_noise_median_result.png  used on input
- line 2961. on input line 2961.
+ line 3011. on input line 3011.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2961.
-<img/lena_color_noise.png, id=459, 256.96pt x 256.96pt>
+ 3011.
+<img/lena_color_noise.png, id=462, 256.96pt x 256.96pt>
 File: img/lena_color_noise.png Graphic file (type png)
 <use img/lena_color_noise.png>
-Package pdftex.def Info: img/lena_color_noise.png  used on input line 2968. on 
-input line 2968.
+Package pdftex.def Info: img/lena_color_noise.png  used on input line 3018. on 
+input line 3018.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2968.
-<img/lena_color_noise_median_result.png, id=460, 256.96pt x 256.96pt>
+ 3018.
+<img/lena_color_noise_median_result.png, id=463, 256.96pt x 256.96pt>
 File: img/lena_color_noise_median_result.png Graphic file (type png)
 <use img/lena_color_noise_median_result.png>
 Package pdftex.def Info: img/lena_color_noise_median_result.png  used on input 
-line 2969. on input line 2969.
+line 3019. on input line 3019.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 2969.
-[101 <./img/gentelman_gray_noise.png> <./img/gentelman_gray_noise_median_result
+ 3019.
+[102 <./img/gentelman_gray_noise.png> <./img/gentelman_gray_noise_median_result
 .png (PNG copy)> <./img/pirate_gray_noise.png> <./img/pirate_gray_noise_median_
 result.png (PNG copy)>]
-<img/peppers_color_noise.png, id=466, 513.92pt x 513.92pt>
+<img/peppers_color_noise.png, id=469, 513.92pt x 513.92pt>
 File: img/peppers_color_noise.png Graphic file (type png)
 <use img/peppers_color_noise.png>
-Package pdftex.def Info: img/peppers_color_noise.png  used on input line 2976. 
-on input line 2976.
+Package pdftex.def Info: img/peppers_color_noise.png  used on input line 3026. 
+on input line 3026.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2976.
-<img/peppers_color_noise_median_result.png, id=467, 513.92pt x 513.92pt>
+ 3026.
+<img/peppers_color_noise_median_result.png, id=470, 513.92pt x 513.92pt>
 File: img/peppers_color_noise_median_result.png Graphic file (type png)
 <use img/peppers_color_noise_median_result.png>
 Package pdftex.def Info: img/peppers_color_noise_median_result.png  used on inp
-ut line 2977. on input line 2977.
+ut line 3027. on input line 3027.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 2977.
- [102 <./img/lena_color_noise.png> <./img/lena_color_noise_median_result.png (P
+ 3027.
+ [103 <./img/lena_color_noise.png> <./img/lena_color_noise_median_result.png (P
 NG copy)> <./img/peppers_color_noise.png> <./img/peppers_color_noise_median_res
-ult.png (PNG copy)>] [103] [104]
-Underfull \hbox (badness 10000) in paragraph at lines 3055--3058
+ult.png (PNG copy)>] [104] [105]
+Underfull \hbox (badness 10000) in paragraph at lines 3105--3108
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 3069. on in
-put line 3069.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 3119. on in
+put line 3119.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3069.
-<img/gentelman_gray_max_result.png, id=480, 256.96pt x 256.96pt>
+ 3119.
+<img/gentelman_gray_max_result.png, id=483, 256.96pt x 256.96pt>
 File: img/gentelman_gray_max_result.png Graphic file (type png)
 <use img/gentelman_gray_max_result.png>
 Package pdftex.def Info: img/gentelman_gray_max_result.png  used on input line 
-3070. on input line 3070.
+3120. on input line 3120.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3070.
+ 3120.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 3077. on input
- line 3077.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 3127. on input
+ line 3127.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3077.
-<img/pirate_gray_max_result.png, id=481, 513.92pt x 513.92pt>
+ 3127.
+<img/pirate_gray_max_result.png, id=484, 513.92pt x 513.92pt>
 File: img/pirate_gray_max_result.png Graphic file (type png)
 <use img/pirate_gray_max_result.png>
-Package pdftex.def Info: img/pirate_gray_max_result.png  used on input line 307
-8. on input line 3078.
+Package pdftex.def Info: img/pirate_gray_max_result.png  used on input line 312
+8. on input line 3128.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3078.
+ 3128.
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 3085. on input 
-line 3085.
+Package pdftex.def Info: img/lena_color.png  used on input line 3135. on input 
+line 3135.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3085.
-<img/lena_color_max_result.png, id=482, 256.96pt x 256.96pt>
+ 3135.
+<img/lena_color_max_result.png, id=485, 256.96pt x 256.96pt>
 File: img/lena_color_max_result.png Graphic file (type png)
 <use img/lena_color_max_result.png>
-Package pdftex.def Info: img/lena_color_max_result.png  used on input line 3086
-. on input line 3086.
+Package pdftex.def Info: img/lena_color_max_result.png  used on input line 3136
+. on input line 3136.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3086.
-[105 <./img/gentelman_gray_max_result.png (PNG copy)> <./img/pirate_gray_max_re
+ 3136.
+[106 <./img/gentelman_gray_max_result.png (PNG copy)> <./img/pirate_gray_max_re
 sult.png (PNG copy)>]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 3093. on inp
-ut line 3093.
+Package pdftex.def Info: img/peppers_color.png  used on input line 3143. on inp
+ut line 3143.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3093.
-<img/peppers_color_max_result.png, id=486, 513.92pt x 513.92pt>
+ 3143.
+<img/peppers_color_max_result.png, id=489, 513.92pt x 513.92pt>
 File: img/peppers_color_max_result.png Graphic file (type png)
 <use img/peppers_color_max_result.png>
 Package pdftex.def Info: img/peppers_color_max_result.png  used on input line 3
-094. on input line 3094.
+144. on input line 3144.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3094.
- [106 <./img/lena_color_max_result.png (PNG copy)> <./img/peppers_color_max_res
-ult.png (PNG copy)>] [107] [108]
-Underfull \hbox (badness 10000) in paragraph at lines 3169--3172
+ 3144.
+ [107 <./img/lena_color_max_result.png (PNG copy)> <./img/peppers_color_max_res
+ult.png (PNG copy)>] [108] [109]
+Underfull \hbox (badness 10000) in paragraph at lines 3219--3222
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 3183. on in
-put line 3183.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 3233. on in
+put line 3233.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3183.
-<img/gentelman_gray_min_result.png, id=496, 256.96pt x 256.96pt>
+ 3233.
+<img/gentelman_gray_min_result.png, id=500, 256.96pt x 256.96pt>
 File: img/gentelman_gray_min_result.png Graphic file (type png)
 <use img/gentelman_gray_min_result.png>
 Package pdftex.def Info: img/gentelman_gray_min_result.png  used on input line 
-3184. on input line 3184.
+3234. on input line 3234.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3184.
+ 3234.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 3191. on input
- line 3191.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 3241. on input
+ line 3241.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3191.
-<img/pirate_gray_min_result.png, id=497, 513.92pt x 513.92pt>
+ 3241.
+<img/pirate_gray_min_result.png, id=501, 513.92pt x 513.92pt>
 File: img/pirate_gray_min_result.png Graphic file (type png)
 <use img/pirate_gray_min_result.png>
-Package pdftex.def Info: img/pirate_gray_min_result.png  used on input line 319
-2. on input line 3192.
+Package pdftex.def Info: img/pirate_gray_min_result.png  used on input line 324
+2. on input line 3242.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3192.
+ 3242.
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 3199. on input 
-line 3199.
+Package pdftex.def Info: img/lena_color.png  used on input line 3249. on input 
+line 3249.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3199.
-<img/lena_color_min_result.png, id=498, 256.96pt x 256.96pt>
+ 3249.
+<img/lena_color_min_result.png, id=502, 256.96pt x 256.96pt>
 File: img/lena_color_min_result.png Graphic file (type png)
 <use img/lena_color_min_result.png>
-Package pdftex.def Info: img/lena_color_min_result.png  used on input line 3200
-. on input line 3200.
+Package pdftex.def Info: img/lena_color_min_result.png  used on input line 3250
+. on input line 3250.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3200.
-[109 <./img/gentelman_gray_min_result.png (PNG copy)> <./img/pirate_gray_min_re
+ 3250.
+[110 <./img/gentelman_gray_min_result.png (PNG copy)> <./img/pirate_gray_min_re
 sult.png (PNG copy)>]
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 3207. on inp
-ut line 3207.
+Package pdftex.def Info: img/peppers_color.png  used on input line 3257. on inp
+ut line 3257.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3207.
-<img/peppers_color_min_result.png, id=503, 513.92pt x 513.92pt>
+ 3257.
+<img/peppers_color_min_result.png, id=506, 513.92pt x 513.92pt>
 File: img/peppers_color_min_result.png Graphic file (type png)
 <use img/peppers_color_min_result.png>
 Package pdftex.def Info: img/peppers_color_min_result.png  used on input line 3
-208. on input line 3208.
+258. on input line 3258.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3208.
- [110 <./img/lena_color_min_result.png (PNG copy)> <./img/peppers_color_min_res
-ult.png (PNG copy)>] [111] [112]
-Underfull \hbox (badness 10000) in paragraph at lines 3283--3286
+ 3258.
+ [111 <./img/lena_color_min_result.png (PNG copy)> <./img/peppers_color_min_res
+ult.png (PNG copy)>] [112] [113]
+Underfull \hbox (badness 10000) in paragraph at lines 3333--3336
 
  []
 
 File: img/gentelman_gray.png Graphic file (type png)
 <use img/gentelman_gray.png>
-Package pdftex.def Info: img/gentelman_gray.png  used on input line 3313. on in
-put line 3313.
+Package pdftex.def Info: img/gentelman_gray.png  used on input line 3363. on in
+put line 3363.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3313.
-<img/gentelman_gray_reliefPrewitt_result.png, id=513, 256.96pt x 256.96pt>
+ 3363.
+<img/gentelman_gray_reliefPrewitt_result.png, id=516, 256.96pt x 256.96pt>
 File: img/gentelman_gray_reliefPrewitt_result.png Graphic file (type png)
 <use img/gentelman_gray_reliefPrewitt_result.png>
 Package pdftex.def Info: img/gentelman_gray_reliefPrewitt_result.png  used on i
-nput line 3314. on input line 3314.
+nput line 3364. on input line 3364.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3314.
+ 3364.
 File: img/pirate_gray.png Graphic file (type png)
 <use img/pirate_gray.png>
-Package pdftex.def Info: img/pirate_gray.png  used on input line 3321. on input
- line 3321.
+Package pdftex.def Info: img/pirate_gray.png  used on input line 3371. on input
+ line 3371.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3321.
-<img/pirate_gray_reliefPrewitt_result.png, id=514, 513.92pt x 513.92pt>
+ 3371.
+<img/pirate_gray_reliefPrewitt_result.png, id=517, 513.92pt x 513.92pt>
 File: img/pirate_gray_reliefPrewitt_result.png Graphic file (type png)
 <use img/pirate_gray_reliefPrewitt_result.png>
 Package pdftex.def Info: img/pirate_gray_reliefPrewitt_result.png  used on inpu
-t line 3322. on input line 3322.
+t line 3372. on input line 3372.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3322.
+ 3372.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [113 <./img/gentelman_gray_reliefPrewitt_result.png (PNG copy)>]
+ [114 <./img/gentelman_gray_reliefPrewitt_result.png (PNG copy)>]
 File: img/lena_color.png Graphic file (type png)
 <use img/lena_color.png>
-Package pdftex.def Info: img/lena_color.png  used on input line 3329. on input 
-line 3329.
+Package pdftex.def Info: img/lena_color.png  used on input line 3379. on input 
+line 3379.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3329.
-<img/lena_color_reliefPrewitt_result.png, id=518, 256.96pt x 256.96pt>
+ 3379.
+<img/lena_color_reliefPrewitt_result.png, id=521, 256.96pt x 256.96pt>
 File: img/lena_color_reliefPrewitt_result.png Graphic file (type png)
 <use img/lena_color_reliefPrewitt_result.png>
 Package pdftex.def Info: img/lena_color_reliefPrewitt_result.png  used on input
- line 3330. on input line 3330.
+ line 3380. on input line 3380.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.34099pt on input line
- 3330.
+ 3380.
 File: img/peppers_color.png Graphic file (type png)
 <use img/peppers_color.png>
-Package pdftex.def Info: img/peppers_color.png  used on input line 3337. on inp
-ut line 3337.
+Package pdftex.def Info: img/peppers_color.png  used on input line 3387. on inp
+ut line 3387.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3337.
-<img/peppers_color_reliefPrewitt_result.png, id=519, 513.92pt x 513.92pt>
+ 3387.
+<img/peppers_color_reliefPrewitt_result.png, id=522, 513.92pt x 513.92pt>
 File: img/peppers_color_reliefPrewitt_result.png Graphic file (type png)
 <use img/peppers_color_reliefPrewitt_result.png>
 Package pdftex.def Info: img/peppers_color_reliefPrewitt_result.png  used on in
-put line 3338. on input line 3338.
+put line 3388. on input line 3388.
 Package pdftex.def Info: Requested size: 159.3382pt x 159.33707pt on input line
- 3338.
- [114 <./img/pirate_gray_reliefPrewitt_result.png (PNG copy)> <./img/lena_color
+ 3388.
+ [115 <./img/pirate_gray_reliefPrewitt_result.png (PNG copy)> <./img/lena_color
 _reliefPrewitt_result.png (PNG copy)> <./img/peppers_color_reliefPrewitt_result
 .png (PNG copy)>]
-[115]
+[116]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [116]
-[117]
+ [117]
+[118]
 Rozdzia\PlPrIeC {\l } 11.
-(Sprawozdanie_Mitrus_Slotwinski.bbl [118
+(Sprawozdanie_Mitrus_Slotwinski.bbl [119
 
-]) [119
+]) [120
 
 ]
 (Sprawozdanie_Mitrus_Slotwinski.aux) ) 
@@ -2688,7 +2698,7 @@ Here is how much of TeX's memory you used:
  10783 multiletter control sequences out of 15000+200000
  18397 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,43p,643b,1757s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,8n,43p,643b,1759s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Michal/AppData/Local/Programs/M
 iKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}{C:/Users/Michal/AppData/Local/Programs/M
 iKTeX 2.9/fonts/enc/dvips/pl/plms.enc}{C:/Users/Michal/AppData/Local/Programs/M
@@ -2711,10 +2721,10 @@ s/type1/public/pl/plsy10.pfb><C:/Users/Michal/AppData/Local/Programs/MiKTeX 2.9
  2.9/fonts/type1/public/pl/plsy8.pfb><C:/Users/Michal/AppData/Local/Programs/Mi
 KTeX 2.9/fonts/type1/public/pl/plti10.pfb><C:/Users/Michal/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/public/pl/plti12.pfb>
-Output written on Sprawozdanie_Mitrus_Slotwinski.pdf (119 pages, 17806448 bytes
+Output written on Sprawozdanie_Mitrus_Slotwinski.pdf (120 pages, 17809445 bytes
 ).
 PDF statistics:
- 597 PDF objects out of 1000 (max. 8388607)
+ 600 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  581 words of extra memory for PDF output out of 10000 (max. 10000000)
 
