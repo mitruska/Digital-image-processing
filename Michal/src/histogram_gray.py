@@ -149,6 +149,9 @@ class HistogramGray:
 
 
 
+
+    # metody użytkowe
+
     def plotHistogram(self, bins, values):
         plt.bar(bins, values, color="gray", width=0.8)
         plt.show()
@@ -175,9 +178,3 @@ class HistogramGray:
         Image.fromarray(image).save(fileName)
         fileName = "img/zad5/" + name + "_" + task + "_result.png"
         Image.fromarray(image).save(fileName)
-
-    #def save(self, *image):
-    #    size = len(image)
-    #    for i in range(0, size):
-    #        fileName = "result" + str(i + 1) + ".tiff"
-    #        Image.fromarray(image[i]).save(fileName)
