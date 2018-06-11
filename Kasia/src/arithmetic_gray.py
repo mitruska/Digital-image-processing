@@ -63,7 +63,7 @@ class ArithmeticGray:
 
         if show == True:
             #przed sumowaniem
-            Image.fromarray(image1_matrix, "L").show()  
+            Image.fromarray(image_matrix, "L").show()  
             #po sumowaniu   
             Image.fromarray(result_matrix, "L").show() 
             #po normalizacji
@@ -86,7 +86,7 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.zeros((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         Q_max = 0
@@ -158,7 +158,7 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
@@ -217,7 +217,7 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.zeros((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
@@ -278,7 +278,7 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
@@ -333,7 +333,7 @@ class ArithmeticGray:
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.zeros((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
@@ -402,13 +402,12 @@ class ArithmeticGray:
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.zeros((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
         
         # Inicjalizacja zmiennych
         f_min = 255
         f_max = 0
         Q_max = 0
-
 
         for y in range(height):
             for x in range(width):  
@@ -454,7 +453,7 @@ class ArithmeticGray:
             #TIFF
             Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Div_Original.tiff", "TIFF")  
             Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Div_Result.tiff", "TIFF")  
-            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Const_Multipl_Result_Norm.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Div_Result_Norm.tiff", "TIFF")  
             #PNG
             Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Div_Original.png", "PNG")  
             Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Div_Result.png", "PNG")  
@@ -468,7 +467,7 @@ class ArithmeticGray:
         height = image1_matrix.shape[0]   # wysokosc
         width = image1_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
@@ -529,20 +528,20 @@ class ArithmeticGray:
             Image.fromarray(norm_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Img_Div_Result_Norm.png", "PNG") 
 
 
-    def sqrt_img(self, step = 1, show = False, save = False):
+    def sqrt_img(self, deg = 1, show = False, save = False):
         
         image_matrix = self.im1
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.zeros((height, width), dtype=np.uint8)
+        result_matrix = np.zeros((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
         f_max = 0
         f_img_max = 0
 
-        alfa = 1/step #zamiana stop pierwiastka na ułamek
+        alfa = 1/deg # Zamiana stopnia pierwiastka na ulamek
 
         for y in range(height):
             for x in range(width):  
@@ -600,13 +599,13 @@ class ArithmeticGray:
 
 
 
-    def log_img(self, alfa = 1, show = False, save = False):
+    def log_img(self, show = False, save = False):
         
         image_matrix = self.im1
         height = image_matrix.shape[0]   # wysokosc
         width = image_matrix.shape[1]    # szereoksc
 
-        result_matrix = np.empty((height, width), dtype=np.uint8)
+        result_matrix = np.empty((width, height), dtype=np.uint8)
 
         # Inicjalizacja zmiennych
         f_min = 255
@@ -661,7 +660,7 @@ class ArithmeticGray:
             #TIFF
             Image.fromarray(image_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Original.tiff", "TIFF")  
             Image.fromarray(result_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Result.tiff", "TIFF")  
-            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Multipl_Result_Norm.tiff", "TIFF")  
+            Image.fromarray(norm_matrix, "L").save("../../Resources/Results/TIFF/" + self.im1Name + "Gray_Log_Result_Norm.tiff", "TIFF")  
             #PNG
             Image.fromarray(image_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Log_Original.png", "PNG")  
             Image.fromarray(result_matrix, "L").save("../../Resources/Results/PNG/" + self.im1Name + "Gray_Log_Result.png", "PNG")  
@@ -670,42 +669,29 @@ class ArithmeticGray:
 #TESTY
 
 arm1 = ArithmeticGray(image1Path = "../../Resources/Gray/Zegarek.tiff", image2Path = "../../Resources/Gray/Gentelman.tiff")
-# # # # arm1.sum_const(const = 50, show = True, save = True)
-# # # # arm1.sum_img(show = True, save = True)
-# # arm1.multiply_const(const = 50, show = True, save = True)
+# arm1.sum_const(const = 50, show = True, save = True)
+# arm1.sum_img(show = True, save = True)
+# arm1.multiply_const(const = 50, show = True, save = True)
 # arm1.multiply_img(show = True, save = True)
 # arm1.mix_alfa(alfa = 0.5, show = True, save = True)
 # arm1.pow_img(alfa = 2, show = True, save = True)
-# arm1.sqrt_img(step = 2, show = True, save = True)
-# arm1.log_img(True, True)
-arm1.div_const(2, True, True)
-arm1.div_img(True, True)
+# arm1.sqrt_img(deg = 2, show = True, save = True)
+arm1.log_img(True, save = True)
+# arm1.div_const(15, True, True)
+# arm1.div_img(True, True)
 
 
 
 
 arm2 = ArithmeticGray(im1Name_ = "2", image1Path = "../../Resources/Gray/Pirat.tiff", image2Path = "../../Resources/Gray/Statek.tiff")
-# # # # arm2.sum_const(const = 100, show = True, save = True)
-# # # # arm2.sum_img(show = True, save = True)
-# # arm2.multiply_const(const = 100, show = True, save = True)
-# # arm2.multiply_img(show = True, save = True)
-# # arm2.mix_alfa(alfa = 0.8, show = True, save = True)
+# arm2.sum_const(const = 100, show = True, save = True)
+# arm2.sum_img(show = True, save = True)
+# arm2.multiply_const(const = 100, show = True, save = True)
+# arm2.multiply_img(show = True, save = True)
+# arm2.mix_alfa(alfa = 0.8, show = True, save = True)
 # arm2.pow_img(alfa = 3, show = True, save = True)
-# # arm2.sqrt_img(step = 3, show = True, save = True)
-# arm2.log_img(True, True)
-arm2.div_const(3, True, True)
-arm1.div_img(True, True)
+# arm2.sqrt_img(deg = 3, show = True, save = True)
+arm2.log_img(True, save = True)
+# arm2.div_const(3, True, save = True)
+# arm2.div_img(True, True)
 
-
-
-
-
-
-
-
-# zad2.sum_img(show = True, save = True)
-# zad2.multiply_const(const = 60, show = True, save = True)
-# zad2.multiply_img(show = True, save = True)
-# zad2.mix_alfa(alfa = 0.3, show = True, save = True)
-# zad2.pow_img(alfa = 2, show = True, save = True)
-# zad2.div_const(const = 60, show = True, save = True)

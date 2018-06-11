@@ -457,15 +457,6 @@ class ArithmeticColor:
                 norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
                 norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
         
-
-        # Normalizacja
-        norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
-        for y in range(height):
-            for x in range(width):
-                norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
-                norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
-                norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
-        
         if show == True:
             #przed 
             Image.fromarray(image1_matrix, "RGB").show()  
@@ -637,7 +628,7 @@ class ArithmeticColor:
             Image.fromarray(result_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Div_Img_Result.png", "PNG")  
             Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Div_Img_Result_Norm.png", "PNG")  
 
-    def sqrt_img(self, step = 1, show = False, save = False):
+    def sqrt_img(self, deg = 1, show = False, save = False):
         
         image1_matrix = self.im1
         height = image1_matrix.shape[0]   # wysokosc
@@ -650,7 +641,7 @@ class ArithmeticColor:
         f_max = 0
         f_img_max = 0
 
-        alfa = 1/step #zamiana stopnia pierwiastka na ulamek
+        alfa = 1/deg # Zamiana stopnia pierwiastka na ulamek
 
         for y in range(height):
             for x in range(width):  
@@ -722,7 +713,7 @@ class ArithmeticColor:
             Image.fromarray(norm_matrix, "RGB").save("../../Resources/Results/PNG/" + self.im1Name + "Color_Sqrt_Result_Norm.png", "PNG")  
 
 
-    def log_img(self, alfa = 1, show = False, save = False):
+    def log_img(self, show = False, save = False):
         
         image1_matrix = self.im1
         image2_matrix = self.im2
@@ -810,38 +801,31 @@ class ArithmeticColor:
 
 #TESTY
 
-carm1 = ArithmeticColor(im1Name_="1", image1Path = "../../Resources/Color/Warzywa.tiff", image2Path = "../../Resources/Color/Dom.tiff" )
-# # # carm1.sum_const(const = 50, show = True, save = True)
-# # # carm1.sum_img(show = True, save = True)
-# # carm1.multiply_const(const = 50, show = True, save = True)
+carm1 = ArithmeticColor(im1Name_="1", image1Path = "../../Resources/Color/Warzywa.tiff", image2Path = "../../Resources/Color/Statek.tiff" )
+# carm1.sum_const(const = 50, show = True, save = True)
+# carm1.sum_img(show = True, save = True)
+# carm1.multiply_const(const = 50, show = True, save = True)
 # carm1.multiply_img(show = True, save = True)
 # carm1.mix_alfa(alfa = 0.5, show = True, save = True)
 # carm1.pow_img(alfa = 2, show = True, save = True)
-# carm1.sqrt_img(step = 2, show = True, save = True)
+# carm1.sqrt_img(deg = 2, show = True, save = True)
 # carm1.log_img(True, True)
 # carm1.div_const(15, True, True)
-carm1.div_img(True, True)
+# carm1.div_img(True, True)
 
 
 
 carm2 = ArithmeticColor(im1Name_="2", image1Path = "../../Resources/Color/Cukierki.tiff", image2Path = "../../Resources/Color/Kobieta.tiff" )
-# # carm2.sum_const(const = 100, show = True, save = True)
-# # carm2.sum_img(show = True, save = True)
+# carm2.sum_const(const = 100, show = True, save = True)
+# carm2.sum_img(show = True, save = True)
 # carm2.multiply_const(const = 100, show = True, save = True)
 # carm2.multiply_img(show = True, save = True)
 # carm2.mix_alfa(alfa = 0.8, show = True, save = True)
 # carm2.pow_img(alfa = 3, show = True, save = True)
-# carm2.sqrt_img(step = 3, show = True, save = True)
+# carm2.sqrt_img(deg = 3, show = True, save = True)
 # carm2.log_img(True, True)
 # carm2.div_const(3, True, True)
-carm2.div_img(True, True)
+# carm2.div_img(True, True)
 
 
-
-
-
-# zad3.multiply_img(show = True, save = True)
-# zad3.multiply_const(const = 60, show = True, save = True)
-# zad3.mix_alfa(alfa = 0.3, show = True, save = True)
-# print(math.ceil(3.4))
 

@@ -247,6 +247,13 @@ for y in range(height):
             f_min = L
         if f_max < L:
             f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+
 \end{lstlisting}
 
 
@@ -284,7 +291,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.zeros((height, width), dtype=np.uint8)
+result_matrix = np.zeros((width, height), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 Q_max = 0
@@ -328,6 +335,7 @@ norm_matrix = np.zeros((width, height), dtype=np.uint8)
 for y in range(height):
     for x in range(width):
         norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+
 \end{lstlisting}
 
 \section {Mnożenie obrazu przez zadaną liczbę}
@@ -357,11 +365,11 @@ for y in range(height):
 
 \begin{lstlisting}[caption=Mnożenie obrazu szarego przez zadaną liczbę]
 
-image1_matrix = self.im1
+iimage1_matrix = self.im1
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width), dtype=np.uint8)
+result_matrix = np.zeros((width, height), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -406,8 +414,6 @@ for y in range(height):
 \hfill
 \\\\
 \indent
-
-
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_Img1_Multipl_Original}
@@ -437,7 +443,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.zeros((height, width), dtype=np.uint8)
+result_matrix = np.zeros((width, height), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -469,7 +475,6 @@ norm_matrix = np.zeros((width, height), dtype=np.uint8)
 for y in range(height):
     for x in range(width):
         norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
-    
 
 \end{lstlisting}
 
@@ -504,7 +509,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width), dtype=np.uint8)
+result_matrix = np.zeros((width, height), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -567,7 +572,7 @@ image_matrix = self.im1
 height = image_matrix.shape[0]   # wysokosc
 width = image_matrix.shape[1]    # szereoksc
 
-result_matrix = np.zeros((height, width), dtype=np.uint8)
+result_matrix = np.zeros((width, height), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -609,12 +614,158 @@ norm_matrix = np.zeros((width, height), dtype=np.uint8)
 for y in range(height):
     for x in range(width):
         norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
-        
+
 
 
 \end{lstlisting}
 
-\section {Dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz}
+\section {Dzielenie obrazu przez (zadaną) liczbę }
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Div_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Div_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Div_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po podzieleniu przez liczbę=15, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Div_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Div_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Div_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po podzieleniu przez liczbę=3, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Dzielenie obrazu szarego przez (zadaną) liczbę ]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((width, height), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+Q_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        L = int(image_matrix[x][y]) + int(const)
+
+        # Poszukiwanie maksimum
+        if Q_max < L:
+            Q_max = L
+
+for y in range(height):
+    for x in range(width):  
+
+        L = int(image_matrix[x][y]) + int(const)
+        Q_L = (L * 255) / Q_max
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(Q_L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > Q_L:
+            f_min = Q_L
+        if f_max < Q_L:
+            f_max = Q_L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+        
+        
+\end{lstlisting}
+
+\section {Dzielenie obrazu przez przez inny obraz}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img1_Div_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img2_Div_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Div_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Img_Div_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku podzielenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img1_Div_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img2_Div_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Div_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Img_Div_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku podzielenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+
+\begin{lstlisting}[caption=Dzielenie obrazu szarego przez przez inny obraz]
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((width, height), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+Q_max = 0
+
+for y in range(height):
+    for x in range(width):  
+        # Obliczanie sumy
+        L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+        
+        # Poszukiwanie maksimum
+        if Q_max < L:
+            Q_max = L
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sumy
+        L = int(image1_matrix[x][y]) + int(image2_matrix[x][y])
+        Q_L = (L * 255) / Q_max
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(Q_L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > Q_L:
+            f_min = Q_L
+        if f_max < Q_L:
+            f_max = Q_L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+
+\end{lstlisting}
 
 
 \section {Pierwiastkowanie obrazu}
@@ -648,14 +799,14 @@ image_matrix = self.im1
 height = image_matrix.shape[0]   # wysokosc
 width = image_matrix.shape[1]    # szereoksc
 
-result_matrix = np.zeros((height, width), dtype=np.uint8)
+result_matrix = np.zeros((width, height), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
 f_max = 0
 f_img_max = 0
 
-alfa = 1/step #zamiana stop pierwiastka na ułamek
+alfa = 1/deg # Zamiana stopnia pierwiastka na ulamek
 
 for y in range(height):
     for x in range(width):  
@@ -692,11 +843,86 @@ norm_matrix = np.zeros((width, height), dtype=np.uint8)
 for y in range(height):
     for x in range(width):
         norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
-        
 
 \end{lstlisting}
 
 \section {Logarytmowanie obrazu}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Log_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Log_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Gray_Log_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po logarytmowaniu logarytmem naturalnym, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Log_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Log_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Gray_Log_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Szary obraz wejściowy, obraz po logarytmowaniu logarytmem naturalnym, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Logarytmowanie obrazu szarego]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((width, height), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+f_img_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        L = int(image_matrix[x][y]) 
+
+        # Poszukiwanie maksimum
+        if f_img_max < L:
+            f_img_max = L
+
+for y in range(height):
+    for x in range(width):  
+
+        L = int(image_matrix[x][y]) 
+
+        if L == 0:
+            L = 0
+        else:
+            L = (math.log(1 + L) / math.log(1 + f_img_max)) * 255
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y] = math.ceil(L)
+
+        # Poszukiwanie minimum i maksimum
+        if f_min > L:
+            f_min = L
+        if f_max < L:
+            f_max = L
+
+# Normalizacja
+norm_matrix = np.zeros((width, height), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y] = 255 * ((result_matrix[x][y] - f_min) / (f_max - f_min))
+
+
+\end{lstlisting}
+
 
 \chapter{Operacje sumowania arytmetycznego obrazów barwowych}
 
@@ -751,7 +977,7 @@ image_matrix = self.im1
 height = image_matrix.shape[0]   # wysokosc
 width = image_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((width, height, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 Q_max = 0
@@ -803,6 +1029,7 @@ for y in range(height):
         norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
         norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
         norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
 \end{lstlisting}
 
 \section {Sumowanie dwóch obrazów}
@@ -838,7 +1065,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 Q_max = 0
@@ -890,6 +1117,7 @@ for y in range(height):
         norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
         norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
         norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
 \end{lstlisting}
 
 \section {Mnożenie obrazu przez zadaną liczbę}
@@ -913,6 +1141,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Color_Const_Multipl_Result_Norm}
 	\end{center}
 	\caption{(Od lewej) Szary obraz wejściowy, obraz po przemnożeniu przez liczbę 100, obraz po normalizacji }
+
 \end{figure}
 
 \subsection*{Kod źródłowy}
@@ -923,7 +1152,7 @@ image_matrix = self.im1
 height = image_matrix.shape[0]   # wysokosc
 width = image_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -1015,7 +1244,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -1061,6 +1290,13 @@ for y in range(height):
         if f_max < max([R, G, B]):
             f_max = max([R, G, B])
 
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
 
 
 \end{lstlisting}
@@ -1099,7 +1335,7 @@ image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -1132,7 +1368,6 @@ for y in range(height):
         norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
         norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
 
-    
 
 \end{lstlisting}
 
@@ -1157,7 +1392,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Color_Pow_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Color_Pow_Result_Norm}
 	\end{center}
-	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po podniesieniu do potęgi $\alpha$=2, obraz po normalizacji }
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po podniesieniu do potęgi $\alpha$=3, obraz po normalizacji }
 \end{figure}
 
 \subsection*{Kod źródłowy}
@@ -1168,7 +1403,7 @@ image1_matrix = self.im1
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
@@ -1230,8 +1465,179 @@ for y in range(height):
 
 \end{lstlisting}
 
-5. dzielenie obrazu przez (zadaną) liczbę oraz przez inny obraz
-6. pierwiastkowanie obrazu
+
+\section{ Dzielenie obrazu przez (zadaną) liczbę}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po podzieleniu przez liczbę=15, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po podzieleniu przez liczbę=3, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=  Dzielenie obrazu barwowego przez (zadaną) liczbę]
+
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+Q_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R_S = int(image_matrix[x][y][0]) + int(const)
+        G_S = int(image_matrix[x][y][1]) + int(const)
+        B_S = int(image_matrix[x][y][2]) + int(const)
+
+        # Poszukiwanie maksimum
+        if Q_max < max([R_S, G_S, B_S]):
+            Q_max = max([R_S, G_S, B_S])
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R_S = int(image_matrix[x][y][0]) + int(const)
+        G_S = int(image_matrix[x][y][1]) + int(const)
+        B_S = int(image_matrix[x][y][2]) + int(const)
+
+        Q_R = (R_S * 255)/Q_max
+        Q_G = (G_S * 255)/Q_max
+        Q_B = (B_S * 255)/Q_max
+            
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(Q_R)
+        result_matrix[x][y][1] = math.ceil(Q_G)
+        result_matrix[x][y][2] = math.ceil(Q_B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([Q_R, Q_G, Q_B]):
+            f_min = min([Q_R, Q_G, Q_B])
+        if f_max < max([Q_R, Q_G, Q_B]):
+            f_max = max([Q_R, Q_G, Q_B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+\end{lstlisting}
+
+\section{ Dzielenie obrazu przez inny obraz }
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Img_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Div_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku dzielenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Img1_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Img2_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Img_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Div_Img_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Dwa obrazy wejściowe, następnie obraz powstały w wyniku dzielenia obrazów, poniżej obraz wynikowy po normalizacji }
+\end{figure}
+
+\begin{lstlisting}[caption= Dzielenie obrazu barwowego przez inny obraz]
+
+
+image1_matrix = self.im1
+image2_matrix = self.im2
+height = image1_matrix.shape[0]   # wysokosc
+width = image1_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+Q_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R_S = int(image1_matrix[x][y][0]) + int(image2_matrix[x][y][0])
+        G_S = int(image1_matrix[x][y][1]) + int(image2_matrix[x][y][1])
+        B_S = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
+
+        # Poszukiwanie maksimum
+        if Q_max < max([R_S, G_S, B_S]):
+            Q_max = max([R_S, G_S, B_S])
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R_S = int(image1_matrix[x][y][0]) + int(image2_matrix[x][y][0])
+        G_S = int(image1_matrix[x][y][1]) + int(image2_matrix[x][y][1])
+        B_S = int(image1_matrix[x][y][2]) + int(image2_matrix[x][y][2])
+
+        Q_R = (R_S * 255)/Q_max
+        Q_G = (G_S * 255)/Q_max
+        Q_B = (B_S * 255)/Q_max
+
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(Q_R)
+        result_matrix[x][y][1] = math.ceil(Q_G)
+        result_matrix[x][y][2] = math.ceil(Q_B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([Q_R, Q_G, Q_B]):
+            f_min = min([Q_R, Q_G, Q_B])
+        if f_max < max([Q_R, Q_G, Q_B]):
+            f_max = max([Q_R, Q_G, Q_B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+\end{lstlisting}
+
 
 \section{ Pierwiastkowanie obrazu}
 
@@ -1261,32 +1667,119 @@ for y in range(height):
 
 \begin{lstlisting}[caption= Pierwiastkowanie obrazu barwowego]
 
+image_matrix = self.im1
+height = image_matrix.shape[0]   # wysokosc
+width = image_matrix.shape[1]    # szereoksc
+
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+
+# Inicjalizacja zmiennych
+f_min = 255
+f_max = 0
+Q_max = 0
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R_S = int(image_matrix[x][y][0]) + int(const)
+        G_S = int(image_matrix[x][y][1]) + int(const)
+        B_S = int(image_matrix[x][y][2]) + int(const)
+
+        # Poszukiwanie maksimum
+        if Q_max < max([R_S, G_S, B_S]):
+            Q_max = max([R_S, G_S, B_S])
+
+for y in range(height):
+    for x in range(width):  
+
+        # Obliczanie sum
+        R_S = int(image_matrix[x][y][0]) + int(const)
+        G_S = int(image_matrix[x][y][1]) + int(const)
+        B_S = int(image_matrix[x][y][2]) + int(const)
+
+        Q_R = (R_S * 255)/Q_max
+        Q_G = (G_S * 255)/Q_max
+        Q_B = (B_S * 255)/Q_max
+            
+        # Zaokroglenie do najblizszej wartosci calkowitej z gory
+        # i przypisanie wartosci
+        result_matrix[x][y][0] = math.ceil(Q_R)
+        result_matrix[x][y][1] = math.ceil(Q_G)
+        result_matrix[x][y][2] = math.ceil(Q_B)
+
+        # Poszukiwanie minimum i maksimum                
+        if f_min > min([Q_R, Q_G, Q_B]):
+            f_min = min([Q_R, Q_G, Q_B])
+        if f_max < max([Q_R, Q_G, Q_B]):
+            f_max = max([Q_R, Q_G, Q_B])
+
+# Normalizacja
+norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
+for y in range(height):
+    for x in range(width):
+        norm_matrix[x][y][0] = 255 * ((result_matrix[x][y][0] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
+        norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
+
+\end{lstlisting}
+
+
+\section{ Logarytmowanie obrazu}
+
+\hfill
+\\\\
+\indent
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Log_Original}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Log_Result}
+		\includegraphics[width=0.3\textwidth]{1/1Color_Log_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po logarytmowaniu logarytmem naturalnym, obraz po normalizacji }
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Log_Original}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Log_Result}
+		\includegraphics[width=0.3\textwidth]{2/2Color_Log_Result_Norm}
+	\end{center}
+	\caption{(Od lewej) Barwowy obraz wejściowy, obraz po logarytmowaniu logarytmem naturalnym, obraz po normalizacji }
+\end{figure}
+
+\subsection*{Kod źródłowy}
+
+\begin{lstlisting}[caption=Logarytmowanie obrazu barwowego]
+
+
 image1_matrix = self.im1
+image2_matrix = self.im2
 height = image1_matrix.shape[0]   # wysokosc
 width = image1_matrix.shape[1]    # szereoksc
 
-result_matrix = np.empty((height, width, 3), dtype=np.uint8)
+result_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 
 # Inicjalizacja zmiennych
 f_min = 255
 f_max = 0
 f_img_max = 0
 
-alfa = 1/base #zamiana stopnia pierwiastka na ulamek
-
 for y in range(height):
     for x in range(width):  
-
+        
         R = int(image1_matrix[x][y][0])
         G = int(image1_matrix[x][y][1])
         B = int(image1_matrix[x][y][2])
 
+        # Poszukiwanie maksimum                
         if f_img_max < max([R, G, B]):
             f_img_max = max([R, G, B])
 
 for y in range(height):
     for x in range(width):  
-
+        
         R = int(image1_matrix[x][y][0])
         G = int(image1_matrix[x][y][1])
         B = int(image1_matrix[x][y][2])
@@ -1294,17 +1787,17 @@ for y in range(height):
         if R == 0:
             R = 0
         else:
-            R = 255 * (math.pow(int(image1_matrix[x][y][0]) / f_img_max, alfa))
+            R = math.log(1 + int(image1_matrix[x][y][0])) / math.log(1 + int(f_img_max)) * 255
 
         if G == 0:
             G = 0
         else:
-            G = 255 * (math.pow(int(image1_matrix[x][y][1]) / f_img_max, alfa))
+            G = math.log(1 + int(image1_matrix[x][y][1])) / math.log(1 + int(f_img_max)) * 255
         
         if B == 0:
             B = 0
         else:
-            B = 255 * (math.pow(int(image1_matrix[x][y][2]) / f_img_max, alfa))
+            B = math.log(1 + int(image1_matrix[x][y][2])) / math.log(1 + int(f_img_max)) * 255
 
         # Zaokroglenie do najblizszej wartosci calkowitej z gory
         # i przypisanie wartosci
@@ -1318,6 +1811,7 @@ for y in range(height):
         if f_max < max([R, G, B]):
             f_max = max([R, G, B])
 
+
 # Normalizacja
 norm_matrix = np.zeros((width, height, 3), dtype=np.uint8)
 for y in range(height):
@@ -1326,10 +1820,8 @@ for y in range(height):
         norm_matrix[x][y][1] = 255 * ((result_matrix[x][y][1] - f_min) / (f_max - f_min))
         norm_matrix[x][y][2] = 255 * ((result_matrix[x][y][2] - f_min) / (f_max - f_min))
 
-
 \end{lstlisting}
 
-7. logarytmowanie obrazu
 
 \chapter{Operacje geometryczne na obrazie}
 1. przemieszczenie obrazu o zadany wektor
