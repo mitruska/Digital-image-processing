@@ -2529,7 +2529,7 @@ for y in range(height):
 W obrazie binarnym piksele mogą przybierać tylko dwie wartości. Zazwyczaj kodowane są za pomocą pojedynczego bitu i przyjmują wartość 0 lub 1. Spotyka się także reprezentacje wykorzystujące inne pary wartości: (0, 255), (-1, 1), (True, False). \\
 W przedstawionych przykładach została użyta reprezentacja (0,255), gdzie 0 oznacza czerń a 255 biały.
 
-W przetwarzaniu obrazów binarnych ważne jest określenie, kiedy dwa piksele sąsiadują ze sobą. W tym celu definiuje się dla każdego piksla jego sąsiedztwo. Przy implementacji wykorzystano sąsiedztwo czterospójne: 
+W morfologicznym przetwarzaniu obrazów ważne jest określenie, kiedy dwa piksele sąsiadują ze sobą. W tym celu definiuje się dla każdego piksla jego sąsiedztwo. Przy implementacji wykorzystano sąsiedztwo czterospójne: 
 
 	Sąsiedztwo czterospójne (von Neumanna) - obejmuje cztery piksele przyległe do danego z góry, dołu i po bokach
 	\begin{center}
@@ -2539,7 +2539,7 @@ W przetwarzaniu obrazów binarnych ważne jest określenie, kiedy dwa piksele s�
 \section{ Okrawanie (erozja)}
 \hfill\\
 \indent
-       Przyjeto, ze wartosci wykraczajace poza granice (wysokość/szerokość) obrazu są białe (maja wartość 255)
+       Przyjeto, ze wartosci wykraczajace poza granice (wysokość/szerokość) obrazu są białe (maja wartość 255)\\
 	\begin{enumerate}	
 		\item Dla wszystkich pikseli wykonaj:
 		\item Wczytaj wartości sąsiadujących pikseli $(x,y-1),(x,y+1),(x-1,y),(x+1,y)$ od piksla $(x,y)$.
@@ -2596,6 +2596,15 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Nakładanie (dylatacja)}
+\hfill\\
+\indent
+       Przyjeto, ze wartosci wykraczajace poza granice (wysokość/szerokość) obrazu są białe (maja wartość 255)\\
+	\begin{enumerate}	
+		\item Dla wszystkich pikseli wykonaj:
+		\item Wczytaj wartości sąsiadujących pikseli $(x,y-1),(x,y+1),(x-1,y),(x+1,y)$ od piksla $(x,y)$.
+		\item Jeżeli którykolwiek z sąsiadów ma wartość równą 0 to środkowy piksel $(x,y)$ ma przyjąć wartość 0. 
+		\item Jeżeli wszyscy sąsiedzi mają wartość równą 255 to środkowy piksel $(x,y)$ ma przyjąć wartość 255.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -2645,10 +2654,9 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Otwarcie}
-.
-\hfill
-\\\\
+.\hfill\\
 \indent
+	Otwarcie morfologiczne jest równoważne nałożeniu operacji dylatacji na wynik erozji obrazu pierwotnego.
 
 \begin{figure}[H]
 	\begin{center}
@@ -2723,9 +2731,9 @@ for y in range(height):
 
 \section{ Zamknięcie}
 .
-\hfill
-\\\\
+.\hfill\\
 \indent
+	Zamknięcie morfologiczne jest równoważne nałożeniu operacji erozji na wynik dylatacji obrazu pierwotnego.
 
 \begin{figure}[H]
 	\begin{center}
@@ -2803,8 +2811,24 @@ for y in range(height):
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%SZARE
 
 \chapter {Operacje morfologiczne na obrazach szarych}
+.\hfill\\
+\indent
+W morfologicznym przetwarzaniu obrazów ważne jest określenie, kiedy dwa piksele sąsiadują ze sobą. W tym celu definiuje się dla każdego piksla jego sąsiedztwo. Przy implementacji wykorzystano sąsiedztwo czterospójne: 
+
+	Sąsiedztwo czterospójne (von Neumanna) - obejmuje cztery piksele przyległe do danego z góry, dołu i po bokach
+	\begin{center}
+	 $N_{4}(p)=((x,y-1),(x,y+1),(x-1,y),(x+1,y))$
+	 \end{center}
 
 \section{ Okrawanie (erozja)}
+.\hfill\\
+\indent
+\begin{enumerate}	
+		\item Dla wszystkich pikseli wykonaj:
+		\item Wczytaj wartości sąsiadujących pikseli do wektora $(x,y-1),(x,y+1),(x-1,y),(x+1,y)$ od piksela $(x,y)$.
+		\item Posortuj wektor.
+		\item Przypisz wartość piksela o najniższej jasnosci do piksela $(x,y)$.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -2826,8 +2850,6 @@ for y in range(height):
 \subsection*{Kod źródłowy}
 
 \begin{lstlisting}[caption= Operacja okrawania (erozji) na obrazie szarym]
-
-def erozion(self, show = False, save = False):
 
 image_matrix = self.im1
 width = image_matrix.shape[1]    # szereoksc
@@ -2854,7 +2876,14 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Nakładanie (dylatacja)}
-
+.\hfill\\
+\indent
+\begin{enumerate}	
+		\item Dla wszystkich pikseli wykonaj:
+		\item Wczytaj wartości sąsiadujących pikseli do wektora $(x,y-1),(x,y+1),(x-1,y),(x+1,y)$ od piksela $(x,y)$.
+		\item Posortuj wektor.
+		\item Przypisz wartość piksela o najwyższej jasnosci do piksela $(x,y)$.
+	\end{enumerate}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.3\textwidth]{1/1Gray_D_Original}
@@ -2904,10 +2933,9 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Otwarcie}
-.
-\hfill
-\\\\
+.\hfill\\
 \indent
+	Otwarcie morfologiczne jest równoważne nałożeniu operacji dylatacji na wynik erozji obrazu pierwotnego.
 
 \begin{figure}[H]
 	\begin{center}
@@ -2977,10 +3005,9 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Zamknięcie}
-.
-\hfill
-\\\\
+.\hfill\\
 \indent
+	Zamknięcie morfologiczne jest równoważne nałożeniu operacji erozji na wynik dylatacji obrazu pierwotnego.
 
 \begin{figure}[H]
 	\begin{center}
