@@ -1212,8 +1212,7 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Mnożenie obrazu przez zadaną liczbę}
-\hfill
-\\\\
+\hfill\\
 \indent
 Mnożenie obrazu f przez skalar wykonuje się mnożąc każdy element obrazu $f_{i,j}$ (wartość funkcji obrazowej piksla) przez ten skalar. Barwa wynikowa jest zawsze barwą ciemniejszą.
 
@@ -1309,8 +1308,7 @@ for y in range(height):
 \end{lstlisting}
 
 \section {Mnożenie obrazu przez inny obraz}
-\hfill
-\\\\
+\hfill\\
 \indent
 Mnożenie obrazu f przez inny obraz wykonuje się mnożąc każdy element obrazu $P1_{i,j}$ (wartość funkcji obrazowej piksla) przez odpowiadającego piksla drugiego obrazu $P2_{i,j}$
 
@@ -1409,8 +1407,7 @@ for y in range(height):
 
 
 \section{ Mieszanie obrazów z określonym współczynnikiem}
-\hfill
-\\\\
+\hfill\\
 \indent
 Mieszanie dwóch obrazów polega na sumowaniu ich z wagami $\alpha$ i $(1 - \alpha)$, odpowiednio, wg wzoru:
 	
@@ -1490,8 +1487,7 @@ for y in range(height):
 
 \section{ Potęgowanie obrazu}
 
-\hfill
-\\\\
+\hfill\\
 \indent
 
 \begin{center} Potęgowanie obrazu jest szczególnym przypadkiem operacji mnożenia obrazów. Aby uniknąć wykroczenia poza zakres, skorzystano ze znormalizowanego wzoru ~\cite{WykRat}:
@@ -1589,8 +1585,7 @@ for y in range(height):
 
 \section{ Dzielenie obrazu przez (zadaną) liczbę}
 
-\hfill
-\\\\
+\hfill\\
 \indent
 
 Dzielenie obrazów stosuje się w celu korekcji cieniowania między poziomami szarości.
@@ -1879,8 +1874,7 @@ for y in range(height):
 
 \section{ Logarytmowanie obrazu}
 
-\hfill
-\\\\
+\hfill\\
 \indent
 Logarytmowanie obrazu powoduje rozjaśnienie i zróżnicowanie najciemniejszych obszarów obrazu.
 Wykorzystano wzór z normalizacją ~/cite{WykRat}:
@@ -1985,13 +1979,22 @@ for y in range(height):
 
 
 \chapter{Operacje geometryczne na obrazie}
-
+\hfill\\
+\indent
+Transformacje geometryczne są szczególnie wykorzystywane w przypadku dopasowywania obrazu do układu współrzędnych oraz w przypadku eliminowania zniekształceń geometrycznych obrazu. W przedstawionych operacjach obrazy umieszczane są w pierwszej ćwiartce układu współrzędnych.
 
 \section{ Przemieszczenie obrazu o zadany wektor}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+
+Przesuwanie obrazu polega na zmianie współrzędnych każdego piksela obrazu o określoną wartość zgodnie z zależnościami:
+	
+	\begin{center}
+		$x^I = x_{o} + \Delta x$\\
+		$y^I = y_{o} + \Delta y$
+	\end{center}
+	
+	gdzie $(x_{o},y_{o})$ - współrzędnych początkowe piksla; ($\Delta{x},\Delta{y}$) - wartości przesunięcia; $(x^I,y^I)$ - współrzędne piksla po przesunięciu;
 
 \begin{figure}[H]
 	\begin{center}
@@ -2017,7 +2020,7 @@ image_matrix = self.im1
 height = image_matrix.shape[0]   # wysokosc
 width = image_matrix.shape[1]    # szereoksc
 
-delta_y = 0 - delta_y # Poruszamy sie w pierwszej cwartce ukladu wspolrzednyvh
+delta_y = 0 - delta_y # Poruszamy sie w pierwszej cwartce ukladu wspolrzednych
 
 result_matrix = np.zeros((height, width, 3), dtype=np.uint8)
 
@@ -2029,10 +2032,14 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Jednorodne skalowanie obrazu}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+Skalowanie jednorodne obrazu polega na pomnożeniu współrzędnych każdego piksla obrazu przez współczynnik skalowania $S$ wg. wzoru:
+	
+	\begin{center}
+		$x^I = x_{o} * S$ \\
+		$y^I = y_{o} * S$
+	\end{center}
 
 \begin{figure}[H]
 	\begin{center}
@@ -2040,7 +2047,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleJ_Result}
 		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleJ_Result_Interp}
 	\end{center}
-	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu jednorodnym ze współczynnikiem=1.5 , obraz po interpolacji }
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu jednorodnym ze współczynnikiem S=1.5 , obraz po interpolacji }
 \end{figure}
 
 \begin{figure}[H]
@@ -2049,7 +2056,7 @@ for y in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleJ_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleJ_Result_Interp}
 	\end{center}
-	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu jednorodnym ze współczynnikiem=2, obraz po interpolacji }
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu jednorodnym ze współczynnikiem S=2, obraz po interpolacji }
 \end{figure}
 
 \subsection*{Kod źródłowy}
@@ -2094,10 +2101,16 @@ for i in range(height):
 \end{lstlisting}
 
 \section{ Niejednorodne skalowanie obrazu}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+Skalowanie niejednorodne obrazu polega na pomnożeniu współrzędnych każdego piksla obrazu przez współczynniki skalowania $S_{x}, S_{y}$ wg. wzoru:
+
+\begin{center}
+	$x^I = x_{o} * S_{x}$ \\
+	$y^I = y_{o} * S_{y}$
+\end{center}
+
+gdzie $(x_{o},y_{o})$ - współrzędne początkowe piksela; ($S_{x}, S_{y}$) - wartości współczynników skalowania; $(x^I,y^I)$ - współrzędne piksla po skalowaniu;
 
 \begin{figure}[H]
 	\begin{center}
@@ -2105,7 +2118,7 @@ for i in range(height):
 		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleNJ_Result}
 		\includegraphics[width=0.3\textwidth]{1/1Geo_ScaleNJ_Result_Interp}
 	\end{center}
-	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu niejednorodnym ze współczynnikiem=2 dla x oraz współczynnikiem=1 dla y , obraz po interpolacji }
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu niejednorodnym ze współczynnikiem $S_{x}$=2 oraz współczynnikiem $S_{y}$=1 , obraz po interpolacji }
 \end{figure}
 
 \begin{figure}[H]
@@ -2114,7 +2127,7 @@ for i in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleNJ_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Geo_ScaleNJ_Result_Interp}
 	\end{center}
-	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu niejednorodnym ze współczynnikiem=1 dla x oraz współczynnikiem=2 dla y , obraz po interpolacji }
+	\caption{(Od lewej) Obraz wejściowy, obraz skalowaniu niejednorodnym ze współczynnikiem $S_{x}$=1 oraz współczynnikiem $S_{y}$=2 , obraz po interpolacji }
 \end{figure}
 
 \subsection*{Kod źródłowy}
@@ -2160,11 +2173,24 @@ for i in range(height):
 
 
 \section{ Obracanie obrazu o dowolny kąt}
-
-
-\hfill
-\\\\
+\hfill\\
 \indent
+
+Operację obrotu dookoła początku układu współrzędnych wykonuje się zgodnie ze wzorem:
+	
+	\begin{center}
+		$x^I = x_{o} * cos\alpha - y_{o} * sin\alpha$\\
+		$y^I = x_{o} * sin\alpha + y_{o} * cos\alpha$
+	\end{center}
+	
+	gdzie $(x_{o},y_{o})$ - współrzędne początkowe piksla; $\alpha$ - kąt obrotu; $(x^I,y^I)$ - współrzędne piksela po obrocie;
+
+W przedstawionych przykładach punkt obrotu został przesunięty na środek obrazu według wzoru:
+
+	\begin{center}
+        $new_x = (x - width/2) * math.cos(alfa_r) - (y - height/2) * math.sin(alfa_r) + (width/2)$\\
+        $new_y = (x - width/2) * math.sin(alfa_r) + (y - height/2) * math.cos(alfa_r) + (height/2)$\\
+	\end{center}
 
 \begin{figure}[H]
 	\begin{center}
@@ -2172,7 +2198,7 @@ for i in range(height):
 		\includegraphics[width=0.3\textwidth]{1/1Geo_Turn_Result}
 		\includegraphics[width=0.3\textwidth]{1/1Geo_Turn_Result_Interp}
 	\end{center}
-	\caption{(Od lewej) Obraz wejściowy, obraz po obróceniu o kąt 40 stopni, obraz po interpolacji }
+	\caption{(Od lewej) Obraz wejściowy, obraz po obróceniu wokół  środka obrazu o kąt 40 stopni, obraz po interpolacji }
 \end{figure}
 
 \begin{figure}[H]
@@ -2181,7 +2207,7 @@ for i in range(height):
 		\includegraphics[width=0.3\textwidth]{2/2Geo_Turn_Result}
 		\includegraphics[width=0.3\textwidth]{2/2Geo_Turn_Result_Interp}
 	\end{center}
-	\caption{(Od lewej) Obraz wejściowy, obraz po obróceniu o kąt 110 stopni, obraz po interpolacji }
+	\caption{(Od lewej) Obraz wejściowy, obraz po obróceniu wokół  środka obrazu o kąt 110 stopni, obraz po interpolacji }
 \end{figure}
 
 
@@ -2235,10 +2261,10 @@ for i in range(height):
 \section{ Symetrie względem osi układu}
 
 \subsection*{ Symetria względem osi X}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+Względem osi OX pikslem symetrycznym do piksla $P_{1}(x,y)$ jest piksel $P_{2}(x,-y)$
+	
 
 \begin{figure}[H]
 	\begin{center}
@@ -2274,10 +2300,10 @@ for y in range(height):
 \end{lstlisting}
 
 \subsection*{ Symetria względem osi Y}
-
-\hfill
-\\\\
+\hfill\\
 \indent
+Względem osi OY pikslem symetrycznym do piksla $P_{1}(x,y)$ jest piksel $P_{2}(-x,y)$
+
 
 \begin{figure}[H]
 	\begin{center}
@@ -2313,9 +2339,7 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Symetrie względem zadanej prostej}
-
-\hfill
-\\\\
+\hfill\\
 \indent
 
 \begin{figure}[H]
@@ -2390,9 +2414,7 @@ for y in range(height):
 
 
 \section{ Wycinanie fragmentów obrazu}
-
-\hfill
-\\\\
+\hfill\\
 \indent
 
 \begin{figure}[H]
@@ -2434,6 +2456,8 @@ for y in range(height):
 \end{lstlisting}
 
 \section{ Kopiowanie fragmentów obrazów}
+\hfill\\
+\indent
 
 \begin{figure}[H]
 	\begin{center}
@@ -2502,7 +2526,26 @@ for y in range(height):
 
 \chapter{Operacje morfologiczne na obrazach binarnych}
 
+W obrazie binarnym piksele mogą przybierać tylko dwie wartości. Zazwyczaj kodowane są za pomocą pojedynczego bitu i przyjmują wartość 0 lub 1. Spotyka się także reprezentacje wykorzystujące inne pary wartości: (0, 255), (-1, 1), (True, False). \\
+W przedstawionych przykładach została użyta reprezentacja (0,255), gdzie 0 oznacza czerń a 255 biały.
+
+W przetwarzaniu obrazów binarnych ważne jest określenie, kiedy dwa piksele sąsiadują ze sobą. W tym celu definiuje się dla każdego piksla jego sąsiedztwo. Przy implementacji wykorzystano sąsiedztwo czterospójne: 
+
+	Sąsiedztwo czterospójne (von Neumanna) - obejmuje cztery piksele przyległe do danego z góry, dołu i po bokach
+	\begin{center}
+	 $N_{4}(p)=((x,y-1),(x,y+1),(x-1,y),(x+1,y))$
+	 \end{center}
+
 \section{ Okrawanie (erozja)}
+\hfill\\
+\indent
+       Przyjeto, ze wartosci wykraczajace poza granice (wysokość/szerokość) obrazu są białe (maja wartość 255)
+	\begin{enumerate}	
+		\item Dla wszystkich pikseli wykonaj:
+		\item Wczytaj wartości sąsiadujących pikseli $(x,y-1),(x,y+1),(x-1,y),(x+1,y)$ od piksla $(x,y)$.
+		\item Jeżeli którykolwiek z sąsiadów ma wartość równą 255 to środkowy piksel $(x,y)$ ma przyjąć wartość 255. 
+		\item Jeżeli wszyscy sąsiedzi mają wartość równą 0 to środkowy piksel $(x,y)$ ma przyjąć wartość 0.
+	\end{enumerate}
 
 \begin{figure}[H]
 	\begin{center}
@@ -2533,7 +2576,7 @@ result_matrix = np.zeros((height, width), dtype=np.uint8)
 
 for y in range(height):
     for x in range(width):  
-        # Przyjeto, ze wartosci wykraczajace poza zakres obrazu sa biale (maja wartosc 255)
+        # Przyjeto, ze wartosci wykraczajace poza granice obrazu sa biale (maja wartosc 255)
         neighbour_pix = [255, 255, 255, 255]
 
         if x - 1 > 0:
