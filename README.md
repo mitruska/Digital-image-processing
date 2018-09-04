@@ -1,4 +1,4 @@
-# Frustraction
+# Digital image processing 
 
 ## **1. Operacje ujednolicania obrazów** 
 - [ ] Kasia 
